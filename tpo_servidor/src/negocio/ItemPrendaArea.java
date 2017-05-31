@@ -1,6 +1,7 @@
 package negocio;
 
 import dto.ItemPrendaAreaDTO;
+import dto.PrendaDTO;
 import entities.ItemPrendaAreaEntity;
 import persistencia.ItemPrendaAreaDAO;
 
@@ -58,6 +59,14 @@ public class ItemPrendaArea {
 
 	public void setPrenda(Prenda prenda) {
 		this.prenda = prenda;
+	}
+
+	public ItemPrendaAreaDTO toDTO(PrendaDTO p) {
+		ItemPrendaAreaDTO item = new ItemPrendaAreaDTO();
+		item.setArea(area.toDTO());
+		item.setMinutoEnArea(minutoEnArea);
+		item.setPrenda(p);
+		return item;
 	}
 	
 	

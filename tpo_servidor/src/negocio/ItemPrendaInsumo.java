@@ -15,12 +15,14 @@ public class ItemPrendaInsumo {
 		this.insumo = new Insumo(ipiDTO.getInsumo());
 		this.cantidad = ipiDTO.getCantidad();
 		this.desperdicio = ipiDTO.getDesperdicio();
+		this.prenda = new Prenda(ipiDTO.getPrenda());
 	}
 
 	public ItemPrendaInsumo(ItemPrendaInsumoEntity ipie) {
-		this.insumo = new Insumo(ipie.getInsumo());
+		this.insumo = new Insumo(ipie.getId().getInsumo());
 		this.cantidad = ipie.getCantidad();
 		this.desperdicio = ipie.getDesperdicio();
+		this.prenda = new Prenda(ipie.getId().getPrenda());
 	}
 
 /*	public void insertar() {
@@ -74,6 +76,15 @@ public class ItemPrendaInsumo {
 
 	public void setPrenda(Prenda prenda) {
 		this.prenda = prenda;
+	}
+
+	public ItemPrendaInsumoDTO toDTO() {
+		ItemPrendaInsumoDTO item = new ItemPrendaInsumoDTO();
+		item.setCantidad(cantidad);
+		item.setDesperdicio(desperdicio);
+		item.setInsumo(insumo.toDTO());
+		item.setPrenda(prenda.toDTO());
+		return item;
 	}
 	
 	

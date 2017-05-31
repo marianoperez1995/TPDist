@@ -19,8 +19,25 @@ public class PrendaDTO  implements Serializable{
 	private float porcentajeGanancia;
 	private float precio;
 	private ArrayList<ItemPrendaInsumoDTO> itemsPrendaInsumo;
-	private ArrayList<ItemPrendaAreaDTO> itemsPrendaArea;
-	public int cantidadAConfeccionar;
+	private int cantidadAConfeccionar;
+	private String color;
+	private String talle;
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	public String getTalle() {
+		return talle;
+	}
+
+	public void setTalle(String talle) {
+		this.talle = talle;
+	}
 
 	public int getCodigo() {
 		return codigo;
@@ -108,14 +125,6 @@ public class PrendaDTO  implements Serializable{
 
 	public void setItemsPrendaInsumo(ArrayList<ItemPrendaInsumoDTO> itemsPrendaInsumo) {
 		this.itemsPrendaInsumo = itemsPrendaInsumo;
-	}
-
-	public ArrayList<ItemPrendaAreaDTO> getItemsPrendaArea() {
-		return itemsPrendaArea;
-	}
-
-	public void setItemsPrendaArea(ArrayList<ItemPrendaAreaDTO> itemsPrendaArea) {
-		this.itemsPrendaArea = itemsPrendaArea;
 	}
 
 	public int getCantidadAConfeccionar() {

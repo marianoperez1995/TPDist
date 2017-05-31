@@ -1,15 +1,16 @@
 package negocio;
 
-import java.awt.Color;
 import java.util.ArrayList;
 
+import persistencia.PrendaDAO;
 import dto.ItemPrendaAreaDTO;
 import dto.ItemPrendaInsumoDTO;
+import dto.OpcDTO;
+import dto.OppDTO;
 import dto.PrendaDTO;
 import entities.ItemPrendaAreaEntity;
 import entities.ItemPrendaInsumoEntity;
 import entities.PrendaEntity;
-import persistencia.PrendaDAO;
 
 public class Prenda {
 	private int idPrenda;
@@ -22,9 +23,25 @@ public class Prenda {
 	private float costoProduccionActual;
 	private float porcentajeGanancia;
 	private float precio;
-	private ArrayList<ItemPrendaArea> itemsPrendaArea;
 	private ArrayList<ItemPrendaInsumo> itemsPrendaInsumo;
 	public int cantidadAConfeccionar;
+	private String color;
+	private String talle;
+
+	public String getTalle() {
+		return talle;
+	}
+
+
+	public void setTalle(String talle) {
+		this.talle = talle;
+	}
+
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
 
 	public Prenda(PrendaDTO preDTO) {
 		this.idPrenda = preDTO.getCodigo();
@@ -219,15 +236,6 @@ public class Prenda {
 	}
 
 
-	public ArrayList<ItemPrendaArea> getItemsPrendaArea() {
-		return itemsPrendaArea;
-	}
-
-
-	public void setItemsPrendaArea(ArrayList<ItemPrendaArea> itemsPrendaArea) {
-		this.itemsPrendaArea = itemsPrendaArea;
-	}
-
 
 	public int getCantidadAConfeccionar() {
 		return cantidadAConfeccionar;
@@ -240,7 +248,7 @@ public class Prenda {
 
 
 	public void insert() {
-		// TODO Auto-generated method stub
+		PrendaDAO.getInstancia().insert(this);
 		
 	}
 
@@ -248,9 +256,30 @@ public class Prenda {
 	public PrendaDTO toDTO() {
 		PrendaDTO prenda = new PrendaDTO();
 		prenda.setCantidadAConfeccionar(cantidadAConfeccionar);
-		prenda.setCodigo(codigo);
+		prenda.setCodigo(idPrenda);
 		prenda.setColoresPosibles(coloresPosibles);
+		prenda.setColor(color);
+		prenda.setTalle(talle);
 		prenda.setCostoProduccionActual(costoProduccionActual);
-		return null;
+		prenda.setCostoProduccionReal(costoProduccionReal);
+		prenda.setDescripcion(descripcion);
+		prenda.setEstadoProduccion(estadoProduccion);
+		prenda.setPorcentajeGanancia(porcentajeGanancia);
+		prenda.setPrecio(precio);
+		prenda.setTallesPosibles(tallesPosibles);
+
+		ArrayList<ItemPrendaInsumoDTO> itemsPI = new ArrayList<>();
+		for (ItemPrendaInsumo i : itemsPrendaInsumo){
+			itemsPI.add(i.toDTO());
+		}
+		prenda.setItemsPrendaInsumo(itemsPI);
+		return prenda;
 	}
+
+
+	public String getColor() {
+		return color;
+	}
+
+
 }
