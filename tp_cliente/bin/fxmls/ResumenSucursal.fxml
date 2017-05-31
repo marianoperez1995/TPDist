@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="668.0" prefWidth="1366.0" style="-fx-background-color: #f3ee84;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="application.ResumenController">
+   <children>
+      <Label layoutX="393.0" layoutY="288.0" text="Pantalla de Resumen">
+         <font>
+            <Font size="63.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

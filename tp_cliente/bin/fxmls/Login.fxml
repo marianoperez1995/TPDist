@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LoginController">
+   <children>
+      <Pane layoutY="-7.0" prefHeight="317.0" prefWidth="1366.0" style="-fx-background-color: #355c7D;">
+         <children>
+            <Label layoutX="503.0" layoutY="66.0" text="INICIAR SESION" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="48.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="399.0" layoutY="183.0" prefHeight="571.0" prefWidth="569.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <JFXTextField fx:id="txtUser" focusColor="#f67280" labelFloat="true" layoutX="82.0" layoutY="269.0" prefHeight="31.0" prefWidth="406.0" promptText="Nombre de usuario">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXTextField>
+            <JFXPasswordField fx:id="txtPassword" focusColor="#f67280" labelFloat="true" layoutX="82.0" layoutY="336.0" prefHeight="31.0" prefWidth="406.0" promptText="Contraseña">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXPasswordField>
+            <JFXButton fx:id="btnLogin" buttonType="RAISED" layoutX="203.0" layoutY="511.0" onAction="#makeLogin" prefHeight="40.0" prefWidth="162.0" style="-fx-background-color: #355c7D;" text="LOGIN" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font></JFXButton>
+            <ImageView fitHeight="177.0" fitWidth="337.0" layoutX="116.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/logo.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="lblStatus" layoutX="81.0" layoutY="400.0" prefHeight="26.0" prefWidth="406.0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <JFXSpinner fx:id="loginSpinner" layoutX="264.0" layoutY="443.0" radius="17.0" startingAngle="0.0" visible="false" />
+         </children>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" />
+         </effect>
+      </Pane>
+   </children>
+</AnchorPane>

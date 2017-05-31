@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="anchPane" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
+   <children>
+      <AnchorPane fx:id="bodyPanel" layoutX="-2.0" layoutY="103.0" prefHeight="668.0" prefWidth="1366.0" />
+      <Pane prefHeight="103.0" prefWidth="1366.0" style="-fx-background-color: #355c7D;">
+         <children>
+            <JFXHamburger fx:id="hamburgerMenu" layoutX="35.0" layoutY="39.0" stylesheets="@../styles/hambstyle.css">
+               <effect>
+                  <DropShadow blurType="GAUSSIAN" color="#67a5e0" />
+               </effect>
+            </JFXHamburger>
+            <Label fx:id="lblTitulo" layoutX="106.0" layoutY="29.0" text="Gut Gekleidet Wurst" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="exit" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" layoutX="1327.0" layoutY="12.0" onAction="#exit" prefHeight="26.0" prefWidth="35.0" ripplerFill="#fc0000" style="-fx-background-color: #ff3d3d; -fx-background-radius: 5em; -fx-min-width: 25px; -fx-min-height: 25px; -fx-max-width: 25px; -fx-max-height: 25px;" text="X">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <Label fx:id="lblUser" alignment="CENTER" layoutX="974.0" layoutY="32.0" prefHeight="28.0" prefWidth="178.0" text="Nombre de usuario" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="906.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/profile_logo.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="1064.0" layoutY="56.0" text="Cerrar sesion" textFill="#ff5e5e">
+               <font>
+                  <Font name="System Bold Italic" size="13.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="minimize" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" layoutX="1289.0" layoutY="12.0" onAction="#minimize" prefHeight="26.0" prefWidth="35.0" ripplerFill="#ffffee" style="-fx-background-color: #fff67f; -fx-background-radius: 5em; -fx-min-width: 25px; -fx-min-height: 25px; -fx-max-width: 25px; -fx-max-height: 25px;" text="-">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <ImageView fx:id="fullscreen" fitHeight="54.0" fitWidth="54.0" layoutX="1201.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/fullscreen_vector.png" />
+               </image>
+               <effect>
+                  <DropShadow color="WHITE" />
+               </effect>
+            </ImageView>
+         </children>
+      </Pane>
+      <JFXDrawer fx:id="menuDrawer" defaultDrawerSize="300.0" layoutY="103.0" prefHeight="668.0" prefWidth="266.0" style="-: #efb20b;">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets></JFXDrawer>
+   </children>
+</AnchorPane>

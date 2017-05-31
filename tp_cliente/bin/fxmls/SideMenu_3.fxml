@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="668.0" prefWidth="266.0" style="-fx-background-color: #355C7d;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SidePanelController3">
+   <children>
+      <Pane prefHeight="40.0" prefWidth="266.0" style="-fx-background-color: #2a4f6d;">
+         <children>
+            <Label layoutX="107.0" layoutY="7.0" text="MENU" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <JFXHamburger layoutX="14.0" layoutY="12.0" stylesheets="@../styles/hambstyle2.css" />
+         </children>
+      </Pane>
+      <Label text="Pedidos" textFill="WHITE">
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+         <padding>
+            <Insets bottom="5.0" left="10.0" />
+         </padding>
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="btnVerPedidos" alignment="CENTER_RIGHT" buttonType="RAISED" minHeight="28.0" onAction="#changeBody" prefHeight="28.0" prefWidth="250.0" ripplerFill="BLACK" style="-fx-background-color: #c06C84;" text="Ver pedidos completos" textAlignment="RIGHT">
+         <font>
+            <Font size="14.0" />
+         </font></JFXButton>
+      <JFXButton fx:id="btnBuscarPedido" alignment="CENTER_RIGHT" buttonType="RAISED" minHeight="28.0" onAction="#changeBody" prefHeight="28.0" prefWidth="250.0" ripplerFill="BLACK" style="-fx-background-color: #c06C84;" text="Buscar pedidos" textAlignment="RIGHT">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <VBox.margin>
+            <Insets top="3.0" />
+         </VBox.margin>
+      </JFXButton>
+   </children>
+</VBox>

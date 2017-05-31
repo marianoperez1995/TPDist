@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="668.0" prefWidth="1366.0" style="-fx-background-color: #f3f3f3;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ReclamosBuscarController">
+   <children>
+      <VBox layoutX="665.0" layoutY="183.0" prefHeight="464.0" prefWidth="695.0" style="-fx-border-radius: 10 10 0 0; -fx-background-radius: 10 10 0 0; -fx-background-color: #ffffff;">
+         <effect>
+            <DropShadow blurType="GAUSSIAN" />
+         </effect>
+         <children>
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="57.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="57.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="57.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <JFXTextField fx:id="txtRazon" editable="false" focusColor="#c06c84" labelFloat="true" prefHeight="29.0" prefWidth="246.0" promptText="Razon social" unFocusColor="#6c5b7b">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets right="15.0" />
+                     </GridPane.margin>
+                  </JFXTextField>
+                  <JFXTextField fx:id="txtCuit" editable="false" focusColor="#c06c84" labelFloat="true" promptText="CUIT" unFocusColor="#6c5b7b" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets right="15.0" />
+                     </GridPane.margin>
+                  </JFXTextField>
+                  <JFXTextField fx:id="txtTelefono" editable="false" focusColor="#c06c84" labelFloat="true" promptText="Telefono" unFocusColor="#6c5b7b" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets right="15.0" />
+                     </GridPane.margin>
+                  </JFXTextField>
+                  <JFXTextField fx:id="txtNombreEncargado" editable="false" focusColor="#c06c84" labelFloat="true" prefHeight="29.0" prefWidth="363.0" promptText="Nombre encargado" unFocusColor="#6c5b7b" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets right="15.0" />
+                     </GridPane.margin>
+                  </JFXTextField>
+                  <JFXTextField fx:id="txtTelefonoEncargado" editable="false" focusColor="#c06c84" labelFloat="true" prefHeight="29.0" prefWidth="363.0" promptText="Telefono encargado" unFocusColor="#6c5b7b" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets right="15.0" />
+                     </GridPane.margin>
+                  </JFXTextField>
+                  <JFXTextField fx:id="txtMailEncargado" editable="false" focusColor="#c06c84" labelFloat="true" prefHeight="29.0" prefWidth="363.0" promptText="Mail encargado" unFocusColor="#6c5b7b" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets right="15.0" />
+                     </GridPane.margin>
+                  </JFXTextField>
+               </children>
+               <padding>
+                  <Insets left="50.0" right="50.0" top="70.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </GridPane>
+            <JFXTextArea fx:id="txtReclamo" editable="false" focusColor="#c06c84" labelFloat="true" prefHeight="194.0" prefWidth="595.0" promptText="Reclamo" unFocusColor="#6c5b7b">
+               <VBox.margin>
+                  <Insets left="50.0" right="50.0" top="30.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </JFXTextArea>
+            <HBox prefHeight="100.0" prefWidth="200.0" />
+         </children>
+      </VBox>
+      <ImageView fitHeight="131.0" fitWidth="126.0" layoutX="731.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/client-logo.png" />
+         </image>
+      </ImageView>
+      <Pane layoutX="664.0" layoutY="150.0" prefHeight="47.0" prefWidth="279.0" style="-fx-border-radius: 5 5 0 0; -fx-background-radius: 5 5 0 0; -fx-background-color: #8b769e;">
+         <children>
+            <Label alignment="CENTER" layoutY="9.0" prefHeight="30.0" prefWidth="279.0" text="RECLAMO" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <FlowPane layoutX="27.0" layoutY="248.0" prefHeight="380.0" prefWidth="616.0">
+         <children>
+            <JFXTreeTableView fx:id="vistaTabla" prefHeight="401.0" prefWidth="616.0" style="-fx-border-color: #3a3a3a; -fx-border-width: 0 1 1 1;" stylesheets="@../styles/table.css" />
+         </children>
+      </FlowPane>
+      <Pane layoutX="26.0" layoutY="27.0" prefHeight="47.0" prefWidth="618.0" style="-fx-border-radius: 10 0 0 0; -fx-background-radius: 10 0 0 0; -fx-background-color: #355c7D;">
+         <children>
+            <Label alignment="CENTER" layoutY="9.0" prefHeight="30.0" prefWidth="618.0" text="BUSCAR CLIENTE" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <FlowPane layoutX="278.0" layoutY="72.0" prefHeight="176.0" prefWidth="364.0" style="-fx-background-color: #e1e5ed;">
+         <children>
+            <GridPane prefHeight="176.0" prefWidth="366.0" style="-fx-border-color: #99b89b; -fx-border-width: 2px;">
+               <children>
+                  <JFXTextField fx:id="filtroRazonSocial" labelFloat="true" promptText="Razon social" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="50.0" right="30.0" />
+                     </GridPane.margin>
+                  </JFXTextField>
+                  <JFXTextField fx:id="filtroCuit" labelFloat="true" promptText="CUIT" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="50.0" right="30.0" />
+                     </GridPane.margin>
+                  </JFXTextField>
+                  <JFXTextField fx:id="filtroIdReclamo" labelFloat="true" promptText="ID Reclamo" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="50.0" right="30.0" />
+                     </GridPane.margin>
+                  </JFXTextField>
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="415.0" minWidth="10.0" prefWidth="360.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="316.0" minWidth="0.0" prefWidth="0.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="39.0" minHeight="7.0" prefHeight="7.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="62.0" minHeight="10.0" prefHeight="57.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="58.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="62.0" minHeight="10.0" prefHeight="62.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+         </children>
+      </FlowPane>
+      <FlowPane alignment="CENTER" layoutX="26.0" layoutY="72.0" prefHeight="176.0" prefWidth="252.0" style="-fx-background-color: #99b89b;">
+         <children>
+            <ImageView fitHeight="116.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/search.png" />
+               </image>
+            </ImageView>
+         </children>
+      </FlowPane>
+      <Label layoutX="996.0" layoutY="71.0" text="Ver reclamos cargados">
+         <font>
+            <Font name="System Bold" size="27.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
