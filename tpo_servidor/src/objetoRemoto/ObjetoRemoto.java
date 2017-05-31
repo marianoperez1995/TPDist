@@ -19,7 +19,7 @@ public class ObjetoRemoto extends UnicastRemoteObject implements InterfazRemota,
 		// TODO Auto-generated constructor stub
 	}
 	
-	
+	/*
 	public void agregarLoteInsumo(LoteInsumoDTO loteInsumo) {
 		Sistema.getInstancia().getAdmStock().agregarLoteInsumo(loteInsumo);
 		
