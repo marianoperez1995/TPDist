@@ -14,8 +14,37 @@ public class Cliente {
 	private String cuit;
 	private CuentaCorriente cuentaCorriente;
 	private String nombre;
+	private String telefono;
 	private String encargado;
-	private int estado;
+	private String telEncargado;
+	private String mailEncargado;
+	private String generoEncargado;
+
+	public String getTelEncargado() {
+		return telEncargado;
+	}
+
+	public void setTelEncargado(String telEncargado) {
+		this.telEncargado = telEncargado;
+	}
+
+	public String getMailEncargado() {
+		return mailEncargado;
+	}
+
+	public void setMailEncargado(String mailEncargado) {
+		this.mailEncargado = mailEncargado;
+	}
+
+	public String getGeneroEncargado() {
+		return generoEncargado;
+	}
+
+	public void setGeneroEncargado(String generoEncargado) {
+		this.generoEncargado = generoEncargado;
+	}
+
+	private String estado;
 	private Sucursal sucursal;
 	private ArrayList<PedidoCliente> pedidosCliente;
 
@@ -23,21 +52,25 @@ public class Cliente {
 		this.encargado = encargado;
 	}
 
-	public void setEstado(int estado) {
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 
 	public Cliente(ClienteEntity cliE) {
-		
-		this.idCliente = cliE.getNumeroCliente();	
+
+		this.idCliente = cliE.getNumeroCliente();
 		this.direccion = cliE.getDireccion();
 		this.cuit = cliE.getCuit();
 		this.cuentaCorriente = new CuentaCorriente(cliE.getCuentaCorriente());
 		this.nombre = cliE.getNombre();
 		this.sucursal = new Sucursal(cliE.getSucursal());
+		this.telefono = cliE.getTelefono();
+		this.mailEncargado = cliE.getMailEncargado();
+		this.generoEncargado = cliE.getGeneroencargado();
+		this.telEncargado = cliE.getTelencargado();
 		this.pedidosCliente = new ArrayList<PedidoCliente>();
-		for (PedidoClienteEntity p : cliE.getPedidosCliente()){			
-			this.pedidosCliente.add(new PedidoCliente (p));
+		for (PedidoClienteEntity p : cliE.getPedidosCliente()) {
+			this.pedidosCliente.add(new PedidoCliente(p));
 		}
 		this.encargado = cliE.getEncargado();
 		this.estado = cliE.getEstado();
@@ -57,17 +90,23 @@ public class Cliente {
 		this.cuit = cliDTO.getCuit();
 		this.cuentaCorriente = new CuentaCorriente(cliDTO.getCuentaCorriente());
 		this.nombre = cliDTO.getNombre();
+		this.telefono = cliDTO.getTelefono();
 		this.sucursal = new Sucursal(cliDTO.getSucursal());
+		this.mailEncargado = cliDTO.getMailEncargado();
+		this.generoEncargado = cliDTO.getGeneroEncargado();
+		this.telEncargado = cliDTO.getTelEncargado();
 		this.pedidosCliente = new ArrayList<PedidoCliente>();
-		for (PedidoClienteDTO p : cliDTO.getPedidosCliente()){			
-			this.pedidosCliente.add(new PedidoCliente (p));
+		if (cliDTO.getPedidosCliente() != null) {
+			for (PedidoClienteDTO p : cliDTO.getPedidosCliente()) {
+				this.pedidosCliente.add(new PedidoCliente(p));
+			}
 		}
 		this.encargado = cliDTO.getEncargado();
 		this.estado = cliDTO.getEstado();
 	}
-	
-	public Cliente(){
-		
+
+	public Cliente() {
+
 	}
 
 	public void agregarPedido(PedidoCliente pedidoCliente) {
@@ -81,11 +120,10 @@ public class Cliente {
 
 	public void modificarLimiteCredito(float limite) {
 		this.cuentaCorriente.setLimite(limite);
-	}	
-	
-	// TODOS LOS GETTERS Y SETTERS 
-	
-	
+	}
+
+	// TODOS LOS GETTERS Y SETTERS
+
 	public void setNumeroCliente(int numeroCliente) {
 		this.idCliente = numeroCliente;
 	}
@@ -140,52 +178,30 @@ public class Cliente {
 
 	public void insertar() {
 		ClienteDAO.getInstancia().insert(this);
-		
-	}
-	
-	public void actualizar() {
-		ClienteDAO.getInstancia().actualizar(this);		
-	}
 
+	}
 
 	public void borrar() {
 		ClienteDAO.getInstancia().eliminar(this.idCliente);
-		
+
 	}
-	
-	
-	
+
 	public String getEncargado() {
-		
+
 		return encargado;
 	}
 
-	public int getEstado() {
-		
+	public String getEstado() {
+
 		return estado;
 	}
 
-	public ClienteDTO toDTO() {
-		ClienteDTO c = new ClienteDTO();
-		c.setCuentaCorriente(cuentaCorriente.toDTO());
-		c.setCuit(this.cuit);
-		c.setDireccion(this.direccion);
-		c.setEncargado(this.encargado);
-		c.setEstado(this.estado);
-		c.setNombre(this.nombre);
-		c.setNumeroCliente(this.idCliente);
-		ArrayList<PedidoClienteDTO> pedidos = new ArrayList<>();
-		for (PedidoCliente p : this.pedidosCliente){
-			pedidos.add(p.toDTO(c)); 
-		}
-		c.setPedidosCliente(pedidos);
-		c.setSucursal(sucursal.toDTO());
-		
-		return c;
+	public String getTelefono() {
+		return telefono;
 	}
 
-	
-	
-	
-	
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
 }

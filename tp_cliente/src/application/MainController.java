@@ -10,6 +10,7 @@ import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
 
 import dto.EmpleadoDTO;
+import dto.SucursalDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -60,13 +61,20 @@ public class MainController implements Initializable {
     @FXML
     private JFXButton minimize;
     
-    public static HamburgerSlideCloseTransition transitionP;
+	private static SucursalDTO suc;
     
-    void initData(String usuario, int id, int permisos) {
+    public static SucursalDTO getSuc() {
+		return suc;
+	}
+
+	public static HamburgerSlideCloseTransition transitionP;
+    
+    void initData(String usuario, int id, int permisos, SucursalDTO suc) {
         this.usuarioActual = usuario;
         this.idUsuarioActual = id;
         this.permisos = permisos;
-        //lblUser.setText("usuario");
+        this.suc = suc;
+        lblUser.setText(usuarioActual);
         
     	try {
 	        VBox box = null;

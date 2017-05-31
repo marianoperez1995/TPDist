@@ -1,12 +1,24 @@
 package objetoRemoto;
 
+import interfaces.InterfazRemota;
+
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import controladores.AdministradorClientes;
 import controladores.AdministradorSucursales;
+import dto.BultoDTO;
+import dto.ClienteDTO;
 import dto.EmpleadoDTO;
-import interfaces.InterfazRemota;
+import dto.InsumoDTO;
+import dto.LoteInsumoDTO;
+import dto.MovimientoStockDTO;
+import dto.OpcDTO;
+import dto.OppDTO;
+import dto.PedidoClienteDTO;
+import dto.PrendaDTO;
+import dto.SucursalDTO;
 
 public class ObjetoRemoto extends UnicastRemoteObject implements InterfazRemota,Serializable {
 
@@ -19,7 +31,7 @@ public class ObjetoRemoto extends UnicastRemoteObject implements InterfazRemota,
 		// TODO Auto-generated constructor stub
 	}
 	
-	
+	/*
 	public void agregarLoteInsumo(LoteInsumoDTO loteInsumo) {
 		Sistema.getInstancia().getAdmStock().agregarLoteInsumo(loteInsumo);
 		
@@ -110,9 +122,13 @@ public class ObjetoRemoto extends UnicastRemoteObject implements InterfazRemota,
 	}*/
 	
 	public EmpleadoDTO buscarLogin(EmpleadoDTO empleado) throws RemoteException{
-		
 		return AdministradorSucursales.getInstancia().buscarLogin(empleado);
-		
+	}
+	
+	@Override
+	public void altaCliente(ClienteDTO cli) throws RemoteException {
+		// TODO Auto-generated method stub
+		AdministradorClientes.getInstancia().agregarCliente(cli);
 	}
 	
 }

@@ -1,4 +1,7 @@
-/negocio/
-/persistencia/
 /entities/
-/controladores/
+/hibernate/
+/negocio/
+/objetoRemoto/
+/persistencia/
+/servidor/
+/test/

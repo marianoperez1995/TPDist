@@ -25,6 +25,11 @@ public class EmpleadoEntity implements Serializable  {
 	private int idTrabajador;
 	private String nombre;
 	private String tipo;
+	
+	//Por como esta en la BD: un empleado puede estar en muchas sucursales, y muchas sucursales mucohs empleados
+	@ManyToOne
+	@JoinColumn (name="idSucursal")
+	private SucursalEntity sucursal;
 
 	private String usuario;
 	private String pass;
@@ -57,6 +62,13 @@ public class EmpleadoEntity implements Serializable  {
 		this.permisos = permisos;
 	}
 
+	public SucursalEntity getSucursal() {
+		return sucursal;
+	}
+
+	public void setSucursales(SucursalEntity sucursales) {
+		this.sucursal = sucursales;
+	}
 
 	public String getNombre() {
 		return nombre;

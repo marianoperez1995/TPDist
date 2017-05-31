@@ -9,7 +9,7 @@ public class Empleado {
 	private int idEmpleado;
 	private String nombre;
 	private String tipo;
-
+	private Sucursal sucursal;
 	private String usuario;
 	private String pass;
 	private int permisos;
@@ -19,17 +19,23 @@ public class Empleado {
 		
 	}
 	public Empleado(EmpleadoDTO eDTO) {
+		this.idEmpleado = eDTO.getIdTrabajador();
+		this.permisos = eDTO.getPermisos();
 		this.nombre = eDTO.getNombre();
 		this.tipo = eDTO.getTipo();
-		
+		this.usuario = eDTO.getUsuario();
+		this.pass = eDTO.getPass();
+		this.sucursal = new Sucursal(eDTO.getSucursal());
 		this.idEmpleado=eDTO.getIdTrabajador();
 	}
 	public Empleado(EmpleadoEntity emp) {
+		this.idEmpleado = emp.getIdTrabajador();
+		this.permisos = emp.getPermisos();
 		this.nombre = emp.getNombre();
 		this.tipo = emp.getTipo();
-		this.pass= emp.getPass();
-		this.permisos= emp.getPermisos();
-		this.usuario= emp.getUsuario();
+		this.usuario = emp.getUsuario();
+		this.pass = emp.getPass();
+		this.sucursal = new Sucursal(emp.getSucursal());
 		this.idEmpleado = emp.getIdTrabajador();
 	}
 	public int getidEmpleado() {
@@ -56,7 +62,12 @@ public class Empleado {
 	public void setIdEmpleado(int idEmpleado) {
 		this.idEmpleado = idEmpleado;
 	}
-
+	public Sucursal getSucursal() {
+		return sucursal;
+	}
+	public void setSucursal(Sucursal sucursal) {
+		this.sucursal = sucursal;
+	}
 	public String getUsuario() {
 		return usuario;
 	}
@@ -82,8 +93,16 @@ public class Empleado {
 	public void borrar() {
 		EmpleadoDAO.getInstancia().eliminar(this.idEmpleado);
 	}
-
-	
-	
+	public EmpleadoDTO toDTO() {
+		EmpleadoDTO e = new EmpleadoDTO();
+		e.setNombre(this.nombre);
+		e.setUsuario(this.usuario);
+		e.setPass(this.pass);
+		e.setSucursal(this.sucursal.toDTO());
+		e.setTipo(this.tipo);
+		e.setPermisos(this.permisos);
+		
+		return e;
+	}
 	
 }

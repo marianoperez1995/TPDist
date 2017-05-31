@@ -16,13 +16,41 @@ public class ClienteDTO  implements Serializable{
 	private SucursalDTO sucursal;
 	private ArrayList<PedidoClienteDTO> pedidosCliente;
 	private String encargado;
-	private int estado;
+	private String telefono;
+	private String telEncargado;
+	private String mailEncargado;
+	private String generoEncargado;
+	public String getTelEncargado() {
+		return telEncargado;
+	}
+
+	public void setTelEncargado(String telEncargado) {
+		this.telEncargado = telEncargado;
+	}
+
+	public String getMailEncargado() {
+		return mailEncargado;
+	}
+
+	public void setMailEncargado(String mailEncargado) {
+		this.mailEncargado = mailEncargado;
+	}
+
+	public String getGeneroEncargado() {
+		return generoEncargado;
+	}
+
+	public void setGeneroEncargado(String generoEncargado) {
+		this.generoEncargado = generoEncargado;
+	}
+
+	private String estado;
 
 	public void setEncargado(String encargado) {
 		this.encargado = encargado;
 	}
 
-	public void setEstado(int estado) {
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 
@@ -87,7 +115,16 @@ public class ClienteDTO  implements Serializable{
 		return encargado;
 	}
 
-	public int getEstado() {
+	public String getEstado() {
 		return estado;
+	}
+
+	public String getTelefono() {
+		// TODO Auto-generated method stub
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
 	}
 }

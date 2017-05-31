@@ -7,6 +7,7 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
+import dto.ClienteDTO;
 import dto.EmpleadoDTO;
 
 public class BusinessDelegate {
@@ -49,7 +50,6 @@ public class BusinessDelegate {
 			return true;
 		}
     	return false;
-    	
     }
     
     /*public void altaEmpleado(EmpleadoDTO empleado) throws RemoteException{
@@ -62,4 +62,9 @@ public class BusinessDelegate {
     	
 		return objetoRemoto.buscarLogin(env);
     }
+	public void altaCliente(ClienteDTO cli) throws RemoteException {
+		// TODO Auto-generated method stub
+		objetoRemoto.altaCliente(cli);
+		return;
+	}
 }

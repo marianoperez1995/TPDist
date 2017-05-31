@@ -27,9 +27,6 @@ public class SucursalEntity  implements Serializable {
 	@Column(name="direccion")
 	private String ubicacion;
 	private String horarios; //08:00-23:00
-	
-	@Transient
-	private List<EmpleadoEntity> empleados;
 
 	public int getNumero() {
 		return numero;
@@ -61,14 +58,6 @@ public class SucursalEntity  implements Serializable {
 
 	public void setHorarios(String horarios) {
 		this.horarios = horarios;
-	}
-
-	public List<EmpleadoEntity> getEmpleados() {
-		return empleados;
-	}
-
-	public void setEmpleados(List<EmpleadoEntity> empleados) {
-		this.empleados = empleados;
 	}
 
 }

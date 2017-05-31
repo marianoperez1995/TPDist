@@ -3,11 +3,12 @@ package interfaces;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
+import dto.ClienteDTO;
 import dto.EmpleadoDTO;
 
 public interface InterfazRemota extends Remote {
-	/*
-	//AdministradorStock
+	
+	/*//AdministradorStock
 	public void agregarLoteInsumo(LoteInsumoDTO loteInsumo);
 	public void agregarBulto(BultoDTO bulto);
 	public void agregarUbicacionLoteInsumo(LoteInsumoDTO lote);
@@ -15,10 +16,10 @@ public interface InterfazRemota extends Remote {
 	
 	//Administrador Cliente
 	public void bajaCliente(ClienteDTO cliente);
-	public void modificarCliente(ClienteDTO cliente);
-	public void agregarCliente(ClienteDTO cliDTO);
+	public void modificarCliente(ClienteDTO cliente);*/
+	public void altaCliente(ClienteDTO cli) throws RemoteException;
 	
-	//administrador Compras
+	/*//administrador Compras
 	public void generarOrdenCompra(InsumoDTO insDTO);
 	public void generarPedido(PedidoClienteDTO datosPedido);
 	
