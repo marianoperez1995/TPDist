@@ -10,6 +10,7 @@ public class ItemPrendaInsumoDTO implements Serializable {
 	private InsumoDTO insumo;
 	private float cantidad;
 	private float desperdicio;
+	private PrendaDTO prenda;
 
 	public InsumoDTO getInsumo() {
 		return insumo;
@@ -33,5 +34,13 @@ public class ItemPrendaInsumoDTO implements Serializable {
 
 	public void setDesperdicio(float desperdicio) {
 		this.desperdicio = desperdicio;
+	}
+
+	public PrendaDTO getPrenda() {
+		return prenda;
+	}
+
+	public void setPrenda(PrendaDTO prenda) {
+		this.prenda = prenda;
 	}
 }

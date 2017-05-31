@@ -16,6 +16,9 @@ public class ItemPrendaInsumoID implements Serializable{
 		this.prenda = prenda;
 		this.insumo = insumo;
 	}
+	public ItemPrendaInsumoID() {
+		// TODO Auto-generated constructor stub
+	}
 	public PrendaEntity getPrenda() {
 		return prenda;
 	}

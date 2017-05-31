@@ -44,7 +44,7 @@ public class ItemPrendaAreaDAO  {
 		sesion.close();
 		
 	}
-	private ItemPrendaAreaEntity toEntity(ItemPrendaArea itemPrendaArea) {
+	public ItemPrendaAreaEntity toEntity(ItemPrendaArea itemPrendaArea) {
 		ItemPrendaAreaEntity i = new ItemPrendaAreaEntity();
 		ItemPrendaAreaID id = new ItemPrendaAreaID();
 		AreaProduccion area = itemPrendaArea.getArea();

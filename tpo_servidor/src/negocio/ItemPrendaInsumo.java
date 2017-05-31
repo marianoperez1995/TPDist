@@ -2,13 +2,14 @@ package negocio;
 
 import dto.ItemPrendaInsumoDTO;
 import entities.ItemPrendaInsumoEntity;
-import persistencia.ItemPrendaInsumoDAO;
 
 public class ItemPrendaInsumo {
 	private int idItemPrendaInsumo;
 	private Insumo insumo;
 	private float cantidad;
 	private float desperdicio;
+	private Prenda prenda;
+	
 	
 	public ItemPrendaInsumo(ItemPrendaInsumoDTO ipiDTO) {
 		this.insumo = new Insumo(ipiDTO.getInsumo());
@@ -65,6 +66,14 @@ public class ItemPrendaInsumo {
 
 	public void setDesperdicio(float desperdicio) {
 		this.desperdicio = desperdicio;
+	}
+
+	public Prenda getPrenda() {
+		return prenda;
+	}
+
+	public void setPrenda(Prenda prenda) {
+		this.prenda = prenda;
 	}
 	
 	

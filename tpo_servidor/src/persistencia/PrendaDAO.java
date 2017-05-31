@@ -6,12 +6,11 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import entities.EmpleadoEntity;
 import entities.ItemPrendaAreaEntity;
 import entities.ItemPrendaInsumoEntity;
 import entities.PrendaEntity;
+import entities.PrendaID;
 import hibernate.HibernateUtil;
-import negocio.Empleado;
 import negocio.ItemPrendaArea;
 import negocio.ItemPrendaInsumo;
 import negocio.Prenda;
@@ -67,7 +66,12 @@ public class PrendaDAO  {
 
 	public PrendaEntity toEntity(Prenda prenda){//Arreglar, cambiamos primary key a 3 cosas ahora
 		PrendaEntity pre= new PrendaEntity();
-		pre.setCodigo(prenda.getIdPrenda());
+		PrendaID id = new PrendaID();
+		//Nunca usamos los colores/talles posibles de la prenda
+		id.setTalle(TalleDAO.getInstancia().toEntity(prenda.getTalle());
+		id.setColor(ColorDAO.getInstancia().toEntity(prenda.getColor());
+		id.setIdPrenda(prenda.getIdPrenda());
+		pre.setId(id);
 		pre.setDescripcion(prenda.getDescripcion());
 		pre.setOrdenProduccion(OrdenProduccionDAO.getInstancia().toEntity(prenda.getOrdenProduccion()));
 		pre.setEstadoProduccion(prenda.isEstadoProduccion());
