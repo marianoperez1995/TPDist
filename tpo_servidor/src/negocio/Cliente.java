@@ -204,4 +204,9 @@ public class Cliente {
 		this.telefono = telefono;
 	}
 
+	public void actualizar() {
+		ClienteDAO.getInstancia().update(this);
+		
+	}
+
 }

@@ -101,4 +101,14 @@ public class ClienteDAO {
 		return clientes;
 	}
 
+	public void update(Cliente cliente) {
+		ClienteEntity cli = toEntity(cliente);
+		Session sesion;
+		sesion = sf.openSession();
+		sesion.beginTransaction();
+		sesion.update(cli);
+		sesion.getTransaction().commit();
+		sesion.close();
+	}
+
 }
