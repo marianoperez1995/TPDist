@@ -29,7 +29,7 @@ create table Prendas (
 	precio float not null,
 	cantidadAConfeccionar int not null,
 	stockMinimo int not null,
-	stcokActual int not null
+	stockActual int not null
 
 
 	constraint pk_Prendas primary key (idPrenda, idColor, idTalle)
