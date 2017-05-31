@@ -43,9 +43,9 @@ public class HibernateUtil {
 			AnnotationConfiguration config = new AnnotationConfiguration();
 		
 			/*config.addAnnotatedClass(AreaProduccionEntity.class);
-			config.addAnnotatedClass(ClienteEntity.class);
+			
 			config.addAnnotatedClass(ColorEntity.class);
-			config.addAnnotatedClass(CuentaCorrienteEntity.class);
+			
 			config.addAnnotatedClass(DespachoEntity.class);
 			config.addAnnotatedClass(EmpleadoEntity.class);
 			config.addAnnotatedClass(FacturaEntity.class);
@@ -64,7 +64,6 @@ public class HibernateUtil {
 			config.addAnnotatedClass(OrdenProduccionEntity.class);
 			config.addAnnotatedClass(PedidoInsumoEntity.class);
 			config.addAnnotatedClass(PedidoTransporteEntity.class);
-			config.addAnnotatedClass(PedidoClienteEntity.class);
 			config.addAnnotatedClass(PrendaEntity.class);
 			config.addAnnotatedClass(PrendasEliminadasEntity.class);
 			config.addAnnotatedClass(ProveedorEntity.class);
@@ -72,8 +71,11 @@ public class HibernateUtil {
 			config.addAnnotatedClass(SucursalEntity.class);
 			config.addAnnotatedClass(TalleEntity.class);
 			config.addAnnotatedClass(TransporteEntity.class);*/
+			config.addAnnotatedClass(CuentaCorrienteEntity.class);
 			config.addAnnotatedClass(SucursalEntity.class);
 			config.addAnnotatedClass(EmpleadoEntity.class);
+			config.addAnnotatedClass(ClienteEntity.class);
+			config.addAnnotatedClass(PedidoClienteEntity.class);
 			
 			sessionFactory = config.buildSessionFactory();
 

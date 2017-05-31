@@ -8,9 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
-@Table(name="CuentaCorriente")
+@Table(name="CuentasCorriente")
 public class CuentaCorrienteEntity implements Serializable {
 	
 	/**
@@ -37,7 +38,8 @@ public class CuentaCorrienteEntity implements Serializable {
 	private float balanceActual;
 	
 	private String fecha;
-	
+
+	private String estado;
 	
 	public int getNroCC() {
 		return nroCC;
@@ -86,6 +88,16 @@ public class CuentaCorrienteEntity implements Serializable {
 
 	public void setFecha(String fecha) {
 		this.fecha = fecha;
+	}
+
+
+	public String getEstado() {
+		return estado;
+	}
+
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 	
 	

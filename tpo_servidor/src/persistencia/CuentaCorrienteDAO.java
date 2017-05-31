@@ -62,6 +62,8 @@ public class CuentaCorrienteDAO  {
 		res.setBalanceActual(cuenta.getBalanceActual());
 		res.setCondiciones(cuenta.getCondiciones());
 		res.setLimite(cuenta.getLimite());
+		res.setFecha(cuenta.getFechaPago());
+		res.setEstado(cuenta.getEstado());
 		res.setNroCC(cuenta.getIdCuentaCorriente());
 		return res;
 	}

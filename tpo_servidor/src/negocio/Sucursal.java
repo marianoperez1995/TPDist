@@ -15,7 +15,6 @@ public class Sucursal {
 	private String ubicacion;
 	private String horarios;
 
-
 	public Sucursal(){
 		
 	}
@@ -23,16 +22,14 @@ public class Sucursal {
 		this.idSucursal = sucursal.getNumero();
 		this.ubicacion = sucursal.getUbicacion();
 		this.nombre = sucursal.getNombre();
-		this.horarios = sucursal.getHorarios();		
+		this.horarios = sucursal.getHorarios();
 	}
-	
 	public Sucursal(SucursalEntity sucursal){
 		this.idSucursal = sucursal.getNumero();
 		this.ubicacion = sucursal.getUbicacion();
 		this.nombre = sucursal.getNombre();
-		this.horarios = sucursal.getHorarios();	
+		this.horarios = sucursal.getHorarios();
 	}
-	
 	public void insertar() {
 		SucursalDAO.getInstancia().insert(this);		
 	}
@@ -64,9 +61,16 @@ public class Sucursal {
 	public void setHorarios(String horarios) {
 		this.horarios = horarios;
 	}
+
 	public SucursalDTO toDTO() {
-	
-		return null;
+		SucursalDTO suc = new SucursalDTO();
+		suc.setHorarios(horarios);
+		suc.setNombre(nombre);
+		suc.setNumero(idSucursal);
+		suc.setUbicacion(ubicacion);
+		return suc;
 	}
+
+	
 
 }

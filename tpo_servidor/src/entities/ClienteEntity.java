@@ -2,7 +2,6 @@ package entities;
 
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -16,13 +15,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
-
-import dto.FacturaDTO;
-import negocio.CuentaCorriente;
-import negocio.Factura;
-import negocio.PedidoCliente;
-import negocio.Sucursal;
 
 @Entity
 @Table(name = "Clientes")
@@ -50,10 +42,11 @@ public class ClienteEntity implements Serializable {
 	//En Clientes esta como idCCorriente, en CuentasCorriente esta como idCuentaCorriente
 	//revisar q sea asi
 	private String nombre;
-	private int estado;
+	private String estado;
+	private String telefono;
 	private String encargado;
 	private String telencargado;
-	private String mailenarcagado;
+	private String mailencargado;
 	private String generoencargado;
 /*	private String categoria;
 	@Column(name = "informacion")
@@ -69,10 +62,10 @@ public class ClienteEntity implements Serializable {
 
 
 	
-	public int getEstado() {
+	public String getEstado() {
 		return estado;
 	}
-	public void setEstado(int estado) {
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 	public String getEncargado() {
@@ -87,11 +80,11 @@ public class ClienteEntity implements Serializable {
 	public void setTelencargado(String telencargado) {
 		this.telencargado = telencargado;
 	}
-	public String getMailenarcagado() {
-		return mailenarcagado;
+	public String getMailEncargado() {
+		return mailencargado;
 	}
-	public void setMailenarcagado(String mailenarcagado) {
-		this.mailenarcagado = mailenarcagado;
+	public void setMailEncargado(String mailencargado) {
+		this.mailencargado = mailencargado;
 	}
 	public String getGeneroencargado() {
 		return generoencargado;
@@ -154,7 +147,12 @@ public class ClienteEntity implements Serializable {
 	public void setPedidosCliente(List<PedidoClienteEntity> pedidosCliente) {
 		this.pedidosCliente = pedidosCliente;
 	}
-
+	public String getTelefono() {
+		return telefono;
+	}
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
 
 	
 	

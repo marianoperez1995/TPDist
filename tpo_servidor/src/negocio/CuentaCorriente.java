@@ -1,6 +1,5 @@
 package negocio;
 
-import dto.ClienteDTO;
 import dto.CuentaCorrienteDTO;
 import entities.CuentaCorrienteEntity;
 import persistencia.CuentaCorrienteDAO;
@@ -10,17 +9,25 @@ public class CuentaCorriente {
 	private String condiciones;
 	private float limite;
 	private float balanceActual;
+	private String fecha;
+	private String estado;
 	
 	public CuentaCorriente (CuentaCorrienteDTO ctaDTO){
 		this.condiciones = ctaDTO.getCondiciones();
 		this.limite = ctaDTO.getLimite();
 		this.balanceActual = ctaDTO.getBalanceActual();
+		this.fecha = ctaDTO.getFecha();
 	}
 
 	public CuentaCorriente(CuentaCorrienteEntity cuentaCorriente) {
 		this.condiciones = cuentaCorriente.getCondiciones();
 		this.limite = cuentaCorriente.getLimite();
 		this.balanceActual = cuentaCorriente.getBalanceActual();
+		this.fecha = cuentaCorriente.getFecha();
+	}
+
+	public CuentaCorriente() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public String getCondiciones() {
@@ -62,12 +69,21 @@ public class CuentaCorriente {
 		CuentaCorrienteDAO.getInstancia().eliminar(this.idCuentaCorriente);
 	}
 
-	public CuentaCorrienteDTO toDTO() {
-		CuentaCorrienteDTO cu= new CuentaCorrienteDTO();
-		cu.setBalanceActual(balanceActual);
-		cu.setCondiciones(condiciones);
-		cu.setLimite(limite);
-		return cu;
+	public String getFechaPago() {
+		return fecha;
+	}
+
+	public void setFechaPago(String fechaPago) {
+		this.fecha = fechaPago;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+	
+	public String getEstado() {
+		// TODO Auto-generated method stub
+		return estado;
 	}
 
 	

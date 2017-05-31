@@ -71,12 +71,6 @@ public class SucursalDAO {
 		sucursal.setNombre(sucu.getNombre());
 		sucursal.setNumero(sucu.getIdSucursal());
 		sucursal.setUbicacion(sucu.getUbicacion());
-		ArrayList<EmpleadoEntity> empleados= new ArrayList<EmpleadoEntity>();
-		if(sucu.getEmpleados() != null)
-			for (Empleado emp: sucu.getEmpleados())
-				empleados.add(EmpleadoDAO.getInstancia().toEntity(emp));
-		sucursal.setEmpleados(empleados);
-		
 		return sucursal;
 	}
 	
