@@ -30,12 +30,12 @@ public class test1 {
 					e.getSucursal().getHorarios()+" "+
 					e.getSucursal().getNombre()+" "+
 					e.getSucursal().getUbicacion());					
-		}*/
+		}
 		
 		//get de empleados
 		//Empleado emp = EmpleadoDAO.getInstancia().getEmpleado(1);
 		//insert de empleados
-		/*Sucursal suc = new Sucursal();
+		Sucursal suc = new Sucursal();
 		suc.setHorarios("1231 2 3");
 		suc.setNombre("Su123ursal 1");
 		suc.setUbicacion("123Hola");

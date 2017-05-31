@@ -79,6 +79,7 @@ public class EmpleadoDAO {
 		empl.setTipo(emp.getTipo());		
 		empl.setPass(emp.getPass());
 		empl.setPermisos(emp.getPermisos());
+		empl.setSucursales(SucursalDAO.getInstancia().toEntity(emp.getSucursal()));
 		empl.setUsuario(emp.getUsuario());
 		return empl;
 		
