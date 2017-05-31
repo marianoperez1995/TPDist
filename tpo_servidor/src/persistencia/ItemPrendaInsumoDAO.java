@@ -24,7 +24,6 @@ public class ItemPrendaInsumoDAO{
 		
 	}
 
-	@Override
 	protected ItemPrendaInsumo get(Integer id) {
 		Session sesion = sf.openSession();
 		sesion.beginTransaction();

@@ -8,6 +8,7 @@ public class ItemPrendaArea {
 	private int idItemPrendaArea;
 	private int minutoEnArea;
 	private AreaProduccion area;
+	private Prenda prenda;
 	
 	public ItemPrendaArea(ItemPrendaAreaDTO ipaDTO) {
 		this.minutoEnArea = ipaDTO.getMinutoEnArea();
@@ -16,7 +17,7 @@ public class ItemPrendaArea {
 
 	public ItemPrendaArea(ItemPrendaAreaEntity ipae) {
 		this.minutoEnArea = ipae.getMinutosEnArea();
-		this.area = new AreaProduccion (ipae.getArea());
+		this.area = new AreaProduccion (ipae.getId().getArea());
 	}
 
 	public void insertar() {
@@ -49,6 +50,14 @@ public class ItemPrendaArea {
 
 	public void setArea(AreaProduccion area) {
 		this.area = area;
+	}
+
+	public Prenda getPrenda() {
+		return prenda;
+	}
+
+	public void setPrenda(Prenda prenda) {
+		this.prenda = prenda;
 	}
 	
 	

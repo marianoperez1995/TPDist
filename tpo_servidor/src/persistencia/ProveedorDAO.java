@@ -1,11 +1,8 @@
 package persistencia;
 
-import java.util.ArrayList;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import entities.ItemProveedorInsumoEntity;
 import entities.ProveedorEntity;
 import hibernate.HibernateUtil;
 import negocio.Proveedor;

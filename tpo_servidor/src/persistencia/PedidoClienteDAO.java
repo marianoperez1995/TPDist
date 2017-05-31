@@ -8,11 +8,9 @@ import org.hibernate.SessionFactory;
 
 import entities.ItemPedidoClienteEntity;
 import entities.PedidoClienteEntity;
-import entities.PrendaEntity;
 import hibernate.HibernateUtil;
 import negocio.ItemPedidoCliente;
 import negocio.PedidoCliente;
-import negocio.Prenda;
 
 public class PedidoClienteDAO {
 	

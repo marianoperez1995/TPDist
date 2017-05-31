@@ -1,8 +1,6 @@
 package negocio;
 
 import dto.BultoDTO;
-import dto.LoteDTO;
-import dto.TransporteDTO;
 
 public class Bulto {
 	private int idBulto;

@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 @DiscriminatorValue("opp")
 public class OppEntity extends  OrdenProduccionEntity implements Serializable {
 	

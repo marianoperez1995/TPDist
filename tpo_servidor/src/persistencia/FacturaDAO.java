@@ -1,18 +1,13 @@
 package persistencia;
 
-import java.util.Date;
+import java.util.ArrayList;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import entities.ClienteEntity;
-import entities.FacturaEntity;
 import entities.FacturaEntity;
 import hibernate.HibernateUtil;
-import negocio.Cliente;
-import negocio.Empleado;
-import negocio.Factura;
-import negocio.PedidoCliente;
 import negocio.Factura;
 
 public class FacturaDAO {
@@ -69,6 +64,21 @@ public class FacturaDAO {
 		factu.setCliente(ClienteDAO.getInstancia().toEntity(fac.getCliente()));
 		factu.setPedido(PedidoClienteDAO.getInstancia().toEntity(fac.getPedido()));
 		return factu;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList<Factura> getAll() {
+		Session sesion = sf.openSession();
+		sesion.beginTransaction();
+		ArrayList<FacturaEntity> fac = new ArrayList<>();
+		Query query = sesion.createQuery("from FacturaEntity");
+		fac = (ArrayList<FacturaEntity>) query.list();
+		sesion.close();
+		ArrayList<Factura> fact = new ArrayList<>();
+		for (FacturaEntity f : fac){
+			fact.add(new Factura(f));
+		}
+		return fact;		
 	}
 	
 

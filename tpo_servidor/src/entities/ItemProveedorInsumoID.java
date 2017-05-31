@@ -35,6 +35,9 @@ public class ItemProveedorInsumoID implements Serializable{
 		this.proveedor = proveedor;
 		this.insumo = insumo;
 	}
+	public ItemProveedorInsumoID() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	
 	

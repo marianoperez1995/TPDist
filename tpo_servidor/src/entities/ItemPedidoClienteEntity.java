@@ -25,6 +25,10 @@ public class ItemPedidoClienteEntity  implements Serializable {
 		this.precio = precio;
 	}
 
+	public ItemPedidoClienteEntity() {
+		// TODO Auto-generated constructor stub
+	}
+
 	@EmbeddedId
 	private ItemPedidoClienteId id;
 	@ManyToOne

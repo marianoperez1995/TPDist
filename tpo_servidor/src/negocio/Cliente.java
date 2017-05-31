@@ -167,7 +167,7 @@ public class Cliente {
 
 	public ClienteDTO toDTO() {
 		ClienteDTO c = new ClienteDTO();
-		c.setCuentaCorriente(cuentaCorriente.toDTO(c));
+		c.setCuentaCorriente(cuentaCorriente.toDTO());
 		c.setCuit(this.cuit);
 		c.setDireccion(this.direccion);
 		c.setEncargado(this.encargado);
@@ -176,7 +176,7 @@ public class Cliente {
 		c.setNumeroCliente(this.idCliente);
 		ArrayList<PedidoClienteDTO> pedidos = new ArrayList<>();
 		for (PedidoCliente p : this.pedidosCliente){
-			pedidos.add(p.toDTO(c));
+			pedidos.add(p.toDTO(c)); 
 		}
 		c.setPedidosCliente(pedidos);
 		c.setSucursal(sucursal.toDTO());

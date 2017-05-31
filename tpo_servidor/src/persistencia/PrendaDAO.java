@@ -65,7 +65,7 @@ public class PrendaDAO  {
 	
 	
 
-	public PrendaEntity toEntity(Prenda prenda){
+	public PrendaEntity toEntity(Prenda prenda){//Arreglar, cambiamos primary key a 3 cosas ahora
 		PrendaEntity pre= new PrendaEntity();
 		pre.setCodigo(prenda.getIdPrenda());
 		pre.setDescripcion(prenda.getDescripcion());

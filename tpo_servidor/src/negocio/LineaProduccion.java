@@ -74,6 +74,15 @@ public class LineaProduccion {
 	public void setTiempoDeUso(Date tiempoDeUso) {
 		this.tiempoDeUso = tiempoDeUso;
 	}
+
+	public LineaProduccionDTO toDTO() {
+		LineaProduccionDTO linea = new LineaProduccionDTO();
+		linea.setCapacidad(this.capacidad);
+		linea.setEstado(this.estado);
+		linea.setHoraInicio(this.horaInicio);
+		linea.setTiempoDeUso(this.tiempoDeUso);
+		return linea;
+	}
 	
 	
 }

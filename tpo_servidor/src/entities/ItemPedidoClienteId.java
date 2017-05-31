@@ -37,6 +37,9 @@ public class ItemPedidoClienteId implements Serializable {
 		this.pedido = pedido;
 		this.prenda = prenda;
 	}
+	public ItemPedidoClienteId() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	//Asi o con columns?
 	//tipo: 

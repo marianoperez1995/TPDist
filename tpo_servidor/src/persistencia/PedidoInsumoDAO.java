@@ -53,28 +53,16 @@ public class PedidoInsumoDAO {
 
 
 
-	public PedidoCliente getPedidoCliente(int id) {
+	public PedidoInsumo getPedidoInsumo(int id) {
 		Session sesion = sf.openSession();
 		sesion.beginTransaction();
-		PedidoClienteEntity emp = (PedidoClienteEntity) sesion.get(PedidoClienteEntity.class, id);	
+		PedidoInsumoEntity p = (PedidoInsumoEntity) sesion.get(PedidoInsumoEntity.class, id);	
 		sesion.close();		
-		return new PedidoCliente(emp);
+		return new PedidoInsumo(p);
 	}
 	public PedidoInsumoEntity toEntity(PedidoInsumo pedido) {
-		PedidoClienteEntity ped= new PedidoClienteEntity();
-		ped.setCliente(ClienteDAO.getInstancia().toEntity(pedido.getCliente()));
-		ped.setEstado(pedido.getEstado());
-		ped.setFechaDespacho(pedido.getFechaDespacho());
-		ped.setFechaGeneracion(pedido.getFechaGeneracion());
-		ped.setFechaProbableDespacho(pedido.getFechaProbableDespacho());
-		ped.setNumPedidoCliente(pedido.getIdPedidoCliente());
-		ped.setPrecioTotal(pedido.getPrecioTotal());
-		ArrayList <ItemPedidoClienteEntity> itemsPedidoCliente= new ArrayList<ItemPedidoClienteEntity>();
-		for (ItemPedidoCliente item:pedido.getItemsPedidoCliente()){
-			itemsPedidoCliente.add(ItemPedidoClienteDAO.getInstancia().toEntity(item));
-		}
-		ped.setItemsPedidoCliente(itemsPedidoCliente);
-		return ped;
+		return null;
+//hacer
 	}
 	
 	public ArrayList<PedidoInsumo> getAll(){
@@ -82,7 +70,7 @@ public class PedidoInsumoDAO {
 		Session sesion = sf.openSession();
 		sesion.beginTransaction();
 		ArrayList<PedidoInsumoEntity> pre = new ArrayList<PedidoInsumoEntity> ();
-		Query query = sesion.createQuery("from PedidoClienteEntity");
+		Query query = sesion.createQuery("from PedidoInsumoEntity");
 		pre = (ArrayList<PedidoInsumoEntity>) query.list();
 		sesion.close();
 		ArrayList<PedidoInsumo> pedidos = new ArrayList<PedidoInsumo>();

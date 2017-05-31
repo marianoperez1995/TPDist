@@ -2,11 +2,12 @@ package controladores;
 
 import java.util.ArrayList;
 
-import dto.FacturaDTO;
 import dto.PedidoClienteDTO;
 import negocio.Cliente;
 import negocio.Factura;
 import negocio.PedidoCliente;
+import persistencia.ClienteDAO;
+import persistencia.FacturaDAO;
 
 public class AdministradorFacturacion {
 	private ArrayList<Factura> facturas;
@@ -32,77 +33,49 @@ private static AdministradorFacturacion instancia = null;
 		for(Cliente c: clientes){
 			if(c.sosElCliente(numeroCliente)){
 				c.getCuentaCorriente().setBalanceActual(c.getCuentaCorriente().getBalanceActual()- cantidad);
-				c.update(c);
+				c.actualizar();
 			}
 		}
-		Cliente aux =null;
-		aux= aux.buscarCliente(numeroCliente);
+		Cliente aux = ClienteDAO.getInstancia().getCliente(numeroCliente);
 		
 		if(aux != null){
 			aux.getCuentaCorriente().setBalanceActual(aux.getCuentaCorriente().getBalanceActual()-cantidad);
-			aux.update(aux);
+			aux.actualizar();
 		}
 	}
 
-	private Factura buscarFactura(int numero) {
+	public Factura buscarFactura(int numero) {
 		for (Factura f : facturas){
 			if (f.sosLaFactura (numero)){
 				return f;
 			}
-		}
-		Factura fact = null;
-		fact = fact.buscarFactura( numero);
-		
-		return fact;
+		}	
+		return FacturaDAO.getInstancia().getFactura(numero);	
 	}
 	public void bajaFactura(int numero) {
 		for (Factura f : facturas){
 			if (f.sosLaFactura (numero)){
 				facturas.remove(f);
-				f.delete();
 			}
 		}
-		Factura fact = null;
-		fact = fact.buscarFactura( numero);
-		
-		if( fact != null){
-			fact.delete();
-		}
+		FacturaDAO.getInstancia().eliminar(numero);
 	}
 
-	private Cliente buscarCliente(int numero) {
+	public Cliente buscarCliente(int numero) {
 		for (Cliente c  : clientes){
 			if (c.sosElCliente (numero)){
 				return c;
 			}
 		}
-		Cliente cli= null;
-		cli = cli.buscarCliente(numero);
-		
-		return cli;
+		return ClienteDAO.getInstancia().getCliente(numero);
 	}
 	
-	public FacturaDTO BuscarFactura (int numeroFactura){
-		for (Factura f : facturas){
-			if (f.sosLaFactura (numeroFactura)){
-				return f.toDTO();
-			}
-		}
-		Factura fact = null;
-		fact = fact.buscarFactura( numeroFactura);
-		
-		return fact.toDTO();
-	}
-	public ArrayList<FacturaDTO> BuscarAllFactura (){
-		ArrayList<FacturaDTO> list = null;
-		ArrayList<Factura> aux= null;
-		// Vale esto ? otra cosa no se me ocurrio, sin tener que llamar al dao desde aca
-		Factura help=null;
-		aux= help.buscarTodos();
-				
-		for (Factura f : aux){
-				list.add(f.toDTO());
-		}
-		return list;
+	public ArrayList<Factura> BuscarAllFactura (){
+		ArrayList<Factura> fact = new ArrayList<>();
+		for (Factura f : this.facturas)
+			fact.add(f);
+		for (Factura f : FacturaDAO.getInstancia().getAll())
+			fact.add(f);
+		return fact;
 	}
 }

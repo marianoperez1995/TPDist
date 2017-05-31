@@ -2,6 +2,7 @@ package negocio;
 
 import java.util.ArrayList;
 
+import dto.BultoDTO;
 import dto.LoteDTO;
 import entities.LoteEntity;
 import persistencia.LoteDAO;
@@ -97,6 +98,23 @@ public class Lote {
 
 	public void setOrden(OrdenProduccion orden) {
 		this.orden = orden;
+	}
+
+	public LoteDTO toDTO() {
+		LoteDTO lote = new LoteDTO();
+		ArrayList<BultoDTO> bultos = new ArrayList<>();
+		for (Bulto b : this.bultos){
+			bultos.add(b.toDTO());
+		}
+		lote.setBultos(bultos);
+		lote.setCantidadTotal(cantidadTotal);
+		lote.setCodigo(this.idLote);
+		lote.setColor(color);
+	
+		//FALTA MANEJAR ORDEN PARCIAL Y COMPLETA ACA ... 
+		lote.setOrden(orden.toDTO());
+		lote.setTalle(talle);
+		return null;
 	}
 
 	

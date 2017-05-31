@@ -20,6 +20,9 @@ public class PedidoInsumo {
 		this.proveedor=new Proveedor(pedE.getProveedor());
 		// TODO Auto-generated constructor stub
 	}
+	public PedidoInsumo() {
+		// TODO Auto-generated constructor stub
+	}
 	public int getIdPedidoInsumo() {
 		return idPedidoInsumo;
 	}

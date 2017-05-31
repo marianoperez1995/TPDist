@@ -49,7 +49,7 @@ public class OrdenProduccionDAO{
 		sesion.close();
 	}
 
-
+	//El return tiene q devolver opc o opp
 	public OrdenProduccion getOrdenProduccion(int id) {
 		Session sesion = sf.openSession();
 		sesion.beginTransaction();

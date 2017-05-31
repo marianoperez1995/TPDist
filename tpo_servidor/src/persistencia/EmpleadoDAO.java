@@ -6,7 +6,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import entities.ClienteEntity;
 import entities.EmpleadoEntity;
 import hibernate.HibernateUtil;
 import negocio.Empleado;
@@ -57,6 +56,7 @@ public class EmpleadoDAO {
 
 	
 	
+	@SuppressWarnings("unchecked")
 	public ArrayList<Empleado> getAll(){
 		
 		Session sesion = sf.openSession();
@@ -76,8 +76,7 @@ public class EmpleadoDAO {
 		EmpleadoEntity empl= new EmpleadoEntity();
 		empl.setIdTrabajador(emp.getidEmpleado());
 		empl.setNombre(emp.getNombre());
-		empl.setTipo(emp.getTipo());
-		empl.setSucursales(SucursalDAO.getInstancia().toEntity(emp.getSucursal()));
+		empl.setTipo(emp.getTipo());		
 		empl.setPass(emp.getPass());
 		empl.setPermisos(emp.getPermisos());
 		empl.setUsuario(emp.getUsuario());

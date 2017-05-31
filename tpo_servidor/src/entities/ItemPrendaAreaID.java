@@ -17,6 +17,9 @@ public class ItemPrendaAreaID implements Serializable{
 		this.prenda = prenda;
 		this.area = area;
 	}
+	public ItemPrendaAreaID() {
+		// TODO Auto-generated constructor stub
+	}
 	@ManyToOne
 	@JoinColumn(name="idPrenda")
 	private PrendaEntity prenda;

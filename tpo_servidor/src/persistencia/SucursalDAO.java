@@ -64,7 +64,8 @@ public class SucursalDAO {
 	}
 	
 	
-	public SucursalEntity toEntity(Sucursal sucu){
+	public SucursalEntity toEntity(Sucursal sucu){ 
+		//Revisar lo de empleados
 		SucursalEntity sucursal= new SucursalEntity();
 		
 		sucursal.setHorarios(sucu.getHorarios());

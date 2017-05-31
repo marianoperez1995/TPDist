@@ -10,6 +10,7 @@ import negocio.PedidoCliente;
 import negocio.PedidoInsumo;
 import negocio.Proveedor;
 import persistencia.OrdenProduccionDAO;
+import persistencia.PedidoInsumoDAO;
 import dto.*;
 
 public class AdministradorCompras {
@@ -57,6 +58,6 @@ public class AdministradorCompras {
 			if (p.sosElPedido(codigo))
 				return p;
 		}
-		return PedidoInsumoDAO.getInstancia().buscarPedidoInsumo(codigo);		
+		return PedidoInsumoDAO.getInstancia().getPedidoInsumo(codigo);		
 	}
 }

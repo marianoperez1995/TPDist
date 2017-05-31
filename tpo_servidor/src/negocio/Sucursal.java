@@ -1,12 +1,7 @@
 package negocio;
 
-import java.util.ArrayList;
-
-import dto.EmpleadoDTO;
 import dto.SucursalDTO;
-import entities.EmpleadoEntity;
 import entities.SucursalEntity;
-import persistencia.OrdenProduccionDAO;
 import persistencia.SucursalDAO;
 
 public class Sucursal {

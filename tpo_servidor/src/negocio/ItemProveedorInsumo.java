@@ -2,12 +2,13 @@ package negocio;
 
 import dto.ItemListaPrecioDTO;
 import entities.ItemProveedorInsumoEntity;
-import persistencia.CuentaCorrienteDAO;
+import persistencia.ItemProveedorInsumoDAO;
 
 public class ItemProveedorInsumo {
 	private int idItemListaPrecio;
 	private Insumo insumo;
 	private float precio;
+	private Proveedor prov;
 	
 	public ItemProveedorInsumo (ItemListaPrecioDTO ilDTO){		
 		this.insumo = new Insumo(ilDTO.getInsumo());
@@ -26,13 +27,7 @@ public class ItemProveedorInsumo {
 
 	public void borrar() {
 		ItemProveedorInsumoDAO.getInstancia().eliminar(this.idItemListaPrecio);
-	}
-
-	
-	
-	
-	
-	
+	}	
 
 	public Insumo getInsumo() {
 		return insumo;
@@ -53,6 +48,14 @@ public class ItemProveedorInsumo {
 
 	public void setIdItemListaPrecio(int idItemListaPrecio) {
 		this.idItemListaPrecio = idItemListaPrecio;
+	}
+
+	public Proveedor getProv() {
+		return prov;
+	}
+
+	public void setProv(Proveedor prov) {
+		this.prov = prov;
 	}
 
 }

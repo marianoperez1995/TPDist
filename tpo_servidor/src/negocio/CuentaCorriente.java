@@ -70,5 +70,4 @@ public class CuentaCorriente {
 		return cu;
 	}
 
-	
 }

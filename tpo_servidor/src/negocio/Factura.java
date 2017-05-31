@@ -113,7 +113,7 @@ public class Factura {
 		fac.setFechaGeneracion(fechaGeneracion);
 		fac.setImpuestos(impuestos);
 		fac.setNumeroFact(this.idFactura);
-		fac.setPedido(pedido.toDTO());
+		fac.setPedido(pedido.toDTO(this));
 		fac.setTotal(total);
 		return fac;
 	}

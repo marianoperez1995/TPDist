@@ -5,7 +5,6 @@ import java.io.Serializable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name="Prenda_Areas")
@@ -22,12 +21,15 @@ public class ItemPrendaAreaEntity implements Serializable{
 		this.minutosEnArea = minutosEnArea;
 	}
 
+	public ItemPrendaAreaEntity() {
+		// TODO Auto-generated constructor stub
+	}
+
 	@EmbeddedId
-	private ItemPrendaAreaID id;
-	
+	private ItemPrendaAreaID id;	
 	private int minutosEnArea;
-	@Transient
-	private AreaProduccionEntity area;
+	
+
 	public ItemPrendaAreaID getId() {
 		return id;
 	}
@@ -43,16 +45,6 @@ public class ItemPrendaAreaEntity implements Serializable{
 	public void setMinutosEnArea(int minutosEnArea) {
 		this.minutosEnArea = minutosEnArea;
 	}
-
-	public AreaProduccionEntity getArea() {
-		return area;
-	}
-
-	public void setArea(AreaProduccionEntity area) {
-		this.area = area;
-	}
-
-
 
 
 	

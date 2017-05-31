@@ -95,7 +95,7 @@ public class ItemPedidoCliente {
 		item.setPrecio(precio);
 		item.setPrenda(prenda.toDTO());
 		item.setTalle(talle);
-		
+		return item;		
 	}
 	
 }

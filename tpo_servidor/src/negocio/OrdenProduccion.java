@@ -2,6 +2,8 @@ package negocio;
 
 import java.util.Date;
 
+import dto.OpcDTO;
+import dto.OrdenProduccionDTO;
 import persistencia.OrdenProduccionDAO;
 
 public abstract class OrdenProduccion {
@@ -65,6 +67,10 @@ public abstract class OrdenProduccion {
 	public void setIdOrdenProduccion(int idOrdenProduccion) {
 		this.idOrdenProduccion = idOrdenProduccion;
 	}
-	
+
+	public OrdenProduccionDTO toDTO() {
+		//falta
+		return null;
+	}
 	
 }

@@ -11,9 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import negocio.Insumo;
-import negocio.Proveedor;
 @Entity
 @Table(name="LotesInsumo")
 public class LoteInsumoEntity implements Serializable  {

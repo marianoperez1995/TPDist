@@ -5,8 +5,6 @@ import java.io.Serializable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-
-import dto.InsumoDTO;
 @Entity
 @Table(name="Proveedor_Insumos")
 public class ItemProveedorInsumoEntity implements Serializable {
@@ -20,6 +18,9 @@ public class ItemProveedorInsumoEntity implements Serializable {
 		super();
 		this.id = id;
 		this.precio = precio;
+	}
+	public ItemProveedorInsumoEntity() {
+		// TODO Auto-generated constructor stub
 	}
 	@EmbeddedId
 	private ItemProveedorInsumoID id;
