@@ -3,8 +3,6 @@ package dto;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import negocio.LineaProduccion;
-
 
 public class AreaProduccionDTO implements Serializable{
 
