@@ -1,0 +1,11 @@
+/controladores/
+/entities/
+/hibernate.properties
+/hibernate/
+/lib/
+/negocio/
+/objetoRemoto/
+/persistencia/
+/servidor/
+/test/
+/base/
