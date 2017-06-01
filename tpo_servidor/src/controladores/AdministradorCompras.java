@@ -15,7 +15,7 @@ import dto.*;
 
 public class AdministradorCompras {
 	
-	
+	//Test commit
 	private ArrayList<Proveedor> proveedores;
 	private ArrayList<PedidoInsumo> pedidosInsumos;
 	private ArrayList<PedidoCliente> pedidosClientes;
