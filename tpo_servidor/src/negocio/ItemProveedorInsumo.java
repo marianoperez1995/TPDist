@@ -1,6 +1,7 @@
 package negocio;
 
 import dto.ItemListaPrecioDTO;
+import dto.ItemProveedorInsumoDTO;
 import entities.ItemProveedorInsumoEntity;
 import persistencia.ItemProveedorInsumoDAO;
 
@@ -10,7 +11,7 @@ public class ItemProveedorInsumo {
 	private float precio;
 	private Proveedor prov;
 	
-	public ItemProveedorInsumo (ItemListaPrecioDTO ilDTO){		
+	public ItemProveedorInsumo (ItemProveedorInsumoDTO ilDTO){		
 		this.insumo = new Insumo(ilDTO.getInsumo());
 		this.precio = ilDTO.getPrecio();
 	}

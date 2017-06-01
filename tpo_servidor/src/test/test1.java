@@ -86,6 +86,7 @@ public class test1 {
 		//get de clientes
 		Cliente pedro = ClienteDAO.getInstancia().getCliente(1);
 		System.out.println(pedro.toString());
+		
 	}
 
 }

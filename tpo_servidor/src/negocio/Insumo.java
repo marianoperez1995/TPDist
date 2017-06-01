@@ -33,6 +33,10 @@ public class Insumo {
 		this.cantAComprar = insumo.getCantAComprar();
 	}
 	
+	public Insumo() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public void insertar() {
 		InsumoDAO.getInstancia().insert(this);		
 	}

@@ -2,11 +2,10 @@ package negocio;
 
 import java.util.ArrayList;
 
-import dto.ItemListaPrecioDTO;
+import dto.ItemProveedorInsumoDTO;
 import dto.ProveedorDTO;
 import entities.ItemProveedorInsumoEntity;
 import entities.ProveedorEntity;
-import persistencia.OrdenProduccionDAO;
 import persistencia.ProveedorDAO;
 
 public class Proveedor {
@@ -20,7 +19,7 @@ public class Proveedor {
 		this.cuit = proveedor.getCuit();
 		this.idProveedor = proveedor.getCodigo();
 		this.listaPrecios = new ArrayList<ItemProveedorInsumo>();
-		for (ItemListaPrecioDTO i : proveedor.getListaPrecios()){
+		for (ItemProveedorInsumoDTO i : proveedor.getListaPrecios()){
 			this.listaPrecios.add(new ItemProveedorInsumo(i));
 		}
 	}

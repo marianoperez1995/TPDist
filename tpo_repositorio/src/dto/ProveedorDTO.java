@@ -10,7 +10,7 @@ public class ProveedorDTO  implements Serializable{
 	private static final long serialVersionUID = -4982890337462866332L;
 	private String nombre;
 	private String cuit;
-	private ArrayList<ItemListaPrecioDTO> listaPrecios;
+	private ArrayList<ItemProveedorInsumoDTO> listaPrecios;
 	private int codigo;
 
 	public String getNombre() {
@@ -29,11 +29,11 @@ public class ProveedorDTO  implements Serializable{
 		this.cuit = cuit;
 	}
 
-	public ArrayList<ItemListaPrecioDTO> getListaPrecios() {
+	public ArrayList<ItemProveedorInsumoDTO> getListaPrecios() {
 		return listaPrecios;
 	}
 
-	public void setListaPrecios(ArrayList<ItemListaPrecioDTO> listaPrecios) {
+	public void setListaPrecios(ArrayList<ItemProveedorInsumoDTO> listaPrecios) {
 		this.listaPrecios = listaPrecios;
 	}
 

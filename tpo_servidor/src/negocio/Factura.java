@@ -43,6 +43,9 @@ public class Factura {
 		//falta el resto
 	}
 	
+	public Factura() {
+		// TODO Auto-generated constructor stub
+	}
 	public void insertar() {
 		FacturaDAO.getInstancia().insert(this);		
 	}
