@@ -4,10 +4,13 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class LineaProduccionDTO  implements Serializable{
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 288905730372277875L;
+	private static final long serialVersionUID = 8256966268586588895L;
+	
+	
 	private int capacidad;
 	private String estado;
 	private Date horaInicio;

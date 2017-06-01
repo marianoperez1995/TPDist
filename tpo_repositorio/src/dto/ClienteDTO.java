@@ -7,7 +7,7 @@ public class ClienteDTO  implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -3704076832215638552L;
+	private static final long serialVersionUID = -470766594240729993L;
 	private int numeroCliente;
 	private String direccion;
 	private String cuit;

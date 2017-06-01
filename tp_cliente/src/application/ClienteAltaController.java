@@ -97,6 +97,7 @@ public class ClienteAltaController {
 	    	
 	    	try {
 				BusinessDelegate.getInstancia().altaCliente(cli);
+				limpiarCampos();
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -131,5 +132,21 @@ public class ClienteAltaController {
         txtNombreEncargado.clear();
         txtGeneroEncargado.clear();
 
+    }
+	
+    private void limpiarCampos() {        
+        txtCorreoEncargado.clear();
+        txtFechaPago.clear();
+        txtNumeroDire.clear();
+        txtDireccion.clear();
+        txtCondicionesPago.clear();
+        txtPisoDire.clear();
+        txtRazon.clear();
+        txtTelefonoEncargado.clear();
+        txtCuit.clear();
+        txtTelefono.clear();
+        txtLimitePrecio.clear();
+        txtNombreEncargado.clear();
+        txtGeneroEncargado.clear();
     }
 }

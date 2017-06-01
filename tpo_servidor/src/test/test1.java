@@ -51,7 +51,7 @@ public class test1 {
 		EmpleadoDAO.getInstancia().insert(emp2);*/
 		
 		
-		
+		/*
 		Cliente cli = new Cliente();
 		Sucursal suc = SucursalDAO.getInstancia().getSucursal(1);
 		//cli no tiene pedidos
@@ -73,7 +73,19 @@ public class test1 {
 		cli.setNombre("Cliente nuevo");
 		cli.setSucursal(suc);
 		System.out.println("llega");
-		ClienteDAO.getInstancia().insert(cli);
+		ClienteDAO.getInstancia().insert(cli);*/
+		
+		/*
+		//getAll se Clientes
+		ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+		clientes = ClienteDAO.getInstancia().getAll();
+		for (Cliente e : clientes){
+			System.out.println(e.toString());		
+		}*/
+		
+		//get de clientes
+		Cliente pedro = ClienteDAO.getInstancia().getCliente(1);
+		System.out.println(pedro.toString());
 	}
 
 }

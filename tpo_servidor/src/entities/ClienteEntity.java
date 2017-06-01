@@ -48,9 +48,6 @@ public class ClienteEntity implements Serializable {
 	private String telencargado;
 	private String mailencargado;
 	private String generoencargado;
-/*	private String categoria;
-	@Column(name = "informacion")
-	private String informacionAdicional;*/
 
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "idSucursal", referencedColumnName = "idSucursal")

@@ -43,9 +43,7 @@ public class HibernateUtil {
 			AnnotationConfiguration config = new AnnotationConfiguration();
 		
 			/*config.addAnnotatedClass(AreaProduccionEntity.class);
-			
 			config.addAnnotatedClass(ColorEntity.class);
-			
 			config.addAnnotatedClass(DespachoEntity.class);
 			config.addAnnotatedClass(EmpleadoEntity.class);
 			config.addAnnotatedClass(FacturaEntity.class);

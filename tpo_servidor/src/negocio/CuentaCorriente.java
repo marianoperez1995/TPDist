@@ -17,6 +17,7 @@ public class CuentaCorriente {
 		this.limite = ctaDTO.getLimite();
 		this.balanceActual = ctaDTO.getBalanceActual();
 		this.fecha = ctaDTO.getFecha();
+		this.estado= ctaDTO.getEstado();
 	}
 
 	public CuentaCorriente(CuentaCorrienteEntity cuentaCorriente) {

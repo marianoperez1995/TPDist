@@ -11,12 +11,14 @@ import negocio.Sucursal;
 
 public class AdministradorClientes {
 	private static AdministradorClientes instancia;
-	private ArrayList<Cliente> clientes;
+	private static ArrayList<Cliente> clientes;
 
 	public static AdministradorClientes getInstancia() {
-		if (instancia == null)
+		if (instancia == null){
 			instancia = new AdministradorClientes();
-		return instancia;
+			clientes = new ArrayList<Cliente>();
+		}
+			return instancia;
 	}
 
 	public void agregarCliente(ClienteDTO cliDTO) {

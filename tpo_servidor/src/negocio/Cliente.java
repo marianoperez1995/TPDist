@@ -9,6 +9,15 @@ import entities.PedidoClienteEntity;
 import persistencia.ClienteDAO;
 
 public class Cliente {
+	@Override
+	public String toString() {
+		return "Cliente [idCliente=" + idCliente + ", direccion=" + direccion + ", cuit=" + cuit + ", cuentaCorriente="
+				+ cuentaCorriente + ", nombre=" + nombre + ", telefono=" + telefono + ", encargado=" + encargado
+				+ ", telEncargado=" + telEncargado + ", mailEncargado=" + mailEncargado + ", generoEncargado="
+				+ generoEncargado + ", estado=" + estado + ", sucursal=" + sucursal + ", pedidosCliente="
+				+ pedidosCliente + "]";
+	}
+
 	private int idCliente;
 	private String direccion;
 	private String cuit;
@@ -69,8 +78,10 @@ public class Cliente {
 		this.generoEncargado = cliE.getGeneroencargado();
 		this.telEncargado = cliE.getTelencargado();
 		this.pedidosCliente = new ArrayList<PedidoCliente>();
+		if(cliE.getPedidosCliente() != null){
 		for (PedidoClienteEntity p : cliE.getPedidosCliente()) {
-			this.pedidosCliente.add(new PedidoCliente(p));
+				this.pedidosCliente.add(new PedidoCliente(p));
+			}
 		}
 		this.encargado = cliE.getEncargado();
 		this.estado = cliE.getEstado();
