@@ -3,6 +3,7 @@ package entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -50,10 +51,24 @@ public class ClienteEntity implements Serializable {
 	private String telencargado;
 	private String mailencargado;
 	private String generoencargado;
-
+	private String fechaRegistro;
+	
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "idSucursal", referencedColumnName = "idSucursal")
 	private SucursalEntity sucursal;
+
+	public String getMailencargado() {
+		return mailencargado;
+	}
+	public void setMailencargado(String mailencargado) {
+		this.mailencargado = mailencargado;
+	}
+	public String getFechaRegistro() {
+		return fechaRegistro;
+	}
+	public void setFechaRegistro(String fechaRegistro) {
+		this.fechaRegistro = fechaRegistro;
+	}
 
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "idCliente")	

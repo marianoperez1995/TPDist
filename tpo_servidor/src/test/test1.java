@@ -1,6 +1,9 @@
 package test;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import negocio.Cliente;
 import negocio.CuentaCorriente;
@@ -75,18 +78,18 @@ public class test1 {
 		System.out.println("llega");
 		ClienteDAO.getInstancia().insert(cli);*/
 		
-		/*
+		
 		//getAll se Clientes
 		ArrayList<Cliente> clientes = new ArrayList<Cliente>();
 		clientes = ClienteDAO.getInstancia().getAll();
 		for (Cliente e : clientes){
 			System.out.println(e.toString());		
-		}*/
+		}
 		
+		/*
 		//get de clientes
-	
-		Cliente pedro = ClienteDAO.getInstancia().getCliente(1);
-		System.out.println(pedro.toString());
+		Cliente pedro = ClienteDAO.getInstancia().getCliente(8);
+		System.out.println(pedro.toString());*/
 		
 	}
 

@@ -1,6 +1,7 @@
 package negocio;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import dto.ClienteDTO;
 import dto.PedidoClienteDTO;
@@ -9,15 +10,6 @@ import entities.PedidoClienteEntity;
 import persistencia.ClienteDAO;
 
 public class Cliente {
-	@Override
-	public String toString() {
-		return "Cliente [idCliente=" + idCliente + ", direccion=" + direccion + ", cuit=" + cuit + ", cuentaCorriente="
-				+ cuentaCorriente + ", nombre=" + nombre + ", telefono=" + telefono + ", encargado=" + encargado
-				+ ", telEncargado=" + telEncargado + ", mailEncargado=" + mailEncargado + ", generoEncargado="
-				+ generoEncargado + ", estado=" + estado + ", sucursal=" + sucursal + ", pedidosCliente="
-				+ pedidosCliente + "]";
-	}
-
 	private int idCliente;
 	private String direccion;
 	private String cuit;
@@ -28,6 +20,27 @@ public class Cliente {
 	private String telEncargado;
 	private String mailEncargado;
 	private String generoEncargado;
+	private String fechaRegistro;
+	private String estado;
+	private Sucursal sucursal;
+	private ArrayList<PedidoCliente> pedidosCliente;
+	
+	@Override
+	public String toString() {
+		return "Cliente [idCliente=" + idCliente + ", direccion=" + direccion + ", cuit=" + cuit + ", cuentaCorriente="
+				+ cuentaCorriente + ", nombre=" + nombre + ", telefono=" + telefono + ", encargado=" + encargado
+				+ ", telEncargado=" + telEncargado + ", mailEncargado=" + mailEncargado + ", generoEncargado="
+				+ generoEncargado + ", fechaRegistro=" + fechaRegistro + ", estado=" + estado + ", sucursal=" + sucursal
+				+ ", pedidosCliente=" + pedidosCliente + "]";
+	}
+
+	public String getFechaRegistro() {
+		return fechaRegistro;
+	}
+
+	public void setFechaRegistro(String fechaRegistro) {
+		this.fechaRegistro = fechaRegistro;
+	}
 
 	public String getTelEncargado() {
 		return telEncargado;
@@ -53,10 +66,6 @@ public class Cliente {
 		this.generoEncargado = generoEncargado;
 	}
 
-	private String estado;
-	private Sucursal sucursal;
-	private ArrayList<PedidoCliente> pedidosCliente;
-
 	public void setEncargado(String encargado) {
 		this.encargado = encargado;
 	}
@@ -76,6 +85,7 @@ public class Cliente {
 		this.telefono = cliE.getTelefono();
 		this.mailEncargado = cliE.getMailEncargado();
 		this.generoEncargado = cliE.getGeneroencargado();
+		this.fechaRegistro = cliE.getFechaRegistro();
 		this.telEncargado = cliE.getTelencargado();
 		this.pedidosCliente = new ArrayList<PedidoCliente>();
 		if (cliE.getPedidosCliente() != null) {
@@ -106,6 +116,7 @@ public class Cliente {
 		this.mailEncargado = cliDTO.getMailEncargado();
 		this.generoEncargado = cliDTO.getGeneroEncargado();
 		this.telEncargado = cliDTO.getTelEncargado();
+		this.fechaRegistro = cliDTO.getFechaRegistro();
 		this.pedidosCliente = new ArrayList<PedidoCliente>();
 		if (cliDTO.getPedidosCliente() != null) {
 			for (PedidoClienteDTO p : cliDTO.getPedidosCliente()) {
@@ -234,6 +245,7 @@ public class Cliente {
 		c.setSucursal(sucursal.toDTO());
 		c.setTelefono(telefono);
 		c.setTelEncargado(telEncargado);
+		c.setFechaRegistro(fechaRegistro);
 		ArrayList<PedidoClienteDTO> pedidos = new ArrayList<>();
 		for (PedidoCliente p : pedidosCliente) {
 			pedidos.add(p.toDTO(c));

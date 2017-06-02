@@ -6,6 +6,7 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import dto.ClienteDTO;
 import dto.EmpleadoDTO;
@@ -66,5 +67,10 @@ public class BusinessDelegate {
 		// TODO Auto-generated method stub
 		objetoRemoto.altaCliente(cli);
 		return;
+	}
+	
+	public ArrayList<ClienteDTO> listadoClientes() throws RemoteException {
+		// TODO Auto-generated method stub
+		return objetoRemoto.listadoClientes();
 	}
 }

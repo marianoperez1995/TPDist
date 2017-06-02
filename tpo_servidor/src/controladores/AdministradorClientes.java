@@ -8,6 +8,7 @@ import negocio.Cliente;
 import negocio.CuentaCorriente;
 import negocio.PedidoCliente;
 import negocio.Sucursal;
+import persistencia.ClienteDAO;
 
 public class AdministradorClientes {
 	private static AdministradorClientes instancia;
@@ -70,5 +71,16 @@ public class AdministradorClientes {
 		}
 		return null;
 
+	}
+	
+	public ArrayList<ClienteDTO> listadoClientes(){
+		ArrayList<ClienteDTO> resultado = new ArrayList<ClienteDTO>();
+		ArrayList<Cliente> lista = new ArrayList<Cliente>();
+		lista = ClienteDAO.getInstancia().getAll();
+		
+		for(Cliente e: lista){
+			resultado.add(e.toDTO());
+		}
+		return resultado;
 	}
 }

@@ -2,6 +2,7 @@ package interfaces;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import dto.ClienteDTO;
 import dto.EmpleadoDTO;
@@ -42,6 +43,8 @@ public interface InterfazRemota extends Remote {
 	public void crearSucursal(SucursalDTO sucursal);
 	public void altaEmpleado(EmpleadoDTO empleado);*/
 	public EmpleadoDTO buscarLogin(EmpleadoDTO env) throws RemoteException;
+	
+	public ArrayList<ClienteDTO> listadoClientes() throws RemoteException;
 	
 	//despacho
 	//falta agregar metodos al despacho

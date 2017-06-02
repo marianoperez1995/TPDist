@@ -1,24 +1,15 @@
 package objetoRemoto;
 
-import interfaces.InterfazRemota;
-
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 
 import controladores.AdministradorClientes;
 import controladores.AdministradorSucursales;
-import dto.BultoDTO;
 import dto.ClienteDTO;
 import dto.EmpleadoDTO;
-import dto.InsumoDTO;
-import dto.LoteInsumoDTO;
-import dto.MovimientoStockDTO;
-import dto.OpcDTO;
-import dto.OppDTO;
-import dto.PedidoClienteDTO;
-import dto.PrendaDTO;
-import dto.SucursalDTO;
+import interfaces.InterfazRemota;
 
 public class ObjetoRemoto extends UnicastRemoteObject implements InterfazRemota,Serializable {
 
@@ -123,6 +114,10 @@ public class ObjetoRemoto extends UnicastRemoteObject implements InterfazRemota,
 	
 	public EmpleadoDTO buscarLogin(EmpleadoDTO empleado) throws RemoteException{
 		return AdministradorSucursales.getInstancia().buscarLogin(empleado);
+	}
+	
+	public ArrayList<ClienteDTO> listadoClientes() throws RemoteException{
+		return AdministradorClientes.getInstancia().listadoClientes();
 	}
 	
 	@Override

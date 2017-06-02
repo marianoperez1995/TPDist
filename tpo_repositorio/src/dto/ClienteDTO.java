@@ -1,6 +1,7 @@
 package dto;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.ArrayList;
 
 public class ClienteDTO  implements Serializable{
@@ -11,6 +12,7 @@ public class ClienteDTO  implements Serializable{
 	private int numeroCliente;
 	private String direccion;
 	private String cuit;
+	private String fechaRegistro;
 	private CuentaCorrienteDTO cuentaCorriente;
 	private String nombre;
 	private SucursalDTO sucursal;
@@ -21,14 +23,21 @@ public class ClienteDTO  implements Serializable{
 	private String mailEncargado;
 	private String generoEncargado;
 	
-	
 	@Override
 	public String toString() {
 		return "ClienteDTO [numeroCliente=" + numeroCliente + ", direccion=" + direccion + ", cuit=" + cuit
-				+ ", cuentaCorriente=" + cuentaCorriente + ", nombre=" + nombre + ", sucursal=" + sucursal
-				+ ", pedidosCliente=" + pedidosCliente + ", encargado=" + encargado + ", telefono=" + telefono
-				+ ", telEncargado=" + telEncargado + ", mailEncargado=" + mailEncargado + ", generoEncargado="
-				+ generoEncargado + ", estado=" + estado + "]";
+				+ ", fechaRegistro=" + fechaRegistro + ", cuentaCorriente=" + cuentaCorriente + ", nombre=" + nombre
+				+ ", sucursal=" + sucursal + ", pedidosCliente=" + pedidosCliente + ", encargado=" + encargado
+				+ ", telefono=" + telefono + ", telEncargado=" + telEncargado + ", mailEncargado=" + mailEncargado
+				+ ", generoEncargado=" + generoEncargado + ", estado=" + estado + "]";
+	}
+
+	public String getFechaRegistro() {
+		return fechaRegistro;
+	}
+
+	public void setFechaRegistro(String fechaRegistro) {
+		this.fechaRegistro = fechaRegistro;
 	}
 
 	public String getTelEncargado() {

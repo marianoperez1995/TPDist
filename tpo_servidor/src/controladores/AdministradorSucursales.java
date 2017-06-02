@@ -2,10 +2,12 @@ package controladores;
 
 import java.util.ArrayList;
 
+import dto.ClienteDTO;
 import dto.EmpleadoDTO;
-import dto.SucursalDTO;
+import negocio.Cliente;
 import negocio.Empleado;
 import negocio.Sucursal;
+import persistencia.ClienteDAO;
 import persistencia.EmpleadoDAO;
 
 public class AdministradorSucursales {

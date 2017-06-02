@@ -1,6 +1,9 @@
 package persistencia;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -8,13 +11,9 @@ import org.hibernate.SessionFactory;
 
 import entities.ClienteEntity;
 import entities.PedidoClienteEntity;
-import entities.PrendaEntity;
 import hibernate.HibernateUtil;
 import negocio.Cliente;
-import negocio.CuentaCorriente;
 import negocio.PedidoCliente;
-import negocio.Prenda;
-import negocio.Sucursal;
 
 public class ClienteDAO {
 	private static SessionFactory sf;
@@ -73,6 +72,9 @@ public class ClienteDAO {
 		cliente.setTelencargado(cli.getTelEncargado());
 		cliente.setMailEncargado(cli.getMailEncargado());
 		cliente.setGeneroencargado(cli.getGeneroEncargado());
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		Date date = new Date();
+		cliente.setFechaRegistro(dateFormat.format(date));
 		
 		ArrayList<PedidoClienteEntity> pedidos = new ArrayList<PedidoClienteEntity>();
 		if (cli.getPedidosCliente() != null) {
