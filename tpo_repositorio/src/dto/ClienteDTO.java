@@ -20,6 +20,17 @@ public class ClienteDTO  implements Serializable{
 	private String telEncargado;
 	private String mailEncargado;
 	private String generoEncargado;
+	
+	
+	@Override
+	public String toString() {
+		return "ClienteDTO [numeroCliente=" + numeroCliente + ", direccion=" + direccion + ", cuit=" + cuit
+				+ ", cuentaCorriente=" + cuentaCorriente + ", nombre=" + nombre + ", sucursal=" + sucursal
+				+ ", pedidosCliente=" + pedidosCliente + ", encargado=" + encargado + ", telefono=" + telefono
+				+ ", telEncargado=" + telEncargado + ", mailEncargado=" + mailEncargado + ", generoEncargado="
+				+ generoEncargado + ", estado=" + estado + "]";
+	}
+
 	public String getTelEncargado() {
 		return telEncargado;
 	}

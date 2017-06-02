@@ -1,60 +1,54 @@
 package test;
 
-import dto.AreaProduccionDTO;
-import dto.BultoDTO;
-import dto.ClienteDTO;
-import dto.CuentaCorrienteDTO;
-import dto.EmpleadoDTO;
-import dto.FacturaDTO;
-import dto.InsumoDTO;
-import dto.ItemListaPrecioDTO;
-import dto.ItemPedidoClienteDTO;
-import dto.ItemPrendaAreaDTO;
-import dto.ItemPrendaInsumoDTO;
-import dto.ItemProveedorInsumoDTO;
-import dto.LineaProduccionDTO;
-import dto.LoteDTO;
-import dto.LoteInsumoDTO;
-import dto.MovimientosDTO;
-import dto.OpcDTO;
-import dto.OppDTO;
-import dto.PedidoClienteDTO;
+import java.util.ArrayList;
+
 import dto.PrendaDTO;
-import dto.PrendasEliminadasDTO;
-import dto.ProveedorDTO;
-import dto.SucursalDTO;
-import dto.TransporteDTO;
-import dto.UbicacionBultoDTO;
-import dto.UbicacionDTO;
-import negocio.AreaProduccion;
-import negocio.Bulto;
-import negocio.Cliente;
-import negocio.CuentaCorriente;
-import negocio.Empleado;
-import negocio.Factura;
-import negocio.Insumo;
-import negocio.ItemPedidoCliente;
-import negocio.ItemPrendaArea;
-import negocio.ItemPrendaInsumo;
-import negocio.ItemProveedorInsumo;
-import negocio.LineaProduccion;
-import negocio.LoteInsumo;
-import negocio.Movimientos;
-import negocio.Opc;
-import negocio.Opp;
-import negocio.PedidoCliente;
 import negocio.Prenda;
-import negocio.PrendasEliminadas;
-import negocio.Proveedor;
-import negocio.Sucursal;
-import negocio.Transporte;
-import negocio.Ubicacion;
-import negocio.UbicacionBulto;
 
 public class testToDTO {
 	public static void main(String[] args) {
-		ClienteDTO clienteDTO = new ClienteDTO();
-		AreaProduccionDTO areaDTO = new AreaProduccionDTO();
+
+		PrendaDTO prendaDTO = new PrendaDTO();
+		Prenda p = new Prenda();
+		p.setCantidadAConfeccionar(4);
+		p.setColor("Rojo");
+		ArrayList<String> colores = new ArrayList<>();
+		colores.add("Rojo");
+		colores.add("Azul");
+		p.setColoresPosibles(colores);
+		ArrayList<String> talles = new ArrayList<>();
+		talles.add("Grande");
+		talles.add("Mediano");
+		p.setTallesPosibles(talles);
+		
+		
+		
+		
+		/*	
+		Cliente cliente = new Cliente();
+		CuentaCorriente cta = new CuentaCorriente();
+		ArrayList<PedidoCliente> pedidos = new ArrayList<>();
+		Sucursal sucu = new Sucursal();*/
+
+		/*cliente.setCuentaCorriente(CuentaCorrienteDAO.getInstancia().getCuentaCorriente(2));
+		cliente.setCuit("cuit");
+		cliente.setDireccion("DIRECCION");
+		cliente.setEncargado("ENC");
+		cliente.setEstado("ESTA");
+		cliente.setGeneroEncargado("M");
+		cliente.setIdCliente(2);
+		cliente.setMailEncargado("ASDASD");
+		cliente.setNombre("NOMB");
+		cliente.setPedidosCliente(pedidos);	
+		cliente.setSucursal(SucursalDAO.getInstancia().getSucursal(1));
+		cliente.setTelefono("cuit");
+		cliente.setTelEncargado("cuit");
+		cliente.insertar();*/
+	/*	ClienteDTO clienteDTO = ClienteDAO.getInstancia().getCliente(2).toDTO();	
+		System.out.println(clienteDTO.toString());*/
+		
+		
+	/*	AreaProduccionDTO areaDTO = new AreaProduccionDTO();
 		BultoDTO bultoDTO = new BultoDTO();
 		CuentaCorrienteDTO cuentaDTO = new CuentaCorrienteDTO();
 		EmpleadoDTO empDTO = new EmpleadoDTO();
@@ -78,9 +72,9 @@ public class testToDTO {
 		SucursalDTO sucuDTO = new SucursalDTO();
 		TransporteDTO tranDTO = new TransporteDTO();
 		UbicacionBultoDTO ubicbDTO = new UbicacionBultoDTO();
-		UbicacionDTO ubicDTO = new UbicacionDTO();
+		UbicacionDTO ubicDTO = new UbicacionDTO();*/
 		
-		Cliente cliente = new Cliente();
+	/*	Cliente cliente = new Cliente();
 		AreaProduccion area = new AreaProduccion();
 		Bulto bulto = new Bulto();
 		CuentaCorriente cuenta = new CuentaCorriente();
@@ -105,7 +99,7 @@ public class testToDTO {
 		Sucursal sucu = new Sucursal();
 		Transporte tran = new Transporte();
 		UbicacionBulto ubicb = new UbicacionBulto();
-		Ubicacion ubic = new Ubicacion();
+		Ubicacion ubic = new Ubicacion();*/
 		
 		
 	}

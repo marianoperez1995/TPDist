@@ -52,7 +52,7 @@ public class CuentaCorrienteDAO  {
 		Session sesion;
 		sesion = sf.openSession();
 		sesion.beginTransaction();
-		sesion.saveOrUpdate(cu);
+		sesion.save(cu);
 		sesion.getTransaction().commit();
 		sesion.close();
 	}

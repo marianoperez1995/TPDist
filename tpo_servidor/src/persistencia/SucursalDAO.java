@@ -48,7 +48,7 @@ public class SucursalDAO {
 		Session sesion;
 		sesion = sf.openSession();
 		sesion.beginTransaction();
-		sesion.saveOrUpdate(su);
+		sesion.save(su);
 		sesion.getTransaction().commit();
 		sesion.close();
 	}

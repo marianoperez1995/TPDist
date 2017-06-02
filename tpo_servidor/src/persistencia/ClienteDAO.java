@@ -56,7 +56,7 @@ public class ClienteDAO {
 		Session sesion;
 		sesion = sf.openSession();
 		sesion.beginTransaction();
-		sesion.saveOrUpdate(cli);
+		sesion.save(cli);
 		sesion.getTransaction().commit();
 		sesion.close();
 	}

@@ -12,6 +12,12 @@ public class CuentaCorriente {
 	private String fecha;
 	private String estado;
 	
+	@Override
+	public String toString() {
+		return "CuentaCorriente [idCuentaCorriente=" + idCuentaCorriente + ", condiciones=" + condiciones + ", limite="
+				+ limite + ", balanceActual=" + balanceActual + ", fecha=" + fecha + ", estado=" + estado + "]";
+	}
+
 	public CuentaCorriente (CuentaCorrienteDTO ctaDTO){
 		this.condiciones = ctaDTO.getCondiciones();
 		this.limite = ctaDTO.getLimite();
@@ -25,6 +31,8 @@ public class CuentaCorriente {
 		this.limite = cuentaCorriente.getLimite();
 		this.balanceActual = cuentaCorriente.getBalanceActual();
 		this.fecha = cuentaCorriente.getFecha();
+		this.estado = cuentaCorriente.getEstado();
+		this.idCuentaCorriente = cuentaCorriente.getNroCC();
 	}
 
 	public CuentaCorriente() {
@@ -85,6 +93,16 @@ public class CuentaCorriente {
 	public String getEstado() {
 		// TODO Auto-generated method stub
 		return estado;
+	}
+
+	public CuentaCorrienteDTO toDTO() {
+		CuentaCorrienteDTO c = new CuentaCorrienteDTO();
+		c.setBalanceActual(balanceActual);
+		c.setCondiciones(condiciones);
+		c.setEstado(estado);
+		c.setFecha(fecha);
+		c.setLimite(limite);
+		return c;
 	}
 
 }

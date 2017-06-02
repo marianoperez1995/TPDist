@@ -2,6 +2,7 @@ package entities;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -15,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "Clientes")
@@ -53,7 +55,7 @@ public class ClienteEntity implements Serializable {
 	@JoinColumn(name = "idSucursal", referencedColumnName = "idSucursal")
 	private SucursalEntity sucursal;
 
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "idCliente")	
 	private List<PedidoClienteEntity> pedidosCliente;
 
@@ -137,7 +139,11 @@ public class ClienteEntity implements Serializable {
 		this.sucursal = sucursal;
 	}
 
-	public List<PedidoClienteEntity> getPedidosCliente() {
+	public List<PedidoClienteEntity> getPedidosCliente() {		
+		if (pedidosCliente == null){
+			pedidosCliente = new ArrayList<>();
+			return pedidosCliente;
+		}
 		return pedidosCliente;
 	}
 

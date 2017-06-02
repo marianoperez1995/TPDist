@@ -78,8 +78,8 @@ public class Cliente {
 		this.generoEncargado = cliE.getGeneroencargado();
 		this.telEncargado = cliE.getTelencargado();
 		this.pedidosCliente = new ArrayList<PedidoCliente>();
-		if(cliE.getPedidosCliente() != null){
-		for (PedidoClienteEntity p : cliE.getPedidosCliente()) {
+		if (cliE.getPedidosCliente() != null) {
+			for (PedidoClienteEntity p : cliE.getPedidosCliente()) {
 				this.pedidosCliente.add(new PedidoCliente(p));
 			}
 		}
@@ -217,7 +217,30 @@ public class Cliente {
 
 	public void actualizar() {
 		ClienteDAO.getInstancia().update(this);
-		
+
+	}
+
+	public ClienteDTO toDTO() {
+		ClienteDTO c = new ClienteDTO();
+		c.setCuentaCorriente(this.cuentaCorriente.toDTO());
+		c.setCuit(cuit);
+		c.setDireccion(direccion);
+		c.setEncargado(encargado);
+		c.setEstado(estado);
+		c.setGeneroEncargado(generoEncargado);
+		c.setMailEncargado(mailEncargado);
+		c.setNombre(nombre);
+		c.setNumeroCliente(idCliente);
+		c.setSucursal(sucursal.toDTO());
+		c.setTelefono(telefono);
+		c.setTelEncargado(telEncargado);
+		ArrayList<PedidoClienteDTO> pedidos = new ArrayList<>();
+		for (PedidoCliente p : pedidosCliente) {
+			pedidos.add(p.toDTO(c));
+		}
+		c.setPedidosCliente(pedidos);
+
+		return c;
 	}
 
 }
