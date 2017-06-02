@@ -1,6 +1,10 @@
 package dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+
+import negocio.Lote;
 
 public class InsumoDTO  implements Serializable{
 	/**
@@ -14,9 +18,27 @@ public class InsumoDTO  implements Serializable{
 	private float stockMinimo;
 	private String unidad;
 	private float cantAComprar;
-
+	private Date fechaRecepcion;
+	private ArrayList<LoteDTO> lotes; 
+	
 	public int getCodigo() {
 		return codigo;
+	}
+
+	public Date getFechaRecepcion() {
+		return fechaRecepcion;
+	}
+
+	public void setFechaRecepcion(Date fechaRecepcion) {
+		this.fechaRecepcion = fechaRecepcion;
+	}
+
+	public ArrayList<LoteDTO> getLotes() {
+		return lotes;
+	}
+
+	public void setLotes(ArrayList<LoteDTO> lotes) {
+		this.lotes = lotes;
 	}
 
 	public void setCodigo(int codigo) {

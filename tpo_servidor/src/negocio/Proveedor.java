@@ -1,10 +1,6 @@
 package negocio;
 
-import java.util.ArrayList;
-
-import dto.ItemProveedorInsumoDTO;
 import dto.ProveedorDTO;
-import entities.ItemProveedorInsumoEntity;
 import entities.ProveedorEntity;
 import persistencia.ProveedorDAO;
 
@@ -12,27 +8,25 @@ public class Proveedor {
 	private int idProveedor;
 	private String nombre;
 	private String cuit;
-	private ArrayList<ItemProveedorInsumo> listaPrecios;
+
 		
 	public Proveedor(ProveedorDTO proveedor) {
 		this.nombre = proveedor.getNombre();
 		this.cuit = proveedor.getCuit();
-		this.idProveedor = proveedor.getCodigo();
-		this.listaPrecios = new ArrayList<ItemProveedorInsumo>();
-		for (ItemProveedorInsumoDTO i : proveedor.getListaPrecios()){
-			this.listaPrecios.add(new ItemProveedorInsumo(i));
-		}
+		this.idProveedor = proveedor.getidProveedor();
+	
 	}
 
 	public Proveedor(ProveedorEntity proveedor) {
 		this.nombre = proveedor.getNombre();
 		this.cuit = proveedor.getCuit();
-		this.idProveedor = proveedor.getCodigo();
-		this.listaPrecios = new ArrayList<ItemProveedorInsumo>();
-		for (ItemProveedorInsumoEntity i : proveedor.getItemsProveedorInsumo()){
-			this.listaPrecios.add(new ItemProveedorInsumo(i));
-		}
+		this.idProveedor = proveedor.getIdProveedor();
+	
 	}
+	public Proveedor() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public void insertar() {
 		ProveedorDAO.getInstancia().insert(this);		
 	}
@@ -63,15 +57,6 @@ public class Proveedor {
 	public void setCuit(String cuit) {
 		this.cuit = cuit;
 	}
-
-	public ArrayList<ItemProveedorInsumo> getListaPrecios() {
-		return listaPrecios;
-	}
-
-	public void setListaPrecios(ArrayList<ItemProveedorInsumo> listaPrecios) {
-		this.listaPrecios = listaPrecios;
-	}
-	
 
 	
 }

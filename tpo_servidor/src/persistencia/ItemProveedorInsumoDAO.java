@@ -3,10 +3,13 @@ package persistencia;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import entities.ColorEntity;
 import entities.ItemProveedorInsumoEntity;
 import entities.ItemProveedorInsumoID;
 import hibernate.HibernateUtil;
+import negocio.Insumo;
 import negocio.ItemProveedorInsumo;
+import negocio.Proveedor;
 
 public class ItemProveedorInsumoDAO {
 	private static SessionFactory sf;
@@ -22,18 +25,7 @@ public class ItemProveedorInsumoDAO {
 	}
 	private ItemProveedorInsumoDAO(){
 		
-	}
-	
-	public void eliminar(int id){
-		SessionFactory sf= HibernateUtil.getSessionFactory();
-		Session session = sf.openSession();
-		ItemProveedorInsumoEntity res= (ItemProveedorInsumoEntity) session.get(ItemProveedorInsumoEntity.class, id);
-		session.beginTransaction();
-		session.delete(res);
-		session.getTransaction().commit();
-		session.close();	
-	}
-	
+	}	
 
 	public ItemProveedorInsumo getItemProveedorInsumo(int id) {
 		Session sesion = sf.openSession();
@@ -65,5 +57,15 @@ public class ItemProveedorInsumoDAO {
 		return item;
 		
 	
+	}
+	public void eliminar(Insumo insumo, Proveedor prov) {
+		Session sesion = sf.openSession();
+		sesion.beginTransaction();
+		ItemProveedorInsumoEntity c = (ItemProveedorInsumoEntity) sesion.createQuery("from ItemProveedorInsumoEntity where id.insumo.idInsumo = ? and id.proveedor.idProveedor = ?")
+				.setParameter(0, insumo.getIdInsumo())
+				.setParameter(1, prov.getIdProveedor())
+				.uniqueResult();
+		sesion.delete(c);
+		sesion.close();
 	}
 }

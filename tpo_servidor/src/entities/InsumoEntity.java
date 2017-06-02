@@ -22,19 +22,7 @@ public class InsumoEntity implements Serializable  {
 	 * 
 	 */
 	private static final long serialVersionUID = -3454179299445920384L;
-	public InsumoEntity(int codigo, String nombre, float stockActual, float precioFinal, float stockMinimo,
-			String unidad, float cantAComprar, Date fechaRecepcion, List<LoteEntity> lotes) {
-		super();
-		this.codigo = codigo;
-		this.nombre = nombre;
-		this.stockActual = stockActual;
-		this.precioFinal = precioFinal;
-		this.stockMinimo = stockMinimo;
-		this.unidad = unidad;
-		this.cantAComprar = cantAComprar;
-		this.fechaRecepcion = fechaRecepcion;
-		this.lotes = lotes;
-	}
+
 	public InsumoEntity(){
 		
 	}

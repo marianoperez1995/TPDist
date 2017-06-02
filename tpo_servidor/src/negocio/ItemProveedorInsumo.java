@@ -1,12 +1,11 @@
 package negocio;
 
-import dto.ItemListaPrecioDTO;
 import dto.ItemProveedorInsumoDTO;
 import entities.ItemProveedorInsumoEntity;
 import persistencia.ItemProveedorInsumoDAO;
 
 public class ItemProveedorInsumo {
-	private int idItemListaPrecio;
+
 	private Insumo insumo;
 	private float precio;
 	private Proveedor prov;
@@ -14,20 +13,26 @@ public class ItemProveedorInsumo {
 	public ItemProveedorInsumo (ItemProveedorInsumoDTO ilDTO){		
 		this.insumo = new Insumo(ilDTO.getInsumo());
 		this.precio = ilDTO.getPrecio();
+		this.prov = new Proveedor(ilDTO.getProv());
+		
 	}
 	
 	public ItemProveedorInsumo(ItemProveedorInsumoEntity i) {
 		this.insumo = new Insumo(i.getId().getInsumo());
 		this.precio = i.getPrecio();
+		this.prov = new Proveedor(i.getId().getProveedor());
 	}
 	
-	//No esta el dao aun. habria que renombrar esta clase a ItemProveedorInsumo
+	public ItemProveedorInsumo() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public void insertar() {
 		ItemProveedorInsumoDAO.getInstancia().insert(this);		
 	}
 
 	public void borrar() {
-		ItemProveedorInsumoDAO.getInstancia().eliminar(this.idItemListaPrecio);
+		ItemProveedorInsumoDAO.getInstancia().eliminar(this.insumo,this.prov);
 	}	
 
 	public Insumo getInsumo() {
@@ -41,14 +46,6 @@ public class ItemProveedorInsumo {
 	}
 	public void setPrecio(float precio) {
 		this.precio = precio;
-	}
-
-	public int getIdItemListaPrecio() {
-		return idItemListaPrecio;
-	}
-
-	public void setIdItemListaPrecio(int idItemListaPrecio) {
-		this.idItemListaPrecio = idItemListaPrecio;
 	}
 
 	public Proveedor getProv() {

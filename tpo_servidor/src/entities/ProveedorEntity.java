@@ -1,13 +1,11 @@
 package entities;
 
 import java.io.Serializable;
-import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
 @Table(name="Proveedores")
@@ -17,38 +15,28 @@ public class ProveedorEntity  implements Serializable {
 	 */
 	private static final long serialVersionUID = 2632246882637819460L;
 
-	public ProveedorEntity(int codigo, String nombre, String cuit) {
+	public ProveedorEntity(int idProveedor, String nombre, String cuit) {
 		super();
-		this.codigo = codigo;
+		this.idProveedor = idProveedor;
 		this.nombre = nombre;
 		this.cuit = cuit;
 	}
 	public ProveedorEntity() {
 		// TODO Auto-generated constructor stub
 	}
-	@Id
-	@Column(name="idproveedor")
-	private int codigo;
+	@Id	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int idProveedor;
 	private String nombre;
 	private String cuit;
 	
-	@OneToMany
-	@JoinColumn(name="idproveedor")	
-	private List<ItemProveedorInsumoEntity> itemsProveedorInsumo;
 
-	
-	
-	public List<ItemProveedorInsumoEntity> getItemsProveedorInsumo() {
-		return itemsProveedorInsumo;
+
+	public int getIdProveedor() {
+		return idProveedor;
 	}
-	public void setItemsProveedorInsumo(List<ItemProveedorInsumoEntity> itemsProveedorInsumo) {
-		this.itemsProveedorInsumo = itemsProveedorInsumo;
-	}
-	public int getCodigo() {
-		return codigo;
-	}
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
+	public void setidProveedor(int idProveedor) {
+		this.idProveedor = idProveedor;
 	}
 	public String getNombre() {
 		return nombre;
@@ -62,8 +50,5 @@ public class ProveedorEntity  implements Serializable {
 	public void setCuit(String cuit) {
 		this.cuit = cuit;
 	}
-	
-	
-	
 
 }

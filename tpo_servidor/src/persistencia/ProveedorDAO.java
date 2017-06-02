@@ -40,7 +40,7 @@ public class ProveedorDAO  {
 		Session sesion;
 		sesion = sf.openSession();
 		sesion.beginTransaction();
-		sesion.saveOrUpdate(pr);
+		sesion.save(pr);
 		sesion.getTransaction().commit();
 		sesion.close();
 	}
@@ -55,7 +55,7 @@ public class ProveedorDAO  {
 	
 	public ProveedorEntity toEntity(Proveedor prov){
 		ProveedorEntity pr= new ProveedorEntity();
-		pr.setCodigo(prov.getIdProveedor());
+		pr.setidProveedor(prov.getIdProveedor());
 		pr.setCuit(prov.getCuit());
 		pr.setNombre(prov.getNombre());
 	//itemproeveedorinsumo?

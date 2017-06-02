@@ -3,17 +3,38 @@ package test;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import dto.PrendaDTO;
-import negocio.Opp;
-import negocio.Prenda;
-import persistencia.ColorDAO;
-import persistencia.TalleDAO;
+import negocio.Insumo;
+import negocio.ItemProveedorInsumo;
+import negocio.Lote;
 
 public class testToDTO {
 	public static void main(String[] args) {
-
 		
-		
+		ItemProveedorInsumo i = new ItemProveedorInsumo();
+		//Proveedor prov = new Proveedor();
+		Insumo ins = new Insumo();
+		//prov.setCuit("12345");
+		//prov.setNombre("Tela SA");
+		//prov.insertar();
+		ins.setCantAComprar(45);
+		ins.setNombre("Carton");
+		ins.setPrecioFinal(55);
+		ins.setStockActual(123);
+		ins.setUnidad("Cajas");
+		ins.setStockMinimo(40);
+		ins.setFechaRecepcion(Calendar.getInstance().getTime());
+		ArrayList <Lote> lotes = new ArrayList<>();
+		Lote l = new Lote();
+		l.setCantidadTotal(10);
+		l.setColor("Rojo");
+		l.setBultos(bultos);
+		l.setOrden(orden);
+		l.setTalle("M");
+		lotes.add(l);
+		l.insertar();
+		ins.setLotes(lotes);
+		ins.insertar();
+		//FALTA INSERTAR UN LOTE, UNA ORDEN, BULTOS, ETC... PARA PODER PROBAR Insumo...
 		
 		
 		

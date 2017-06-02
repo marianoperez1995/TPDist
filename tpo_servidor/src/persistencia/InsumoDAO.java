@@ -49,7 +49,7 @@ public class InsumoDAO  {
 		Session sesion;
 		sesion = sf.openSession();
 		sesion.beginTransaction();
-		sesion.saveOrUpdate(in);
+		sesion.save(in);
 		sesion.getTransaction().commit();
 		sesion.close();
 	}
@@ -73,6 +73,7 @@ public class InsumoDAO  {
 		in.setPrecioFinal(insu.getPrecioFinal());
 		in.setUnidad(insu.getUnidad());
 		in.setCantAComprar(insu.getCantAComprar());
+		in.setFechaRecepcion(insu.getFechaRecepcion());
 		return in;
 	}
 	

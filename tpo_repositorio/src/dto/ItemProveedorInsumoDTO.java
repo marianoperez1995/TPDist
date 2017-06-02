@@ -1,15 +1,10 @@
 package dto;
 public class ItemProveedorInsumoDTO {
-	private int idItemListaPrecio;
+
 	private InsumoDTO insumo;
 	private float precio;
 	private ProveedorDTO prov;
-	public int getIdItemListaPrecio() {
-		return idItemListaPrecio;
-	}
-	public void setIdItemListaPrecio(int idItemListaPrecio) {
-		this.idItemListaPrecio = idItemListaPrecio;
-	}
+
 	public InsumoDTO getInsumo() {
 		return insumo;
 	}

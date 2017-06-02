@@ -1,7 +1,12 @@
 package negocio;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 import dto.InsumoDTO;
+import dto.LoteDTO;
 import entities.InsumoEntity;
+import entities.LoteEntity;
 import persistencia.InsumoDAO;
 
 public class Insumo {
@@ -12,6 +17,8 @@ public class Insumo {
 	private float stockMinimo;
 	private String unidad;
 	private float cantAComprar;
+	private Date fechaRecepcion;
+	private ArrayList<Lote> lotes;
 
 	public Insumo(InsumoDTO insumo) {
 		this.idInsumo = insumo.getCodigo();
@@ -21,6 +28,10 @@ public class Insumo {
 		this.stockMinimo = insumo.getStockMinimo();
 		this.unidad = insumo.getUnidad();
 		this.cantAComprar = insumo.getCantAComprar();
+		this.fechaRecepcion = insumo.getFechaRecepcion();
+		for (LoteDTO l : insumo.getLotes()){
+			this.lotes.add(new Lote(l));
+		}
 	}
 
 	public Insumo(InsumoEntity insumo) {
@@ -31,25 +42,12 @@ public class Insumo {
 		this.stockMinimo = insumo.getStockMinimo();
 		this.unidad = insumo.getUnidad();
 		this.cantAComprar = insumo.getCantAComprar();
+		this.fechaRecepcion = insumo.getFechaRecepcion();
+		for (LoteEntity l : insumo.getLotes()){
+			this.lotes.add(new Lote(l));
+		}
 	}
 	
-	public Insumo() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public void insertar() {
-		InsumoDAO.getInstancia().insert(this);		
-	}
-
-	public void borrar() {
-		InsumoDAO.getInstancia().eliminar(this.idInsumo);
-	}
-
-
-	public boolean sosElInsumo(int codigo) {
-		return (codigo == this.idInsumo);
-	}
-
 	public int getIdInsumo() {
 		return idInsumo;
 	}
@@ -106,12 +104,35 @@ public class Insumo {
 		this.cantAComprar = cantAComprar;
 	}
 
-	@Override
-	public String toString() {
-		return "Insumo [idInsumo=" + idInsumo + ", nombre=" + nombre + ", stockActual=" + stockActual + ", precioFinal="
-				+ precioFinal + ", stockMinimo=" + stockMinimo + ", unidad=" + unidad + ", cantAComprar=" + cantAComprar
-				+ "]";
+	public Date getFechaRecepcion() {
+		return fechaRecepcion;
 	}
+
+	public void setFechaRecepcion(Date fechaRecepcion) {
+		this.fechaRecepcion = fechaRecepcion;
+	}
+
+	public ArrayList<Lote> getLotes() {
+		return lotes;
+	}
+
+	public void setLotes(ArrayList<Lote> lotes) {
+		this.lotes = lotes;
+	}
+
+	public Insumo() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public void insertar() {
+		InsumoDAO.getInstancia().insert(this);		
+	}
+
+	public void borrar() {
+		InsumoDAO.getInstancia().eliminar(this.idInsumo);
+	}
+
+
 	
 	public InsumoDTO toDTO(){
 		InsumoDTO in= new InsumoDTO();
