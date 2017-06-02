@@ -6,7 +6,8 @@ public class Bulto {
 	private int idBulto;
 	private Prenda prenda;
 	private int cantidad;
-
+	
+	
 	public void descontarStock(int cantidad) {
 		this.cantidad = this.cantidad - cantidad;
 		if (this.cantidad < 0){//q no sea negativo...
