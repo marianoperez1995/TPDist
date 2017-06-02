@@ -6,7 +6,6 @@ public class Bulto {
 	private int idBulto;
 	private Prenda prenda;
 	private int cantidad;
-	private Lote lote;
 
 	public void descontarStock(int cantidad) {
 		this.cantidad = this.cantidad - cantidad;
@@ -44,28 +43,14 @@ public class Bulto {
 		this.cantidad = cantidad;
 	}
 
-	public Lote getLote() {
-		return lote;
-	}
-
-	public void setLote(Lote lote) {
-		this.lote = lote;
-	}
-
 	
 	public BultoDTO toDTO(){
 		BultoDTO bul=  new BultoDTO();
 		bul.setCantidad(this.cantidad);
 		bul.setCodigoBulto(idBulto);
 		bul.setPrenda(prenda.toDTO());
-		bul.setLote(lote.toDTO());
 		return bul;
 	}
-	@Override
-	public String toString() {
-		return "Bulto [idBulto=" + idBulto + ", prenda=" + prenda + ", cantidad=" + cantidad + ", lote=" + lote + "]";
-	}
-	
-	
+
 	
 }

@@ -3,6 +3,7 @@ package test;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import negocio.Bulto;
 import negocio.Insumo;
 import negocio.ItemProveedorInsumo;
 import negocio.Lote;
@@ -28,6 +29,10 @@ public class testToDTO {
 		l.setCantidadTotal(10);
 		l.setColor("Rojo");
 		l.setBultos(bultos);
+		Bulto bulto = new Bulto();
+		bulto.setCantidad(3);
+		bulto.setLote(lote);
+		bulto.setPrenda(prenda);
 		l.setOrden(orden);
 		l.setTalle("M");
 		lotes.add(l);
