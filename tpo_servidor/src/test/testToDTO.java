@@ -1,26 +1,52 @@
 package test;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import dto.PrendaDTO;
+import negocio.Opp;
 import negocio.Prenda;
+import persistencia.ColorDAO;
+import persistencia.TalleDAO;
 
 public class testToDTO {
 	public static void main(String[] args) {
 
+		
+		
+		
+		
+		
+		
+		
+		
+		/*
 		PrendaDTO prendaDTO = new PrendaDTO();
 		Prenda p = new Prenda();
+		p.setIdPrenda(3);
 		p.setCantidadAConfeccionar(4);
-		p.setColor("Rojo");
-		ArrayList<String> colores = new ArrayList<>();
-		colores.add("Rojo");
-		colores.add("Azul");
-		p.setColoresPosibles(colores);
-		ArrayList<String> talles = new ArrayList<>();
-		talles.add("Grande");
-		talles.add("Mediano");
-		p.setTallesPosibles(talles);
+		p.setColor("Negro");
+		p.setCostoProduccionActual(123);
+		p.setDescripcion("Pantalon");
+		p.setEstadoProduccion(true);		
+		p.setPorcentajeGanancia(2);
+		p.setPrecio(50);
+		p.setTalle("M");
+		p.setStockActual(588);
+		p.setStockMinimo(10);
+		p.insertar();*/
+/*
+		ColorDAO.getInstancia().insert("Rojo");
+		ColorDAO.getInstancia().insert("Azul");
+		ColorDAO.getInstancia().insert("Celeste");
+		ColorDAO.getInstancia().insert("Negro");
+		ColorDAO.getInstancia().insert("Blanco");
 		
+		TalleDAO.getInstancia().insert("S");
+		TalleDAO.getInstancia().insert("M");
+		TalleDAO.getInstancia().insert("L");		
+		TalleDAO.getInstancia().insert("XL");
+		TalleDAO.getInstancia().insert("XXL");*/
 		
 		
 		

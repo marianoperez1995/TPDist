@@ -38,6 +38,10 @@ public class ItemPrendaInsumo {
 
 	
 	
+	public ItemPrendaInsumo() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getIdItemPrendaInsumo() {
 		return idItemPrendaInsumo;
 	}

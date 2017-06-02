@@ -56,10 +56,6 @@ public abstract class OrdenProduccion {
 		this.pedidoCliente = pedidoCliente;
 	}
 
-	public void setId (int codigo) {
-		this.idOrdenProduccion = codigo;
-	}
-
 	public int getIdOrdenProduccion() {
 		return idOrdenProduccion;
 	}

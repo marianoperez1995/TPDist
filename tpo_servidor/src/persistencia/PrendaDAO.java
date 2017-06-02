@@ -6,13 +6,11 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import entities.ItemPrendaAreaEntity;
-import entities.ItemPrendaInsumoEntity;
+import entities.ColorEntity;
 import entities.PrendaEntity;
 import entities.PrendaID;
+import entities.TalleEntity;
 import hibernate.HibernateUtil;
-import negocio.ItemPrendaArea;
-import negocio.ItemPrendaInsumo;
 import negocio.Prenda;
 
 public class PrendaDAO  {
@@ -48,7 +46,7 @@ public class PrendaDAO  {
 		Session sesion;
 		sesion = sf.openSession();
 		sesion.beginTransaction();
-		sesion.saveOrUpdate(pr);
+		sesion.save(pr);
 		sesion.getTransaction().commit();
 		sesion.close();
 	}
@@ -64,36 +62,28 @@ public class PrendaDAO  {
 	
 	
 
-	public PrendaEntity toEntity(Prenda prenda){//Arreglar, cambiamos primary key a 3 cosas ahora
-		PrendaEntity pre= new PrendaEntity();
+	public PrendaEntity toEntity(Prenda prenda){
 		PrendaID id = new PrendaID();
-		//Nunca usamos los colores/talles posibles de la prenda
-		id.setTalle(TalleDAO.getInstancia().toEntity(prenda.getTalle());
-		id.setColor(ColorDAO.getInstancia().toEntity(prenda.getColor());
+		ColorEntity color = ColorDAO.getInstancia().getColor(prenda.getColor());
+		TalleEntity talle = TalleDAO.getInstancia().getTalle(prenda.getTalle());	
+		id.setColor(color);
+		id.setTalle(talle);
 		id.setIdPrenda(prenda.getIdPrenda());
-		pre.setId(id);
-		pre.setDescripcion(prenda.getDescripcion());
-		pre.setOrdenProduccion(OrdenProduccionDAO.getInstancia().toEntity(prenda.getOrdenProduccion()));
-		pre.setEstadoProduccion(prenda.isEstadoProduccion());
-		pre.setCostoProduccionReal(prenda.getCostoProduccionReal());
-		pre.setCostoProduccionActual(prenda.getCostoProduccionActual());
-		pre.setPorcentajeGanancia(prenda.getPorcentajeGanancia());
-		pre.setPrecio(prenda.getPrecio());
-		pre.setCantidadAConfeccionar(prenda.getCantidadAConfeccionar());
-		//falta crea el array de colores y de prenda
-		ArrayList<ItemPrendaInsumoEntity> itemsPrenda= new ArrayList<ItemPrendaInsumoEntity>();
-		for (ItemPrendaInsumo item: prenda.getItemsPrendaInsumo()){
-			itemsPrenda.add(ItemPrendaInsumoDAO.getInstancia().toEntity(item));
-		}
-		pre.setItemsPrendaInsumo(itemsPrenda);
-		ArrayList<ItemPrendaAreaEntity> itemsPrendaArea= new ArrayList<ItemPrendaAreaEntity>();
-		for (ItemPrendaArea item: prenda.getItemsPrendaArea()){
-			itemsPrendaArea.add(ItemPrendaAreaDAO.getInstancia().toEntity(item));
-		}
-		pre.setItemsPrendaArea(itemsPrendaArea);
-		return pre;
+		PrendaEntity p = new PrendaEntity();
+		p.setId(id);
+		p.setCantidadAConfeccionar(prenda.getCantidadAConfeccionar());
+		p.setCostoProduccionActual(prenda.getCostoProduccionActual());
+		p.setCostoProduccionReal(prenda.getCostoProduccionReal());
+		p.setDescripcion(prenda.getDescripcion());
+		p.setEstadoProduccion(prenda.isEstadoProduccion());
+		p.setPorcentajeGanancia(prenda.getPorcentajeGanancia());
+		p.setPrecio(prenda.getPrecio());
+		p.setStockActual(prenda.getStockActual());
+		p.setStockMinimo(prenda.getStockMinimo());	
+		return p;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public ArrayList<Prenda> getAll(){
 		
 		Session sesion = sf.openSession();

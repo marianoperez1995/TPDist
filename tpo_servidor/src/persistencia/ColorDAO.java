@@ -3,8 +3,11 @@ package persistencia;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import entities.ClienteEntity;
 import entities.ColorEntity;
+import entities.TalleEntity;
 import hibernate.HibernateUtil;
+import negocio.Cliente;
 
 public class ColorDAO {
 	private static SessionFactory sf;
@@ -24,11 +27,21 @@ public class ColorDAO {
 		Session sesion;
 		sesion = sf.openSession();
 		sesion.beginTransaction();
-		sesion.saveOrUpdate(color);
+		sesion.save(color);
 		sesion.getTransaction().commit();
 		sesion.close();
 	}
 	
+	public ColorEntity getColor(String string) {
+		Session sesion = sf.openSession();
+		sesion.beginTransaction();
+		ColorEntity c = (ColorEntity) sesion.createQuery("from ColorEntity where nombre = ?")
+				.setParameter(0, string).uniqueResult();
+		sesion.close();
+		return c;
+	
+	}
+
 	public void eliminar(int id) {
 		Session sesion;
 		sesion = sf.openSession();

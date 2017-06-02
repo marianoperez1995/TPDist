@@ -21,6 +21,10 @@ public class TalleEntity implements Serializable {
 		this.nombre = nombre;
 	}
 
+	public TalleEntity() {
+		// TODO Auto-generated constructor stub
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idTalle;

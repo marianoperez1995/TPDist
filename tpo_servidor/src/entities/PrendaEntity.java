@@ -39,7 +39,7 @@ public class PrendaEntity  implements Serializable {
 	private int cantidadAConfeccionar;
 	private int stockMinimo;
 	private int stockActual;
-
+/*
 	@OneToMany
 	//@JoinColumns(name="idPrenda")	//Mal, porque la clave primaria de prendas son las 3 ahora...
 	@JoinColumns({
@@ -47,7 +47,7 @@ public class PrendaEntity  implements Serializable {
 		@JoinColumn(name = "idColor", referencedColumnName = "idColor"),
 		@JoinColumn(name = "idTalle", referencedColumnName = "idTalle") })
 	private List<ItemPrendaInsumoEntity> itemsPrendaInsumo;
-	
+	*/
 	
 	
 	public int getStockMinimo() {
@@ -75,49 +75,12 @@ public PrendaID getId() {
 		this.id = id;
 	}
 
-public List<ItemPrendaInsumoEntity> getItemsPrendaInsumo() {
-		return itemsPrendaInsumo;
-	}
-
-
-
-	public void setItemsPrendaInsumo(List<ItemPrendaInsumoEntity> itemsPrendaInsumo) {
-		this.itemsPrendaInsumo = itemsPrendaInsumo;
-	}
-
 	/*	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REFRESH }, fetch = FetchType.EAGER)
 	@JoinTable(name = "Prenda_Areas", joinColumns = {
 	@JoinColumn(name = "idPrenda") }, inverseJoinColumns = { @JoinColumn(name = "idAreaProduccion") })
 	private List<AreaProduccionEntity> areas;
 	//Falta manejar los minutoEnArea de prenda_areas
 */
-	@Transient
-	private ArrayList<String> coloresPosibles;
-	@Transient
-	private ArrayList<String> tallesPosibles;
-	@Transient
-	private OrdenProduccionEntity ordenProduccion;
-	@Transient
-	private ArrayList<ItemPrendaAreaEntity> itemsPrendaArea;
-	//private ArrayList<ItemPrendaInsumoEntity> itemsPrendaInsumo;
-/*
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REFRESH }, fetch = FetchType.EAGER)
-	@JoinTable(name = "prenda_insumos", joinColumns = {
-	@JoinColumn(name = "idPrenda") }, inverseJoinColumns = { @JoinColumn(name = "idInsumo") })
-	private List<InsumoEntity> insumos;
-	//Falta manejar la cantidad, desperdicio de prenda_insumos
-*/
-	
-	
-
-	public ArrayList<ItemPrendaAreaEntity> getItemsPrendaArea() {
-		return itemsPrendaArea;
-	}
-
-	public void setItemsPrendaArea(ArrayList<ItemPrendaAreaEntity> itemsPrendaArea) {
-		this.itemsPrendaArea = itemsPrendaArea;
-	}
-
 	public String getDescripcion() {
 		return descripcion;
 	}
@@ -125,31 +88,6 @@ public List<ItemPrendaInsumoEntity> getItemsPrendaInsumo() {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-
-	public ArrayList<String> getColoresPosibles() {
-		return coloresPosibles;
-	}
-
-	public void setColoresPosibles(ArrayList<String> coloresPosibles) {
-		this.coloresPosibles = coloresPosibles;
-	}
-
-	public ArrayList<String> getTallesPosibles() {
-		return tallesPosibles;
-	}
-
-	public void setTallesPosibles(ArrayList<String> tallesPosibles) {
-		this.tallesPosibles = tallesPosibles;
-	}
-
-	public OrdenProduccionEntity getOrdenProduccion() {
-		return ordenProduccion;
-	}
-
-	public void setOrdenProduccion(OrdenProduccionEntity ordenProduccion) {
-		this.ordenProduccion = ordenProduccion;
-	}
-
 	public boolean getEstadoProduccion() {
 		return estadoProduccion;
 	}
@@ -189,10 +127,6 @@ public List<ItemPrendaInsumoEntity> getItemsPrendaInsumo() {
 	public void setPrecio(float precio) {
 		this.precio = precio;
 	}
-
-
-
-
 	public int getCantidadAConfeccionar() {
 		return cantidadAConfeccionar;
 	}

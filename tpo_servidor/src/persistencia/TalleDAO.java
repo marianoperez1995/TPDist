@@ -24,9 +24,19 @@ public class TalleDAO {
 		Session sesion;
 		sesion = sf.openSession();
 		sesion.beginTransaction();
-		sesion.saveOrUpdate(talle);
+		sesion.save(talle);
 		sesion.getTransaction().commit();
 		sesion.close();
+	}
+	
+	public TalleEntity getTalle(String string) {
+		Session sesion = sf.openSession();
+		sesion.beginTransaction();
+		TalleEntity t = (TalleEntity) sesion.createQuery("from TalleEntity where nombre = ?")
+				.setParameter(0, string).uniqueResult();
+		sesion.close();
+		return t;
+	
 	}
 	
 	public void eliminar(int id) {

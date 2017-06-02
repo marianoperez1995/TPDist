@@ -1,32 +1,22 @@
 package negocio;
 
-import java.util.ArrayList;
-
-import persistencia.PrendaDAO;
-import dto.ItemPrendaAreaDTO;
-import dto.ItemPrendaInsumoDTO;
-import dto.OpcDTO;
-import dto.OppDTO;
 import dto.PrendaDTO;
-import entities.ItemPrendaAreaEntity;
-import entities.ItemPrendaInsumoEntity;
 import entities.PrendaEntity;
+import persistencia.PrendaDAO;
 
 public class Prenda {
 	private int idPrenda;
 	private String descripcion;
-	private ArrayList<String> coloresPosibles;
-	private ArrayList<String> tallesPosibles;
-	private OrdenProduccion ordenProduccion;
 	private boolean estadoProduccion;
 	private float costoProduccionReal;
 	private float costoProduccionActual;
 	private float porcentajeGanancia;
 	private float precio;
-	private ArrayList<ItemPrendaInsumo> itemsPrendaInsumo;
 	public int cantidadAConfeccionar;
 	private String color;
 	private String talle;
+	private int stockMinimo;
+	private int stockActual;
 
 	public String getTalle() {
 		return talle;
@@ -44,75 +34,42 @@ public class Prenda {
 
 
 	public Prenda(PrendaDTO preDTO) {
-		this.idPrenda = preDTO.getCodigo();
+		this.idPrenda = preDTO.getIdPrenda();
 		this.descripcion = preDTO.getDescripcion();
-		this.tallesPosibles = new ArrayList<String>();
-		for (String t : preDTO.getTallesPosibles()){
-			this.tallesPosibles.add(t);
-		}		
-		this.coloresPosibles = new ArrayList<String>();
-		for (String c : preDTO.getColoresPosibles()){
-			this.coloresPosibles.add(c);
-		}
-
-		//REVISAR Q ESTE BIEN
-		if (preDTO.getOrdenProduccion().esParcial())
-			this.ordenProduccion = new Opp (preDTO.getOrdenProduccion());
-		else
-			this.ordenProduccion = new Opc(preDTO.getOrdenProduccion());		
-		
-		this.estadoProduccion = preDTO.getEstadoProduccion();
+		this.estadoProduccion = preDTO.isEstadoProduccion();
 		this.costoProduccionReal = preDTO.getCostoProduccionReal();
 		this.costoProduccionActual = preDTO.getCostoProduccionActual();
 		this.porcentajeGanancia = preDTO.getPorcentajeGanancia();
-		this.precio = preDTO.getPrecio();
-		this.itemsPrendaArea = new ArrayList<ItemPrendaArea>();
-		this.itemsPrendaInsumo = new ArrayList<ItemPrendaInsumo>();
-		for (ItemPrendaInsumoDTO ipiDTO : preDTO.getItemsPrendaInsumo()){
-			this.itemsPrendaInsumo.add(new ItemPrendaInsumo(ipiDTO));	
-		}
-		for (ItemPrendaAreaDTO ipaDTO : preDTO.getItemsPrendaArea()){
-			this.itemsPrendaArea.add(new ItemPrendaArea(ipaDTO));	
-		}
+		this.precio = preDTO.getPrecio();	
 		this.cantidadAConfeccionar = preDTO.getCantidadAConfeccionar();
+		this.color = preDTO.getColor();
+		this.talle = preDTO.getTalle();
+		this.stockActual = preDTO.getStockActual();
+		this.stockMinimo = preDTO.getStockMinimo();
 	}
 
 
 	public Prenda(PrendaEntity p) {
 		this.idPrenda = p.getId().getIdPrenda();
 		this.descripcion = p.getDescripcion();
-		this.tallesPosibles = new ArrayList<String>();
-		for (String t : p.getTallesPosibles()){
-			this.tallesPosibles.add(t);
-		}		
-		this.coloresPosibles = new ArrayList<String>();
-		for (String c : p.getColoresPosibles()){
-			this.coloresPosibles.add(c);
-		}
-
-		//REVISAR Q ESTE BIEN
-		if (p.getOrdenProduccion().esParcial())
-			this.ordenProduccion = new Opp (p.getOrdenProduccion());
-		else
-			this.ordenProduccion = new Opc(p.getOrdenProduccion());		
-		
 		this.estadoProduccion = p.getEstadoProduccion();
 		this.costoProduccionReal = p.getCostoProduccionReal();
 		this.costoProduccionActual = p.getCostoProduccionActual();
 		this.porcentajeGanancia = p.getPorcentajeGanancia();
 		this.precio = p.getPrecio();
-		this.itemsPrendaArea = new ArrayList<ItemPrendaArea>();
-		this.itemsPrendaInsumo = new ArrayList<ItemPrendaInsumo>();
-		for (ItemPrendaInsumoEntity ipie : p.getItemsPrendaInsumo()){
-			this.itemsPrendaInsumo.add(new ItemPrendaInsumo(ipie));	
-		}
-		for (ItemPrendaAreaEntity ipae : p.getItemsPrendaArea()){
-			this.itemsPrendaArea.add(new ItemPrendaArea(ipae));	
-		}
 		this.cantidadAConfeccionar = p.getCantidadAConfeccionar();
+		this.color = p.getId().getColor().getNombre();
+		this.talle = p.getId().getTalle().getNombre();
+		this.stockActual = p.getStockActual();
+		this.stockMinimo = p.getStockMinimo();
 	}
 
 	
+	public Prenda() {
+		// TODO Auto-generated constructor stub
+	}
+
+
 	public void insertar() {
 		PrendaDAO.getInstancia().insert(this);		
 	}
@@ -124,6 +81,7 @@ public class Prenda {
 		return (numero == this.idPrenda); 
 
 	}
+
 
 
 	public int getIdPrenda() {
@@ -143,36 +101,6 @@ public class Prenda {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
-	}
-
-
-	public ArrayList<String> getColoresPosibles() {
-		return coloresPosibles;
-	}
-
-
-	public void setColoresPosibles(ArrayList<String> coloresPosibles) {
-		this.coloresPosibles = coloresPosibles;
-	}
-
-
-	public ArrayList<String> getTallesPosibles() {
-		return tallesPosibles;
-	}
-
-
-	public void setTallesPosibles(ArrayList<String> tallesPosibles) {
-		this.tallesPosibles = tallesPosibles;
-	}
-
-
-	public OrdenProduccion getOrdenProduccion() {
-		return ordenProduccion;
-	}
-
-
-	public void setOrdenProduccion(OrdenProduccion ordenProduccion) {
-		this.ordenProduccion = ordenProduccion;
 	}
 
 
@@ -226,17 +154,6 @@ public class Prenda {
 	}
 
 
-	public ArrayList<ItemPrendaInsumo> getItemsPrendaInsumo() {
-		return itemsPrendaInsumo;
-	}
-
-
-	public void setItemsPrendaInsumo(ArrayList<ItemPrendaInsumo> itemsPrendaInsumo) {
-		this.itemsPrendaInsumo = itemsPrendaInsumo;
-	}
-
-
-
 	public int getCantidadAConfeccionar() {
 		return cantidadAConfeccionar;
 	}
@@ -247,17 +164,10 @@ public class Prenda {
 	}
 
 
-	public void insert() {
-		PrendaDAO.getInstancia().insert(this);
-		
-	}
-
-
 	public PrendaDTO toDTO() {
 		PrendaDTO prenda = new PrendaDTO();
 		prenda.setCantidadAConfeccionar(cantidadAConfeccionar);
-		prenda.setCodigo(idPrenda);
-		prenda.setColoresPosibles(coloresPosibles);
+		prenda.setIdPrenda(idPrenda);
 		prenda.setColor(color);
 		prenda.setTalle(talle);
 		prenda.setCostoProduccionActual(costoProduccionActual);
@@ -266,19 +176,34 @@ public class Prenda {
 		prenda.setEstadoProduccion(estadoProduccion);
 		prenda.setPorcentajeGanancia(porcentajeGanancia);
 		prenda.setPrecio(precio);
-		prenda.setTallesPosibles(tallesPosibles);
-
-		ArrayList<ItemPrendaInsumoDTO> itemsPI = new ArrayList<>();
-		for (ItemPrendaInsumo i : itemsPrendaInsumo){
-			itemsPI.add(i.toDTO());
-		}
-		prenda.setItemsPrendaInsumo(itemsPI);
+		prenda.setStockActual(stockActual);
+		prenda.setStockMinimo(stockMinimo);
 		return prenda;
 	}
 
 
 	public String getColor() {
 		return color;
+	}
+
+
+	public int getStockMinimo() {
+		return stockMinimo;
+	}
+
+
+	public void setStockMinimo(int stockMinimo) {
+		this.stockMinimo = stockMinimo;
+	}
+
+
+	public int getStockActual() {
+		return stockActual;
+	}
+
+
+	public void setStockActual(int stockActual) {
+		this.stockActual = stockActual;
 	}
 
 
