@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXDialog.DialogTransition;
 import com.jfoenix.controls.JFXTextField;
 
@@ -16,13 +17,17 @@ import businessDelegate.BusinessDelegate;
 import dto.ClienteDTO;
 import dto.CuentaCorrienteDTO;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 public class ClienteAltaController {
     @FXML
     private JFXTextField txtCorreoEncargado;
-    
+
     @FXML
     private JFXTextField txtFechaPago;
 
@@ -40,21 +45,21 @@ public class ClienteAltaController {
 
     @FXML
     private JFXTextField txtCondicionesPago;
-    
+
     @FXML
     private JFXTextField txtPisoDire;
+
+    @FXML
+    private StackPane stackPane;
 
     @FXML
     private JFXTextField txtRazon;
 
     @FXML
     private Label lblFechaRegistro;
-    
+
     @FXML
     private JFXTextField txtTelefonoEncargado;
-    
-    @FXML
-    private JFXTextField txtGeneroEncargado;
 
     @FXML
     private JFXTextField txtCuit;
@@ -63,17 +68,44 @@ public class ClienteAltaController {
     private JFXTextField txtTelefono;
 
     @FXML
+    private JFXTextField txtGeneroEncargado;
+
+    @FXML
     private JFXTextField txtLimitePrecio;
-    
+
     @FXML
     private JFXTextField txtNombreEncargado;
 
     
     @FXML
     void enviarTramite(ActionEvent event) {
+    	JFXDialogLayout content = new JFXDialogLayout();
+    	Text titulo = new Text();
+    	Text mensaje = new Text();
+    	titulo.setFont(Font.font ("Verdana", 16));
+    	content.setHeading(titulo);
+    	JFXButton botOk = new JFXButton("OK");
+    	JFXDialog dialog = new JFXDialog(stackPane, content, JFXDialog.DialogTransition.TOP);
+    	botOk.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent arg0) {
+				dialog.close();
+				btnLimpiar.setDisable(false);
+	        	btnEnviar.setDisable(false);
+			}
+		});
+    	content.setActions(botOk);
+    	
     	
     	if(!todoCompletado()){
-    		JOptionPane.showMessageDialog(new Frame(), "Eggs are not supposed to be green.");
+    		titulo.setText("Error");
+    		mensaje.setText("Debe completar todos los campos\n" + "para enviar un nuevo cliente");
+        	content.setBody(mensaje);
+        	content.setHeading(titulo);
+        	btnLimpiar.setDisable(true);
+        	btnEnviar.setDisable(true);
+        	
+        	dialog.show();
     	}else{
 	    	ClienteDTO cli = new ClienteDTO();
 	    	CuentaCorrienteDTO ccte = new CuentaCorrienteDTO();
@@ -98,7 +130,14 @@ public class ClienteAltaController {
 	    	try {
 				BusinessDelegate.getInstancia().altaCliente(cli);
 				limpiarCampos();
-			} catch (RemoteException e) {
+				titulo.setText("Exito en la operación");
+	    		mensaje.setText("El cliente fue agregado correctamente, el\n" + "personal de administración de clientes\n" + "debe revisar la información");
+	        	content.setHeading(titulo);
+	    		content.setBody(mensaje);
+	        	btnLimpiar.setDisable(true);
+	        	btnEnviar.setDisable(true);
+	        	dialog.show();
+				} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

@@ -12,6 +12,7 @@
 
 <AnchorPane prefHeight="668.0" prefWidth="1366.0" style="-fx-background-color: #f3f3f3;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ClienteAltaController">
    <children>
+      <StackPane fx:id="stackPane" layoutX="472.0" layoutY="103.0" prefHeight="118.0" prefWidth="426.0" style="-fx-background-color: #f3f3f3;" />
       <VBox layoutX="31.0" layoutY="183.0" prefHeight="464.0" prefWidth="420.0" style="-fx-border-radius: 10 10 0 0; -fx-background-radius: 10 10 0 0; -fx-background-color: #ffffff;">
          <effect>
             <DropShadow blurType="GAUSSIAN" />
@@ -83,38 +84,6 @@
       <Pane layoutX="102.0" layoutY="145.0" prefHeight="47.0" prefWidth="279.0" style="-fx-border-radius: 5 5 0 0; -fx-background-radius: 5 5 0 0; -fx-background-color: #8b769e;">
          <children>
             <Label layoutX="57.0" layoutY="9.0" text="ALTA DE CLIENTE" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
-      <VBox layoutX="478.0" layoutY="70.0" prefHeight="231.0" prefWidth="411.0" style="-fx-background-radius: 10 10 0 0; -fx-border-radius: 10 10 0 0; -fx-background-color: #ffffff;">
-         <children>
-            <ImageView fitHeight="151.0" fitWidth="242.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../img/ubicacion.png" />
-               </image>
-               <VBox.margin>
-                  <Insets left="80.0" top="25.0" />
-               </VBox.margin>
-            </ImageView>
-            <Label alignment="CENTER" prefHeight="21.0" prefWidth="257.0" text="Nombre de sucursal" textAlignment="CENTER">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="70.0" top="20.0" />
-               </VBox.margin>
-            </Label>
-         </children>
-         <effect>
-            <DropShadow />
-         </effect>
-      </VBox>
-      <Pane layoutX="544.0" layoutY="32.0" prefHeight="47.0" prefWidth="279.0" style="-fx-border-radius: 5 5 0 0; -fx-background-radius: 5 5 0 0; -fx-background-color: #8b769e;">
-         <children>
-            <Label layoutX="89.0" layoutY="9.0" text="SUCURSAL" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>

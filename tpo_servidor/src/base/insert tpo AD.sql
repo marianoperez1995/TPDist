@@ -1,27 +1,22 @@
 --trabajadores
-insert into empleados values ('Franco', 'gerente', 'faldana','123456', 1)
-insert into empleados values ('Benjamin', 'empleado','bcalace','123456', 2)
-insert into empleados values ('Lucas', 'empleado','lucas','123456', 3)
-insert into empleados values ('Martin', 'empleado','martin','123456', 4)
-insert into empleados values ('Manuel', 'empleado','manuel','123456', 5)
-insert into empleados values ('Mariano', 'empleado','mperez','123456', 6)
+select * from empleados
+insert into empleados values ('Franco', 'gerente', 'usuario1','123456', 1, 1)
+insert into empleados values ('Benjamin', 'empleado','usuario2','123456', 2, 1)
+insert into empleados values ('Lucas', 'empleado','usuario3','123456', 3, 1)
+insert into empleados values ('Martin', 'empleado','usuario4','123456', 4, 1)
+insert into empleados values ('Manuel', 'empleado','usuario5','123456', 5, 1)
+insert into empleados values ('Mariano', 'empleado','usuario6','123456', 6, 1)
 
 --Sucursales
 select * from sucursales
-insert into Sucursales values ( 'A', 'Independencia 122', '09:00-18:00')
-insert into Sucursales values ( 'B', 'Lima 123', '09:00-18:00')
-insert into Sucursales values ( 'C', 'CalleFalsa 453', '09:00-18:00')
+insert into Sucursales values ( 'Sucursal 1A', 'Independencia 122', '09:00-18:00')
+insert into Sucursales values ( 'Sucursal 2B', 'Lima 123', '09:00-18:00')
+insert into Sucursales values ( 'Sucursal 3C', 'CalleFalsa 453', '09:00-18:00')
+insert into Sucursales values ( 'Sucursal 4D', 'Calle de asfafa 225', '09:00-18:00')
 
---sucurs_trabajado
-insert into sucursal_empleados  values (1, 1)
-insert into sucursal_empleados  values (1, 2)
-insert into sucursal_empleados  values (1, 3)
-insert into sucursal_empleados  values (1, 4)
-insert into sucursal_empleados  values (1, 5)
-insert into sucursal_empleados  values (1, 6)
-
-
-select * from clientes
-
+--cuenta corriente
+select * from cuentascorriente
+insert into CuentasCorriente values
 --clientes
- 
+ select * from clientes
+ insert into Clientes values ('Cliente 1', '1234321', '46663333', 'Jose Bonifacio 1700 2A', 1, 1, 'Pendiente', 'German', '44223312', 'german@ejemplo.com', 'Masculino')
