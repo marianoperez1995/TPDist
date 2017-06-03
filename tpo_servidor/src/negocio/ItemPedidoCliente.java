@@ -6,14 +6,14 @@ import entities.ItemPedidoClienteEntity;
 import persistencia.ItemPedidoClienteDAO;
 
 public class ItemPedidoCliente {
-	private int idItemPedidoCliente;
+
 	private Prenda prenda;
 	private int cantidad;
 	private float precio;
 	
 	public ItemPedidoCliente(ItemPedidoClienteDTO p) {
 		this.prenda = new Prenda(p.getPrenda());
-		this.idItemPedidoCliente = p.getIdItemPedidoCliente();
+	
 		this.cantidad = p.getCantidad();
 		this.precio = p.getPrecio();
 	}
@@ -22,7 +22,7 @@ public class ItemPedidoCliente {
 		this.prenda = new Prenda(p.getId().getPrenda());
 		this.cantidad = p.getCantidad();
 		this.precio = p.getPrecio();
-		this.idItemPedidoCliente = p.getId().getPedido().getNumPedidoCliente();
+	
 	}
 
 	public ItemPedidoCliente() {
@@ -33,8 +33,8 @@ public class ItemPedidoCliente {
 		ItemPedidoClienteDAO.getInstancia().insert(this, idPed);		
 	}
 
-	public void borrar() {
-		ItemPedidoClienteDAO.getInstancia().eliminar(this.idItemPedidoCliente);
+	public void borrar(int idPed, int idPrenda, int idTalle, int idColor) {
+		ItemPedidoClienteDAO.getInstancia().eliminar(idPed, idPrenda, idTalle, idColor);
 	}
 
 	
@@ -64,13 +64,6 @@ public class ItemPedidoCliente {
 		this.precio = precio;
 	}
 
-	public int getIdItemPedidoCliente() {
-		return idItemPedidoCliente;
-	}
-
-	public void setIdItemPedidoCliente(int idItemPedidoCliente) {
-		this.idItemPedidoCliente = idItemPedidoCliente;
-	}
 
 	public ItemPedidoClienteDTO toDTO(PedidoClienteDTO p) {
 		ItemPedidoClienteDTO item = new ItemPedidoClienteDTO();

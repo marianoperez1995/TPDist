@@ -7,7 +7,7 @@ public class ItemPedidoClienteDTO  implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1482380232710090312L;
-	private int idItemPedidoCliente;
+	
 	private PrendaDTO prenda;
 	private int cantidad;
 	private float precio;
@@ -37,11 +37,4 @@ public class ItemPedidoClienteDTO  implements Serializable{
 		this.precio = precio;
 	}
 
-	public int getIdItemPedidoCliente() {
-		return idItemPedidoCliente;
-	}
-
-	public void setIdItemPedidoCliente(int idItemPedidoCliente) {
-		this.idItemPedidoCliente = idItemPedidoCliente;
-	}
 }

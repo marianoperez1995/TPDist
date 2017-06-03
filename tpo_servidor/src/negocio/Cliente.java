@@ -256,4 +256,11 @@ public class Cliente {
 		return c;
 	}
 
+	public void borrarPedido(int id) {
+		for (PedidoCliente p : this.pedidosCliente)
+			if (p.getIdPedidoCliente() == id)
+				this.pedidosCliente.remove(p);
+		this.actualizar();
+	}
+
 }

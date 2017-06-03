@@ -63,7 +63,7 @@ public class HibernateUtil {
 		//	config.addAnnotatedClass(InsumoEntity.class);
 			//config.addAnnotatedClass(LoteEntity.class);
 			//config.addAnnotatedClass(OrdenProduccionEntity.class);
-		//	config.addAnnotatedClass(ItemPedidoClienteEntity.class);
+			config.addAnnotatedClass(ItemPedidoClienteEntity.class);
 			sessionFactory = config.buildSessionFactory();
 
 		} catch (Throwable ex) {

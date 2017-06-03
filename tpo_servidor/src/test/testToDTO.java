@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import entities.PrendaID;
+import negocio.Cliente;
 import negocio.Insumo;
 import negocio.ItemPedidoCliente;
 import negocio.ItemProveedorInsumo;
@@ -13,6 +14,7 @@ import negocio.PedidoCliente;
 import negocio.Prenda;
 import persistencia.ClienteDAO;
 import persistencia.ColorDAO;
+import persistencia.PedidoClienteDAO;
 import persistencia.PrendaDAO;
 import persistencia.TalleDAO;
 
@@ -25,7 +27,20 @@ public class testToDTO {
 		//prov.setCuit("12345");
 		//prov.setNombre("Tela SA");
 		//prov.insertar();
-		Opp orden = new Opp();
+		ItemPedidoCliente it = new ItemPedidoCliente();
+		it.setCantidad(45);
+		it.setPrecio(54);
+		it.setPrenda(PrendaDAO.getInstancia().getPrenda(2,3,1));
+		it.insertar(5);
+		
+		/*Cliente cli = ClienteDAO.getInstancia().getCliente(2);
+		cli.borrarPedido(5);
+		PedidoClienteDAO.getInstancia().eliminar(5);
+		PedidoClienteDAO.getInstancia().eliminar(6);
+	
+
+		PedidoClienteDAO.getInstancia().eliminar(7);*/
+		/*Opp orden = new Opp();
 		PedidoCliente ped = new PedidoCliente();
 		ped.setCliente(ClienteDAO.getInstancia().getCliente(2));
 		ped.setEstado("Aceptado");
@@ -37,15 +52,13 @@ public class testToDTO {
 		ped.setFechaEntregaCliente(f);
 		ped.setIdPedidoCliente(1);
 		ArrayList<ItemPedidoCliente>items = new ArrayList<>();
-		ItemPedidoCliente it = new ItemPedidoCliente();
-		it.setCantidad(5);
-		it.setPrecio(5);
+	
 		PrendaID id = new PrendaID();
 		it.setPrenda(PrendaDAO.getInstancia().getPrenda(1,1,2));
 		items.add(it);
 		ped.setItemsPedidoCliente(items);
 		ped.setPrecioTotal(5000);
-		ped.insertar(4);
+		ped.insertar(4);*/
 		
 	//	orden.setFecha(Calendar.getInstance().getTime());
 	//	orden.setPedidoCliente(ped);

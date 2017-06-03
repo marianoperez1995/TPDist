@@ -56,6 +56,10 @@ public class ClienteEntity implements Serializable {
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "idSucursal", referencedColumnName = "idSucursal")
 	private SucursalEntity sucursal;
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "idCliente")	
+	private List<PedidoClienteEntity> pedidosCliente;
+
 
 	public String getMailencargado() {
 		return mailencargado;
@@ -70,11 +74,7 @@ public class ClienteEntity implements Serializable {
 		this.fechaRegistro = fechaRegistro;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "idCliente")	
-	private List<PedidoClienteEntity> pedidosCliente;
-
-
+	
 	
 	public String getEstado() {
 		return estado;

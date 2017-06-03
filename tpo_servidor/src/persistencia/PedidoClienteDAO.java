@@ -49,6 +49,9 @@ public class PedidoClienteDAO {
 		sesion = sf.openSession();
 		sesion.beginTransaction();
 		sesion.save(ped);
+		//Inserta los items del pedido
+		for (ItemPedidoCliente i : pedido.getItemsPedidoCliente())
+			i.insertar(pedido.getIdPedidoCliente());		
 		sesion.getTransaction().commit();
 		sesion.close();
 	}
@@ -73,13 +76,16 @@ public class PedidoClienteDAO {
 		ped.setNumPedidoCliente(pedido.getIdPedidoCliente());
 		ped.setPrecioTotal(pedido.getPrecioTotal());
 		ArrayList <ItemPedidoClienteEntity> itemsPedidoCliente= new ArrayList<ItemPedidoClienteEntity>();
-		for (ItemPedidoCliente item:pedido.getItemsPedidoCliente()){
-			itemsPedidoCliente.add(ItemPedidoClienteDAO.getInstancia().toE(item, ped));
+		if (pedido.getItemsPedidoCliente() != null){
+			for (ItemPedidoCliente item:pedido.getItemsPedidoCliente()){
+				itemsPedidoCliente.add(ItemPedidoClienteDAO.getInstancia().toE(item, ped));
+			}
 		}
-		ped.setItemsPedidoCliente(itemsPedidoCliente);
+		ped.setItemsPedidoCliente(itemsPedidoCliente);	
 		return ped;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public ArrayList<PedidoCliente> getAll(){
 		
 		Session sesion = sf.openSession();
