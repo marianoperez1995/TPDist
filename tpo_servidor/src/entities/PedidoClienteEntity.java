@@ -41,9 +41,9 @@ public class PedidoClienteEntity  implements Serializable {
 	private Date fechaProbableDespacho;
 	@Column(name="fechaRealDespacho")
 	private Date fechaDespacho;
-	
+	private Date fechaEntregaCliente;
 	@Transient
-	private ArrayList<ItemPedidoClienteEntity> itemsPedidoCliente;
+	private ArrayList<ItemPedidoClienteEntity> itemsPedidoCliente = new ArrayList<>();
 	
 	private float precioTotal;
 
@@ -109,6 +109,14 @@ public class PedidoClienteEntity  implements Serializable {
 
 	public void setPrecioTotal(float precioTotal) {
 		this.precioTotal = precioTotal;
+	}
+
+	public Date getFechaEntregaCliente() {
+		return fechaEntregaCliente;
+	}
+
+	public void setFechaEntregaCliente(Date fechaEntregaCliente) {
+		this.fechaEntregaCliente = fechaEntregaCliente;
 	}
 
 }

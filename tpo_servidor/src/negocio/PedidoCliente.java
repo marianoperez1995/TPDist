@@ -17,6 +17,7 @@ public class PedidoCliente {
 	private Date fechaGeneracion;
 	private Date fechaProbableDespacho;
 	private Date fechaDespacho;
+	private Date fechaEntregaCliente;
 	private ArrayList<ItemPedidoCliente> itemsPedidoCliente;
 	private float precioTotal;
 	
@@ -30,6 +31,7 @@ public class PedidoCliente {
 		for (ItemPedidoClienteDTO p : pedDTO.getItemsPedidoCliente()){
 			this.itemsPedidoCliente.add(new ItemPedidoCliente(p));
 		}
+		this.setFechaEntregaCliente(pedDTO.getFechaEntregaCliente());
 	}
 
 	public PedidoCliente(PedidoClienteEntity pedE) {
@@ -42,13 +44,27 @@ public class PedidoCliente {
 		for (ItemPedidoClienteEntity p : pedE.getItemsPedidoCliente()){
 			this.itemsPedidoCliente.add(new ItemPedidoCliente(p));
 		}
+		this.fechaEntregaCliente =pedE.getFechaEntregaCliente();
 	}
 	public PedidoCliente() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public void insertar() {
-		PedidoClienteDAO.getInstancia().insert(this);		
+	public PedidoCliente(PedidoClienteEntity pedE, Cliente c) {
+		this.idPedidoCliente = c.getIdCliente();
+		this.cliente = c;
+		this.estado = pedE.getEstado();
+		this.fechaGeneracion = pedE.getFechaGeneracion();
+		this.fechaProbableDespacho = pedE.getFechaProbableDespacho();
+		this.fechaDespacho = pedE.getFechaDespacho();
+		for (ItemPedidoClienteEntity p : pedE.getItemsPedidoCliente()){
+			this.itemsPedidoCliente.add(new ItemPedidoCliente(p));
+		}
+		this.fechaEntregaCliente =pedE.getFechaEntregaCliente();
+	}
+
+	public void insertar(int idC) {
+		PedidoClienteDAO.getInstancia().insert(this, idC);		
 	}
 
 	public void borrar() {
@@ -178,5 +194,13 @@ public class PedidoCliente {
 		p.setItemsPedidoCliente(items);
 		p.setPrecioTotal(precioTotal);
 		return p;
+	}
+
+	public Date getFechaEntregaCliente() {
+		return fechaEntregaCliente;
+	}
+
+	public void setFechaEntregaCliente(Date fechaEntregaCliente) {
+		this.fechaEntregaCliente = fechaEntregaCliente;
 	}
 }

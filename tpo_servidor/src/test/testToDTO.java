@@ -2,14 +2,19 @@ package test;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
+import entities.PrendaID;
 import negocio.Insumo;
 import negocio.ItemPedidoCliente;
 import negocio.ItemProveedorInsumo;
 import negocio.Opp;
 import negocio.PedidoCliente;
+import negocio.Prenda;
 import persistencia.ClienteDAO;
+import persistencia.ColorDAO;
 import persistencia.PrendaDAO;
+import persistencia.TalleDAO;
 
 public class testToDTO {
 	public static void main(String[] args) {
@@ -24,18 +29,23 @@ public class testToDTO {
 		PedidoCliente ped = new PedidoCliente();
 		ped.setCliente(ClienteDAO.getInstancia().getCliente(2));
 		ped.setEstado("Aceptado");
-		ped.setFechaDespacho(Calendar.getInstance().getTime());
-		ped.setFechaGeneracion(Calendar.getInstance().getTime());
-		ped.setFechaProbableDespacho(Calendar.getInstance().getTime());
+		Date f = new Date();
+		f=(Calendar.getInstance().getTime());
+		ped.setFechaDespacho(f);
+		ped.setFechaGeneracion(f);
+		ped.setFechaProbableDespacho(f);
+		ped.setFechaEntregaCliente(f);
+		ped.setIdPedidoCliente(1);
 		ArrayList<ItemPedidoCliente>items = new ArrayList<>();
 		ItemPedidoCliente it = new ItemPedidoCliente();
 		it.setCantidad(5);
 		it.setPrecio(5);
-		it.setPrenda(PrendaDAO.getInstancia().getPrenda(1));
+		PrendaID id = new PrendaID();
+		it.setPrenda(PrendaDAO.getInstancia().getPrenda(1,1,2));
 		items.add(it);
 		ped.setItemsPedidoCliente(items);
 		ped.setPrecioTotal(5000);
-		ped.insertar();
+		ped.insertar(4);
 		
 	//	orden.setFecha(Calendar.getInstance().getTime());
 	//	orden.setPedidoCliente(ped);
@@ -68,23 +78,23 @@ public class testToDTO {
 		
 		
 		
-		/*
-		PrendaDTO prendaDTO = new PrendaDTO();
-		Prenda p = new Prenda();
-		p.setIdPrenda(3);
-		p.setCantidadAConfeccionar(4);
-		p.setColor("Negro");
-		p.setCostoProduccionActual(123);
+		
+		//PrendaDTO prendaDTO = new PrendaDTO();
+	/*	Prenda p = new Prenda();
+		p.setIdPrenda(2);
+		p.setCantidadAConfeccionar(55);
+		p.setColor("Celeste");
+		p.setCostoProduccionActual(2123);
 		p.setDescripcion("Pantalon");
 		p.setEstadoProduccion(true);		
-		p.setPorcentajeGanancia(2);
-		p.setPrecio(50);
-		p.setTalle("M");
-		p.setStockActual(588);
-		p.setStockMinimo(10);
+		p.setPorcentajeGanancia(244);
+		p.setPrecio(504);
+		p.setTalle("S");
+		p.setStockActual(133);
+		p.setStockMinimo(11);
 		p.insertar();*/
-/*
-		ColorDAO.getInstancia().insert("Rojo");
+
+		/*ColorDAO.getInstancia().insert("Rojo");
 		ColorDAO.getInstancia().insert("Azul");
 		ColorDAO.getInstancia().insert("Celeste");
 		ColorDAO.getInstancia().insert("Negro");
@@ -94,11 +104,10 @@ public class testToDTO {
 		TalleDAO.getInstancia().insert("M");
 		TalleDAO.getInstancia().insert("L");		
 		TalleDAO.getInstancia().insert("XL");
-		TalleDAO.getInstancia().insert("XXL");*/
-		
-		
+		TalleDAO.getInstancia().insert("XXL");
 		
 		/*	
+
 		Cliente cliente = new Cliente();
 		CuentaCorriente cta = new CuentaCorriente();
 		ArrayList<PedidoCliente> pedidos = new ArrayList<>();

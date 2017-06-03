@@ -88,13 +88,14 @@ public class Cliente {
 		this.fechaRegistro = cliE.getFechaRegistro();
 		this.telEncargado = cliE.getTelencargado();
 		this.pedidosCliente = new ArrayList<PedidoCliente>();
-		if (cliE.getPedidosCliente() != null) {
-			for (PedidoClienteEntity p : cliE.getPedidosCliente()) {
-				this.pedidosCliente.add(new PedidoCliente(p));
-			}
-		}
+	
 		this.encargado = cliE.getEncargado();
 		this.estado = cliE.getEstado();
+		if (cliE.getPedidosCliente() != null) {
+			for (PedidoClienteEntity p : cliE.getPedidosCliente()) {
+				this.pedidosCliente.add(new PedidoCliente(p, this));
+			}
+		}
 	}
 
 	public int getIdCliente() {

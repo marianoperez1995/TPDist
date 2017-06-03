@@ -6,9 +6,11 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import entities.ClienteEntity;
 import entities.ItemPedidoClienteEntity;
 import entities.PedidoClienteEntity;
 import hibernate.HibernateUtil;
+import negocio.Cliente;
 import negocio.ItemPedidoCliente;
 import negocio.PedidoCliente;
 
@@ -39,8 +41,10 @@ public class PedidoClienteDAO {
 	}
 	
 	
-	public void insert(PedidoCliente pedido){
-		PedidoClienteEntity ped= toEntity(pedido);
+	public void insert(PedidoCliente pedido, int idCliente ){
+		Cliente cliente = ClienteDAO.getInstancia().getCliente(idCliente);
+		ClienteEntity clienteE = ClienteDAO.getInstancia().toEntity(cliente);
+		PedidoClienteEntity ped= toEntity(pedido, clienteE);
 		Session sesion;
 		sesion = sf.openSession();
 		sesion.beginTransaction();
@@ -58,18 +62,19 @@ public class PedidoClienteDAO {
 		sesion.close();		
 		return new PedidoCliente(emp);
 	}
-	public PedidoClienteEntity toEntity(PedidoCliente pedido) {
+	public PedidoClienteEntity toEntity(PedidoCliente pedido, ClienteEntity cliente) {
 		PedidoClienteEntity ped= new PedidoClienteEntity();
-		ped.setCliente(ClienteDAO.getInstancia().toEntity(pedido.getCliente()));
+		ped.setCliente(cliente);
 		ped.setEstado(pedido.getEstado());
 		ped.setFechaDespacho(pedido.getFechaDespacho());
 		ped.setFechaGeneracion(pedido.getFechaGeneracion());
 		ped.setFechaProbableDespacho(pedido.getFechaProbableDespacho());
+		ped.setFechaEntregaCliente(pedido.getFechaEntregaCliente());
 		ped.setNumPedidoCliente(pedido.getIdPedidoCliente());
 		ped.setPrecioTotal(pedido.getPrecioTotal());
 		ArrayList <ItemPedidoClienteEntity> itemsPedidoCliente= new ArrayList<ItemPedidoClienteEntity>();
 		for (ItemPedidoCliente item:pedido.getItemsPedidoCliente()){
-			itemsPedidoCliente.add(ItemPedidoClienteDAO.getInstancia().toEntity(item, pedido));
+			itemsPedidoCliente.add(ItemPedidoClienteDAO.getInstancia().toE(item, ped));
 		}
 		ped.setItemsPedidoCliente(itemsPedidoCliente);
 		return ped;

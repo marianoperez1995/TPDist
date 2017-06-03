@@ -15,6 +15,11 @@ public class PedidoClienteDTO implements Serializable {
 	private Date fechaGeneracion;
 	private Date fechaProbableDespacho;
 	private Date fechaDespacho;
+	private Date fechaEntregaCliente;
+	public void setFechaEntregaCliente(Date fechaEntregaCliente) {
+		this.fechaEntregaCliente = fechaEntregaCliente;
+	}
+
 	private ArrayList<ItemPedidoClienteDTO> itemsPedidoCliente;
 	private float precioTotal;
 
@@ -81,5 +86,11 @@ public class PedidoClienteDTO implements Serializable {
 	public void setIdPedidoCliente(int idPedidoCliente) {
 		this.idPedidoCliente = idPedidoCliente;
 	}
+
+	public Date getFechaEntregaCliente() {
+		return fechaEntregaCliente;
+	}
+
+
 
 }

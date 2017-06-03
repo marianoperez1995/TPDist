@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 
 import entities.ItemPedidoClienteEntity;
 import entities.ItemPedidoClienteId;
+import entities.PedidoClienteEntity;
 import hibernate.HibernateUtil;
 import negocio.ItemPedidoCliente;
 import negocio.PedidoCliente;
@@ -26,8 +27,9 @@ public class ItemPedidoClienteDAO{
 	private ItemPedidoClienteDAO(){
 		
 	}
-	public void insert(ItemPedidoCliente item, PedidoCliente ped){
-		ItemPedidoClienteEntity it= toEntity(item, ped);
+	public void insert(ItemPedidoCliente item, int ped){
+		PedidoCliente pedido = PedidoClienteDAO.getInstancia().getPedidoCliente(ped);
+		ItemPedidoClienteEntity it= toEntity(item, pedido);
 		Session sesion;
 		sesion = sf.openSession();
 		sesion.beginTransaction();
@@ -36,7 +38,7 @@ public class ItemPedidoClienteDAO{
 		sesion.close();
 	}
 
-	public ItemPedidoClienteEntity toEntity(ItemPedidoCliente item, PedidoCliente ped) {
+	private ItemPedidoClienteEntity toEntity(ItemPedidoCliente item, PedidoCliente ped) {
 		ItemPedidoClienteEntity ent = new ItemPedidoClienteEntity();
 		ent.setCantidad(item.getCantidad());
 		ent.setPrecio(item.getPrecio());
@@ -44,9 +46,19 @@ public class ItemPedidoClienteDAO{
 		id.setPedido(PedidoClienteDAO.getInstancia().toEntity(ped));
 		id.setPrenda(PrendaDAO.getInstancia().toEntity(item.getPrenda()));
 		ent.setId(id);
-		return ent;
-	
+		return ent;	
 	}
+	public ItemPedidoClienteEntity toE(ItemPedidoCliente item, PedidoClienteEntity ped) {
+		ItemPedidoClienteEntity ent = new ItemPedidoClienteEntity();
+		ent.setCantidad(item.getCantidad());
+		ent.setPrecio(item.getPrecio());
+		ItemPedidoClienteId id = new ItemPedidoClienteId();
+		id.setPedido(ped);
+		id.setPrenda(PrendaDAO.getInstancia().toEntity(item.getPrenda()));
+		ent.setId(id);
+		return ent;	
+	}
+	
 	@SuppressWarnings("unchecked")
 	public ArrayList<ItemPedidoCliente> getItemsPedidoCliente(int idPed) {
 		Session sesion = sf.openSession();

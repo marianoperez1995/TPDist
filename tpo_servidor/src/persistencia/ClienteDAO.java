@@ -77,14 +77,15 @@ public class ClienteDAO {
 		cliente.setFechaRegistro(dateFormat.format(date));
 		
 		ArrayList<PedidoClienteEntity> pedidos = new ArrayList<PedidoClienteEntity>();
+	
+		cliente.setEncargado(cli.getEncargado());
+		cliente.setEstado(cli.getEstado());
 		if (!cli.getPedidosCliente().isEmpty()) {
 			for (PedidoCliente p : cli.getPedidosCliente()) {
-				pedidos.add(PedidoClienteDAO.getInstancia().toEntity(p));
+				pedidos.add(PedidoClienteDAO.getInstancia().toEntity(p, cliente));
 			}
 			cliente.setPedidosCliente(pedidos);
 		}
-		cliente.setEncargado(cli.getEncargado());
-		cliente.setEstado(cli.getEstado());
 		return cliente;
 	}
 

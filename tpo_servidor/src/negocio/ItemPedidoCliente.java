@@ -19,18 +19,18 @@ public class ItemPedidoCliente {
 	}
 
 	public ItemPedidoCliente(ItemPedidoClienteEntity p) {
-		this.prenda = new Prenda(p.getPrenda());
+		this.prenda = new Prenda(p.getId().getPrenda());
 		this.cantidad = p.getCantidad();
 		this.precio = p.getPrecio();
-		this.idItemPedidoCliente = p.getIdPedidoCliente();
+		this.idItemPedidoCliente = p.getId().getPedido().getNumPedidoCliente();
 	}
 
 	public ItemPedidoCliente() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public void insertar() {
-		ItemPedidoClienteDAO.getInstancia().insert(this);		
+	public void insertar(int idPed) {
+		ItemPedidoClienteDAO.getInstancia().insert(this, idPed);		
 	}
 
 	public void borrar() {

@@ -52,12 +52,16 @@ public class PrendaDAO  {
 	}
 
 
-	public Prenda getPrenda(int id) {
+	public Prenda getPrenda(int idP, int idC, int idT) {
 		Session sesion = sf.openSession();
 		sesion.beginTransaction();
-		PrendaEntity emp = (PrendaEntity) sesion.get(PrendaEntity.class, id);	
-		sesion.close();		
-		return new Prenda(emp);
+		PrendaEntity p = (PrendaEntity) sesion.createQuery("from PrendaEntity where idPrenda = ? and idColor = ? and idTalle = ?")
+				.setParameter(0, idP)
+				.setParameter(1,idC)
+				.setParameter(2, idT)				
+				.uniqueResult();
+		sesion.close();
+		return new Prenda(p);
 	}
 	
 	
