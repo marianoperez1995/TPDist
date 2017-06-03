@@ -10,7 +10,6 @@ public class BultoDTO implements Serializable {
 	private int codigoBulto;
 	private PrendaDTO prenda;
 	private int cantidad;
-	private LoteDTO lote;
 
 	public int getCodigoBulto() {
 		return codigoBulto;
@@ -34,14 +33,6 @@ public class BultoDTO implements Serializable {
 
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
-	}
-
-	public LoteDTO getLote() {
-		return lote;
-	}
-
-	public void setLote(LoteDTO lote) {
-		this.lote = lote;
 	}
 
 }
