@@ -37,6 +37,10 @@ public class AdministradorClientes {
 				return; // revisar si esta bien poner estos return aca...
 			}
 		}
+		
+		Cliente cli = new Cliente();
+		cli.setIdCliente(cliente.getNumeroCliente());
+		cli.borrar();
 	}
 
 	public void modificarCliente(ClienteDTO cliente) { // modificar este metodo

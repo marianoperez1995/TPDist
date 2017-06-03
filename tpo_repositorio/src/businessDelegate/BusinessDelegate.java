@@ -88,4 +88,7 @@ public class BusinessDelegate {
 	public void modificarCliente(ClienteDTO cliente) throws RemoteException {
 		objetoRemoto.modificarCliente(cliente);
 	}
+	public void bajaCliente(ClienteDTO nuevo) throws RemoteException {
+		objetoRemoto.bajaCliente(nuevo);
+	}
 }

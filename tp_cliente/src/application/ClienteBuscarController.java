@@ -266,6 +266,11 @@ public class ClienteBuscarController implements Initializable{
 	    	           txtGenero.setText(seleccionado.getGeneroEncargado());
 	    	           txtLimitePrecio.setText(Float.toString(seleccionado.getCuentaCorriente().getLimite()));
 	    	           txtCondicPago.setText(seleccionado.getCuentaCorriente().getCondiciones());
+	    	           
+	    	       		btnCancelar.setDisable(true);
+	    	       		btnGuardar.setDisable(true);
+	    	       		btnEliminar.setDisable(false);
+	    	       		btnEditar.setDisable(false);
 	    	        }
     	         }
     	     });
@@ -376,7 +381,48 @@ public class ClienteBuscarController implements Initializable{
 
     @FXML
     void eliminarCliente(ActionEvent event) {
-
+    	ClienteDTO nuevo = new ClienteDTO();
+    	
+    	String idcl = lblIdCliente.getText();
+    	idcl = idcl.substring(1, idcl.length());
+    	
+    	nuevo.setNumeroCliente(Integer.parseInt(idcl));
+    	try {
+			BusinessDelegate.getInstancia().bajaCliente(nuevo);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	txtCondicPago.setEditable(false);
+    	txtLimitePrecio.setEditable(false);
+        txtRazon.setEditable(false);
+        txtCuit.setEditable(false);
+        txtTelefono.setEditable(false);
+        txtDireccion.setEditable(false);
+        txtNombreE.setEditable(false);
+        txtTelE.setEditable(false);
+        txtMail.setEditable(false);
+        txtGenero.setEditable(false);
+    	
+        lblIdCC.setText("ID#");
+        lblIdCliente.setText("#");
+        lblCantPedidos.setText("");
+        txtRazon.setText("");
+        txtCuit.setText("");
+        txtTelefono.setText("");
+        txtDireccion.setText("");
+        txtNombreE.setText("");
+        txtTelE.setText("");
+        txtMail.setText("");
+        txtGenero.setText("");
+        txtLimitePrecio.setText("");
+        txtCondicPago.setText("");
+        
+    	btnCancelar.setDisable(true);
+    	btnGuardar.setDisable(true);
+    	btnEliminar.setDisable(true);
+    	btnEditar.setDisable(true);
     }
     
     private ArrayList<ClienteTabla> buscarClientes() {

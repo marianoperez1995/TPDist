@@ -151,27 +151,17 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <JFXTextField fx:id="txtCuit" labelFloat="true" promptText="CUIT" GridPane.rowIndex="2">
+                  <JFXTextField fx:id="txtCuit" editable="false" labelFloat="true" promptText="CUIT" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
                   </JFXTextField>
-                  <JFXTextField fx:id="txtTelefono" labelFloat="true" promptText="Telefono" GridPane.rowIndex="3">
+                  <JFXTextField fx:id="txtTelefono" editable="false" labelFloat="true" promptText="Telefono" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
                   </JFXTextField>
-                  <JFXTextField fx:id="txtDireccion" labelFloat="true" promptText="Direccion" GridPane.rowIndex="4">
-                     <GridPane.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </GridPane.margin>
-                  </JFXTextField>
-                  <JFXTextField fx:id="txtNumero" labelFloat="true" promptText="Numero" GridPane.rowIndex="5">
-                     <GridPane.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </GridPane.margin>
-                  </JFXTextField>
-                  <JFXTextField fx:id="txtPiso" labelFloat="true" promptText="Piso/Depto" GridPane.rowIndex="6">
+                  <JFXTextField fx:id="txtDireccion" editable="false" labelFloat="true" promptText="Direccion" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
@@ -192,37 +182,37 @@
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </Label>
-                  <JFXTextField fx:id="txtRazon" labelFloat="true" promptText="Razon social" GridPane.rowIndex="1">
+                  <JFXTextField fx:id="txtRazon" editable="false" labelFloat="true" promptText="Razon social" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
                   </JFXTextField>
-                  <JFXTextField fx:id="txtNombreE" labelFloat="true" promptText="Nombre" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <JFXTextField fx:id="txtNombreE" editable="false" labelFloat="true" promptText="Nombre" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
                   </JFXTextField>
-                  <JFXTextField fx:id="txtTelE" labelFloat="true" promptText="Telefono" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <JFXTextField fx:id="txtTelE" editable="false" labelFloat="true" promptText="Telefono" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
                   </JFXTextField>
-                  <JFXTextField fx:id="txtMail" promptText="Direccion de correo" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <JFXTextField fx:id="txtMail" editable="false" promptText="Direccion de correo" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
                   </JFXTextField>
-                  <JFXTextField fx:id="txtLimitePrecio" labelFloat="true" promptText="Limite de precio" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                  <JFXTextField fx:id="txtLimitePrecio" editable="false" labelFloat="true" promptText="Limite de precio" GridPane.rowIndex="6">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
                   </JFXTextField>
-                  <JFXTextField fx:id="txtCondicPago" promptText="Condiciones de pago" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                  <JFXTextField fx:id="txtCondicPago" editable="false" promptText="Condiciones de pago" GridPane.rowIndex="7">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
                   </JFXTextField>
-                  <Label alignment="BOTTOM_CENTER" prefHeight="30.0" prefWidth="135.0" text="Datos financieros:" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                  <Label alignment="BOTTOM_CENTER" prefHeight="30.0" prefWidth="129.0" text="Datos financieros:" GridPane.rowIndex="5">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -230,29 +220,37 @@
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </Label>
-                  <JFXComboBox fx:id="listGenero" labelFloat="true" prefHeight="25.0" prefWidth="312.0" promptText="Genero" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <JFXTextField fx:id="txtGenero" editable="false" promptText="Genero" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
-                  </JFXComboBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="7">
+                  </JFXTextField>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <children>
-                        <JFXButton fx:id="btnCancelar" buttonType="RAISED" disable="true" prefHeight="28.0" prefWidth="110.0" style="-fx-background-color: #ff5e5e;" text="Cancelar">
+                        <JFXButton fx:id="btnCancelar" buttonType="RAISED" disable="true" onAction="#cancelarModif" prefHeight="28.0" prefWidth="110.0" style="-fx-background-color: #ff5e5e;" text="Cancelar">
                            <HBox.margin>
                               <Insets right="20.0" top="5.0" />
                            </HBox.margin>
                         </JFXButton>
-                        <JFXButton fx:id="btnGuardar" buttonType="RAISED" disable="true" prefHeight="28.0" prefWidth="110.0" style="-fx-background-color: #d1ff8c;" text="Guardar">
+                        <JFXButton fx:id="btnGuardar" buttonType="RAISED" disable="true" onAction="#guardarModif" prefHeight="28.0" prefWidth="110.0" style="-fx-background-color: #d1ff8c;" text="Guardar">
                            <HBox.margin>
                               <Insets top="5.0" />
                            </HBox.margin>
                         </JFXButton>
                      </children>
                   </HBox>
+                  <Label fx:id="lblIdCC" alignment="BOTTOM_CENTER" prefHeight="30.0" prefWidth="129.0" text="ID# " GridPane.rowIndex="5">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="150.0" />
+                     </GridPane.margin>
+                  </Label>
                </children>
             </GridPane>
-            <JFXButton fx:id="btnEditar" buttonType="RAISED" layoutX="401.0" layoutY="127.0" prefHeight="25.0" prefWidth="110.0" ripplerFill="#ffd3d3" style="-fx-background-color: #fcff93;" text="Editar" />
-            <JFXButton fx:id="btnEliminar" buttonType="RAISED" layoutX="531.0" layoutY="127.0" prefHeight="25.0" prefWidth="110.0" ripplerFill="#d07b7b" style="-fx-background-color: #ff5e5e;" text="Eliminar" />
+            <JFXButton fx:id="btnEditar" buttonType="RAISED" layoutX="401.0" layoutY="127.0" onAction="#editarCliente" prefHeight="25.0" prefWidth="110.0" ripplerFill="#ffd3d3" style="-fx-background-color: #fcff93;" text="Editar" />
+            <JFXButton fx:id="btnEliminar" buttonType="RAISED" layoutX="531.0" layoutY="127.0" onAction="#eliminarCliente" prefHeight="25.0" prefWidth="110.0" ripplerFill="#d07b7b" style="-fx-background-color: #ff5e5e;" text="Eliminar" />
          </children>
       </Pane>
    </children>

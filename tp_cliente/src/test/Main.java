@@ -27,8 +27,8 @@ public class Main extends Application {
 			Stage stage = new Stage(StageStyle.DECORATED);
 			Scene scene = new Scene((AnchorPane) loader.load());
 			stage.setScene(scene);
-			//stage.setFullScreen(true);
-			//stage.setFullScreenExitHint("");
+			stage.setFullScreen(true);
+			stage.setFullScreenExitHint("");
 			stage.show();
 		} catch(Exception e) {
 			e.printStackTrace();

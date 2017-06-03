@@ -47,6 +47,7 @@ public interface InterfazRemota extends Remote {
 	public EmpleadoDTO buscarLogin(EmpleadoDTO env) throws RemoteException;
 	public ClienteDTO obtenerCliente(ClienteDTO b) throws RemoteException;
 	public CuentaCorrienteDTO buscarCuenta(CuentaCorrienteDTO cuenta) throws RemoteException;
+	public void bajaCliente(ClienteDTO nuevo) throws RemoteException;
 	
 	//despacho
 	//falta agregar metodos al despacho
