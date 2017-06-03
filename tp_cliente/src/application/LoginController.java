@@ -1,5 +1,6 @@
 package application;
 
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 
 import com.jfoenix.controls.JFXButton;
@@ -35,7 +36,7 @@ public class LoginController {
 
     @FXML
     private JFXSpinner loginSpinner;
-
+        
     @FXML
     void makeLogin(ActionEvent event) throws InterruptedException, IOException {
     	String usuario = txtUser.getText();

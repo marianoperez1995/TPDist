@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import controladores.AdministradorClientes;
 import controladores.AdministradorSucursales;
 import dto.ClienteDTO;
+import dto.CuentaCorrienteDTO;
 import dto.EmpleadoDTO;
 import interfaces.InterfazRemota;
 
@@ -124,6 +125,23 @@ public class ObjetoRemoto extends UnicastRemoteObject implements InterfazRemota,
 	public void altaCliente(ClienteDTO cli) throws RemoteException {
 		// TODO Auto-generated method stub
 		AdministradorClientes.getInstancia().agregarCliente(cli);
+	}
+
+	@Override
+	public void modificarCliente(ClienteDTO cliente) throws RemoteException {
+		// TODO Auto-generated method stub
+		AdministradorClientes.getInstancia().modificarCliente(cliente);
+	}
+
+	@Override
+	public ClienteDTO obtenerCliente(ClienteDTO b) throws RemoteException {
+		
+		return AdministradorClientes.getInstancia().obtenerCliente(b);
+	}
+
+	@Override
+	public CuentaCorrienteDTO buscarCuenta(CuentaCorrienteDTO cuenta) throws RemoteException {
+		return AdministradorClientes.getInstancia().obtenerCuenta(cuenta);
 	}
 	
 }

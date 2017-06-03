@@ -19,6 +19,7 @@ public class CuentaCorriente {
 	}
 
 	public CuentaCorriente (CuentaCorrienteDTO ctaDTO){
+		this.idCuentaCorriente = ctaDTO.getIdCuentaCorriente();
 		this.condiciones = ctaDTO.getCondiciones();
 		this.limite = ctaDTO.getLimite();
 		this.balanceActual = ctaDTO.getBalanceActual();
@@ -97,6 +98,7 @@ public class CuentaCorriente {
 
 	public CuentaCorrienteDTO toDTO() {
 		CuentaCorrienteDTO c = new CuentaCorrienteDTO();
+		c.setIdCuentaCorriente(idCuentaCorriente);
 		c.setBalanceActual(balanceActual);
 		c.setCondiciones(condiciones);
 		c.setEstado(estado);

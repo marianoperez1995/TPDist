@@ -3,12 +3,14 @@ package controladores;
 import java.util.ArrayList;
 
 import dto.ClienteDTO;
+import dto.CuentaCorrienteDTO;
 import dto.PedidoClienteDTO;
 import negocio.Cliente;
 import negocio.CuentaCorriente;
 import negocio.PedidoCliente;
 import negocio.Sucursal;
 import persistencia.ClienteDAO;
+import persistencia.CuentaCorrienteDAO;
 
 public class AdministradorClientes {
 	private static AdministradorClientes instancia;
@@ -38,7 +40,9 @@ public class AdministradorClientes {
 	}
 
 	public void modificarCliente(ClienteDTO cliente) { // modificar este metodo
-		for (Cliente c : clientes) {
+		 Cliente modif = new Cliente(cliente);
+		 modif.actualizar();
+		/*for (Cliente c : clientes) {
 			if (c.sosElCliente(cliente.getNumeroCliente())) {
 				c.setCuentaCorriente(new CuentaCorriente(cliente.getCuentaCorriente()));
 				c.setCuit(cliente.getCuit());
@@ -59,7 +63,7 @@ public class AdministradorClientes {
 				c.setTelEncargado(cliente.getTelEncargado());
 				c.actualizar();
 			}
-		}
+		}*/
 		
 	}
 
@@ -82,5 +86,13 @@ public class AdministradorClientes {
 			resultado.add(e.toDTO());
 		}
 		return resultado;
+	}
+	
+	public ClienteDTO obtenerCliente(ClienteDTO b){
+		return ClienteDAO.getInstancia().getCliente(b.getNumeroCliente()).toDTO();		
+	}
+
+	public CuentaCorrienteDTO obtenerCuenta(CuentaCorrienteDTO cuenta) {
+		return CuentaCorrienteDAO.getInstancia().getCuentaCorriente(cuenta.getIdCuentaCorriente()).toDTO();
 	}
 }

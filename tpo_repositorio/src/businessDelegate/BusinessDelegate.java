@@ -9,6 +9,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import dto.ClienteDTO;
+import dto.CuentaCorrienteDTO;
 import dto.EmpleadoDTO;
 
 public class BusinessDelegate {
@@ -63,6 +64,7 @@ public class BusinessDelegate {
     	
 		return objetoRemoto.buscarLogin(env);
     }
+    
 	public void altaCliente(ClienteDTO cli) throws RemoteException {
 		// TODO Auto-generated method stub
 		objetoRemoto.altaCliente(cli);
@@ -72,5 +74,18 @@ public class BusinessDelegate {
 	public ArrayList<ClienteDTO> listadoClientes() throws RemoteException {
 		// TODO Auto-generated method stub
 		return objetoRemoto.listadoClientes();
+	}
+	
+	public ClienteDTO buscarCliente(ClienteDTO b) throws RemoteException {
+		// TODO Auto-generated method stub
+		return objetoRemoto.obtenerCliente(b);
+	}
+	
+	public CuentaCorrienteDTO buscarCuenta(CuentaCorrienteDTO cuenta) throws RemoteException {
+		// TODO Auto-generated method stu
+		return objetoRemoto.buscarCuenta(cuenta);
+	}
+	public void modificarCliente(ClienteDTO cliente) throws RemoteException {
+		objetoRemoto.modificarCliente(cliente);
 	}
 }

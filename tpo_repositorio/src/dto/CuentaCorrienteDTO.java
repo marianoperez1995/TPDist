@@ -7,12 +7,21 @@ public class CuentaCorrienteDTO  implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -2429280232160790602L;
+	private int idCuentaCorriente;
 	private String condiciones;
 	private float limite;
 	private float balanceActual;
 	private String fecha;
 	private String estado;
 	
+
+	public int getIdCuentaCorriente() {
+		return idCuentaCorriente;
+	}
+
+	public void setIdCuentaCorriente(int idCuentaCorriente) {
+		this.idCuentaCorriente = idCuentaCorriente;
+	}
 
 	public String getCondiciones() {
 		return condiciones;

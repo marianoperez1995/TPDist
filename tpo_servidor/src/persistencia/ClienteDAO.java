@@ -77,7 +77,7 @@ public class ClienteDAO {
 		cliente.setFechaRegistro(dateFormat.format(date));
 		
 		ArrayList<PedidoClienteEntity> pedidos = new ArrayList<PedidoClienteEntity>();
-		if (cli.getPedidosCliente() != null) {
+		if (!cli.getPedidosCliente().isEmpty()) {
 			for (PedidoCliente p : cli.getPedidosCliente()) {
 				pedidos.add(PedidoClienteDAO.getInstancia().toEntity(p));
 			}

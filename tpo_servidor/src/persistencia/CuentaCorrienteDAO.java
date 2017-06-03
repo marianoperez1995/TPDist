@@ -59,6 +59,7 @@ public class CuentaCorrienteDAO  {
 	
 	public CuentaCorrienteEntity toEntity(CuentaCorriente cuenta){
 		CuentaCorrienteEntity res= new CuentaCorrienteEntity();
+		res.setNroCC(cuenta.getIdCuentaCorriente());
 		res.setBalanceActual(cuenta.getBalanceActual());
 		res.setCondiciones(cuenta.getCondiciones());
 		res.setLimite(cuenta.getLimite());
