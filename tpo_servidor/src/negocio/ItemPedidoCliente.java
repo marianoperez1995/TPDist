@@ -8,25 +8,25 @@ import persistencia.ItemPedidoClienteDAO;
 public class ItemPedidoCliente {
 	private int idItemPedidoCliente;
 	private Prenda prenda;
-	private String color;
-	private String talle;
 	private int cantidad;
 	private float precio;
 	
 	public ItemPedidoCliente(ItemPedidoClienteDTO p) {
 		this.prenda = new Prenda(p.getPrenda());
-		this.color = p.getColor();
-		this.talle = p.getTalle();
+		this.idItemPedidoCliente = p.getIdItemPedidoCliente();
 		this.cantidad = p.getCantidad();
 		this.precio = p.getPrecio();
 	}
 
 	public ItemPedidoCliente(ItemPedidoClienteEntity p) {
 		this.prenda = new Prenda(p.getPrenda());
-		this.color = p.getColor().getNombre();
-		this.talle = p.getTalle().getNombre();
 		this.cantidad = p.getCantidad();
 		this.precio = p.getPrecio();
+		this.idItemPedidoCliente = p.getIdPedidoCliente();
+	}
+
+	public ItemPedidoCliente() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public void insertar() {
@@ -46,22 +46,6 @@ public class ItemPedidoCliente {
 
 	public void setPrenda(Prenda prenda) {
 		this.prenda = prenda;
-	}
-
-	public String getColor() {
-		return color;
-	}
-
-	public void setColor(String color) {
-		this.color = color;
-	}
-
-	public String getTalle() {
-		return talle;
-	}
-
-	public void setTalle(String talle) {
-		this.talle = talle;
 	}
 
 	public int getCantidad() {
@@ -91,10 +75,8 @@ public class ItemPedidoCliente {
 	public ItemPedidoClienteDTO toDTO(PedidoClienteDTO p) {
 		ItemPedidoClienteDTO item = new ItemPedidoClienteDTO();
 		item.setCantidad(cantidad);
-		item.setColor(color);
 		item.setPrecio(precio);
 		item.setPrenda(prenda.toDTO());
-		item.setTalle(talle);
 		return item;		
 	}
 	

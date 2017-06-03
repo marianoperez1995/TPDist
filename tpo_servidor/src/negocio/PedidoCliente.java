@@ -43,6 +43,10 @@ public class PedidoCliente {
 			this.itemsPedidoCliente.add(new ItemPedidoCliente(p));
 		}
 	}
+	public PedidoCliente() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public void insertar() {
 		PedidoClienteDAO.getInstancia().insert(this);		
 	}

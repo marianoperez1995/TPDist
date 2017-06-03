@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
@@ -18,7 +19,10 @@ public class ItemPedidoClienteId implements Serializable {
 	@JoinColumn(name="idPedidoCliente")	
 	private PedidoClienteEntity pedido;
 	@ManyToOne
-	@JoinColumn(name="idPrenda")
+	@JoinColumns({
+		@JoinColumn(name = "idPrenda", referencedColumnName = "idPrenda"),
+		@JoinColumn(name = "idColor", referencedColumnName = "idColor"),
+		@JoinColumn(name = "idTalle", referencedColumnName = "idTalle") })
 	private PrendaEntity prenda;
 	public PedidoClienteEntity getPedido() {
 		return pedido;

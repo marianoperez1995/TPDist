@@ -1,14 +1,15 @@
 package persistencia;
 
+import java.util.ArrayList;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import entities.EmpleadoEntity;
 import entities.ItemPedidoClienteEntity;
 import entities.ItemPedidoClienteId;
 import hibernate.HibernateUtil;
-import negocio.Empleado;
 import negocio.ItemPedidoCliente;
+import negocio.PedidoCliente;
 
 public class ItemPedidoClienteDAO{
 	private static SessionFactory sf;
@@ -25,35 +26,40 @@ public class ItemPedidoClienteDAO{
 	private ItemPedidoClienteDAO(){
 		
 	}
-	public void insert(ItemPedidoCliente item){
-		ItemPedidoClienteEntity it= toEntity(item);
+	public void insert(ItemPedidoCliente item, PedidoCliente ped){
+		ItemPedidoClienteEntity it= toEntity(item, ped);
 		Session sesion;
 		sesion = sf.openSession();
 		sesion.beginTransaction();
-		sesion.saveOrUpdate(it);
+		sesion.save(it);
 		sesion.getTransaction().commit();
 		sesion.close();
 	}
 
-	public ItemPedidoClienteEntity toEntity(ItemPedidoCliente item) {
-		ItemPedidoClienteEntity it = new ItemPedidoClienteEntity();
-		it.setCantidad(item.getCantidad());
-		it.setColor(ColorDAO.getInstancia().toEntity(item.getColor()));
+	public ItemPedidoClienteEntity toEntity(ItemPedidoCliente item, PedidoCliente ped) {
+		ItemPedidoClienteEntity ent = new ItemPedidoClienteEntity();
+		ent.setCantidad(item.getCantidad());
+		ent.setPrecio(item.getPrecio());
 		ItemPedidoClienteId id = new ItemPedidoClienteId();
-		//No tengo de donde sacar el PedidoClienteEntity que vendria a necesitar el ItemPedidoClienteId
-//		id.setPedido(pedido);
-		id.setPrenda(PrendaDAO.getInstancia().toEntity(item.getPrenda()));//no hay forma que ande bien esto
-		it.setId(id);
-		it.setPrecio(item.getPrecio());;
-		it.setTalle(TalleDAO.getInstancia().toEntity(item.getTalle()));
-		return null;
+		id.setPedido(PedidoClienteDAO.getInstancia().toEntity(ped));
+		id.setPrenda(PrendaDAO.getInstancia().toEntity(item.getPrenda()));
+		ent.setId(id);
+		return ent;
+	
 	}
-	public Empleado getEmpleado(int id) {
+	@SuppressWarnings("unchecked")
+	public ArrayList<ItemPedidoCliente> getItemsPedidoCliente(int idPed) {
 		Session sesion = sf.openSession();
-		sesion.beginTransaction();
-		EmpleadoEntity emp = (EmpleadoEntity) sesion.get(EmpleadoEntity.class, id);	
-		sesion.close();		
-		return new Empleado(emp);
+		sesion.beginTransaction();		
+		ArrayList<ItemPedidoClienteEntity> itemsE = new ArrayList<>();
+		org.hibernate.Query query = sesion.createQuery("from ItemPedidoClienteEntity where idPedidoCliente = ?").setParameter(0, idPed);
+		itemsE = (ArrayList<ItemPedidoClienteEntity>) query.list();
+		sesion.close();
+		ArrayList<ItemPedidoCliente> items = new ArrayList<>();
+		for (ItemPedidoClienteEntity i: itemsE){
+			items.add(new ItemPedidoCliente(i));
+		}			
+		return items;
 	}
 	public void eliminar(int id) {
 		Session sesion;

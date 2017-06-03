@@ -3,10 +3,13 @@ package test;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import negocio.Bulto;
 import negocio.Insumo;
+import negocio.ItemPedidoCliente;
 import negocio.ItemProveedorInsumo;
-import negocio.Lote;
+import negocio.Opp;
+import negocio.PedidoCliente;
+import persistencia.ClienteDAO;
+import persistencia.PrendaDAO;
 
 public class testToDTO {
 	public static void main(String[] args) {
@@ -17,28 +20,47 @@ public class testToDTO {
 		//prov.setCuit("12345");
 		//prov.setNombre("Tela SA");
 		//prov.insertar();
-		ins.setCantAComprar(45);
+		Opp orden = new Opp();
+		PedidoCliente ped = new PedidoCliente();
+		ped.setCliente(ClienteDAO.getInstancia().getCliente(2));
+		ped.setEstado("Aceptado");
+		ped.setFechaDespacho(Calendar.getInstance().getTime());
+		ped.setFechaGeneracion(Calendar.getInstance().getTime());
+		ped.setFechaProbableDespacho(Calendar.getInstance().getTime());
+		ArrayList<ItemPedidoCliente>items = new ArrayList<>();
+		ItemPedidoCliente it = new ItemPedidoCliente();
+		it.setCantidad(5);
+		it.setPrecio(5);
+		it.setPrenda(PrendaDAO.getInstancia().getPrenda(1));
+		items.add(it);
+		ped.setItemsPedidoCliente(items);
+		ped.setPrecioTotal(5000);
+		ped.insertar();
+		
+	//	orden.setFecha(Calendar.getInstance().getTime());
+	//	orden.setPedidoCliente(ped);
+	
+	/*	ins.setCantAComprar(45);
 		ins.setNombre("Carton");
 		ins.setPrecioFinal(55);
 		ins.setStockActual(123);
 		ins.setUnidad("Cajas");
 		ins.setStockMinimo(40);
-		ins.setFechaRecepcion(Calendar.getInstance().getTime());
-		ArrayList <Lote> lotes = new ArrayList<>();
+		ins.setFechaRecepcion(Calendar.getInstance().getTime());	
+		/*ArrayList <Lote> lotes = new ArrayList<>();
 		Lote l = new Lote();
 		l.setCantidadTotal(10);
 		l.setColor("Rojo");
 		l.setBultos(bultos);
 		Bulto bulto = new Bulto();
-		bulto.setCantidad(3);
-		bulto.setLote(lote);
-		bulto.setPrenda(prenda);
+		bulto.setCantidad(3);;
+		bulto.setPrenda(PrendaDAO.getInstancia().getPrenda(1));
 		l.setOrden(orden);
 		l.setTalle("M");
 		lotes.add(l);
 		l.insertar();
 		ins.setLotes(lotes);
-		ins.insertar();
+		ins.insertar();*/
 		//FALTA INSERTAR UN LOTE, UNA ORDEN, BULTOS, ETC... PARA PODER PROBAR Insumo...
 		
 		

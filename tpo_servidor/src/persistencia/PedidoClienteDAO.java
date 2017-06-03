@@ -44,7 +44,7 @@ public class PedidoClienteDAO {
 		Session sesion;
 		sesion = sf.openSession();
 		sesion.beginTransaction();
-		sesion.saveOrUpdate(ped);
+		sesion.save(ped);
 		sesion.getTransaction().commit();
 		sesion.close();
 	}
@@ -69,7 +69,7 @@ public class PedidoClienteDAO {
 		ped.setPrecioTotal(pedido.getPrecioTotal());
 		ArrayList <ItemPedidoClienteEntity> itemsPedidoCliente= new ArrayList<ItemPedidoClienteEntity>();
 		for (ItemPedidoCliente item:pedido.getItemsPedidoCliente()){
-			itemsPedidoCliente.add(ItemPedidoClienteDAO.getInstancia().toEntity(item));
+			itemsPedidoCliente.add(ItemPedidoClienteDAO.getInstancia().toEntity(item, pedido));
 		}
 		ped.setItemsPedidoCliente(itemsPedidoCliente);
 		return ped;

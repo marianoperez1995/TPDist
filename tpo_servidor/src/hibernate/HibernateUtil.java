@@ -8,6 +8,7 @@ import entities.ColorEntity;
 import entities.CuentaCorrienteEntity;
 import entities.EmpleadoEntity;
 import entities.InsumoEntity;
+import entities.ItemPedidoClienteEntity;
 import entities.ItemProveedorInsumoEntity;
 import entities.LoteEntity;
 import entities.OrdenProduccionEntity;
@@ -30,7 +31,6 @@ public class HibernateUtil {
 			config.addAnnotatedClass(EmpleadoEntity.class);
 			config.addAnnotatedClass(FacturaEntity.class);
 			
-			config.addAnnotatedClass(ItemPedidoClienteEntity.class);
 			config.addAnnotatedClass(ItemPedidoInsumoEntity.class);
 			config.addAnnotatedClass(ItemPrendaAreaEntity.class);
 			config.addAnnotatedClass(ItemPrendaInsumoEntity.class);
@@ -59,10 +59,11 @@ public class HibernateUtil {
 			config.addAnnotatedClass(ColorEntity.class);
 			config.addAnnotatedClass(TalleEntity.class);
 			config.addAnnotatedClass(ProveedorEntity.class);
-			config.addAnnotatedClass(ItemProveedorInsumoEntity.class);
-			config.addAnnotatedClass(InsumoEntity.class);
-			config.addAnnotatedClass(LoteEntity.class);
-			config.addAnnotatedClass(OrdenProduccionEntity.class);
+		//	config.addAnnotatedClass(ItemProveedorInsumoEntity.class);
+		//	config.addAnnotatedClass(InsumoEntity.class);
+			//config.addAnnotatedClass(LoteEntity.class);
+			//config.addAnnotatedClass(OrdenProduccionEntity.class);
+		//	config.addAnnotatedClass(ItemPedidoClienteEntity.class);
 			sessionFactory = config.buildSessionFactory();
 
 		} catch (Throwable ex) {
