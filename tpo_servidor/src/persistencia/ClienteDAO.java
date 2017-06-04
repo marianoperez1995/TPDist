@@ -8,6 +8,7 @@ import java.util.Date;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 import entities.ClienteEntity;
 import entities.PedidoClienteEntity;
@@ -41,20 +42,22 @@ public class ClienteDAO {
 		session.getTransaction().commit();
 		session.close();*/	
 		Session session = sf.openSession();
-		session.beginTransaction();
+		Transaction trans = session.beginTransaction();
 		Query query;
 		//Antes de borrar el cliente, hay que borrar todas sus asociaciones
 		//Movimientos, Reclamos, Pedidos (de pedidos borrar ItemPedido, Transporte), Facturas, 
 		query = session.createQuery("delete from MovimientosEntity where idCliente = ?").setParameter(0,idCliente); 
-		query.executeUpdate();
+		int cantMov = query.executeUpdate();
 		query = session.createQuery("delete from ReclamosEntity where idCliente = ?").setParameter(0,idCliente); 
-		query.executeUpdate();
+		int cantR	=query.executeUpdate();
 		query = session.createQuery("delete from PedidoClienteEntity where idCliente = ?").setParameter(0,idCliente); 
-		query.executeUpdate();
+		int cantP=query.executeUpdate();
 		query = session.createQuery("delete from FacturaEntity where idCliente = ?").setParameter(0,idCliente); 
-		query.executeUpdate();		
+		int cantF=query.executeUpdate();		
   		query = session.createQuery("delete from ClienteEntity where idCliente = ?").setParameter(0,idCliente);  		
-  		query.executeUpdate();
+  		int cantC=query.executeUpdate();
+  		System.out.println("Movimientos Borrados: "+cantMov+"Pedidos: "+cantP+"Reclamos:"+cantR+"Facturas: "+cantF+"Clientes: "+cantC);
+  		trans.commit();
   		session.close();	
 	}
 
