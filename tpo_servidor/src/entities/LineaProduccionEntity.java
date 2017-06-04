@@ -17,24 +17,16 @@ public class LineaProduccionEntity  implements Serializable {
 		
 	}
 	
-	
-	public LineaProduccionEntity(int idLinea, int capacidad, String estado, Date horaInicio, Date tiempoDeUso) {
-		super();
-		this.idLinea = idLinea;
-		this.capacidad = capacidad;
-		this.estado = estado;
-		this.horaInicio = horaInicio;
-		this.tiempoDeUso = tiempoDeUso;
-	}
+
 	private static final long serialVersionUID = 2799091425324777583L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="idLineaP")
+    @Column(name="idLineaProduccion")
 	private int idLinea;
 	
 	private int capacidad;
-	private String estado;
+	private boolean estado;
 	
 	@Column(name="horaInicio")
 	private Date horaInicio;
@@ -48,30 +40,23 @@ public class LineaProduccionEntity  implements Serializable {
 	
 	
 	
-	public void lineaProduccion(int idL,int capa, String estado, Date horaI, Date tiempo){
-		this.idLinea= idL;
-		this.capacidad= capa;
-		this.estado= estado;
-		this.horaInicio= horaI;
-		this.tiempoDeUso= tiempo;
-
-		
-	}
-	
-	
-	
 	public int getCapacidad() {
 		return capacidad;
 	}
 	public void setCapacidad(int capacidad) {
 		this.capacidad = capacidad;
 	}
-	public String getEstado() {
+
+	public boolean isEstado() {
 		return estado;
 	}
-	public void setEstado(String estado) {
+
+
+	public void setEstado(boolean estado) {
 		this.estado = estado;
 	}
+
+
 	public Date getHoraInicio() {
 		return horaInicio;
 	}

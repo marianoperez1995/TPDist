@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 
 @Embeddable
@@ -21,17 +22,15 @@ public class ItemPrendaAreaID implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 	@ManyToOne
-	@JoinColumn(name="idPrenda")
+	@JoinColumns(value = {
+		@JoinColumn(name = "idPrenda", referencedColumnName = "idPrenda"),
+		@JoinColumn(name = "idColor", referencedColumnName = "idColor"),
+		@JoinColumn(name = "idTalle", referencedColumnName = "idTalle") })
 	private PrendaEntity prenda;
 	@ManyToOne
 	@JoinColumn(name="idAreaProduccion")
 	private AreaProduccionEntity area;
-	@ManyToOne
-	@JoinColumn(name="idColor")
-	private ColorEntity color;
-	@ManyToOne
-	@JoinColumn(name="idTalle")
-	private TalleEntity talle;
+
 	
 	public PrendaEntity getPrenda() {
 		return prenda;

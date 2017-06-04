@@ -17,7 +17,7 @@ import persistencia.SucursalDAO;
 public class test1 {
 
 	public static void main(String[] args) {
-		ClienteDAO.getInstancia().eliminar(1);
+	//	ClienteDAO.getInstancia().eliminar(2);
 		
 		
 		/*

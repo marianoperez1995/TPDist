@@ -46,7 +46,7 @@ public class LineaProduccionDAO  {
 		Session sesion;
 		sesion = sf.openSession();
 		sesion.beginTransaction();
-		sesion.saveOrUpdate(li);
+		sesion.save(li);
 		sesion.getTransaction().commit();
 		sesion.close();
 	}
@@ -65,7 +65,7 @@ public class LineaProduccionDAO  {
 	public LineaProduccionEntity toEntity(LineaProduccion linea){
 		LineaProduccionEntity lp= new LineaProduccionEntity();
 		lp.setCapacidad(linea.getCapacidad());
-		lp.setEstado(linea.getEstado());
+		lp.setEstado(linea.isEstado());
 		lp.setHoraInicio(linea.getHoraInicio());
 		lp.setTiempoDeUso(linea.getTiempoDeUso());
 		lp.setIdLinea(linea.getIdLineaProduccion());

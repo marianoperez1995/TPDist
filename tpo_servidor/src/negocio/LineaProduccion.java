@@ -9,22 +9,28 @@ import persistencia.LineaProduccionDAO;
 public class LineaProduccion {
 	private int idLineaProduccion;
 	private int capacidad;
-	private String estado;
+	private boolean estado;
 	private Date horaInicio;
 	private Date tiempoDeUso;
 	
 	public LineaProduccion(LineaProduccionDTO lp) {
 		this.capacidad = lp.getCapacidad();
-		this.estado = lp.getEstado();
+		this.estado = lp.isEstado();
 		this.horaInicio = lp.getHoraInicio();
 		this.tiempoDeUso = lp.getTiempoDeUso();
+		this.idLineaProduccion = lp.getIdLineaProduccion();
 	}
 
 	public LineaProduccion(LineaProduccionEntity lp) {
 		this.capacidad = lp.getCapacidad();
-		this.estado = lp.getEstado();
+		this.estado = lp.isEstado();
 		this.horaInicio = lp.getHoraInicio();
 		this.tiempoDeUso = lp.getTiempoDeUso();
+		this.idLineaProduccion = lp.getIdLinea();
+	}
+
+	public LineaProduccion() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public void insertar() {
@@ -33,6 +39,12 @@ public class LineaProduccion {
 
 	public void borrar() {
 		LineaProduccionDAO.getInstancia().eliminar(this.idLineaProduccion);
+	}
+
+	@Override
+	public String toString() {
+		return "LineaProduccion [idLineaProduccion=" + idLineaProduccion + ", capacidad=" + capacidad + ", estado="
+				+ estado + ", horaInicio=" + horaInicio + ", tiempoDeUso=" + tiempoDeUso + "]";
 	}
 
 	public int getIdLineaProduccion() {
@@ -51,11 +63,11 @@ public class LineaProduccion {
 		this.capacidad = capacidad;
 	}
 
-	public String getEstado() {
+	public boolean isEstado() {
 		return estado;
 	}
 
-	public void setEstado(String estado) {
+	public void setEstado(boolean estado) {
 		this.estado = estado;
 	}
 
