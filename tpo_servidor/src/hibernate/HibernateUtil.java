@@ -3,25 +3,7 @@ package hibernate;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 
-import entities.AreaProduccionEntity;
-import entities.ClienteEntity;
-import entities.ColorEntity;
-import entities.CuentaCorrienteEntity;
-import entities.EmpleadoEntity;
-import entities.FacturaEntity;
-import entities.ItemPrendaAreaEntity;
-import entities.LineaProduccionEntity;
-import entities.MovimientosEntity;
-import entities.OpcEntity;
-import entities.OppEntity;
-import entities.OrdenProduccionEntity;
-import entities.PedidoClienteEntity;
-import entities.PrendaEntity;
-import entities.ProveedorEntity;
-import entities.ReclamosEntity;
-import entities.SucursalEntity;
-import entities.TalleEntity;
-import entities.TransporteEntity;
+import entities.*;
 
 public class HibernateUtil {
 	private static final SessionFactory sessionFactory;
@@ -30,9 +12,8 @@ public class HibernateUtil {
 		try {
 
 			AnnotationConfiguration config = new AnnotationConfiguration();
-		
-			/*
-			config.addAnnotatedClass(DespachoEntity.class);
+
+			/*config.addAnnotatedClass(DespachoEntity.class);
 			config.addAnnotatedClass(ItemPedidoInsumoEntity.class);			
 			config.addAnnotatedClass(ItemPrendaInsumoEntity.class);			
 			config.addAnnotatedClass(LoteInsumoEntity.class);			
@@ -42,8 +23,9 @@ public class HibernateUtil {
 			config.addAnnotatedClass(ItemProveedorInsumoEntity.class);
 			config.addAnnotatedClass(InsumoEntity.class);
 			config.addAnnotatedClass(LoteEntity.class);		
-			config.addAnnotatedClass(ItemPedidoClienteEntity.class);
 			*/
+			
+			//De aca para abajo no rompen todo
 			config.addAnnotatedClass(AreaProduccionEntity.class);
 			config.addAnnotatedClass(LineaProduccionEntity.class);
 			config.addAnnotatedClass(ItemPrendaAreaEntity.class);
@@ -51,8 +33,8 @@ public class HibernateUtil {
 			config.addAnnotatedClass(SucursalEntity.class);
 			config.addAnnotatedClass(EmpleadoEntity.class);
 			config.addAnnotatedClass(ClienteEntity.class);
-			config.addAnnotatedClass(PedidoClienteEntity.class);
 			config.addAnnotatedClass(PrendaEntity.class);
+			config.addAnnotatedClass(PedidoClienteEntity.class);
 			config.addAnnotatedClass(ColorEntity.class);
 			config.addAnnotatedClass(TalleEntity.class);
 			config.addAnnotatedClass(ProveedorEntity.class);
@@ -63,6 +45,7 @@ public class HibernateUtil {
 			config.addAnnotatedClass(OrdenProduccionEntity.class);
 			config.addAnnotatedClass(TransporteEntity.class);
 			config.addAnnotatedClass(FacturaEntity.class);
+			config.addAnnotatedClass(ItemPedidoClienteEntity.class);
 			sessionFactory = config.buildSessionFactory();
 
 		} catch (Throwable ex) {

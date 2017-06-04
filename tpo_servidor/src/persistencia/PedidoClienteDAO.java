@@ -50,8 +50,11 @@ public class PedidoClienteDAO {
 		sesion.beginTransaction();
 		sesion.save(ped);
 		//Inserta los items del pedido
+		sesion.close();
+		sesion = sf.openSession();
+		sesion.beginTransaction();
 		for (ItemPedidoCliente i : pedido.getItemsPedidoCliente())
-			i.insertar(pedido.getIdPedidoCliente());		
+			i.insertar(ped.getNumPedidoCliente());		
 		sesion.getTransaction().commit();
 		sesion.close();
 	}

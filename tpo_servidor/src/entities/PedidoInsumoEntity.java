@@ -1,7 +1,7 @@
 package entities;
 
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,7 +28,7 @@ public class PedidoInsumoEntity {
 	private Date fechaEntrega;
 	@OneToMany
 	@JoinColumn(name="idPedidoInsumos")	
-	private ArrayList<ItemPedidoInsumoEntity> itemsPedidoInsumo;
+	private List<ItemPedidoInsumoEntity> itemsPedidoInsumo;
 
 	
 	
@@ -65,14 +65,16 @@ public class PedidoInsumoEntity {
 		this.fechaEntrega = fechaEntrega;
 	}
 
-	public ArrayList<ItemPedidoInsumoEntity> getItemsPedidoInsumo() {
+	public List<ItemPedidoInsumoEntity> getItemsPedidoInsumo() {
 		return itemsPedidoInsumo;
 	}
 
-	public void setItemsPedidoInsumo(ArrayList<ItemPedidoInsumoEntity> itemsPedidoInsumo) {
+	public void setItemsPedidoInsumo(List<ItemPedidoInsumoEntity> itemsPedidoInsumo) {
 		this.itemsPedidoInsumo = itemsPedidoInsumo;
 	}
-	
+
+
+
 	
 
 }

@@ -6,7 +6,6 @@ import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 @Embeddable
 public class ItemPedidoClienteId implements Serializable {
@@ -15,7 +14,7 @@ public class ItemPedidoClienteId implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -997416914983250952L;
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="idPedidoCliente")	
 	private PedidoClienteEntity pedido;
 	@ManyToOne
@@ -44,18 +43,5 @@ public class ItemPedidoClienteId implements Serializable {
 		this.prenda = prenda;
 	}
 	public ItemPedidoClienteId() {
-		// TODO Auto-generated constructor stub
-	}
-	
-	//Asi o con columns?
-	//tipo: 
-	/*
-	 * @Column(name="idPedidoCliente")
-	 * private PedidoClienteEntity pedido;
-	 * 
-	 * seria en todas las ID que vengo haciendo...
-	 */
-	
-	
-	
+	}	
 }

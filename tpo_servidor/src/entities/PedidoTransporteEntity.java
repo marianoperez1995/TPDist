@@ -9,9 +9,8 @@ package entities;
 
 import java.io.Serializable;
 
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -23,27 +22,16 @@ public class PedidoTransporteEntity implements Serializable{
 	 */
 	private static final long serialVersionUID = -7823918334504373309L;
 
-	@OneToOne
-	@JoinColumn(name="idPedido")
-	private PedidoClienteEntity pedido;
-	@OneToOne
-	@JoinColumn(name="idTransporte")
-	private TransporteEntity transporte;
-	public PedidoClienteEntity getPedido() {
-		return pedido;
+	@EmbeddedId
+	private PedidoTransporteId id;
+
+	public PedidoTransporteId getId() {
+		return id;
 	}
-	public void setPedido(PedidoClienteEntity pedido) {
-		this.pedido = pedido;
+
+	public void setId(PedidoTransporteId id) {
+		this.id = id;
 	}
-	public TransporteEntity getTransporte() {
-		return transporte;
-	}
-	public void setTransporte(TransporteEntity transporte) {
-		this.transporte = transporte;
-	}
-	
-	
-	
-	
 	
 }
+	

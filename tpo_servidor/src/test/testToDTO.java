@@ -21,7 +21,7 @@ import persistencia.TalleDAO;
 public class testToDTO {
 	public static void main(String[] args) {
 		
-		ItemProveedorInsumo i = new ItemProveedorInsumo();
+	/*	ItemProveedorInsumo i = new ItemProveedorInsumo();
 		//Proveedor prov = new Proveedor();
 		Insumo ins = new Insumo();
 		//prov.setCuit("12345");
@@ -31,7 +31,7 @@ public class testToDTO {
 		it.setCantidad(45);
 		it.setPrecio(54);
 		it.setPrenda(PrendaDAO.getInstancia().getPrenda(2,3,1));
-		it.insertar(5);
+		it.insertar(5);*/
 		
 		/*Cliente cli = ClienteDAO.getInstancia().getCliente(2);
 		cli.borrarPedido(5);
@@ -40,25 +40,8 @@ public class testToDTO {
 	
 
 		PedidoClienteDAO.getInstancia().eliminar(7);*/
-		/*Opp orden = new Opp();
-		PedidoCliente ped = new PedidoCliente();
-		ped.setCliente(ClienteDAO.getInstancia().getCliente(2));
-		ped.setEstado("Aceptado");
-		Date f = new Date();
-		f=(Calendar.getInstance().getTime());
-		ped.setFechaDespacho(f);
-		ped.setFechaGeneracion(f);
-		ped.setFechaProbableDespacho(f);
-		ped.setFechaEntregaCliente(f);
-		ped.setIdPedidoCliente(1);
-		ArrayList<ItemPedidoCliente>items = new ArrayList<>();
+		//Opp orden = new Opp();
 	
-		PrendaID id = new PrendaID();
-		it.setPrenda(PrendaDAO.getInstancia().getPrenda(1,1,2));
-		items.add(it);
-		ped.setItemsPedidoCliente(items);
-		ped.setPrecioTotal(5000);
-		ped.insertar(4);*/
 		
 	//	orden.setFecha(Calendar.getInstance().getTime());
 	//	orden.setPedidoCliente(ped);

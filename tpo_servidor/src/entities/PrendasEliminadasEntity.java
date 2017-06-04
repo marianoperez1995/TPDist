@@ -2,13 +2,16 @@ package entities;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -28,18 +31,18 @@ public class PrendasEliminadasEntity implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idPrendaEliminada;
 	
-	@OneToMany
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumns({
 		@JoinColumn(name = "idPrenda", referencedColumnName = "idPrenda"),
 		@JoinColumn(name = "idColor", referencedColumnName = "idColor"),
 		@JoinColumn(name = "idTalle", referencedColumnName = "idTalle") })
 	private PrendaEntity prenda;
 	
-	@OneToMany
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name="idEmpleadoBaja")
 	private EmpleadoEntity empBaja;
 	
-	@OneToMany
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name="idGerente")
 	private EmpleadoEntity gerente;
 	
