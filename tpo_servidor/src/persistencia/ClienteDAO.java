@@ -33,13 +33,29 @@ public class ClienteDAO {
 	}
 
 	public void eliminar(int idCliente) {
-		SessionFactory sf = HibernateUtil.getSessionFactory();
-		Session session = sf.openSession();
+		/*SessionFactory sf = HibernateUtil.getSessionFactory();
+		
 		ClienteEntity res = (ClienteEntity) session.get(ClienteEntity.class, idCliente);
 		session.beginTransaction();
 		session.delete(res);
 		session.getTransaction().commit();
-		session.close();
+		session.close();*/	
+		Session session = sf.openSession();
+		session.beginTransaction();
+		Query query;
+		//Antes de borrar el cliente, hay que borrar todas sus asociaciones
+		//Movimientos, Reclamos, Pedidos (de pedidos borrar ItemPedido, Transporte), Facturas, 
+		query = session.createQuery("delete from MovimientosEntity where idCliente = ?").setParameter(0,idCliente); 
+		query.executeUpdate();
+		query = session.createQuery("delete from ReclamosEntity where idCliente = ?").setParameter(0,idCliente); 
+		query.executeUpdate();
+		query = session.createQuery("delete from PedidoClienteEntity where idCliente = ?").setParameter(0,idCliente); 
+		query.executeUpdate();
+		query = session.createQuery("delete from FacturaEntity where idCliente = ?").setParameter(0,idCliente); 
+		query.executeUpdate();		
+  		query = session.createQuery("delete from ClienteEntity where idCliente = ?").setParameter(0,idCliente);  		
+  		query.executeUpdate();
+  		session.close();	
 	}
 
 	public Cliente getCliente(int id) {

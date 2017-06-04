@@ -58,7 +58,7 @@ public class ClienteEntity implements Serializable {
 	private SucursalEntity sucursal;
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "idCliente")	
-	private List<PedidoClienteEntity> pedidosCliente;
+	private List<PedidoClienteEntity> pedidosCliente = new ArrayList<>();
 
 
 	public String getMailencargado() {
