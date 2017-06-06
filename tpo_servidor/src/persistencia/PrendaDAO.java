@@ -6,11 +6,14 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import dto.PrendaDTO;
+import entities.ClienteEntity;
 import entities.ColorEntity;
 import entities.PrendaEntity;
 import entities.PrendaID;
 import entities.TalleEntity;
 import hibernate.HibernateUtil;
+import negocio.Cliente;
 import negocio.Prenda;
 
 public class PrendaDAO  {
@@ -103,5 +106,14 @@ public class PrendaDAO  {
 		return prendas;		
 	}
 	
-
+	public void update(Prenda prenda) {
+		PrendaEntity pre = toEntity(prenda);
+		Session sesion;
+		sesion = sf.openSession();
+		sesion.beginTransaction();
+		sesion.update(pre);
+		sesion.getTransaction().commit();
+		sesion.close();
+	}
+	
 }

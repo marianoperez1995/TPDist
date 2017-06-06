@@ -99,4 +99,11 @@ public class AdministradorClientes {
 	public CuentaCorrienteDTO obtenerCuenta(CuentaCorrienteDTO cuenta) {
 		return CuentaCorrienteDAO.getInstancia().getCuentaCorriente(cuenta.getIdCuentaCorriente()).toDTO();
 	}
+
+	public void rechazarCliente(ClienteDTO nuevo) {
+		// TODO Auto-generated method stub
+		Cliente cli = ClienteDAO.getInstancia().getCliente(nuevo.getNumeroCliente());
+		cli.setEstado("Rechazado");
+		ClienteDAO.getInstancia().update(cli);
+	}
 }

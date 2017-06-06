@@ -248,8 +248,10 @@ public class Cliente {
 		c.setTelEncargado(telEncargado);
 		c.setFechaRegistro(fechaRegistro);
 		ArrayList<PedidoClienteDTO> pedidos = new ArrayList<>();
+		if(!pedidosCliente.isEmpty()){
 		for (PedidoCliente p : pedidosCliente) {
 			pedidos.add(p.toDTO(c));
+		}
 		}
 		c.setPedidosCliente(pedidos);
 

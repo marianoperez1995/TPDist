@@ -1,6 +1,8 @@
 package application;
 
 import java.net.URL;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
@@ -12,12 +14,18 @@ import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
+import application.ClienteBuscarController.ClienteTabla;
+import businessDelegate.BusinessDelegate;
+import dto.ClienteDTO;
+import dto.CuentaCorrienteDTO;
+import dto.PedidoClienteDTO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -100,13 +108,13 @@ public class PedidosPendientesController implements Initializable{
 			}
 		});
     	
-    	JFXTreeTableColumn<ListaPedido, String> estadoCol = new JFXTreeTableColumn<>("Estado");
+    	JFXTreeTableColumn<ListaPedido, String> estadoCol = new JFXTreeTableColumn<>("Telefono");
     	estadoCol.setPrefWidth(135);
     	estadoCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<ListaPedido,String>, ObservableValue<String>>() {
 			
 			@Override
 			public ObservableValue<String> call(CellDataFeatures<ListaPedido, String> param) {
-				return param.getValue().getValue().estado;
+				return param.getValue().getValue().telefono;
 			}
 		});
     	
@@ -196,6 +204,7 @@ public class PedidosPendientesController implements Initializable{
     	ObservableList<ListaPedido> pedidos = FXCollections.observableArrayList();
     	ObservableList<ItemPedido> itemsPedido = FXCollections.observableArrayList();
     	
+    	/*
     	//agregar pedidos a la tabla
     	pedidos.add(new ListaPedido("123","Natanael SRL", "Pendiente", "10/10/2016"));
     	pedidos.add(new ListaPedido("123","Nicolas SA", "Pendiente", "05/10/2013"));
@@ -211,7 +220,12 @@ public class PedidosPendientesController implements Initializable{
     	itemsPedido.add(new ItemPedido("Pantalon NET", "Produccion", "M", "Negro", "36"));
     	itemsPedido.add(new ItemPedido("Medias LX", "Produccion", "M", "Rojo", "42"));
     	itemsPedido.add(new ItemPedido("Remera FEEL", "Discontinuo", "S", "Negro", "50"));
+    	*/
     	
+    	//agregar clientes a la tabla
+    	for(ListaPedido c: buscarPedidos()){
+    		pedidos.add(c);
+    	}
     	
     	//para manipular los datos de la tabla con el JFoenix se usa RecirsiveTreeItem. RecursiveTreeObject::getChildren Callback para obtener cada cliente de la tabla
     	final TreeItem<ListaPedido> root = new RecursiveTreeItem<ListaPedido>(pedidos, RecursiveTreeObject::getChildren);
@@ -288,16 +302,77 @@ public class PedidosPendientesController implements Initializable{
     	     });
     }
     
-    class ListaPedido extends RecursiveTreeObject<ListaPedido>{
+    
+    @FXML
+    void enviarPedido(ActionEvent event) {
+    	BusinessDelegate.getInstancia().modificarPedido();
+    	ClienteDTO cliente = new ClienteDTO();
+    	CuentaCorrienteDTO cuenta = new CuentaCorrienteDTO();
+    	String idc = lblIdCC.getText();
+    	idc = idc.substring(4, idc.length());
+    	
+    	String idcl = lblIdCliente.getText();
+    	idcl = idcl.substring(1, idcl.length());
+    	
+    	cliente.setNumeroCliente(Integer.parseInt(idcl));
+    	try {
+			cliente = BusinessDelegate.getInstancia().buscarCliente(cliente);
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+  
+    	cuenta.setIdCuentaCorriente(Integer.parseInt(idc));
+    	
+    	cuenta.setCondiciones(txtCondicPago.getText());
+    	cuenta.setLimite(Float.parseFloat(txtLimitePrecio.getText()));
+        cliente.setNumeroCliente(Integer.parseInt(idcl));
+        cliente.setNombre(txtRazon.getText());
+        cliente.setCuit(txtCuit.getText());
+        cliente.setTelefono(txtTelefono.getText());
+        cliente.setSucursal(MainController.getSuc());
+        cliente.setDireccion(txtDireccion.getText());
+        cliente.setEncargado(txtNombreE.getText());
+        cliente.setTelEncargado(txtTelE.getText());
+        cliente.setMailEncargado(txtMail.getText());
+        cliente.setGeneroEncargado(txtGenero.getText());
+        
+        try {
+			BusinessDelegate.getInstancia().modificarCliente(cliente);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+       
+    }
+    
+    private ArrayList<ListaPedido> buscarPedidos() {
+		ArrayList<ListaPedido> resultado = new ArrayList<ListaPedido>();
+		
+		try {
+			for(PedidoClienteDTO c : BusinessDelegate.getInstancia().getPedidos()){
+				if(c.getEstado().equalsIgnoreCase("Pendiente"))
+					resultado.add(new ListaPedido(Integer.toString(c.getIdPedidoCliente()), "Cliente 1", "Pendiente","05-06-2017"));
+			}
+			return resultado;
+			
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return resultado;
+	}
+
+	class ListaPedido extends RecursiveTreeObject<ListaPedido>{
     	StringProperty razonSocial;
     	StringProperty idPedido;
-    	StringProperty estado;
+    	StringProperty telefono;
     	StringProperty fechaGeneracion;
     	
     	public ListaPedido(String idPedido, String razonSocial, String telefono, String fechaGeneracion){
     		this.razonSocial = new SimpleStringProperty(razonSocial);
     		this.idPedido = new SimpleStringProperty(idPedido);
-    		this.estado = new SimpleStringProperty(telefono);
+    		this.telefono = new SimpleStringProperty(telefono);
     		this.fechaGeneracion = new SimpleStringProperty(fechaGeneracion);
     	}
     	
@@ -310,7 +385,7 @@ public class PedidosPendientesController implements Initializable{
     	}
     	
     	public String getTelefono(){
-    		return estado.get();
+    		return telefono.get();
     	}
     	
     	public String getFechaGeneracion(){

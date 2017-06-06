@@ -4,15 +4,18 @@ import java.util.ArrayList;
 
 import dto.PrendaDTO;
 import negocio.Prenda;
+import persistencia.PrendaDAO;
 
 public class AdministradorPrenda {
-	private ArrayList<Prenda> prendas;
+	private static ArrayList<Prenda> prendas;
 	private static AdministradorPrenda instancia = null;
 	
 	
-	private static AdministradorPrenda getInstancia (){
-		if(instancia== null)
+	public static AdministradorPrenda getInstancia (){
+		if(instancia== null){
 			instancia= new AdministradorPrenda();
+			prendas = new ArrayList<Prenda>();
+		}
 		return instancia;
 	}
 
@@ -54,17 +57,7 @@ public class AdministradorPrenda {
 		
 	}
 	public void modificarPrenda(PrendaDTO prenda){
-		Prenda pren= new Prenda(prenda);
-		for (Prenda p:prendas){
-			if (p.sosLaPrenda(pren.getCodigo())){
-				p.update(pren);
-			}
-		}
-		Prenda prenda2 = null;
-		prenda2 = pren.buscarPrenda(pren.getCodigo());
-		
-		if(prenda2 != null)
-			prenda2.update(pren);
+		PrendaDAO.getInstancia().update(new Prenda(prenda));
 	}
 	public PrendaDTO BuscarPrenda(int codigo){
 		for (Prenda p : prendas){
@@ -78,15 +71,17 @@ public class AdministradorPrenda {
 		return fact.toDTO();
 	}
 	public ArrayList<PrendaDTO> BuscarAllPrenda (){
-		ArrayList<PrendaDTO> list = null;
-		ArrayList<Prenda> aux= null;
-		// Vale esto ? otra cosa no se me ocurrio, sin tener que llamar al dao desde aca
-		Prenda help=null;
-		aux= help.buscarTodos();
+		ArrayList<Prenda> prendas= PrendaDAO.getInstancia().getAll();
+		ArrayList<PrendaDTO> prendasDTO= new ArrayList<PrendaDTO>();
 				
-		for (Prenda p : aux){
-				list.add(p.toDTO());
+		for (Prenda p : prendas){
+				prendasDTO.add(p.toDTO());
 		}
-		return list;
+		return prendasDTO;
+	}
+
+
+	public PrendaDTO getPrenda(int id, int talle, int color) {
+		return PrendaDAO.getInstancia().getPrenda(id, talle, color).toDTO();
 	}
 }

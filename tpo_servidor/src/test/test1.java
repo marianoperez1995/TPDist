@@ -1,24 +1,18 @@
 package test;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
-import negocio.Cliente;
-import negocio.CuentaCorriente;
-import negocio.Empleado;
-import negocio.PedidoCliente;
-import negocio.Sucursal;
-import persistencia.ClienteDAO;
-import persistencia.EmpleadoDAO;
-import persistencia.SucursalDAO;
+import negocio.Prenda;
+import persistencia.PrendaDAO;
 
 public class test1 {
 
 	public static void main(String[] args) {
 	//	ClienteDAO.getInstancia().eliminar(2);
 		
+		ArrayList <Prenda> prendas=PrendaDAO.getInstancia().getAll();
+		for (Prenda pre:prendas)
+			pre.toString();
 		
 		/*
 		//getall de Empleados

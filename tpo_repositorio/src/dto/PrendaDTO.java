@@ -91,6 +91,13 @@ public class PrendaDTO  implements Serializable{
 	public void setStockActual(int stockActual) {
 		this.stockActual = stockActual;
 	}
+	@Override
+	public String toString() {
+		return "PrendaDTO [idPrenda=" + idPrenda + ", descripcion=" + descripcion + ", stockMinimo=" + stockMinimo + ", stockActual=" + stockActual+ ", costoProduccionReal=" + costoProduccionReal + ", costoProduccionActual="
+				+ costoProduccionActual + ", porcentajeGanancia=" + porcentajeGanancia + ", precio=" + precio
+				+ ", cantidadAConfeccionar=" + cantidadAConfeccionar + ", color=" + color + ", talle=" + talle
+				+ ", estadoProduccion="	+ estadoProduccion  + "]";
+	}
 	
 	
 }

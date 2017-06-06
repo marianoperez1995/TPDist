@@ -207,4 +207,14 @@ public class Prenda {
 	}
 
 
+	@Override
+	public String toString() {
+		return "Prenda [idPrenda=" + idPrenda + ", descripcion=" + descripcion + ", estadoProduccion="
+				+ estadoProduccion + ", costoProduccionReal=" + costoProduccionReal + ", costoProduccionActual="
+				+ costoProduccionActual + ", porcentajeGanancia=" + porcentajeGanancia + ", precio=" + precio
+				+ ", cantidadAConfeccionar=" + cantidadAConfeccionar + ", color=" + color + ", talle=" + talle
+				+ ", stockMinimo=" + stockMinimo + ", stockActual=" + stockActual + "]";
+	}
+
+
 }

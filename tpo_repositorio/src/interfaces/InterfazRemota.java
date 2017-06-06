@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import dto.ClienteDTO;
 import dto.CuentaCorrienteDTO;
 import dto.EmpleadoDTO;
+import dto.PedidoClienteDTO;
+import dto.PrendaDTO;
 
 public interface InterfazRemota extends Remote {
 	
@@ -48,6 +50,11 @@ public interface InterfazRemota extends Remote {
 	public ClienteDTO obtenerCliente(ClienteDTO b) throws RemoteException;
 	public CuentaCorrienteDTO buscarCuenta(CuentaCorrienteDTO cuenta) throws RemoteException;
 	public void bajaCliente(ClienteDTO nuevo) throws RemoteException;
+	public void rechazarCliente(ClienteDTO nuevo) throws RemoteException;
+	public ArrayList<PrendaDTO> getPrendas() throws RemoteException;
+	public PrendaDTO getPrenda(int id, int talle, int color) throws RemoteException;
+	public void modificarPrenda(PrendaDTO prenda)throws RemoteException;
+	public ArrayList<PedidoClienteDTO> getPedidos() throws RemoteException;
 	
 	//despacho
 	//falta agregar metodos al despacho

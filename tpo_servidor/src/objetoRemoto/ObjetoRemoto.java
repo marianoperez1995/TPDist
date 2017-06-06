@@ -6,10 +6,14 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import controladores.AdministradorClientes;
+import controladores.AdministradorPedidos;
+import controladores.AdministradorPrenda;
 import controladores.AdministradorSucursales;
 import dto.ClienteDTO;
 import dto.CuentaCorrienteDTO;
 import dto.EmpleadoDTO;
+import dto.PedidoClienteDTO;
+import dto.PrendaDTO;
 import interfaces.InterfazRemota;
 
 public class ObjetoRemoto extends UnicastRemoteObject implements InterfazRemota,Serializable {
@@ -142,6 +146,40 @@ public class ObjetoRemoto extends UnicastRemoteObject implements InterfazRemota,
 	@Override
 	public CuentaCorrienteDTO buscarCuenta(CuentaCorrienteDTO cuenta) throws RemoteException {
 		return AdministradorClientes.getInstancia().obtenerCuenta(cuenta);
+	}
+
+	@Override
+	public void bajaCliente(ClienteDTO nuevo) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void rechazarCliente(ClienteDTO nuevo) throws RemoteException {
+		// TODO Auto-generated method stub
+		AdministradorClientes.getInstancia().rechazarCliente(nuevo);
+	}
+
+	@Override
+	public ArrayList<PrendaDTO> getPrendas() throws RemoteException {
+		// TODO Auto-generated method stub
+		return AdministradorPrenda.getInstancia().BuscarAllPrenda();
+	}
+
+	@Override
+	public PrendaDTO getPrenda(int id, int talle, int color) throws RemoteException {
+		return AdministradorPrenda.getInstancia().getPrenda(id, talle, color);
+	}
+
+	@Override
+	public void modificarPrenda(PrendaDTO prenda) throws RemoteException {
+		AdministradorPrenda.getInstancia().modificarPrenda(prenda);
+		
+	}
+
+	@Override
+	public ArrayList<PedidoClienteDTO> getPedidos() throws RemoteException {
+		return AdministradorPedidos.getInstancia().BuscarAllCliente();
 	}
 	
 }

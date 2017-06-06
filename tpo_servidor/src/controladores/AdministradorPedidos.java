@@ -2,27 +2,31 @@ package controladores;
 
 import java.util.ArrayList;
 
+import dto.ClienteDTO;
 import dto.PedidoClienteDTO;
 import negocio.PedidoCliente;
+import persistencia.PedidoClienteDAO;
 
 public class AdministradorPedidos {
-	private ArrayList<PedidoCliente> pedidosPendientes;
-private static AdministradorPedidos instancia = null;
+	private static ArrayList<PedidoCliente> pedidos;
+	private static AdministradorPedidos instancia = null;
 	
 	
-	private static AdministradorPedidos getInstancia (){
-		if(instancia== null)
+	public static AdministradorPedidos getInstancia(){
+		if(instancia== null){
 			instancia= new AdministradorPedidos();
+			pedidos = new ArrayList<PedidoCliente>();
+		}
 		return instancia;
 	}
 
 	public void nuevoPedido(PedidoClienteDTO pedido) {
 		PedidoCliente pc= new PedidoCliente(pedido);
-		pedidosPendientes.add(pc);
+		pedidos.add(pc);
 		pc.insert();
 	}
 	private PedidoCliente buscarPedidoCliente(int numero) {
-		for (PedidoCliente pc : pedidosPendientes){
+		for (PedidoCliente pc : pedidos){
 			if (pc.getNumPedidoCliente()== numero){
 				return pc;
 			}
@@ -33,9 +37,9 @@ private static AdministradorPedidos instancia = null;
 		return aux;
 	}
 	public void bajaPedidoCliente(int numero) {
-		for (PedidoCliente pc : pedidosPendientes){
+		for (PedidoCliente pc : pedidos){
 			if (pc.getNumPedidoCliente()== numero){
-				pedidosPendientes.remove(pc);
+				pedidos.remove(pc);
 				pc.delete();
 			}
 		}
@@ -48,7 +52,7 @@ private static AdministradorPedidos instancia = null;
 	}
 	
 	public PedidoClienteDTO BuscarPedidoCliente (int numeroPedidoCliente){
-		for (PedidoCliente pc : pedidosPendientes){
+		for (PedidoCliente pc : pedidos){
 			if (pc.getNumPedidoCliente() == numeroPedidoCliente){
 				return pc.toDTO();
 			}
@@ -59,16 +63,14 @@ private static AdministradorPedidos instancia = null;
 		return fact.toDTO();
 	}
 	public ArrayList<PedidoClienteDTO> BuscarAllCliente (){
-		ArrayList<PedidoClienteDTO> list = null;
-		ArrayList<PedidoCliente> aux= null;
-		// Vale esto ? otra cosa no se me ocurrio, sin tener que llamar al dao desde aca
-		PedidoCliente help=null;
-		aux= help.buscarTodos();
+		ArrayList<PedidoCliente> prendas= PedidoClienteDAO.getInstancia().getAll();
+		ArrayList<PedidoClienteDTO> prendasDTO= new ArrayList<PedidoClienteDTO>();
 				
-		for (PedidoCliente pc : aux){
-				list.add(pc.toDTO());
+		for (PedidoCliente p : prendas){
+				
+				prendasDTO.add(p.toDTO());
 		}
-		return list;
+		return prendasDTO;
 	}
 	
 }

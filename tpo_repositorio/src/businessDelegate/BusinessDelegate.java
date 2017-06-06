@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import dto.ClienteDTO;
 import dto.CuentaCorrienteDTO;
 import dto.EmpleadoDTO;
+import dto.PedidoClienteDTO;
+import dto.PrendaDTO;
 
 public class BusinessDelegate {
 	private static BusinessDelegate instancia;
@@ -90,5 +92,22 @@ public class BusinessDelegate {
 	}
 	public void bajaCliente(ClienteDTO nuevo) throws RemoteException {
 		objetoRemoto.bajaCliente(nuevo);
+	}
+	public void rechazarCliente(ClienteDTO nuevo) throws RemoteException{
+		// TODO Auto-generated method stub
+		objetoRemoto.rechazarCliente(nuevo);
+	}
+	public ArrayList<PrendaDTO> getPrendas() throws RemoteException {
+		return objetoRemoto.getPrendas();
+	}
+	public PrendaDTO getPrenda(int id, int talle, int color)  throws RemoteException {
+		return objetoRemoto.getPrenda(id, talle, color);
+	}
+	public void modificarPrenda(PrendaDTO prenda)   throws RemoteException {
+		 objetoRemoto.modificarPrenda(prenda);
+		
+	}
+	public ArrayList<PedidoClienteDTO> getPedidos() throws RemoteException {
+		return objetoRemoto.getPedidos();
 	}
 }

@@ -161,19 +161,16 @@ public class PedidoCliente {
 
 	
 	//Se llama desde Cliente.toDTO()
-	public PedidoClienteDTO toDTO(ClienteDTO cliente) {
+	public PedidoClienteDTO toDTO() {
 		PedidoClienteDTO p = new PedidoClienteDTO();
-		p.setCliente(cliente); //Va a tener la sucursal y pedidos sin nada el cliente aca
+		
 		p.setEstado(estado);
 		p.setFechaDespacho(fechaDespacho);
 		p.setFechaGeneracion(fechaGeneracion);
 		p.setFechaProbableDespacho(fechaProbableDespacho);
 		p.setIdPedidoCliente(idPedidoCliente);
-		ArrayList<ItemPedidoClienteDTO> items = new ArrayList<>();
-		for (ItemPedidoCliente i : this.itemsPedidoCliente){
-			items.add(i.toDTO(p));
-		}
-		p.setItemsPedidoCliente(items);
+		ArrayList<ItemPedidoClienteDTO> items = new ArrayList<ItemPedidoClienteDTO>();
+	
 		p.setPrecioTotal(precioTotal);
 		return p;
 	}

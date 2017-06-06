@@ -34,7 +34,7 @@ import javafx.scene.control.TreeTableView.TreeTableViewSelectionModel;
 import javafx.scene.layout.FlowPane;
 import javafx.util.Callback;
 
-public class ClienteBuscarController implements Initializable{
+public class ClientesPendientesController implements Initializable{
 
     @FXML
     private JFXTreeTableView<ClienteTabla> vistaTabla;
@@ -69,8 +69,6 @@ public class ClienteBuscarController implements Initializable{
     @FXML
     private JFXTextField txtGenero;
 
-    @FXML
-    private JFXButton btnGuardar;
 
     @FXML
     private JFXTextField txtCuit;
@@ -92,9 +90,6 @@ public class ClienteBuscarController implements Initializable{
 
     @FXML
     private JFXTextField txtLimitePrecio;
-
-    @FXML
-    private JFXButton btnCancelar;
 
     @FXML
     private Label lblCantPedidos;
@@ -267,8 +262,6 @@ public class ClienteBuscarController implements Initializable{
 	    	           txtLimitePrecio.setText(Float.toString(seleccionado.getCuentaCorriente().getLimite()));
 	    	           txtCondicPago.setText(seleccionado.getCuentaCorriente().getCondiciones());
 	    	           
-	    	       		btnCancelar.setDisable(true);
-	    	       		btnGuardar.setDisable(true);
 	    	       		btnEliminar.setDisable(false);
 	    	       		btnEditar.setDisable(false);
 	    	        }
@@ -290,14 +283,12 @@ public class ClienteBuscarController implements Initializable{
         txtMail.setEditable(false);
         txtGenero.setEditable(false);
         
-    	btnCancelar.setDisable(true);
-    	btnGuardar.setDisable(true);
     	btnEliminar.setDisable(false);
     	btnEditar.setDisable(false);
     }
 
     @FXML
-    void guardarModif(ActionEvent event) {
+    void editarCliente(ActionEvent event) {
     	ClienteDTO cliente = new ClienteDTO();
     	CuentaCorrienteDTO cuenta = new CuentaCorrienteDTO();
     	String idc = lblIdCC.getText();
@@ -335,6 +326,7 @@ public class ClienteBuscarController implements Initializable{
         cliente.setMailEncargado(txtMail.getText());
         cliente.setGeneroEncargado(txtGenero.getText());
         cliente.setCuentaCorriente(cuenta);
+        cliente.setEstado("Alta");
         try {
 			BusinessDelegate.getInstancia().modificarCliente(cliente);
 		} catch (RemoteException e) {
@@ -342,7 +334,7 @@ public class ClienteBuscarController implements Initializable{
 			e.printStackTrace();
 		}
         
-        txtCondicPago.setEditable(false);
+    	txtCondicPago.setEditable(false);
     	txtLimitePrecio.setEditable(false);
         txtRazon.setEditable(false);
         txtCuit.setEditable(false);
@@ -352,18 +344,28 @@ public class ClienteBuscarController implements Initializable{
         txtTelE.setEditable(false);
         txtMail.setEditable(false);
         txtGenero.setEditable(false);
+    	
+        lblIdCC.setText("ID#");
+        lblIdCliente.setText("#");
+        lblCantPedidos.setText("");
+        txtRazon.setText("");
+        txtCuit.setText("");
+        txtTelefono.setText("");
+        txtDireccion.setText("");
+        txtNombreE.setText("");
+        txtTelE.setText("");
+        txtMail.setText("");
+        txtGenero.setText("");
+        txtLimitePrecio.setText("");
+        txtCondicPago.setText("");
         
-    	btnCancelar.setDisable(true);
-    	btnGuardar.setDisable(true);
-    	btnEliminar.setDisable(false);
-    	btnEditar.setDisable(false);
+    	btnEliminar.setDisable(true);
+    	btnEditar.setDisable(true);
         
     }
-    
+    /*
     @FXML
     void editarCliente(ActionEvent event) {
-    	btnCancelar.setDisable(false);
-    	btnGuardar.setDisable(false);
     	btnEliminar.setDisable(true);
     	btnEditar.setDisable(true);
     	
@@ -377,7 +379,7 @@ public class ClienteBuscarController implements Initializable{
         txtTelE.setEditable(true);
         txtMail.setEditable(true);
         txtGenero.setEditable(true);
-        }
+        }*/
 
     @FXML
     void eliminarCliente(ActionEvent event) {
@@ -388,7 +390,7 @@ public class ClienteBuscarController implements Initializable{
     	
     	nuevo.setNumeroCliente(Integer.parseInt(idcl));
     	try {
-			BusinessDelegate.getInstancia().bajaCliente(nuevo);
+			BusinessDelegate.getInstancia().rechazarCliente(nuevo);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -419,8 +421,6 @@ public class ClienteBuscarController implements Initializable{
         txtLimitePrecio.setText("");
         txtCondicPago.setText("");
         
-    	btnCancelar.setDisable(true);
-    	btnGuardar.setDisable(true);
     	btnEliminar.setDisable(true);
     	btnEditar.setDisable(true);
     }
@@ -430,7 +430,7 @@ public class ClienteBuscarController implements Initializable{
 		
 		try {
 			for(ClienteDTO c : BusinessDelegate.getInstancia().listadoClientes()){
-				if(!c.getEstado().equalsIgnoreCase("Baja"))
+				if(c.getEstado().equalsIgnoreCase("Pendiente"))
 					resultado.add(new ClienteTabla(Integer.toString(c.getNumeroCliente()), c.getNombre(),c.getCuit(),c.getTelefono(),c.getFechaRegistro()));
 			}
 			return resultado;

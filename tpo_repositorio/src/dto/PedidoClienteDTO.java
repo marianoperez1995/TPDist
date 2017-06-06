@@ -91,6 +91,16 @@ public class PedidoClienteDTO implements Serializable {
 		return fechaEntregaCliente;
 	}
 
+	@Override
+	public String toString() {
+		return "PedidoClienteDTO [idPedidoCliente=" + idPedidoCliente + ", cliente=" + cliente + ", estado=" + estado
+				+ ", fechaGeneracion=" + fechaGeneracion + ", fechaProbableDespacho=" + fechaProbableDespacho
+				+ ", fechaDespacho=" + fechaDespacho + ", fechaEntregaCliente=" + fechaEntregaCliente
+				+ ", itemsPedidoCliente=" + itemsPedidoCliente + ", precioTotal=" + precioTotal + "]";
+	}
+	
+	
+
 
 
 }
