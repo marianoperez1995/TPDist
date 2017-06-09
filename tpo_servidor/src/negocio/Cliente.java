@@ -265,4 +265,8 @@ public class Cliente {
 		this.actualizar();
 	}
 
+	public void aumentarLimiteCredito(float limite) {
+		this.cuentaCorriente.setLimite(limite);		
+	}
+
 }

@@ -1,3 +1,7 @@
+/base/
+/hibernate.properties
+/lib/
+/controladores/
 /entities/
 /hibernate/
 /negocio/

@@ -110,4 +110,8 @@ public class BusinessDelegate {
 	public ArrayList<PedidoClienteDTO> getPedidos() throws RemoteException {
 		return objetoRemoto.getPedidos();
 	}
+	
+	public void aumentarLimiteCredito(ClienteDTO cliente, float limite) throws RemoteException{
+		objetoRemoto.aumentarLimiteCredito(cliente, limite);
+	}
 }

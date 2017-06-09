@@ -55,7 +55,7 @@ public interface InterfazRemota extends Remote {
 	public PrendaDTO getPrenda(int id, int talle, int color) throws RemoteException;
 	public void modificarPrenda(PrendaDTO prenda)throws RemoteException;
 	public ArrayList<PedidoClienteDTO> getPedidos() throws RemoteException;
-	
+	public void aumentarLimiteCredito(ClienteDTO cliente, float limite) throws RemoteException;
 	//despacho
 	//falta agregar metodos al despacho
 	

@@ -106,4 +106,12 @@ public class AdministradorClientes {
 		cli.setEstado("Rechazado");
 		ClienteDAO.getInstancia().update(cli);
 	}
+	
+	public void aumentarLimiteCreditoCliente(float limite, ClienteDTO clientedto){
+		Cliente cliente=new Cliente(clientedto);
+		cliente.aumentarLimiteCredito(limite);
+		ClienteDAO.getInstancia().update(cliente);
+		
+		
+	}
 }

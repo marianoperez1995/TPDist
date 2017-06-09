@@ -182,4 +182,12 @@ public class ObjetoRemoto extends UnicastRemoteObject implements InterfazRemota,
 		return AdministradorPedidos.getInstancia().BuscarAllCliente();
 	}
 	
-}
+	public void aumentarLimiteCredito (float limite, ClienteDTO cliente) throws RemoteException{
+		
+		AdministradorClientes.getInstancia().aumentarLimiteCreditoCliente(limite, cliente);
+		
+		
+	}
+	}
+	
+
