@@ -200,4 +200,15 @@ public class PedidoCliente {
 	public void setFechaEntregaCliente(Date fechaEntregaCliente) {
 		this.fechaEntregaCliente = fechaEntregaCliente;
 	}
+	
+	public float montoAPagarEnCasoDeCancelacion(){
+		if(this.estado.equalsIgnoreCase("Confirmado")){
+			return this.precioTotal;
+			
+		}
+		
+		return 0;
+		
+		
+	}
 }

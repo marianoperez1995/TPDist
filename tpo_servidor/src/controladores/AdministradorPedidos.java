@@ -23,42 +23,46 @@ public class AdministradorPedidos {
 	public void nuevoPedido(PedidoClienteDTO pedido) {
 		PedidoCliente pc= new PedidoCliente(pedido);
 		pedidos.add(pc);
-		pc.insert();
+		PedidoClienteDAO.getInstancia().insert(pc, pc.getCliente().getIdCliente());
 	}
 	private PedidoCliente buscarPedidoCliente(int numero) {
 		for (PedidoCliente pc : pedidos){
-			if (pc.getNumPedidoCliente()== numero){
+			if (pc.getIdPedidoCliente()== numero){
 				return pc;
 			}
 		}
 		PedidoCliente aux= null;
-		aux = aux.buscarPedidoCliente(numero);
+		aux = PedidoClienteDAO.getInstancia().getPedidoCliente(numero);
 		
 		return aux;
 	}
-	public void bajaPedidoCliente(int numero) {
+	public float bajaPedidoCliente(int numero) {
 		for (PedidoCliente pc : pedidos){
-			if (pc.getNumPedidoCliente()== numero){
+			if (pc.getIdPedidoCliente()== numero){
 				pedidos.remove(pc);
-				pc.delete();
+				PedidoClienteDAO.getInstancia().eliminar(numero);
+				return pc.montoAPagarEnCasoDeCancelacion();
 			}
 		}
 		PedidoCliente aux= null;
-		aux = aux.buscarPedidoCliente(numero);
+		aux = PedidoClienteDAO.getInstancia().getPedidoCliente(numero);
 		
 		if(aux != null){
-			aux.delete();
+			PedidoClienteDAO.getInstancia().eliminar(numero);
+			return aux.montoAPagarEnCasoDeCancelacion();
 		}
+		return 0;
+		
 	}
 	
 	public PedidoClienteDTO BuscarPedidoCliente (int numeroPedidoCliente){
 		for (PedidoCliente pc : pedidos){
-			if (pc.getNumPedidoCliente() == numeroPedidoCliente){
+			if (pc.getIdPedidoCliente() == numeroPedidoCliente){
 				return pc.toDTO();
 			}
 		}
 		PedidoCliente fact = null;
-		fact = fact.buscarPedidoCliente(numeroPedidoCliente);
+		fact=PedidoClienteDAO.getInstancia().getPedidoCliente(numeroPedidoCliente);
 		
 		return fact.toDTO();
 	}
