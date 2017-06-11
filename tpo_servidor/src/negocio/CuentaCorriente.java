@@ -107,4 +107,12 @@ public class CuentaCorriente {
 		return c;
 	}
 
+	public boolean verificarLimite(float precioPedido) {
+		if(precioPedido <= this.limite){
+			return true;
+		}
+		return false;
+		
+	}
+
 }

@@ -32,7 +32,7 @@ public interface InterfazRemota extends Remote {
 	public void generarFactura(PedidoClienteDTO pedido) throws RemoteException; 
 	
 	//Administadord Pedidos
-	public void nuevoPedido(PedidoClienteDTO pedido) throws RemoteException;
+	public int nuevoPedido(PedidoClienteDTO pedido) throws RemoteException;
 	
 	//Administrador Prenda
 	public void generarPrenda(PrendaDTO prenda) throws RemoteException;
@@ -56,6 +56,8 @@ public interface InterfazRemota extends Remote {
 	public void modificarPrenda(PrendaDTO prenda)throws RemoteException;
 	public ArrayList<PedidoClienteDTO> getPedidos() throws RemoteException;
 	public void aumentarLimiteCredito(ClienteDTO cliente, float limite) throws RemoteException;
+	public int nuevoPedidoCliente(PedidoClienteDTO pedido) throws RemoteException;
+
 	//despacho
 	//falta agregar metodos al despacho
 	

@@ -20,10 +20,15 @@ public class AdministradorPedidos {
 		return instancia;
 	}
 
-	public void nuevoPedido(PedidoClienteDTO pedido) {
+	public int nuevoPedido(PedidoClienteDTO pedido) {
 		PedidoCliente pc= new PedidoCliente(pedido);
+		//verifica si el precio del pedido es inferior o igual al limite 
+		if(pc.getCliente().verificarLimite(pedido.getPrecioTotal())){
 		pedidos.add(pc);
 		PedidoClienteDAO.getInstancia().insert(pc, pc.getCliente().getIdCliente());
+		return pc.getIdPedidoCliente();
+		}
+		return 0;
 	}
 	private PedidoCliente buscarPedidoCliente(int numero) {
 		for (PedidoCliente pc : pedidos){

@@ -268,5 +268,10 @@ public class Cliente {
 	public void aumentarLimiteCredito(float limite) {
 		this.cuentaCorriente.setLimite(limite);		
 	}
+	
+	public boolean verificarLimite(float precioPedido){
+		return this.cuentaCorriente.verificarLimite(precioPedido);
+		
+	}
 
 }

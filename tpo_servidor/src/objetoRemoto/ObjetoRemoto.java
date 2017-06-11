@@ -79,7 +79,7 @@ public class ObjetoRemoto extends UnicastRemoteObject implements InterfazRemota,
 		
 	}
 
-	public void nuevoPedido(PedidoClienteDTO pedido) {
+	public int nuevoPedido(PedidoClienteDTO pedido) {
 		Sistema.getInstancia().getAdmPedidos().nuevoPedido(pedido);
 	}
 
@@ -182,12 +182,19 @@ public class ObjetoRemoto extends UnicastRemoteObject implements InterfazRemota,
 		return AdministradorPedidos.getInstancia().BuscarAllCliente();
 	}
 	
-	public void aumentarLimiteCredito (float limite, ClienteDTO cliente) throws RemoteException{
-		
-		AdministradorClientes.getInstancia().aumentarLimiteCreditoCliente(limite, cliente);
-		
-		
+	
+	public int nuevoPedidoCliente(PedidoClienteDTO pedido) {
+		return AdministradorPedidos.getInstancia().nuevoPedido(pedido);
 	}
+
+	@Override
+	public void aumentarLimiteCredito(ClienteDTO cliente, float limite) throws RemoteException {
+		AdministradorClientes.getInstancia().aumentarLimiteCreditoCliente(limite, cliente);
+
+	}
+	
+	
+	
 	}
 	
 
