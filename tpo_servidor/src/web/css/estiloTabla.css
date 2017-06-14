@@ -1,0 +1,61 @@
+body {
+  font-family: 'Verdana';
+  background:#36a0b1;
+}
+
+sortable-table {
+  display:block;
+  margin: 30px auto;
+  max-width: 600px;
+  font-size:12px;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+sortable-table .header {
+  padding:13px 8px;
+  font-size:14px;
+  background:#2c3033;
+  color:#d6f3f5;
+}
+
+table {
+  width: 100%;
+  background:#ffffff;
+}
+
+table th {
+  width:20%;
+  padding:8px;
+  text-align:left;
+  font-weight:400;
+  cursor:pointer;
+  background:#4dc8db;
+  color:#ffffff;
+  selectable:none;
+  
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+table th:focus {
+  background: #f2c431;
+  outline: none;
+}
+
+table tr {
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+table tr td {
+  padding:8px;
+}
+
+table tr:nth-child(odd) {
+  background:#eef1f6;
+}

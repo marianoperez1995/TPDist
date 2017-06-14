@@ -1,8 +1,1 @@
-/controladores/
-/entities/
-/hibernate/
-/negocio/
-/objetoRemoto/
-/persistencia/
-/servidor/
-/test/
+/web/
