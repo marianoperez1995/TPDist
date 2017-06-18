@@ -30,8 +30,18 @@ insert into Clientes values ('02/06/2017 10:30', 'Cliente 5', '3255212', '466633
 insert into Clientes values ('02/06/2017 10:30', 'Cliente 6', '5223421', '46663333', 'Jose Pedro 1500 2A', 1, 6, 'Pendiente', 'Piter', '44223312', 'Piter@ejemplo.com', 'Masculino')
 insert into Clientes values ('02/06/2017 10:30', 'Cliente 7', '67432123', '46663333', 'Jose Eduardo 1500 2A', 1, 7, 'Pendiente', 'German', '44223312', 'german@ejemplo.com', 'Masculino')
 
+--talles
+insert into Talles values ('extra chico')
+insert into Talles values ('chico')
+insert into Talles values ('mediano')
+insert into Talles values ('grande')
+insert into Talles values ('extra grande')
 
-select * from clientes
-select * from empleados
-select * from sucursales
-select * from cuentascorriente
+--colores
+insert into Colores  values ('negro')
+insert into Colores  values ('verde')
+insert into Colores  values ('amarilla')
+insert into Colores  values ('rojo')
+insert into Colores  values ('uva')
+insert into Colores  values ('blanco')
+insert into Colores  values ('celeste')

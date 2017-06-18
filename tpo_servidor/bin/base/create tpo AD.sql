@@ -2,25 +2,22 @@ create table OrdenesProduccion (
 	idOrdenProduccion int not null identity (1,1),
 	fecha DateTime not null,
 	tipo varchar(5) not null,
-
 	constraint pk_OrdenesP primary key (idOrdenProduccion)
 )
 
 create table ItemOrdenProduccion (
 	idOrdenProduccion int not null,
 	idPrenda int not null,
-	idColor int not null,
-	idTalle int not null,
 	cantidadPedida int not null,
 	cantidadRealizada int not null,
 
-	constraint pk_ItemOrdProd primary key (idOrdenProduccion, idPrenda, idColor, idTalle),
+	constraint pk_ItemOrdProd primary key (idOrdenProduccion, idPrenda),
 )
 
 create table Prendas (
-	idPrenda int not null,
-	idColor int not null,
-	idTalle int not null,
+	idPrenda int not null identity(1,1),
+	color varchar(100) not null,
+	talle varchar(100) not null,
 	descripcion varchar(100) not null,
 	estadoProduccion bit not null,
 	costoProduccion float not null,
@@ -32,7 +29,7 @@ create table Prendas (
 	stockActual int not null
 
 
-	constraint pk_Prendas primary key (idPrenda, idColor, idTalle)
+	constraint pk_Prendas primary key (idPrenda)
 )
 
 create table Sucursales (
@@ -78,8 +75,6 @@ create table LineasProduccion (
 create table Lotes (
 	idLote int not null identity(1,1),
 	idPrenda int not null,
-	idColor int null,
-	idTalle int null,
 	cantidad int not null,
 	idOrden int null,
 
@@ -133,13 +128,11 @@ create table LotesInsumo (
 
 create table Prenda_Areas (
 	idPrenda int not null,
-	idColor int not null,
-	idTalle int not null,
 	idAreaProduccion int not null,
 	minutoEnArea int not null,
 
-	constraint pk_prenda_areas primary key (idPrenda, idColor, idTalle, idAreaProduccion),
-	constraint prenda_fk_area foreign key (idPrenda, idColor, idTalle) references Prendas,
+	constraint pk_prenda_areas primary key (idPrenda, idAreaProduccion),
+	constraint prenda_fk_area foreign key (idPrenda) references Prendas,
 	constraint prenda_fk_area1 foreign key (idAreaProduccion) references AreasProduccion
 )
 
@@ -155,14 +148,12 @@ create table Area_lineasProduccion (
 
 create table prenda_insumos (
 	idPrenda int not null,
-	idColor int not null,
-	idTalle int not null,
 	idInsumo int not null,
 	cantidad float not null,
 	desperdicio float not null,
 
-	constraint pk_Pren_Ins primary key (idPrenda, idColor, idTalle, idInsumo),
-	constraint prenda_fk_insumo foreign key (idPrenda, idColor, idTalle) references Prendas,
+	constraint pk_Pren_Ins primary key (idPrenda, idInsumo),
+	constraint prenda_fk_insumo foreign key (idPrenda) references Prendas,
 	constraint prenda_fk_insumo1 foreign key (idInsumo) references Insumos
 )
 
@@ -222,31 +213,17 @@ create table PedidoInsumos (
 	constraint pedidoins_fk_proveedor foreign key (idProveedor) references Proveedores
 )
 
-create table Talles (
-	idTalle int not null identity (1,1), 
-	nombre varchar(50) not null,
 
-	constraint pk_talle primary key (idTalle)
-)
-
-create table Colores (
-	idColor int not null identity (1,1), 
-	nombre varchar(50) not null,
-
-	constraint pk_color primary key (idColor)
-)
 
 create table ItemPedidoCliente (
 	idPedidoCliente int not null,
 	idPrenda int not null,
-	idColor int not null,
-	idTalle int not null,
 	cantidad int not null,
 	subtotal float not null,
 
-	constraint pk_pedidocliente_prendas primary key (idPedidoCliente, idPrenda, idColor, idTalle),
+	constraint pk_pedidocliente_prendas primary key (idPedidoCliente, idPrenda),
 	constraint pedidoCliente_fk_Prendas foreign key (idPedidoCliente) references PedidosCliente,
-	constraint pedidoCliente_fk_Prendas1 foreign key (idPrenda, idColor, idTalle) references Prendas
+	constraint pedidoCliente_fk_Prendas1 foreign key (idPrenda) references Prendas
 )
 
 create table Transportes (
@@ -291,8 +268,6 @@ create table ItemPedidoInsumos (
 create table Movimientos (
 	idMovimiento int identity(1,1),
 	idPrenda int not null,
-	idColor int not null,
-	idTalle int not null,
 	tipo varchar(100) not null, --agregar de una produccion, enviar a despacho, devolucion de prendas
 	cantidad int not null,
 	idCliente int null, --si no es devolucion, va NULL
@@ -300,7 +275,7 @@ create table Movimientos (
 	idOrdenProduccion int null -- si no es agregar de una produccion, va NULL
 
 	constraint pk_movimientos primary key (idMovimiento),
-	constraint fk_movimiento_prenda foreign key (idPrenda, idColor, idTalle) references Prendas,
+	constraint fk_movimiento_prenda foreign key (idPrenda) references Prendas,
 	constraint fk_movimiento_cliente foreign key (idCliente) references Clientes,
 	constraint fk_movimiento_pedido foreign key (idPedido) references PedidosCliente,
 	constraint fk_movimiento_orden foreign key (idOrdenProduccion) references OrdenesProduccion
@@ -309,14 +284,12 @@ create table Movimientos (
 create table Prendas_Eliminadas (
 	idPrendaEliminada int identity(1,1),
 	idPrenda int not null,
-	idColor int not null,
-	idTalle int not null,
 	idEmpleadoBaja int not null,
 	idGerente int not null,
 	descripcion varchar(200)
 
 	constraint pk_prendaseliminadas primary key (idPrendaEliminada),
-	constraint fk_eliminada_prenda foreign key (idPrenda, idColor, idTalle) references Prendas,
+	constraint fk_eliminada_prenda foreign key (idPrenda) references Prendas,
 	constraint fk_eliminada_empleado foreign key (idEmpleadoBaja) references Empleados,
 	constraint fk_eliminada_gerente foreign key (idGerente) references Empleados
 )
@@ -332,15 +305,13 @@ create table Reclamos (
 )
 
 alter table Lotes add
-	constraint lotes_prenda foreign key (idPrenda, idColor, idTalle) references Prendas
+	constraint lotes_prenda foreign key (idPrenda) references Prendas
 
 alter table ItemOrdenProduccion add
 	constraint ItemOrdProd_fk_Ord foreign key (idOrdenProduccion) references OrdenesProduccion,
-	constraint ItemOrdProd_fk_Ord1 foreign key (idPrenda, idColor, idTalle) references Prendas
+	constraint ItemOrdProd_fk_Ord1 foreign key (idPrenda) references Prendas
 
-alter table Prendas add
-	constraint fk_prendas_color foreign key (idColor) references Colores,
-	constraint fk_prendas_talles foreign key (idTalle) references Talles
+
 
 alter table Empleados add
 	constraint fk_empleados_suc foreign key (idSucursal) references Sucursales
