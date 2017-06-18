@@ -23,7 +23,6 @@ public class Cliente {
 	private String fechaRegistro;
 	private String estado;
 	private Sucursal sucursal;
-	private ArrayList<PedidoCliente> pedidosCliente;
 	
 	@Override
 	public String toString() {
@@ -31,7 +30,7 @@ public class Cliente {
 				+ cuentaCorriente + ", nombre=" + nombre + ", telefono=" + telefono + ", encargado=" + encargado
 				+ ", telEncargado=" + telEncargado + ", mailEncargado=" + mailEncargado + ", generoEncargado="
 				+ generoEncargado + ", fechaRegistro=" + fechaRegistro + ", estado=" + estado + ", sucursal=" + sucursal
-				+ ", pedidosCliente=" + pedidosCliente + "]";
+				+ " ]";
 	}
 
 	public String getFechaRegistro() {
@@ -87,15 +86,9 @@ public class Cliente {
 		this.generoEncargado = cliE.getGeneroencargado();
 		this.fechaRegistro = cliE.getFechaRegistro();
 		this.telEncargado = cliE.getTelencargado();
-		this.pedidosCliente = new ArrayList<PedidoCliente>();
-	
 		this.encargado = cliE.getEncargado();
 		this.estado = cliE.getEstado();
-		if (cliE.getPedidosCliente() != null) {
-			for (PedidoClienteEntity p : cliE.getPedidosCliente()) {
-				this.pedidosCliente.add(new PedidoCliente(p, this));
-			}
-		}
+		
 	}
 
 	public int getIdCliente() {
@@ -118,12 +111,6 @@ public class Cliente {
 		this.generoEncargado = cliDTO.getGeneroEncargado();
 		this.telEncargado = cliDTO.getTelEncargado();
 		this.fechaRegistro = cliDTO.getFechaRegistro();
-		this.pedidosCliente = new ArrayList<PedidoCliente>();
-		if (cliDTO.getPedidosCliente() != null) {
-			for (PedidoClienteDTO p : cliDTO.getPedidosCliente()) {
-				this.pedidosCliente.add(new PedidoCliente(p));
-			}
-		}
 		this.encargado = cliDTO.getEncargado();
 		this.estado = cliDTO.getEstado();
 	}
@@ -132,9 +119,7 @@ public class Cliente {
 
 	}
 
-	public void agregarPedido(PedidoCliente pedidoCliente) {
-		this.pedidosCliente.add(pedidoCliente);
-	}
+
 
 	public boolean sosElCliente(int numero) {
 		return (this.idCliente == numero);
@@ -191,13 +176,7 @@ public class Cliente {
 		this.sucursal = sucursal;
 	}
 
-	public ArrayList<PedidoCliente> getPedidosCliente() {
-		return pedidosCliente;
-	}
 
-	public void setPedidosCliente(ArrayList<PedidoCliente> pedidosCliente) {
-		this.pedidosCliente = pedidosCliente;
-	}
 
 	public void insertar() {
 		ClienteDAO.getInstancia().insert(this);
@@ -247,22 +226,9 @@ public class Cliente {
 		c.setTelefono(telefono);
 		c.setTelEncargado(telEncargado);
 		c.setFechaRegistro(fechaRegistro);
-		ArrayList<PedidoClienteDTO> pedidos = new ArrayList<>();
-		if(!pedidosCliente.isEmpty()){
-		for (PedidoCliente p : pedidosCliente) {
-			pedidos.add(p.toDTO(c));
-		}
-		}
-		c.setPedidosCliente(pedidos);
+		
 
 		return c;
-	}
-
-	public void borrarPedido(int id) {
-		for (PedidoCliente p : this.pedidosCliente)
-			if (p.getIdPedidoCliente() == id)
-				this.pedidosCliente.remove(p);
-		this.actualizar();
 	}
 
 	public void aumentarLimiteCredito(float limite) {

@@ -2,15 +2,12 @@ package negocio;
 
 import dto.MovimientoStockDTO;
 
-public class MovimientoStockPrenda extends MovimientoStock {
+public class MovimientoStockPrenda extends Movimientos {
 	private int idMovimientoStock;
 	private Prenda prenda;
 	private int cantidad;
 	
-	public MovimientoStockPrenda(MovimientoStockDTO movDTO) {
-		//de donde saco la Prenda, habria q hacer DTO para las clases que heredan tambien? o todo iria en MovimientoStockDTO (si es asi, tambien hay q hacerlo para opp,opc)
-	}
-	
+
 	public Prenda getPrenda() {
 		return prenda;
 	}

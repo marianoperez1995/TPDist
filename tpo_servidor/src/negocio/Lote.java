@@ -36,8 +36,6 @@ public class Lote {
 	public Lote(LoteEntity lote ) {
 		this.idLote = lote.getCodigo();
 		this.bultos = new ArrayList<Bulto>();
-		this.color = lote.getColor().getNombre();
-		this.talle = lote.getTalle().getNombre();
 		this.cantidadTotal = lote.getCantidadTotal();
 		if (lote.getOrden().esParcial())
 			this.orden = new Opp (lote.getOrden());

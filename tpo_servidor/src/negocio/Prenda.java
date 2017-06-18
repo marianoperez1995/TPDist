@@ -50,7 +50,7 @@ public class Prenda {
 
 
 	public Prenda(PrendaEntity p) {
-		this.idPrenda = p.getId().getIdPrenda();
+		this.idPrenda = p.getIdPrenda();
 		this.descripcion = p.getDescripcion();
 		this.estadoProduccion = p.getEstadoProduccion();
 		this.costoProduccionReal = p.getCostoProduccionReal();
@@ -58,8 +58,8 @@ public class Prenda {
 		this.porcentajeGanancia = p.getPorcentajeGanancia();
 		this.precio = p.getPrecio();
 		this.cantidadAConfeccionar = p.getCantidadAConfeccionar();
-		this.color = p.getId().getColor().getNombre();
-		this.talle = p.getId().getTalle().getNombre();
+		this.color=p.getColor();
+		this.talle=p.getTalle();
 		this.stockActual = p.getStockActual();
 		this.stockMinimo = p.getStockMinimo();
 	}

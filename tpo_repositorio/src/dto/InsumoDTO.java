@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-import negocio.Lote;
-
 public class InsumoDTO  implements Serializable{
 	/**
 	 * 

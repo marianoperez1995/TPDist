@@ -27,8 +27,6 @@ create table Prendas (
 	cantidadAConfeccionar int not null,
 	stockMinimo int not null,
 	stockActual int not null
-
-
 	constraint pk_Prendas primary key (idPrenda)
 )
 

@@ -25,7 +25,7 @@ public class AdministradorPrenda {
 	public void generarPrenda (PrendaDTO preDTO){ // SE asumio que con talles se quiso decir lo mismo, entonces use el dto
 		Prenda p = new Prenda(preDTO);
 		prendas.add(p);
-		p.insert();
+		p.insertar();
 //revisar parametros, en Prenda estan talles disponibles, no "talles", por ahi querian decir lo mismo, pero por ahi no
 	}
 

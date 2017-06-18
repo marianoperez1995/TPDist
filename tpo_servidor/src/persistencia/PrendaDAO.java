@@ -6,14 +6,8 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import dto.PrendaDTO;
-import entities.ClienteEntity;
-import entities.ColorEntity;
 import entities.PrendaEntity;
-import entities.PrendaID;
-import entities.TalleEntity;
 import hibernate.HibernateUtil;
-import negocio.Cliente;
 import negocio.Prenda;
 
 public class PrendaDAO  {
@@ -55,13 +49,11 @@ public class PrendaDAO  {
 	}
 
 
-	public Prenda getPrenda(int idP, int idC, int idT) {
+	public Prenda getPrenda(int idP) {
 		Session sesion = sf.openSession();
 		sesion.beginTransaction();
-		PrendaEntity p = (PrendaEntity) sesion.createQuery("from PrendaEntity where idPrenda = ? and idColor = ? and idTalle = ?")
-				.setParameter(0, idP)
-				.setParameter(1,idC)
-				.setParameter(2, idT)				
+		PrendaEntity p = (PrendaEntity) sesion.createQuery("from PrendaEntity where idPrenda = ? ")
+				.setParameter(0, idP)				
 				.uniqueResult();
 		sesion.close();
 		return new Prenda(p);
@@ -70,14 +62,8 @@ public class PrendaDAO  {
 	
 
 	public PrendaEntity toEntity(Prenda prenda){
-		PrendaID id = new PrendaID();
-		ColorEntity color = ColorDAO.getInstancia().getColor(prenda.getColor());
-		TalleEntity talle = TalleDAO.getInstancia().getTalle(prenda.getTalle());	
-		id.setColor(color);
-		id.setTalle(talle);
-		id.setIdPrenda(prenda.getIdPrenda());
 		PrendaEntity p = new PrendaEntity();
-		p.setId(id);
+		p.setIdPrenda(prenda.getIdPrenda());
 		p.setCantidadAConfeccionar(prenda.getCantidadAConfeccionar());
 		p.setCostoProduccionActual(prenda.getCostoProduccionActual());
 		p.setCostoProduccionReal(prenda.getCostoProduccionReal());

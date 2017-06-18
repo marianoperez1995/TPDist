@@ -93,18 +93,8 @@ public class ClienteDAO {
 		cliente.setGeneroencargado(cli.getGeneroEncargado());
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		Date date = new Date();
-		cliente.setFechaRegistro(dateFormat.format(date));
-		
-		ArrayList<PedidoClienteEntity> pedidos = new ArrayList<PedidoClienteEntity>();
-	
-		cliente.setEncargado(cli.getEncargado());
+		cliente.setFechaRegistro(dateFormat.format(date));		cliente.setEncargado(cli.getEncargado());
 		cliente.setEstado(cli.getEstado());
-		if (!cli.getPedidosCliente().isEmpty()) {
-			for (PedidoCliente p : cli.getPedidosCliente()) {
-				pedidos.add(PedidoClienteDAO.getInstancia().toEntity(p, cliente));
-			}
-			cliente.setPedidosCliente(pedidos);
-		}
 		return cliente;
 	}
 

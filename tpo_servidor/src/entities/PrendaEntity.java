@@ -1,17 +1,11 @@
 package entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.OneToMany;
+import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 @Entity
 @Table(name="Prendas")
 public class PrendaEntity  implements Serializable {
@@ -26,9 +20,10 @@ public class PrendaEntity  implements Serializable {
 	}
 
 
-	@EmbeddedId
-	private PrendaID id;	
-	
+	@Id
+	private int idPrenda;	
+	private String color;
+	private String talle;
 	private String descripcion;
 	private boolean estadoProduccion;
 	@Column(name="costoProduccion")
@@ -39,17 +34,32 @@ public class PrendaEntity  implements Serializable {
 	private int cantidadAConfeccionar;
 	private int stockMinimo;
 	private int stockActual;
-/*
-	@OneToMany
-	//@JoinColumns(name="idPrenda")	//Mal, porque la clave primaria de prendas son las 3 ahora...
-	@JoinColumns({
-		@JoinColumn(name = "idPrenda", referencedColumnName = "idPrenda"),
-		@JoinColumn(name = "idColor", referencedColumnName = "idColor"),
-		@JoinColumn(name = "idTalle", referencedColumnName = "idTalle") })
-	private List<ItemPrendaInsumoEntity> itemsPrendaInsumo;
-	*/
 	
 	
+	public int getIdPrenda() {
+		return idPrenda;
+	}
+
+	public void setIdPrenda(int idPrenda) {
+		this.idPrenda = idPrenda;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	public String getTalle() {
+		return talle;
+	}
+
+	public void setTalle(String talle) {
+		this.talle = talle;
+	}
+
 	public int getStockMinimo() {
 		return stockMinimo;
 	}
@@ -67,13 +77,7 @@ public class PrendaEntity  implements Serializable {
 	}
 
 
-public PrendaID getId() {
-		return id;
-	}
 
-	public void setId(PrendaID id) {
-		this.id = id;
-	}
 
 	/*	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REFRESH }, fetch = FetchType.EAGER)
 	@JoinTable(name = "Prenda_Areas", joinColumns = {
