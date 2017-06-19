@@ -73,10 +73,12 @@ public class PrendaDAO  {
 		p.setPrecio(prenda.getPrecio());
 		p.setStockActual(prenda.getStockActual());
 		p.setStockMinimo(prenda.getStockMinimo());	
+		p.setColor(prenda.getColor());
+		p.setTalle(prenda.getTalle());
 		return p;
 	}
 	
-	@SuppressWarnings("unchecked")
+	
 	public ArrayList<Prenda> getAll(){
 		
 		Session sesion = sf.openSession();

@@ -35,8 +35,7 @@ public class HibernateUtil {
 			config.addAnnotatedClass(ClienteEntity.class);
 			config.addAnnotatedClass(PrendaEntity.class);
 			config.addAnnotatedClass(PedidoClienteEntity.class);
-			config.addAnnotatedClass(ColorEntity.class);
-			config.addAnnotatedClass(TalleEntity.class);
+			
 			config.addAnnotatedClass(ProveedorEntity.class);
 			config.addAnnotatedClass(MovimientosEntity.class);
 			config.addAnnotatedClass(ReclamosEntity.class);

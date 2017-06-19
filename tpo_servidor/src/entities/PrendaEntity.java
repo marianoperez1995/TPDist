@@ -4,10 +4,12 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 @Entity
-@Table(name="Prendas")
+@Table(name="prendas")
 public class PrendaEntity  implements Serializable {
 	
 	
@@ -21,6 +23,7 @@ public class PrendaEntity  implements Serializable {
 
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idPrenda;	
 	private String color;
 	private String talle;
