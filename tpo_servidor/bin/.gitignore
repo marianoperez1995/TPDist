@@ -1,4 +1,9 @@
-/test/
-/hibernate/
+/negocio/
+/controladores/
 /entities/
+/hibernate/
+/lib/
+/objetoRemoto/
 /persistencia/
+/servidor/
+/test/

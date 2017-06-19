@@ -108,7 +108,7 @@ public class AdministradorClientes {
 	}
 	
 	public void aumentarLimiteCreditoCliente(float limite, ClienteDTO clientedto){
-		Cliente cliente=new Cliente(clientedto);
+		Cliente cliente=ClienteDAO.getInstancia().getCliente(clientedto.getNumeroCliente());
 		cliente.aumentarLimiteCredito(limite);
 		ClienteDAO.getInstancia().update(cliente);
 		

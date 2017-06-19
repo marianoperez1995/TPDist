@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 @Entity
-@Table(name="prendas")
+@Table(name="Prendas")
 public class PrendaEntity  implements Serializable {
 	
 	
@@ -18,7 +18,7 @@ public class PrendaEntity  implements Serializable {
 	 */
 	private static final long serialVersionUID = 400630920252981500L;
 
-	public PrendaEntity() {		
+	public PrendaEntity() {
 	}
 
 

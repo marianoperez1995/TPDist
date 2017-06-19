@@ -66,7 +66,8 @@ public class ClienteDAO {
 		sesion.beginTransaction();
 		ClienteEntity emp = (ClienteEntity) sesion.get(ClienteEntity.class, id);
 		sesion.close();
-		return new Cliente(emp);
+		Cliente cliente=new Cliente(emp);
+		return cliente ;
 	}
 
 	public void insert(Cliente cliente) {
