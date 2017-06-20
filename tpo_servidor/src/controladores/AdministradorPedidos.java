@@ -25,11 +25,15 @@ public class AdministradorPedidos {
 		//verifica si el precio del pedido es inferior o igual al limite 
 		if(pc.getCliente().verificarLimite(pedido.getPrecioTotal())){
 		pedidos.add(pc);
-		PedidoClienteDAO.getInstancia().insert(pc, pc.getCliente().getIdCliente());
+		PedidoClienteDAO.getInstancia().insert(pc);
+		AdministradorStock.getInstancia().disminuirStockPorPedido(pc.getItemsPedidoCliente());;
 		return pc.getIdPedidoCliente();
 		}
 		return 0;
 	}
+	
+	
+	
 	private PedidoCliente buscarPedidoCliente(int numero) {
 		for (PedidoCliente pc : pedidos){
 			if (pc.getIdPedidoCliente()== numero){

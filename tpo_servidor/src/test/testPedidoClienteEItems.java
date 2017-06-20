@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import controladores.AdministradorPedidos;
 import negocio.Despacho;
 import negocio.ItemPedidoCliente;
 import negocio.PedidoCliente;
@@ -14,7 +15,7 @@ import persistencia.PrendaDAO;
 public class testPedidoClienteEItems {
 
 	public static void main(String[] args) {
-		/*
+		
 		PedidoCliente ped = new PedidoCliente();
 		ped.setCliente(ClienteDAO.getInstancia().getCliente(3));
 		ped.setEstado("Aceptado");
@@ -28,13 +29,15 @@ public class testPedidoClienteEItems {
 		ItemPedidoCliente i = new ItemPedidoCliente();
 		i.setCantidad(5);
 		i.setPrecio(50);
-		i.setPrenda(PrendaDAO.getInstancia().getPrenda(0, 1, 2));
+		i.setPrenda(PrendaDAO.getInstancia().getPrenda(3));
 		items.add(i);
 		ped.setItemsPedidoCliente(items);
 		ped.setPrecioTotal(5000);
-		ped.insertar(3);
+		//System.out.println(ped.toDTO().getItemsPedidoCliente().get(0).getPrenda().getIdPrenda());
+		AdministradorPedidos.getInstancia().nuevoPedido(ped.toDTO());
+	
 		
-		*/
+		
 		
 		
 		

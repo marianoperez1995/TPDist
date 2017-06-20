@@ -41,8 +41,8 @@ public class PedidoClienteDAO {
 	}
 	
 	
-	public void insert(PedidoCliente pedido, int idCliente ){
-		Cliente cliente = ClienteDAO.getInstancia().getCliente(idCliente);
+	public void insert(PedidoCliente pedido){
+		Cliente cliente = ClienteDAO.getInstancia().getCliente(pedido.getCliente().getIdCliente());
 		ClienteEntity clienteE = ClienteDAO.getInstancia().toEntity(cliente);
 		PedidoClienteEntity ped= toEntity(pedido, clienteE);
 		Session sesion;

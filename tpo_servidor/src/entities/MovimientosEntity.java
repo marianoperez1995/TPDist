@@ -24,24 +24,24 @@ public class MovimientosEntity implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idMovimiento;
+	
 	@JoinColumns({
-		@JoinColumn(name = "idPrenda", referencedColumnName = "idPrenda"),
-		@JoinColumn(name = "idColor", referencedColumnName = "idColor"),
-		@JoinColumn(name = "idTalle", referencedColumnName = "idTalle") })
+		@JoinColumn(name = "idPrenda", referencedColumnName = "idPrenda") })
+	@ManyToOne
 	private PrendaEntity prenda;
 	
-	private String tipo;
+	private String detalle;
 	private int cantidad;
-	@ManyToOne
-	@JoinColumn(name="idCliente")
-	private ClienteEntity cliente;
-	@OneToOne //ver
-	@JoinColumn(name="idPedido")
-	private PedidoClienteEntity pedido;
-	@OneToOne  //ver
-	@JoinColumn(name="idOrden")
-	private OrdenProduccionEntity orden;
+
 	
+	public String getDetalle() {
+		return detalle;
+	}
+
+	public void setDetalle(String detalle) {
+		this.detalle = detalle;
+	}
+
 	public PrendaEntity getPrenda() {
 		return prenda;
 	}
@@ -58,13 +58,7 @@ public class MovimientosEntity implements Serializable{
 		this.idMovimiento = idMovimiento;
 	}
 
-	public String getTipo() {
-		return tipo;
-	}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
 
 	public int getCantidad() {
 		return cantidad;
@@ -74,29 +68,9 @@ public class MovimientosEntity implements Serializable{
 		this.cantidad = cantidad;
 	}
 
-	public ClienteEntity getCliente() {
-		return cliente;
-	}
+	
 
-	public void setCliente(ClienteEntity cliente) {
-		this.cliente = cliente;
-	}
 
-	public PedidoClienteEntity getPedido() {
-		return pedido;
-	}
-
-	public void setPedido(PedidoClienteEntity pedido) {
-		this.pedido = pedido;
-	}
-
-	public OrdenProduccionEntity getOrden() {
-		return orden;
-	}
-
-	public void setOrden(OrdenProduccionEntity orden) {
-		this.orden = orden;
-	}
 	
 	
 	

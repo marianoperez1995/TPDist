@@ -266,17 +266,13 @@ create table ItemPedidoInsumos (
 create table Movimientos (
 	idMovimiento int identity(1,1),
 	idPrenda int not null,
-	tipo varchar(100) not null, --agregar de una produccion, enviar a despacho, devolucion de prendas
+	detalle varchar(100) not null, --agregar de una produccion, enviar a despacho, devolucion de prendas
 	cantidad int not null,
-	idCliente int null, --si no es devolucion, va NULL
-	idPedido int null, --si no es enviar a despacho, va NULL
-	idOrdenProduccion int null -- si no es agregar de una produccion, va NULL
+	
 
 	constraint pk_movimientos primary key (idMovimiento),
 	constraint fk_movimiento_prenda foreign key (idPrenda) references Prendas,
-	constraint fk_movimiento_cliente foreign key (idCliente) references Clientes,
-	constraint fk_movimiento_pedido foreign key (idPedido) references PedidosCliente,
-	constraint fk_movimiento_orden foreign key (idOrdenProduccion) references OrdenesProduccion
+	
 )
 
 create table Prendas_Eliminadas (

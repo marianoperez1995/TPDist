@@ -28,10 +28,19 @@ public class PedidoCliente {
 		this.fechaGeneracion = pedDTO.getFechaGeneracion();
 		this.fechaProbableDespacho = pedDTO.getFechaProbableDespacho();
 		this.fechaDespacho = pedDTO.getFechaDespacho();
-		for (ItemPedidoClienteDTO p : pedDTO.getItemsPedidoCliente()){
-			this.itemsPedidoCliente.add(new ItemPedidoCliente(p));
+		ItemPedidoCliente item=new ItemPedidoCliente();
+		ArrayList<ItemPedidoCliente> items=new ArrayList<ItemPedidoCliente>();
+
+		Prenda prenda= new Prenda();
+		for (int i=0;i<pedDTO.getItemsPedidoCliente().size();i++){
+			item.setCantidad(pedDTO.getItemsPedidoCliente().get(i).getCantidad());
+			item.setPrecio(pedDTO.getItemsPedidoCliente().get(i).getPrecio());
+			prenda=new Prenda(pedDTO.getItemsPedidoCliente().get(i).getPrenda());
+			item.setPrenda(prenda);
+			items.add(item);
 		}
-		this.setFechaEntregaCliente(pedDTO.getFechaEntregaCliente());
+		this.itemsPedidoCliente=items;
+		this.fechaEntregaCliente=pedDTO.getFechaEntregaCliente();
 	}
 
 	public PedidoCliente(PedidoClienteEntity pedE) {
@@ -63,8 +72,8 @@ public class PedidoCliente {
 		this.fechaEntregaCliente =pedE.getFechaEntregaCliente();
 	}
 
-	public void insertar(int idC) {
-		PedidoClienteDAO.getInstancia().insert(this, idC);		
+	public void insertar() {
+		PedidoClienteDAO.getInstancia().insert(this);		
 	}
 
 	public void borrar() {
@@ -163,14 +172,22 @@ public class PedidoCliente {
 	//Se llama desde Cliente.toDTO()
 	public PedidoClienteDTO toDTO() {
 		PedidoClienteDTO p = new PedidoClienteDTO();
-		
+		p.setCliente(cliente.toDTO());
 		p.setEstado(estado);
 		p.setFechaDespacho(fechaDespacho);
 		p.setFechaGeneracion(fechaGeneracion);
 		p.setFechaProbableDespacho(fechaProbableDespacho);
+		p.setFechaEntregaCliente(fechaEntregaCliente);
 		p.setIdPedidoCliente(idPedidoCliente);
-		ArrayList<ItemPedidoClienteDTO> items = new ArrayList<ItemPedidoClienteDTO>();
-	
+		ArrayList<ItemPedidoClienteDTO> itemsDTO = new ArrayList<ItemPedidoClienteDTO>();
+		ItemPedidoClienteDTO itemDTO=new ItemPedidoClienteDTO();
+		for(int i=0;i<itemsPedidoCliente.size();i++){
+			itemDTO.setCantidad(itemsPedidoCliente.get(i).getCantidad());
+			itemDTO.setPrecio(itemsPedidoCliente.get(i).getPrecio());
+			itemDTO.setPrenda(itemsPedidoCliente.get(i).getPrenda().toDTO());
+			itemsDTO.add(itemDTO);
+		}
+		p.setItemsPedidoCliente(itemsDTO);
 		p.setPrecioTotal(precioTotal);
 		return p;
 	}
@@ -184,7 +201,7 @@ public class PedidoCliente {
 		p.setFechaGeneracion(fechaGeneracion);
 		p.setFechaProbableDespacho(fechaProbableDespacho);
 		p.setIdPedidoCliente(idPedidoCliente);
-		ArrayList<ItemPedidoClienteDTO> items = new ArrayList<>();
+		ArrayList<ItemPedidoClienteDTO> items = new ArrayList<ItemPedidoClienteDTO>();
 		for (ItemPedidoCliente i : this.itemsPedidoCliente){
 			items.add(i.toDTO(p));
 		}

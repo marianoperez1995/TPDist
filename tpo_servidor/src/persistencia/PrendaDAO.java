@@ -103,5 +103,10 @@ public class PrendaDAO  {
 		sesion.getTransaction().commit();
 		sesion.close();
 	}
+	public void disminuirStock(Prenda prenda, int cantidad) {
+		prenda.setStockActual(prenda.getStockActual()-cantidad);
+		update(prenda);
+		
+	}
 	
 }

@@ -9,9 +9,13 @@ import negocio.Insumo;
 import negocio.ItemPedidoCliente;
 import negocio.LoteInsumo;
 import negocio.PedidoCliente;
+import negocio.Prenda;
 import negocio.Ubicacion;
 import negocio.UbicacionBulto;
 import negocio.UbicacionLoteInsumo;
+import persistencia.MovimientosDAO;
+import persistencia.PedidoClienteDAO;
+import persistencia.PrendaDAO;
 
 public class AdministradorStock {
 	private static AdministradorStock instancia = null;
@@ -21,7 +25,7 @@ public class AdministradorStock {
 
 	
 	
-	private static AdministradorStock getInstancia () {
+	public static AdministradorStock getInstancia () {
 		if(instancia == null){
 			instancia = new AdministradorStock();
 		}
@@ -32,27 +36,44 @@ public class AdministradorStock {
 	public void agregarLoteInsumo(LoteInsumoDTO liDTO){
 		LoteInsumo li = new LoteInsumo(liDTO);
 		this.lotesInsumos.add(li);
-		li.insert ();
+		li.insertar ();
 	}
+	
+	public void disminuirStockPorPedido(ArrayList<ItemPedidoCliente> items){
+		for (int i=0; i<items.size(); i++){
+			//agrega el movimiento
+			MovimientosDAO.getInstancia().disminuirStockPrendaPorPedido(items.get(i).getPrenda(),(-1)*items.get(i).getCantidad());
+			//cambia e stock actual
+			PrendaDAO.getInstancia().disminuirStock(items.get(i).getPrenda(),items.get(i).getCantidad());
+			
+		}
+		
+		
+		
+	}
+	
 
+	
+	
+	/*
 	public void agregarBulto(BultoDTO bulDto) { // lo cambie por DTO la entrada,  
 			Bulto bul = new Bulto(bulDto);
 			bultos.add(bul);
-			bul.insert();
+			bul.insertar();
 	}
 
 	public void agregarUbicacionLoteInsumo(int codLoteInsumo, String codigo) { // 
 		LoteInsumo li = instancia.getInstancia().buscarLoteInsumo(codLoteInsumo);
 		UbicacionLoteInsumo uli= new UbicacionLoteInsumo(li, codigo);
 		ubicaciones.add(uli);
-		uli.insert ();
+		uli.insertar ();
 	}
 
 	public void agrgarUbicacionBulto(int codigoBulto, String codigo) {
 			Bulto bul= instancia.getInstancia().buscarBulto(codigoBulto);
 			UbicacionBulto ub = new UbicacionBulto(bul,codigo);
 			ubicaciones.add(ub);
-			ub.insert();
+			ub.insertar();
 			
 	}
 
@@ -223,4 +244,5 @@ public class AdministradorStock {
 		}
 		return list;
 	}
+	*/
 }
