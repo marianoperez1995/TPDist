@@ -62,7 +62,7 @@ public class FacturaDAO {
 		factu.setTotal(fac.getTotal());
 		factu.setFechaGeneracion(fac.getFechaGeneracion());
 		factu.setCliente(ClienteDAO.getInstancia().toEntity(fac.getCliente()));
-		factu.setPedido(PedidoClienteDAO.getInstancia().toEntity(fac.getPedido()));
+		factu.setPedido(PedidoClienteDAO.getInstancia().toEntity(fac.getPedido(), ClienteDAO.getInstancia().toEntity(fac.getCliente())));
 		return factu;
 	}
 	

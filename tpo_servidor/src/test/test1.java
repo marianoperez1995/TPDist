@@ -16,7 +16,7 @@ public class test1 {
 			//System.out.println(pre.toString());
 		ClienteDTO cliente= new ClienteDTO();
 		cliente.setNumeroCliente(1);
-		AdministradorClientes.getInstancia().aumentarLimiteCreditoCliente(2500000, cliente);
+		AdministradorClientes.getInstancia().aumentarLimiteCreditoCliente(6660000, cliente);
 	
 	}
 

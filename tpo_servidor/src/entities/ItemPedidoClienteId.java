@@ -18,10 +18,12 @@ public class ItemPedidoClienteId implements Serializable {
 	@JoinColumn(name="idPedidoCliente")	
 	private PedidoClienteEntity pedido;
 	@ManyToOne
-	@JoinColumns(value = {
+	/*@JoinColumns(value = {
 		@JoinColumn(name = "idPrenda", referencedColumnName = "idPrenda"),
 		@JoinColumn(name = "idColor", referencedColumnName = "idColor"),
-		@JoinColumn(name = "idTalle", referencedColumnName = "idTalle") })
+		@JoinColumn(name = "idTalle", referencedColumnName = "idTalle") })*/
+	@JoinColumns(value = {
+			@JoinColumn(name = "idPrenda", referencedColumnName = "idPrenda") })
 	private PrendaEntity prenda;
 	
 	

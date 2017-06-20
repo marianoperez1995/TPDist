@@ -30,11 +30,11 @@ public class HibernateUtil {
 			config.addAnnotatedClass(SucursalEntity.class);
 			config.addAnnotatedClass(CuentaCorrienteEntity.class);
 			config.addAnnotatedClass(PedidoClienteEntity.class);
-			//config.addAnnotatedClass(AreaProduccionEntity.class);
-			//config.addAnnotatedClass(ItemPrendaAreaEntity.class);
+			config.addAnnotatedClass(AreaProduccionEntity.class);
+			config.addAnnotatedClass(ItemPrendaAreaEntity.class);
 
 
-			/*
+			
 			config.addAnnotatedClass(LineaProduccionEntity.class);
 			config.addAnnotatedClass(EmpleadoEntity.class);
 			config.addAnnotatedClass(PrendaEntity.class);
@@ -48,7 +48,7 @@ public class HibernateUtil {
 			config.addAnnotatedClass(TransporteEntity.class);
 			config.addAnnotatedClass(FacturaEntity.class);
 			config.addAnnotatedClass(ItemPedidoClienteEntity.class);
-			*/
+			
 			sessionFactory = config.buildSessionFactory();
 
 		} catch (Throwable ex) {

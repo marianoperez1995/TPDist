@@ -22,10 +22,12 @@ public class ItemPrendaAreaID implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 	@ManyToOne
-	@JoinColumns(value = {
+	/*@JoinColumns(value = {
 		@JoinColumn(name = "idPrenda", referencedColumnName = "idPrenda"),
 		@JoinColumn(name = "idColor", referencedColumnName = "idColor"),
-		@JoinColumn(name = "idTalle", referencedColumnName = "idTalle") })
+		@JoinColumn(name = "idTalle", referencedColumnName = "idTalle") })*/
+	@JoinColumns(value = {
+			@JoinColumn(name = "idPrenda", referencedColumnName = "idPrenda")})
 	private PrendaEntity prenda;
 	@ManyToOne
 	@JoinColumn(name="idAreaProduccion")
