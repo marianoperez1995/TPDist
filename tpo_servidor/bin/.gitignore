@@ -1,10 +1,11 @@
-/negocio/
+/base/
+/hibernate.properties
+/lib/
 /controladores/
 /entities/
 /hibernate/
-/lib/
+/negocio/
 /objetoRemoto/
 /persistencia/
 /servidor/
 /test/
-/base/

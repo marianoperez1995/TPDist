@@ -6,13 +6,12 @@ import java.util.Date;
 import dto.LoteDTO;
 import dto.OrdenProduccionDTO;
 import negocio.AreaProduccion;
-import negocio.ItemOPP;
+import negocio.ItemPedidoCliente;
 import negocio.Lote;
-import negocio.Opc;
-import negocio.Opp;
 import negocio.OrdenProduccion;
 import negocio.PedidoCliente;
 import negocio.Prenda;
+import persistencia.OrdenProduccionDAO;
 
 public class AdministradorProduccion {
 	private ArrayList<Prenda> prendas;
@@ -20,15 +19,15 @@ public class AdministradorProduccion {
 	private ArrayList<OrdenProduccion> ordenesProduccion;
 	private ArrayList<Lote> lotes;
 	
-	private static AdministradorProduccion instancia = null;
+	private static AdministradorProduccion instancia;
 	
 	
-	private static AdministradorProduccion getInstancia (){
+	public static AdministradorProduccion getInstancia (){
 		if(instancia== null)
 			instancia= new AdministradorProduccion ();
 		return instancia;
 	}
- 
+ /*
 	//quito int cantidad d elos paremtros de los generarOrden porque ya esta en pedido creo
 	public void generarOrdenProduccionParcial(Date fecha, int codigoPrenda, PedidoCliente pedido, ArrayList<ItemOPP> itemsOPP) {
 		//ver de donde salen los itemsOPP
@@ -184,6 +183,42 @@ public class AdministradorProduccion {
 				list.add(p.toDTO());
 		}
 		return list;
+	}
+*/
+	public OrdenProduccion generarOrdenProduccion(ItemPedidoCliente itemPed, PedidoCliente pc) {
+		if(itemPed.getCantidad()>=itemPed.getPrenda().getStockActual()){
+			if((itemPed.getCantidad()-itemPed.getPrenda().getStockActual())<=3){
+				OrdenProduccion ordenP=new OrdenProduccion();
+				ordenP.setCantidad(itemPed.getCantidad()-itemPed.getPrenda().getStockActual());
+				Date fecha=new Date();
+				ordenP.setFecha(fecha);
+				//ordenP.setPedidoCliente(pc);
+				ordenP.setPrenda(itemPed.getPrenda());
+				ordenP.setTipo("PARCIAL");
+				//OrdenProduccionDAO.getInstancia().insert(ordenP);
+				return ordenP;
+			}
+			OrdenProduccion ordenC=new OrdenProduccion();
+			ordenC.setCantidad(itemPed.getPrenda().getCantidadAConfeccionar());
+			Date fecha=new Date();
+			ordenC.setFecha(fecha);
+			//ordenC.setPedidoCliente(pc);
+			ordenC.setTipo("COMPLETA");
+			ordenC.setPrenda(itemPed.getPrenda());
+			//OrdenProduccionDAO.getInstancia().insert(ordenC);
+			return ordenC;
+		}
+		return null;
+		
+	}
+	public void persistirOrdenes(PedidoCliente aux, ArrayList<OrdenProduccion> ordenes) {
+		if(ordenes!=null){
+			for(int i=0;i<ordenes.size();i++){
+				ordenes.get(i).setPedidoCliente(aux);
+				OrdenProduccionDAO.getInstancia().insert(ordenes.get(i));
+			}
+		}
+		
 	}
 	
 

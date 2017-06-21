@@ -63,7 +63,9 @@ public class OrdenProduccionDAO{
 		or.setCodigo(orden.getIdOrdenProduccion());
 		or.setFecha(orden.getFecha());
 		or.setTipo(orden.getTipo());
-		or.setPedidoCliente(PedidoClienteDAO.getInstancia().toEntity(orden.getPedidoCliente()));
+		or.setPedidoCliente(PedidoClienteDAO.getInstancia().toEntity(orden.getPedidoCliente(),ClienteDAO.getInstancia().toEntity(orden.getPedidoCliente().getCliente())));
+		or.setPrenda(PrendaDAO.getInstancia().toEntity(orden.getPrenda()));
+		or.setCantidad(orden.getCantidad());
 		return or;
 		
 	}

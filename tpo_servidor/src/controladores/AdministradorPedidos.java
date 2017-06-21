@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import dto.ClienteDTO;
 import dto.PedidoClienteDTO;
+import negocio.OrdenProduccion;
 import negocio.PedidoCliente;
 import persistencia.PedidoClienteDAO;
 
@@ -24,10 +25,15 @@ public class AdministradorPedidos {
 		PedidoCliente pc= new PedidoCliente(pedido);
 		//verifica si el precio del pedido es inferior o igual al limite 
 		if(pc.getCliente().verificarLimite(pedido.getPrecioTotal())){
-		pedidos.add(pc);
-		PedidoClienteDAO.getInstancia().insert(pc);
-		AdministradorStock.getInstancia().disminuirStockPorPedido(pc.getItemsPedidoCliente());;
-		return pc.getIdPedidoCliente();
+		//verifica si hay stock y puede generar una orden de compra
+		ArrayList<OrdenProduccion> ordenes=new ArrayList<OrdenProduccion>();
+		ordenes=AdministradorStock.getInstancia().verificarStockyGenerarOrdenes(pc);
+		AdministradorStock.getInstancia().disminuirStockPorPedido(pc.getItemsPedidoCliente());
+		//el pedido aux tiene el ID del pedido generado por la base de datos
+		PedidoCliente aux=PedidoClienteDAO.getInstancia().insert(pc);
+		AdministradorProduccion.getInstancia().persistirOrdenes(aux, ordenes);
+		pedidos.add(aux);
+		return aux.getIdPedidoCliente();
 		}
 		return 0;
 	}

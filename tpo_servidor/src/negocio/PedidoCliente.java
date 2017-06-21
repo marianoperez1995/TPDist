@@ -35,8 +35,7 @@ public class PedidoCliente {
 		for (int i=0;i<pedDTO.getItemsPedidoCliente().size();i++){
 			item.setCantidad(pedDTO.getItemsPedidoCliente().get(i).getCantidad());
 			item.setPrecio(pedDTO.getItemsPedidoCliente().get(i).getPrecio());
-			prenda=new Prenda(pedDTO.getItemsPedidoCliente().get(i).getPrenda());
-			item.setPrenda(prenda);
+			item.setPrenda(	new Prenda(pedDTO.getItemsPedidoCliente().get(i).getPrenda()));
 			items.add(item);
 		}
 		this.itemsPedidoCliente=items;
@@ -228,4 +227,6 @@ public class PedidoCliente {
 		
 		
 	}
+
+	
 }

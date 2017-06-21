@@ -41,14 +41,15 @@ public class PedidoClienteDAO {
 	}
 	
 	
-	public void insert(PedidoCliente pedido){
+	public PedidoCliente insert(PedidoCliente pedido){
 		Cliente cliente = ClienteDAO.getInstancia().getCliente(pedido.getCliente().getIdCliente());
 		ClienteEntity clienteE = ClienteDAO.getInstancia().toEntity(cliente);
 		PedidoClienteEntity ped= toEntity(pedido, clienteE);
 		Session sesion;
 		sesion = sf.openSession();
 		sesion.beginTransaction();
-		sesion.save(ped);
+		Integer id=(Integer)sesion.save(ped);
+		pedido.setIdPedidoCliente(id.intValue());
 		//Inserta los items del pedido
 		sesion.close();
 		sesion = sf.openSession();
@@ -57,6 +58,7 @@ public class PedidoClienteDAO {
 			i.insertar(ped.getNumPedidoCliente());		
 		sesion.getTransaction().commit();
 		sesion.close();
+		return pedido;
 	}
 
 
@@ -103,6 +105,25 @@ public class PedidoClienteDAO {
 		}
 		return pedidos;		
 	}
+	public PedidoClienteEntity toEntity(PedidoCliente pedidoCliente) {
+		PedidoClienteEntity entity=new PedidoClienteEntity();
+		entity.setCliente(ClienteDAO.getInstancia().toEntity(pedidoCliente.getCliente()));
+		entity.setEstado(pedidoCliente.getEstado());
+		entity.setFechaDespacho(pedidoCliente.getFechaDespacho());
+		entity.setFechaEntregaCliente(pedidoCliente.getFechaEntregaCliente());
+		entity.setFechaGeneracion(pedidoCliente.getFechaGeneracion());
+		entity.setFechaProbableDespacho(pedidoCliente.getFechaProbableDespacho());
+		ArrayList<ItemPedidoClienteEntity> itemsEntity=new ArrayList<ItemPedidoClienteEntity>();
+		for(int i=0; i<pedidoCliente.getItemsPedidoCliente().size();i++){
+			ItemPedidoClienteEntity itemEntity=ItemPedidoClienteDAO.getInstancia().toE(pedidoCliente.getItemsPedidoCliente().get(0), PedidoClienteDAO.getInstancia().toEntity(pedidoCliente));
+			itemsEntity.add(itemEntity);
+	
+		}
+		entity.setItemsPedidoCliente(itemsEntity);
+		entity.setNumPedidoCliente(pedidoCliente.getIdPedidoCliente());
+		entity.setPrecioTotal(pedidoCliente.getPrecioTotal());
+		return entity;
+		}
 	
 	
 

@@ -1,5 +1,7 @@
 package negocio;
 
+import java.util.Date;
+
 import dto.ItemPedidoClienteDTO;
 import dto.PedidoClienteDTO;
 import entities.ItemPedidoClienteEntity;
@@ -72,5 +74,7 @@ public class ItemPedidoCliente {
 		item.setPrenda(prenda.toDTO());
 		return item;		
 	}
+
+	
 	
 }

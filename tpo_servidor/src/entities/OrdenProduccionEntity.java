@@ -12,13 +12,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@MappedSuperclass
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="tipo",discriminatorType=DiscriminatorType.STRING)
+@Table(name="OrdenesProduccion")
 public class OrdenProduccionEntity implements Serializable{
 	
 	/**
@@ -43,12 +44,29 @@ public class OrdenProduccionEntity implements Serializable{
 	protected int codigo;
 	
 	protected Date fecha;
-	@Transient
 	protected String tipo;
-	@Transient
+	@ManyToOne
+	@JoinColumn(name="idPedidoCliente")
 	protected PedidoClienteEntity pedidoCliente;
-	@Transient
+	@ManyToOne
+	@JoinColumn(name="idPrenda")
 	protected PrendaEntity prenda;
+	protected int cantidad;
+	public int getCantidad() {
+		return cantidad;
+	}
+
+
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
+	}
+
+
+	public void setPrenda(PrendaEntity prenda) {
+		this.prenda = prenda;
+	}
+
+
 	public String getTipo() {
 		return tipo;
 	}

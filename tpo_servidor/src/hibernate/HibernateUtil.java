@@ -32,6 +32,7 @@ public class HibernateUtil {
 			config.addAnnotatedClass(PedidoClienteEntity.class);
 			config.addAnnotatedClass(AreaProduccionEntity.class);
 			config.addAnnotatedClass(ItemPrendaAreaEntity.class);
+			config.addAnnotatedClass(OrdenProduccionEntity.class);
 
 
 			

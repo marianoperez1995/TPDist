@@ -92,9 +92,10 @@ public class ClienteDAO {
 		cliente.setTelencargado(cli.getTelEncargado());
 		cliente.setMailEncargado(cli.getMailEncargado());
 		cliente.setGeneroencargado(cli.getGeneroEncargado());
-		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-		Date date = new Date();
-		cliente.setFechaRegistro(dateFormat.format(date));		cliente.setEncargado(cli.getEncargado());
+		//DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		//Date date = new Date();
+		cliente.setFechaRegistro(cli.getFechaRegistro());	
+		cliente.setEncargado(cli.getEncargado());
 		cliente.setEstado(cli.getEstado());
 		return cliente;
 	}

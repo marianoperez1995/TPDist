@@ -3,7 +3,7 @@ package dto;
 import java.io.Serializable;
 import java.util.Date;
 
-public abstract class OrdenProduccionDTO implements Serializable {
+public  class OrdenProduccionDTO implements Serializable {
 	/**
 	 * 
 	 */
@@ -13,6 +13,15 @@ public abstract class OrdenProduccionDTO implements Serializable {
 	protected PedidoClienteDTO pedidoCliente;
 	protected int codigo;
 	protected String tipo;
+	protected int cantidad;
+
+	public int getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
+	}
 
 	public Date getFecha() {
 		return fecha;

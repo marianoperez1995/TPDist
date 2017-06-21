@@ -2,16 +2,49 @@ package negocio;
 
 import java.util.Date;
 
-import dto.OpcDTO;
 import dto.OrdenProduccionDTO;
+import entities.OrdenProduccionEntity;
 import persistencia.OrdenProduccionDAO;
 
-public abstract class OrdenProduccion {
+public  class OrdenProduccion {
 	protected int idOrdenProduccion;
 	protected Date fecha; 
 	protected Prenda prenda;
 	protected PedidoCliente pedidoCliente;
-	protected String tipo;
+	protected int cantidad;
+	protected String tipo; 
+
+	public OrdenProduccion() {
+		
+	}
+	
+
+	public OrdenProduccion(OrdenProduccionEntity ordenEntity) {
+		super();
+		this.idOrdenProduccion = ordenEntity.getCodigo();
+		this.fecha = ordenEntity.getFecha();
+		this.prenda = new Prenda (ordenEntity.getPrenda());
+		this.pedidoCliente = new PedidoCliente(ordenEntity.getPedidoCliente());
+		this.cantidad = ordenEntity.getCantidad();
+		this.tipo = ordenEntity.getTipo();
+	}
+
+
+	public int getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
 
 	public void insertar() {
 		OrdenProduccionDAO.getInstancia().insert(this);		
@@ -20,13 +53,7 @@ public abstract class OrdenProduccion {
 	public void borrar() {
 		OrdenProduccionDAO.getInstancia().eliminar(this.idOrdenProduccion);
 	}
-	public String getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
+	
 
 	public boolean sosLaOrden(int codigo) {
 		return (codigo == this.idOrdenProduccion);

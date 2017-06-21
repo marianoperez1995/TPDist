@@ -1,18 +1,25 @@
 create table OrdenesProduccion (
 	idOrdenProduccion int not null identity (1,1),
+	idPrenda int not null,
+	cantidad int not null,
+	idPedidoCliente int not null,
 	fecha DateTime not null,
-	tipo varchar(5) not null,
-	constraint pk_OrdenesP primary key (idOrdenProduccion)
+	tipo varchar(20) not null,
+	constraint pk_OrdenesP primary key (idOrdenProduccion),
+	constraint fk_Prendas foreign key (idPrenda) references Prendas,
+	constraint fk_PedidosCliente foreign key (idPedidoCliente) references PedidosCliente
 )
 
-create table ItemOrdenProduccion (
+
+
+/*create table ItemOrdenProduccion (
 	idOrdenProduccion int not null,
 	idPrenda int not null,
 	cantidadPedida int not null,
 	cantidadRealizada int not null,
 
 	constraint pk_ItemOrdProd primary key (idOrdenProduccion, idPrenda),
-)
+)*/
 
 create table Prendas (
 	idPrenda int not null identity(1,1),
@@ -219,7 +226,7 @@ create table ItemPedidoCliente (
 	cantidad int not null,
 	subtotal float not null,
 
-	constraint pk_pedidocliente_prendas primary key (idPedidoCliente, idPrenda),
+	
 	constraint pedidoCliente_fk_Prendas foreign key (idPedidoCliente) references PedidosCliente,
 	constraint pedidoCliente_fk_Prendas1 foreign key (idPrenda) references Prendas
 )
