@@ -60,6 +60,15 @@ public class ItemPedidoClienteDAO{
 		ent.setId(id);
 		return ent;	
 	}
+	public void insert(ItemPedidoCliente item, PedidoCliente pedido){
+		ItemPedidoClienteEntity it= toEntity(item, pedido);
+		Session sesion;
+		sesion = sf.openSession();
+		sesion.beginTransaction();
+		sesion.save(it);
+		sesion.getTransaction().commit();
+		sesion.close();
+	}
 	
 	@SuppressWarnings("unchecked")
 	public ArrayList<ItemPedidoCliente> getItemsPedidoCliente(int idPed) {

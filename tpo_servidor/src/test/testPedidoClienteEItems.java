@@ -28,18 +28,22 @@ public class testPedidoClienteEItems {
 		//ped.setIdPedidoCliente(6);
 		ArrayList<ItemPedidoCliente>items = new ArrayList<>();
 		ItemPedidoCliente i = new ItemPedidoCliente();
-		i.setCantidad(5);
+		i.setCantidad(240);
 		i.setPrecio(50);
 		i.setPrenda(PrendaDAO.getInstancia().getPrenda(3));
 		items.add(i);
+		
 		ItemPedidoCliente a = new ItemPedidoCliente();
 		a.setCantidad(100);
 		a.setPrecio(12);
 		a.setPrenda(PrendaDAO.getInstancia().getPrenda(4));
 		items.add(a);
+		
+
 		ped.setItemsPedidoCliente(items);
 		ped.setPrecioTotal(5000);
-		//System.out.println(ped.toDTO().getItemsPedidoCliente().get(0).getPrenda().getIdPrenda());
+		
+		//System.out.println(ped.getItemsPedidoCliente().get(0).getPrenda().getIdPrenda());
 		AdministradorPedidos.getInstancia().nuevoPedido(ped.toDTO());
 	
 		

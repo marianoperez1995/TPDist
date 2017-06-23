@@ -28,17 +28,18 @@ public class PedidoCliente {
 		this.fechaGeneracion = pedDTO.getFechaGeneracion();
 		this.fechaProbableDespacho = pedDTO.getFechaProbableDespacho();
 		this.fechaDespacho = pedDTO.getFechaDespacho();
-		ItemPedidoCliente item=new ItemPedidoCliente();
+		//ItemPedidoCliente item=new ItemPedidoCliente();
 		ArrayList<ItemPedidoCliente> items=new ArrayList<ItemPedidoCliente>();
 
-		Prenda prenda= new Prenda();
 		for (int i=0;i<pedDTO.getItemsPedidoCliente().size();i++){
-			item.setCantidad(pedDTO.getItemsPedidoCliente().get(i).getCantidad());
-			item.setPrecio(pedDTO.getItemsPedidoCliente().get(i).getPrecio());
-			item.setPrenda(	new Prenda(pedDTO.getItemsPedidoCliente().get(i).getPrenda()));
-			items.add(item);
+			
+			items.add(new ItemPedidoCliente(pedDTO.getItemsPedidoCliente().get(i)));
 		}
+		System.out.println(items.get(0).getPrenda().getDescripcion());
+		System.out.println(items.get(1).getPrenda().getDescripcion());
+
 		this.itemsPedidoCliente=items;
+		
 		this.fechaEntregaCliente=pedDTO.getFechaEntregaCliente();
 	}
 
@@ -179,8 +180,9 @@ public class PedidoCliente {
 		p.setFechaEntregaCliente(fechaEntregaCliente);
 		p.setIdPedidoCliente(idPedidoCliente);
 		ArrayList<ItemPedidoClienteDTO> itemsDTO = new ArrayList<ItemPedidoClienteDTO>();
-		ItemPedidoClienteDTO itemDTO=new ItemPedidoClienteDTO();
 		for(int i=0;i<itemsPedidoCliente.size();i++){
+			ItemPedidoClienteDTO itemDTO=new ItemPedidoClienteDTO();
+
 			itemDTO.setCantidad(itemsPedidoCliente.get(i).getCantidad());
 			itemDTO.setPrecio(itemsPedidoCliente.get(i).getPrecio());
 			itemDTO.setPrenda(itemsPedidoCliente.get(i).getPrenda().toDTO());

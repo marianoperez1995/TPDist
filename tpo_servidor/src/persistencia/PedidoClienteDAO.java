@@ -54,8 +54,12 @@ public class PedidoClienteDAO {
 		sesion.close();
 		sesion = sf.openSession();
 		sesion.beginTransaction();
-		for (ItemPedidoCliente i : pedido.getItemsPedidoCliente())
-			i.insertar(ped.getNumPedidoCliente());		
+		for (int i=0;i<pedido.getItemsPedidoCliente().size();i++){
+			ItemPedidoCliente item=new ItemPedidoCliente();
+			item=pedido.getItemsPedidoCliente().get(i);
+			System.out.println(item.getPrenda().getIdPrenda());
+			ItemPedidoClienteDAO.getInstancia().insert(item, pedido);
+		}
 		sesion.getTransaction().commit();
 		sesion.close();
 		return pedido;

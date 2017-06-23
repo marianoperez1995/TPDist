@@ -22,7 +22,9 @@ public class AdministradorPedidos {
 	}
 
 	public int nuevoPedido(PedidoClienteDTO pedido) {
+		
 		PedidoCliente pc= new PedidoCliente(pedido);
+		
 		//verifica si el precio del pedido es inferior o igual al limite 
 		if(pc.getCliente().verificarLimite(pedido.getPrecioTotal())){
 		//verifica si hay stock y puede generar una orden de compra

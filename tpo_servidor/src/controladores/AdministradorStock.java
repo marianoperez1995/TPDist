@@ -41,7 +41,6 @@ public class AdministradorStock {
 	}
 	
 	public void disminuirStockPorPedido(ArrayList<ItemPedidoCliente> items){
-		String estado="Completo";
 		for (int i=0; i<items.size(); i++){
 			//agrega el movimiento
 			MovimientosDAO.getInstancia().disminuirStockPrendaPorPedido(items.get(i).getPrenda(),(-1)*items.get(i).getCantidad());
@@ -55,9 +54,9 @@ public class AdministradorStock {
 	}
 	public ArrayList<OrdenProduccion> verificarStockyGenerarOrdenes(PedidoCliente pc) {
 		ArrayList<OrdenProduccion> ordenes= new ArrayList<OrdenProduccion>();
-		//ordenes=null;
-		OrdenProduccion orden=new OrdenProduccion();
 		for(int i=0;i<pc.getItemsPedidoCliente().size();i++){
+			OrdenProduccion orden=new OrdenProduccion();
+
 			orden=AdministradorProduccion.getInstancia().generarOrdenProduccion(pc.getItemsPedidoCliente().get(i), pc);
 			if(orden!=null){
 				ordenes.add(orden);
