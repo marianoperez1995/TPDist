@@ -1,6 +1,7 @@
 package dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class PrendaDTO  implements Serializable{
 	/**
@@ -14,11 +15,21 @@ public class PrendaDTO  implements Serializable{
 	private float costoProduccionActual;
 	private float porcentajeGanancia;
 	private float precio;
-	public int cantidadAConfeccionar;
+	private int cantidadAConfeccionar;
 	private String color;
 	private String talle;
 	private int stockMinimo;
 	private int stockActual;
+	private ArrayList<ItemPrendaInsumoDTO> insumos;
+	public ArrayList<ItemPrendaInsumoDTO> getInsumos() {
+		return insumos;
+	}
+	public void setInsumos(ArrayList<ItemPrendaInsumoDTO> insumos) {
+		this.insumos = insumos;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	public int getIdPrenda() {
 		return idPrenda;
 	}

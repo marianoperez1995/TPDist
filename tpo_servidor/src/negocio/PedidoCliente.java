@@ -30,13 +30,15 @@ public class PedidoCliente {
 		this.fechaDespacho = pedDTO.getFechaDespacho();
 		//ItemPedidoCliente item=new ItemPedidoCliente();
 		ArrayList<ItemPedidoCliente> items=new ArrayList<ItemPedidoCliente>();
-
+		Float total=(float) 0;
 		for (int i=0;i<pedDTO.getItemsPedidoCliente().size();i++){
-			
-			items.add(new ItemPedidoCliente(pedDTO.getItemsPedidoCliente().get(i)));
+			ItemPedidoCliente item=new ItemPedidoCliente(pedDTO.getItemsPedidoCliente().get(i));
+			total=total+item.getPrecio();
+			items.add(item);
 		}
-		System.out.println(items.get(0).getPrenda().getDescripcion());
-		System.out.println(items.get(1).getPrenda().getDescripcion());
+		//System.out.println(items.get(0).getPrenda().getDescripcion());
+		//System.out.println(items.get(1).getPrenda().getDescripcion());
+		this.precioTotal=total;
 
 		this.itemsPedidoCliente=items;
 		

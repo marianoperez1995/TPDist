@@ -1,6 +1,7 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 @Entity
 @Table(name="Prendas")
 public class PrendaEntity  implements Serializable {
@@ -37,8 +39,22 @@ public class PrendaEntity  implements Serializable {
 	private int cantidadAConfeccionar;
 	private int stockMinimo;
 	private int stockActual;
+	@Transient
+	private ArrayList<ItemPrendaInsumoEntity> items;
 	
 	
+	public ArrayList<ItemPrendaInsumoEntity> getItems() {
+		return items;
+	}
+
+	public void setItems(ArrayList<ItemPrendaInsumoEntity> items) {
+		this.items = items;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	public int getIdPrenda() {
 		return idPrenda;
 	}

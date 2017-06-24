@@ -1,5 +1,8 @@
 package negocio;
 
+import java.util.ArrayList;
+
+import dto.ItemPrendaInsumoDTO;
 import dto.PrendaDTO;
 import entities.PrendaEntity;
 import persistencia.PrendaDAO;
@@ -17,6 +20,8 @@ public class Prenda {
 	private String talle;
 	private int stockMinimo;
 	private int stockActual;
+	private ArrayList<ItemPrendaInsumo> insumos;
+
 
 	public String getTalle() {
 		return talle;
@@ -178,6 +183,13 @@ public class Prenda {
 		prenda.setPrecio(precio);
 		prenda.setStockActual(stockActual);
 		prenda.setStockMinimo(stockMinimo);
+		ArrayList<ItemPrendaInsumoDTO> items=new ArrayList<ItemPrendaInsumoDTO>();
+		for(int i=0;i<insumos.size();i++){
+			ItemPrendaInsumoDTO dto=new ItemPrendaInsumoDTO();
+			dto=insumos.get(i).toDTO();
+			items.add(dto);
+		}
+		prenda.setInsumos(items);
 		return prenda;
 	}
 
@@ -214,6 +226,16 @@ public class Prenda {
 				+ costoProduccionActual + ", porcentajeGanancia=" + porcentajeGanancia + ", precio=" + precio
 				+ ", cantidadAConfeccionar=" + cantidadAConfeccionar + ", color=" + color + ", talle=" + talle
 				+ ", stockMinimo=" + stockMinimo + ", stockActual=" + stockActual + "]";
+	}
+
+
+	public ArrayList<ItemPrendaInsumo> getInsumos() {
+		return insumos;
+	}
+
+
+	public void setInsumos(ArrayList<ItemPrendaInsumo> insumos) {
+		this.insumos = insumos;
 	}
 
 

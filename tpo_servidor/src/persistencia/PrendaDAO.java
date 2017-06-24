@@ -6,8 +6,11 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import entities.ItemPrendaInsumoEntity;
 import entities.PrendaEntity;
 import hibernate.HibernateUtil;
+import negocio.ItemPedidoCliente;
+import negocio.ItemPrendaInsumo;
 import negocio.Prenda;
 
 public class PrendaDAO  {
@@ -46,6 +49,13 @@ public class PrendaDAO  {
 		sesion.save(pr);
 		sesion.getTransaction().commit();
 		sesion.close();
+		sesion = sf.openSession();
+		sesion.beginTransaction();
+		for (int i=0;i<prenda.getInsumos().size();i++){
+			ItemPrendaInsumo item=new ItemPrendaInsumo();
+			item=prenda.getInsumos().get(i);
+			ItemPrendaInsumoDAO.getInstancia().insert(item,prenda);
+		}
 	}
 
 
@@ -75,6 +85,13 @@ public class PrendaDAO  {
 		p.setStockMinimo(prenda.getStockMinimo());	
 		p.setColor(prenda.getColor());
 		p.setTalle(prenda.getTalle());
+		ArrayList<ItemPrendaInsumoEntity> itemsEntity=new ArrayList<ItemPrendaInsumoEntity>();
+		for(int i=0;i<prenda.getInsumos().size();i++){
+			ItemPrendaInsumoEntity item=new ItemPrendaInsumoEntity();
+			item=ItemPrendaInsumoDAO.getInstancia().toEntity(prenda.getInsumos().get(i), prenda);
+			itemsEntity.add(item);
+		}
+		p.setItems(itemsEntity);
 		return p;
 	}
 	
@@ -104,7 +121,11 @@ public class PrendaDAO  {
 		sesion.close();
 	}
 	public void disminuirStock(Prenda prenda, int cantidad) {
-		prenda.setStockActual(prenda.getStockActual()-cantidad);
+		if(cantidad>=prenda.getStockActual()){
+			prenda.setStockActual(0);
+		}else{
+			prenda.setStockActual(prenda.getStockActual()-cantidad);
+		}
 		update(prenda);
 		
 	}
