@@ -14,7 +14,7 @@ public class Main extends Application {
 		try {
 			/*Parent root = FXMLLoader.load(getClass().getResource("/fxmls/Login.fxml"));
 			//Parent root = FXMLLoader.load(getClass().getResource("/fxmls/MainWin.fxml"));
-			Scene scene = new Scene(root,1366,768);
+			Scene scene = new Scen 	e(root,1366,768);
 			scene.getStylesheets().add(getClass().getResource("/styles/application.css").toExternalForm());
 			//primaryStage.setFullScreen(true);
 			//primaryStage.setFullScreenExitHint("");
@@ -27,8 +27,8 @@ public class Main extends Application {
 			Stage stage = new Stage(StageStyle.DECORATED);
 			Scene scene = new Scene((AnchorPane) loader.load());
 			stage.setScene(scene);
-			stage.setFullScreen(true);
-			stage.setFullScreenExitHint("");
+			//stage.setFullScreen(true);
+			//stage.setFullScreenExitHint("");
 			stage.show();
 		} catch(Exception e) {
 			e.printStackTrace();

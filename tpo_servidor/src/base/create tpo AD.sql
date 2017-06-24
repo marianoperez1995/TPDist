@@ -1,26 +1,3 @@
-create table OrdenesProduccion (
-	idOrdenProduccion int not null identity (1,1),
-	idPrenda int not null,
-	cantidad int not null,
-	idPedidoCliente int not null,
-	fecha DateTime not null,
-	tipo varchar(20) not null,
-	constraint pk_OrdenesP primary key (idOrdenProduccion),
-	constraint fk_Prendas foreign key (idPrenda) references Prendas,
-	constraint fk_PedidosCliente foreign key (idPedidoCliente) references PedidosCliente
-)
-
-
-
-/*create table ItemOrdenProduccion (
-	idOrdenProduccion int not null,
-	idPrenda int not null,
-	cantidadPedida int not null,
-	cantidadRealizada int not null,
-
-	constraint pk_ItemOrdProd primary key (idOrdenProduccion, idPrenda),
-)*/
-
 create table Prendas (
 	idPrenda int not null identity(1,1),
 	color varchar(100) not null,
@@ -303,6 +280,29 @@ create table Reclamos (
 	
 	constraint pk_reclamos primary key (idReclamo),
 	constraint fk_idCliente foreign key (idCliente) references Clientes
+)
+
+create table OrdenesProduccion (
+	idOrdenProduccion int not null identity (1,1),
+	idPrenda int not null,
+	cantidad int not null,
+	idPedidoCliente int not null,
+	fecha DateTime not null,
+	tipo varchar(20) not null,
+	constraint pk_OrdenesP primary key (idOrdenProduccion),
+	constraint fk_Prendas foreign key (idPrenda) references Prendas,
+	constraint fk_PedidosCliente foreign key (idPedidoCliente) references PedidosCliente
+)
+
+
+
+create table ItemOrdenProduccion (
+	idOrdenProduccion int not null,
+	idPrenda int not null,
+	cantidadPedida int not null,
+	cantidadRealizada int not null,
+
+	constraint pk_ItemOrdProd primary key (idOrdenProduccion, idPrenda),
 )
 
 alter table Lotes add
