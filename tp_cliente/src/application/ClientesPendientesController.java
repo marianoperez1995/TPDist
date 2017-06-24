@@ -16,6 +16,7 @@ import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import businessDelegate.BusinessDelegate;
 import dto.ClienteDTO;
 import dto.CuentaCorrienteDTO;
+import dto.PedidoClienteDTO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
@@ -46,6 +47,8 @@ public class ClientesPendientesController implements Initializable{
     private JFXTextField txtPiso;
 
     @FXML
+    private JFXTextField lblIdCC;
+    @FXML
     private JFXTextField txtCondicPago;
 
     @FXML
@@ -64,17 +67,13 @@ public class ClientesPendientesController implements Initializable{
     private JFXTextField filtroCuit;
 
     @FXML
-    private JFXButton btnEditar;
-
-    @FXML
     private JFXTextField txtGenero;
 
+    @FXML
+    private JFXButton btnGuardar;
 
     @FXML
     private JFXTextField txtCuit;
-
-    @FXML
-    private JFXButton btnEliminar;
 
     @FXML
     private JFXTextField txtTelefono;
@@ -92,16 +91,10 @@ public class ClientesPendientesController implements Initializable{
     private JFXTextField txtLimitePrecio;
 
     @FXML
-    private Label lblCantPedidos;
+    private JFXButton btnCancelar;
 
-    @FXML
-    private Label lblIdCC;
-    
     @FXML
     private Label lblIdCliente;
-
-    @FXML
-    private FlowPane flowPanel;
     
     private TreeItem<ClienteTabla> seleccionado;
     
@@ -250,7 +243,6 @@ public class ClientesPendientesController implements Initializable{
 	    	           
 	    	           lblIdCC.setText("ID# " + Integer.toString(seleccionado.getCuentaCorriente().getIdCuentaCorriente()));
 	    	           lblIdCliente.setText("#"+Integer.toString(seleccionado.getNumeroCliente()));
-	    	           lblCantPedidos.setText(Integer.toString(seleccionado.getPedidosCliente().size()));
 	    	           txtRazon.setText(seleccionado.getNombre());
 	    	           txtCuit.setText(seleccionado.getCuit());
 	    	           txtTelefono.setText(seleccionado.getTelefono());
@@ -262,33 +254,41 @@ public class ClientesPendientesController implements Initializable{
 	    	           txtLimitePrecio.setText(Float.toString(seleccionado.getCuentaCorriente().getLimite()));
 	    	           txtCondicPago.setText(seleccionado.getCuentaCorriente().getCondiciones());
 	    	           
-	    	       		btnEliminar.setDisable(false);
-	    	       		btnEditar.setDisable(false);
+	    	       		btnCancelar.setDisable(false);
+	    	       		btnGuardar.setDisable(false);
 	    	        }
     	         }
     	     });
     }
-    
 
     @FXML
-    void cancelarModif(ActionEvent event) {
-    	txtCondicPago.setEditable(false);
-    	txtLimitePrecio.setEditable(false);
-        txtRazon.setEditable(false);
-        txtCuit.setEditable(false);
-        txtTelefono.setEditable(false);
-        txtDireccion.setEditable(false);
-        txtNombreE.setEditable(false);
-        txtTelE.setEditable(false);
-        txtMail.setEditable(false);
-        txtGenero.setEditable(false);
+    void rechazarCliente(ActionEvent event) {
+    	ClienteDTO nuevo = new ClienteDTO();
+    	
+    	String idcl = lblIdCliente.getText();
+    	idcl = idcl.substring(1, idcl.length());
+    	
+    	nuevo.setNumeroCliente(Integer.parseInt(idcl));
+    	try {
+			nuevo = BusinessDelegate.getInstancia().buscarCliente(nuevo);
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+ 
+    	try {
+			BusinessDelegate.getInstancia().rechazarCliente(nuevo);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         
-    	btnEliminar.setDisable(false);
-    	btnEditar.setDisable(false);
+    	btnCancelar.setDisable(true);
+    	btnGuardar.setDisable(true);
     }
-
+    
     @FXML
-    void editarCliente(ActionEvent event) {
+    void altaCliente(ActionEvent event) {
     	ClienteDTO cliente = new ClienteDTO();
     	CuentaCorrienteDTO cuenta = new CuentaCorrienteDTO();
     	String idc = lblIdCC.getText();
@@ -315,6 +315,7 @@ public class ClientesPendientesController implements Initializable{
 		}
     	cuenta.setCondiciones(txtCondicPago.getText());
     	cuenta.setLimite(Float.parseFloat(txtLimitePrecio.getText()));
+    	cuenta.setEstado("Alta");
         cliente.setNumeroCliente(Integer.parseInt(idcl));
         cliente.setNombre(txtRazon.getText());
         cliente.setCuit(txtCuit.getText());
@@ -323,10 +324,10 @@ public class ClientesPendientesController implements Initializable{
         cliente.setDireccion(txtDireccion.getText());
         cliente.setEncargado(txtNombreE.getText());
         cliente.setTelEncargado(txtTelE.getText());
+        cliente.setEstado("Alta");
         cliente.setMailEncargado(txtMail.getText());
         cliente.setGeneroEncargado(txtGenero.getText());
         cliente.setCuentaCorriente(cuenta);
-        cliente.setEstado("Alta");
         try {
 			BusinessDelegate.getInstancia().modificarCliente(cliente);
 		} catch (RemoteException e) {
@@ -334,107 +335,17 @@ public class ClientesPendientesController implements Initializable{
 			e.printStackTrace();
 		}
         
-    	txtCondicPago.setEditable(false);
-    	txtLimitePrecio.setEditable(false);
-        txtRazon.setEditable(false);
-        txtCuit.setEditable(false);
-        txtTelefono.setEditable(false);
-        txtDireccion.setEditable(false);
-        txtNombreE.setEditable(false);
-        txtTelE.setEditable(false);
-        txtMail.setEditable(false);
-        txtGenero.setEditable(false);
-    	
-        lblIdCC.setText("ID#");
-        lblIdCliente.setText("#");
-        lblCantPedidos.setText("");
-        txtRazon.setText("");
-        txtCuit.setText("");
-        txtTelefono.setText("");
-        txtDireccion.setText("");
-        txtNombreE.setText("");
-        txtTelE.setText("");
-        txtMail.setText("");
-        txtGenero.setText("");
-        txtLimitePrecio.setText("");
-        txtCondicPago.setText("");
-        
-    	btnEliminar.setDisable(true);
-    	btnEditar.setDisable(true);
-        
-    }
-    /*
-    @FXML
-    void editarCliente(ActionEvent event) {
-    	btnEliminar.setDisable(true);
-    	btnEditar.setDisable(true);
-    	
-    	txtCondicPago.setEditable(true);
-    	txtLimitePrecio.setEditable(true);
-        txtRazon.setEditable(true);
-        txtCuit.setEditable(true);
-        txtTelefono.setEditable(true);
-        txtDireccion.setEditable(true);
-        txtNombreE.setEditable(true);
-        txtTelE.setEditable(true);
-        txtMail.setEditable(true);
-        txtGenero.setEditable(true);
-        }*/
-
-    @FXML
-    void eliminarCliente(ActionEvent event) {
-    	ClienteDTO nuevo = new ClienteDTO();
-    	
-    	String idcl = lblIdCliente.getText();
-    	idcl = idcl.substring(1, idcl.length());
-    	
-    	nuevo.setNumeroCliente(Integer.parseInt(idcl));
-    	try {
-			BusinessDelegate.getInstancia().rechazarCliente(nuevo);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	
-    	txtCondicPago.setEditable(false);
-    	txtLimitePrecio.setEditable(false);
-        txtRazon.setEditable(false);
-        txtCuit.setEditable(false);
-        txtTelefono.setEditable(false);
-        txtDireccion.setEditable(false);
-        txtNombreE.setEditable(false);
-        txtTelE.setEditable(false);
-        txtMail.setEditable(false);
-        txtGenero.setEditable(false);
-    	
-        lblIdCC.setText("ID#");
-        lblIdCliente.setText("#");
-        lblCantPedidos.setText("");
-        txtRazon.setText("");
-        txtCuit.setText("");
-        txtTelefono.setText("");
-        txtDireccion.setText("");
-        txtNombreE.setText("");
-        txtTelE.setText("");
-        txtMail.setText("");
-        txtGenero.setText("");
-        txtLimitePrecio.setText("");
-        txtCondicPago.setText("");
-        
-    	btnEliminar.setDisable(true);
-    	btnEditar.setDisable(true);
+    	btnCancelar.setDisable(true);
+    	btnGuardar.setDisable(true);
     }
     
     private ArrayList<ClienteTabla> buscarClientes() {
 		ArrayList<ClienteTabla> resultado = new ArrayList<ClienteTabla>();
 		
 		try {
-			for(ClienteDTO c : BusinessDelegate.getInstancia().listadoClientes()){
-				if(c.getEstado().equalsIgnoreCase("Pendiente"))
-					resultado.add(new ClienteTabla(Integer.toString(c.getNumeroCliente()), c.getNombre(),c.getCuit(),c.getTelefono(),c.getFechaRegistro()));
-			}
+			for(ClienteDTO c : BusinessDelegate.getInstancia().listadoClientes())
+			resultado.add(new ClienteTabla(Integer.toString(c.getNumeroCliente()), c.getNombre(),c.getCuit(),c.getTelefono(),c.getFechaRegistro()));
 			return resultado;
-			
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

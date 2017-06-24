@@ -143,7 +143,7 @@ public class ClienteBuscarController implements Initializable{
 			}
 		});
     	
-    	JFXTreeTableColumn<ClienteTabla, String> telefonoColumn = new JFXTreeTableColumn<>("Telefono");
+    	JFXTreeTableColumn<ClienteTabla, String> telefonoColumn = new JFXTreeTableColumn<>("Estado");
     	telefonoColumn.setPrefWidth(100);
     	telefonoColumn.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<ClienteTabla,String>, ObservableValue<String>>() {
 			
@@ -267,10 +267,22 @@ public class ClienteBuscarController implements Initializable{
 	    	           txtLimitePrecio.setText(Float.toString(seleccionado.getCuentaCorriente().getLimite()));
 	    	           txtCondicPago.setText(seleccionado.getCuentaCorriente().getCondiciones());
 	    	           
-	    	       		btnCancelar.setDisable(true);
-	    	       		btnGuardar.setDisable(true);
-	    	       		btnEliminar.setDisable(false);
-	    	       		btnEditar.setDisable(false);
+	    	           if(seleccionado.getEstado().equalsIgnoreCase("Rechazado") || seleccionado.getEstado().equalsIgnoreCase("Baja")){
+	    	        	    btnCancelar.setDisable(true);
+		    	       		btnGuardar.setDisable(true);
+		    	       		btnEliminar.setDisable(true);
+		    	       		btnEditar.setDisable(true);  
+	    	           }else if(seleccionado.getEstado().equalsIgnoreCase("Pendiente")){
+	    	        	    btnCancelar.setDisable(true);
+		    	       		btnGuardar.setDisable(true);
+		    	       		btnEliminar.setDisable(true);
+		    	       		btnEditar.setDisable(false);  
+	    	           }else{
+		    	       		btnCancelar.setDisable(true);
+		    	       		btnGuardar.setDisable(true);
+		    	       		btnEliminar.setDisable(false);
+		    	       		btnEditar.setDisable(false);   
+	    	           }
 	    	        }
     	         }
     	     });
@@ -388,6 +400,13 @@ public class ClienteBuscarController implements Initializable{
     	
     	nuevo.setNumeroCliente(Integer.parseInt(idcl));
     	try {
+			nuevo = BusinessDelegate.getInstancia().buscarCliente(nuevo);
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+ 
+    	try {
 			BusinessDelegate.getInstancia().bajaCliente(nuevo);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -429,12 +448,9 @@ public class ClienteBuscarController implements Initializable{
 		ArrayList<ClienteTabla> resultado = new ArrayList<ClienteTabla>();
 		
 		try {
-			for(ClienteDTO c : BusinessDelegate.getInstancia().listadoClientes()){
-				if(!c.getEstado().equalsIgnoreCase("Baja"))
-					resultado.add(new ClienteTabla(Integer.toString(c.getNumeroCliente()), c.getNombre(),c.getCuit(),c.getTelefono(),c.getFechaRegistro()));
-			}
+			for(ClienteDTO c : BusinessDelegate.getInstancia().listadoClientes())
+			resultado.add(new ClienteTabla(Integer.toString(c.getNumeroCliente()), c.getNombre(),c.getCuit(),c.getEstado(),c.getFechaRegistro()));
 			return resultado;
-			
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
