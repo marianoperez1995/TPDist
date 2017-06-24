@@ -14,9 +14,11 @@ public class HibernateUtil {
 			AnnotationConfiguration config = new AnnotationConfiguration();
 
 			//config.addAnnotatedClass(DespachoEntity.class); No tiene tabla
-			
+
 			config.addAnnotatedClass(LoteEntity.class);	
 			config.addAnnotatedClass(ItemPedidoInsumoEntity.class);
+
+			/*config.addAnnotatedClass(ItemPedidoInsumoEntity.class);
 			config.addAnnotatedClass(ItemPrendaInsumoEntity.class);			
 			config.addAnnotatedClass(LoteInsumoEntity.class);	
 			config.addAnnotatedClass(PedidoInsumoEntity.class);
@@ -33,20 +35,20 @@ public class HibernateUtil {
 			config.addAnnotatedClass(AreaProduccionEntity.class);
 			config.addAnnotatedClass(ItemPrendaAreaEntity.class);
 			config.addAnnotatedClass(OrdenProduccionEntity.class);
-
-
-			
 			config.addAnnotatedClass(LineaProduccionEntity.class);
 			config.addAnnotatedClass(EmpleadoEntity.class);
 			config.addAnnotatedClass(PrendaEntity.class);
-			
 			config.addAnnotatedClass(ProveedorEntity.class);
 			config.addAnnotatedClass(MovimientosEntity.class);
 			config.addAnnotatedClass(ReclamosEntity.class);
-			config.addAnnotatedClass(OrdenProduccionEntity.class);
 			config.addAnnotatedClass(TransporteEntity.class);
 			config.addAnnotatedClass(FacturaEntity.class);
-			config.addAnnotatedClass(ItemPedidoClienteEntity.class);
+			config.addAnnotatedClass(ItemPedidoClienteEntity.class);*/
+			config.addAnnotatedClass(CuentaCorrienteEntity.class);
+			config.addAnnotatedClass(EmpleadoEntity.class);
+			config.addAnnotatedClass(SucursalEntity.class);
+			config.addAnnotatedClass(ClienteEntity.class);
+			config.addAnnotatedClass(PedidoClienteEntity.class);
 			
 			sessionFactory = config.buildSessionFactory();
 

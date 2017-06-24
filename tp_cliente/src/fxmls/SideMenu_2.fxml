@@ -24,14 +24,6 @@
             <JFXHamburger layoutX="14.0" layoutY="12.0" stylesheets="@../styles/hambstyle2.css" />
          </children>
       </Pane>
-      <JFXButton fx:id="btnResumen" alignment="CENTER_RIGHT" buttonType="RAISED" minHeight="28.0" onAction="#changeBody" prefHeight="28.0" prefWidth="250.0" ripplerFill="BLACK" style="-fx-background-color: #99b89b;" text="Resumen de clientes" textAlignment="RIGHT" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-         <VBox.margin>
-            <Insets top="15.0" />
-         </VBox.margin>
-      </JFXButton>
       <Label text="Clientes" textFill="WHITE">
          <VBox.margin>
             <Insets top="10.0" />

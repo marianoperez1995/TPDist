@@ -1,6 +1,4 @@
-
-
-/*create table Prendas (
+create table Prendas (
 	idPrenda int not null identity(1,1),
 	color varchar(100) not null,
 	talle varchar(100) not null,
@@ -16,7 +14,6 @@
 	constraint pk_Prendas primary key (idPrenda)
 )
 
-*/
 create table Sucursales (
 	idSucursal int not null identity(1,1),
 	nombre varchar(50) not null,
@@ -274,6 +271,17 @@ create table Prendas_Eliminadas (
 	constraint fk_eliminada_empleado foreign key (idEmpleadoBaja) references Empleados,
 	constraint fk_eliminada_gerente foreign key (idGerente) references Empleados
 )
+
+create table Reclamos (
+	idReclamo int identity(1,1),
+	idCliente int not null,
+	fechaReclamo DateTime not null,
+	reclamo varchar(200),
+	
+	constraint pk_reclamos primary key (idReclamo),
+	constraint fk_idCliente foreign key (idCliente) references Clientes
+)
+
 create table OrdenesProduccion (
 	idOrdenProduccion int not null identity (1,1),
 	idPrenda int not null,
@@ -287,6 +295,7 @@ create table OrdenesProduccion (
 )
 
 
+
 create table ItemOrdenProduccion (
 	idOrdenProduccion int not null,
 	idPrenda int not null,
@@ -294,16 +303,6 @@ create table ItemOrdenProduccion (
 	cantidadRealizada int not null,
 
 	constraint pk_ItemOrdProd primary key (idOrdenProduccion, idPrenda),
-)
-
-create table Reclamos (
-	idReclamo int identity(1,1),
-	idCliente int not null,
-	fechaReclamo DateTime not null,
-	reclamo varchar(200),
-	
-	constraint pk_reclamos primary key (idReclamo),
-	constraint fk_idCliente foreign key (idCliente) references Clientes
 )
 
 alter table Lotes add

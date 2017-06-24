@@ -30,4 +30,7 @@ insert into Clientes values ('02/06/2017 10:30', 'Cliente 5', '3255212', '466633
 insert into Clientes values ('02/06/2017 10:30', 'Cliente 6', '5223421', '46663333', 'Jose Pedro 1500 2A', 1, 6, 'Pendiente', 'Piter', '44223312', 'Piter@ejemplo.com', 'Masculino')
 insert into Clientes values ('02/06/2017 10:30', 'Cliente 7', '67432123', '46663333', 'Jose Eduardo 1500 2A', 1, 7, 'Pendiente', 'German', '44223312', 'german@ejemplo.com', 'Masculino')
 
---prendas
+select * from clientes
+select * from empleados
+select * from sucursales
+select * from cuentascorriente
