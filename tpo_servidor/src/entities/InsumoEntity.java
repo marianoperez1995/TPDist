@@ -39,27 +39,9 @@ public class InsumoEntity implements Serializable  {
 	@Column(name="stockMin")
 	private float stockMinimo;
 	private String unidad;
-	private float cantAComprar;
-
-	//Faltaba en esta clase la fechaRecepcion
-	
+	private float cantAComprar;	
 	private Date fechaRecepcion;	
-	/*
-	//falta manejar el precio de proveedor_insumos
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REFRESH }, fetch = FetchType.EAGER)
-	@JoinTable(name = "Proveedor_Insumos", joinColumns = {
-	@JoinColumn(name = "idinsumo") }, inverseJoinColumns = { @JoinColumn(name = "idproveedor") })
-	private List<ProveedorEntity> proveedores;	
-	
-	//falta manejar la cantidad y desperdicio de prenda_insumos
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REFRESH }, fetch = FetchType.EAGER)
-	@JoinTable(name = "prenda_insumos", joinColumns = {
-	@JoinColumn(name = "idInsumo") }, inverseJoinColumns = { @JoinColumn(name = "idPrenda") })
-	private List<PrendaEntity> prendas;
-	*/
-	//REVISAR QUE ESTE MANEJANDO BIEN EL DESPERDICIO/CANTIDAD SIN GUARDAR LOS ITEMS ACA
-	//osea, con entities aparte, que son los Item....
-	
+
 	
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REFRESH }, fetch = FetchType.EAGER)
 	@JoinTable(name = "Lote_Insumo", joinColumns = {

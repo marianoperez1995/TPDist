@@ -12,16 +12,11 @@ public class ItemProveedorInsumoEntity implements Serializable {
 	/**
 	 * 
 	 */
-	
-	private static final long serialVersionUID = -5673640771964535118L;
-	public ItemProveedorInsumoEntity(ItemProveedorInsumoID id, float precio) {
-		super();
-		this.id = id;
-		this.precio = precio;
-	}
+	private static final long serialVersionUID = -7699953091200226538L;
 	public ItemProveedorInsumoEntity() {
 		// TODO Auto-generated constructor stub
 	}
+	
 	@EmbeddedId
 	private ItemProveedorInsumoID id;
 	private float precio;

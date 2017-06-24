@@ -13,19 +13,22 @@ public class HibernateUtil {
 
 			AnnotationConfiguration config = new AnnotationConfiguration();
 
-			/*config.addAnnotatedClass(DespachoEntity.class);
-			config.addAnnotatedClass(ItemPedidoInsumoEntity.class);			
-			config.addAnnotatedClass(ItemPrendaInsumoEntity.class);			
-			config.addAnnotatedClass(LoteInsumoEntity.class);			
-			config.addAnnotatedClass(PedidoInsumoEntity.class);
-			config.addAnnotatedClass(PedidoTransporteEntity.class);			
-			config.addAnnotatedClass(PrendasEliminadasEntity.class);	
-			config.addAnnotatedClass(ItemProveedorInsumoEntity.class);
-			config.addAnnotatedClass(InsumoEntity.class);
+			//config.addAnnotatedClass(DespachoEntity.class); No tiene tabla
+			/*					
+					
 			config.addAnnotatedClass(LoteEntity.class);		
 			*/
 			
-			//De aca para abajo no rompen todo
+			config.addAnnotatedClass(ItemPedidoInsumoEntity.class);
+			config.addAnnotatedClass(ItemPrendaInsumoEntity.class);			
+			config.addAnnotatedClass(LoteInsumoEntity.class);	
+			config.addAnnotatedClass(PedidoInsumoEntity.class);
+			config.addAnnotatedClass(PedidoTransporteEntity.class);	
+			config.addAnnotatedClass(PrendasEliminadasEntity.class);	
+			config.addAnnotatedClass(ItemProveedorInsumoEntity.class);
+			config.addAnnotatedClass(InsumoEntity.class);
+			//De aca para abajo andan bien en teoria
+			
 			config.addAnnotatedClass(ClienteEntity.class);
 			config.addAnnotatedClass(SucursalEntity.class);
 			config.addAnnotatedClass(CuentaCorrienteEntity.class);
@@ -43,8 +46,6 @@ public class HibernateUtil {
 			config.addAnnotatedClass(ProveedorEntity.class);
 			config.addAnnotatedClass(MovimientosEntity.class);
 			config.addAnnotatedClass(ReclamosEntity.class);
-			config.addAnnotatedClass(OpcEntity.class);
-			config.addAnnotatedClass(OppEntity.class);
 			config.addAnnotatedClass(OrdenProduccionEntity.class);
 			config.addAnnotatedClass(TransporteEntity.class);
 			config.addAnnotatedClass(FacturaEntity.class);

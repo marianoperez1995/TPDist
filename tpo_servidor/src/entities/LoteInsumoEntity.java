@@ -15,17 +15,6 @@ import javax.persistence.Table;
 @Table(name="LotesInsumo")
 public class LoteInsumoEntity implements Serializable  {
 
-	
-	public LoteInsumoEntity(int codigoLoteInsumo, Date fechaRecepcion, ProveedorEntity proveedor, float cantidad,
-			InsumoEntity insumo) {
-		super();
-		this.codigoLoteInsumo = codigoLoteInsumo;
-		this.fechaRecepcion = fechaRecepcion;
-		this.proveedor = proveedor;
-		this.cantidad = cantidad;
-		this.insumo = insumo;
-	}
-
 	public LoteInsumoEntity() {
 		// TODO Auto-generated constructor stub
 	}

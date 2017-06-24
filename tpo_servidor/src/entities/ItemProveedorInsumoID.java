@@ -7,10 +7,7 @@ import javax.persistence.ManyToOne;
 
 public class ItemProveedorInsumoID implements Serializable{
 
-	/**
-	 * 
-	 */
-	//REVISAR LOS ONE TO ONE
+
 	private static final long serialVersionUID = -4617893078779176557L;
 	@ManyToOne
 	@JoinColumn(name="idproveedor")

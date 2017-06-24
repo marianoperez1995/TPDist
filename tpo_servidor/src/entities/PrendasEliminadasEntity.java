@@ -9,8 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -31,11 +30,8 @@ public class PrendasEliminadasEntity implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idPrendaEliminada;
 	
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumns({
-		@JoinColumn(name = "idPrenda", referencedColumnName = "idPrenda"),
-		@JoinColumn(name = "idColor", referencedColumnName = "idColor"),
-		@JoinColumn(name = "idTalle", referencedColumnName = "idTalle") })
+	@ManyToOne
+	@JoinColumn(name="idPrenda")
 	private PrendaEntity prenda;
 	
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

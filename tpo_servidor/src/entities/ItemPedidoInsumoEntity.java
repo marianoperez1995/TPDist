@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table (name="prenda_insumos")
+@Table (name="ItemPedidoInsumos")
 public class ItemPedidoInsumoEntity  implements Serializable {
 
 	private static final long serialVersionUID = -7316836328454494865L;
@@ -18,7 +18,7 @@ public class ItemPedidoInsumoEntity  implements Serializable {
 	@EmbeddedId
 	private ItemPedidoInsumoID id;
 	private int cantidad;
-	
+
 	public ItemPedidoInsumoID getId() {
 		return id;
 	}
@@ -30,8 +30,6 @@ public class ItemPedidoInsumoEntity  implements Serializable {
 	}
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
-	}
-	
-	
+	}	
 	
 }

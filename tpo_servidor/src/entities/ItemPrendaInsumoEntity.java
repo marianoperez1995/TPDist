@@ -5,7 +5,6 @@ import java.io.Serializable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 @Entity
 @Table (name="prenda_insumos")
 public class ItemPrendaInsumoEntity  implements Serializable {
@@ -16,8 +15,6 @@ public class ItemPrendaInsumoEntity  implements Serializable {
 	private ItemPrendaInsumoID id;	
 	private float cantidad;
 	private float desperdicio;
-	@Transient
-	private InsumoEntity insumo; //esta en el id
 
 	public ItemPrendaInsumoID getId() {
 		return id;
@@ -43,14 +40,5 @@ public class ItemPrendaInsumoEntity  implements Serializable {
 		this.desperdicio = desperdicio;
 	}
 
-	public InsumoEntity getInsumo() {
-		// TODO Auto-generated method stub
-		return insumo;
-	}
 
-	public void setInsumo(InsumoEntity insumo) {
-		this.insumo = insumo;
-	}
-
-	
 }

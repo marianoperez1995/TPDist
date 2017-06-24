@@ -11,7 +11,7 @@ public class ItemPedidoInsumoID {
 	@JoinColumn(name="idInsumo")
 	private InsumoEntity insumo;
 	@ManyToOne
-	@JoinColumn(name="idPedido")
+	@JoinColumn(name="idPedidoInsumos")
 	private PedidoInsumoEntity pedido;
 	public InsumoEntity getInsumo() {
 		return insumo;

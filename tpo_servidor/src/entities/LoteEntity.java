@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -23,10 +22,7 @@ public class LoteEntity implements Serializable  {
 	@Column(name="idLote")
 	private int codigo;
 	@ManyToOne
-	@JoinColumns({
-		@JoinColumn(name = "idPrenda", referencedColumnName = "idPrenda"),
-		@JoinColumn(name = "idColor", referencedColumnName = "idColor"),
-		@JoinColumn(name = "idTalle", referencedColumnName = "idTalle") })
+	@JoinColumn(name="idPrenda")
 	private PrendaEntity prenda;	
 	@Column(name="cantidad")
 	private int cantidadTotal;
