@@ -314,7 +314,7 @@ public class ClientesPendientesController implements Initializable{
 		
 		try {
 			for(ClienteDTO c : BusinessDelegate.getInstancia().listadoClientes()){
-				if (c.getEstado().compareToIgnoreCase("pendiente")==0){
+				if (c.getEstado().equalsIgnoreCase("pendiente")){
 				resultado.add(new ClienteTabla(Integer.toString(c.getNumeroCliente()), c.getNombre(),c.getCuit(),c.getEstado(),df.format(c.getFechaRegistro())));
 			}
 			}	

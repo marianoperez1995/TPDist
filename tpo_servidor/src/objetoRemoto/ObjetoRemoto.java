@@ -198,6 +198,11 @@ public class ObjetoRemoto extends UnicastRemoteObject implements InterfazRemota,
 		AdministradorClientes.getInstancia().aumentarLimiteCreditoCliente(limite, cliente);
 
 	}
+
+	@Override
+	public PedidoClienteDTO buscarPedido(PedidoClienteDTO seleccionado) throws RemoteException {
+		return AdministradorPedidos.getInstancia().getPedido(seleccionado);
+	}
 	
 	
 	
