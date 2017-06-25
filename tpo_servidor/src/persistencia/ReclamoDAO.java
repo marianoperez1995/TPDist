@@ -55,5 +55,28 @@ public class ReclamoDAO {
 		reclamo.setReclamo(rec.getReclamo());
 		return reclamo;
 	}
+	
+	public ArrayList<Reclamo> getAll() {
 
+		Session sesion = sf.openSession();
+		sesion.beginTransaction();
+		ArrayList<ReclamosEntity> pre = new ArrayList<ReclamosEntity>();
+		Query query = sesion.createQuery("from ReclamoEntity");
+		pre = (ArrayList<ReclamosEntity>) query.list();
+		sesion.close();
+		ArrayList<Reclamo> reclamos = new ArrayList<Reclamo>();
+		for (ReclamosEntity ee : pre) {
+			reclamos.add(new Reclamo(ee));
+		}
+		return reclamos;
+	}
+
+	public Reclamo getReclamo(int idReclamo) {
+		Session sesion = sf.openSession();
+		sesion.beginTransaction();
+		ReclamosEntity emp = (ReclamosEntity) sesion.get(ReclamosEntity.class, idReclamo);
+		sesion.close();
+		Reclamo reclamo=new Reclamo(emp);
+		return reclamo ;
+	}
 }

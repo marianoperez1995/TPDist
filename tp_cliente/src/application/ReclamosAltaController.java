@@ -227,10 +227,7 @@ public class ReclamosAltaController implements Initializable{
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 	    	           }
-	    	           ArrayList<PedidoClienteDTO> ped = new ArrayList<PedidoClienteDTO>();
-	    	           if(seleccionado.getPedidosCliente() != null){
-	    	        	   ped = seleccionado.getPedidosCliente();
-	    	           }
+
 	    	           lblIdCliente.setText(Integer.toString(seleccionado.getNumeroCliente()));
 	    	           txtRazon.setText(seleccionado.getNombre());
 	    	           txtNombreEncargado.setText(seleccionado.getEncargado());
@@ -238,6 +235,7 @@ public class ReclamosAltaController implements Initializable{
 	    	           txtTelefonoEncargado.setText(seleccionado.getTelEncargado());
 	    	           txtTelefono.setText(seleccionado.getTelefono());
 	    	           txtReclamo.setText("");
+	    	           txtReclamo.setEditable(true);
 	    	           
 	    	           btnLimpiar.setDisable(false);
 	    	           btnLimpiar.setDisable(false);
@@ -248,7 +246,7 @@ public class ReclamosAltaController implements Initializable{
 
 
     @FXML
-    void eliminarCliente(ActionEvent event) {
+    void enviarReclamo(ActionEvent event) {
     	ReclamoDTO reclamo = new ReclamoDTO();
     	
     	ClienteDTO nuevo = new ClienteDTO();
@@ -295,6 +293,7 @@ public class ReclamosAltaController implements Initializable{
         txtTelefonoEncargado.setText("");
         txtTelefono.setText("");
         txtReclamo.setText("");
+        txtReclamo.setEditable(false);
         
         btnLimpiar.setDisable(true);
         btnLimpiar.setDisable(true);

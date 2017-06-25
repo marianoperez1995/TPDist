@@ -131,5 +131,13 @@ public class BusinessDelegate {
 		// TODO Auto-generated method stub
 		objetoRemoto.altaReclamo(reclamo);
 	}
+	public ReclamoDTO buscarReclamo(ReclamoDTO reclamo) throws RemoteException {
+		// TODO Auto-generated method stub
+		return objetoRemoto.getReclamo(reclamo);
+	}
+	public ArrayList<ReclamoDTO> listadoReclamos() throws RemoteException{
+		// TODO Auto-generated method stub
+		return objetoRemoto.getListadoReclamos();
+	}
 
 }

@@ -60,6 +60,17 @@ public class Reclamo {
 
 	public void insertar() {
 		ReclamoDAO.getInstancia().insert(this);
+	}
+
+
+	public ReclamoDTO toDTO() {
+		ReclamoDTO nuevo = new ReclamoDTO();
+		nuevo.setIdReclamo(this.idReclamo);
+		nuevo.setFechaReclamo(this.fechaReclamo);
+		nuevo.setReclamo(this.reclamo);
+		nuevo.setCliente(this.getCliente().toDTO());
+		
+		return nuevo;
 	}	
 	
 }

@@ -209,6 +209,17 @@ public class ObjetoRemoto extends UnicastRemoteObject implements InterfazRemota,
 	public void altaReclamo(ReclamoDTO reclamo) throws RemoteException {
 		AdministradorClientes.getInstancia().crearReclamo(reclamo);
 	}
+
+	@Override
+	public ReclamoDTO getReclamo(ReclamoDTO reclamo) throws RemoteException {
+		return AdministradorClientes.getInstancia().getReclamo(reclamo);
+	}
+
+	@Override
+	public ArrayList<ReclamoDTO> getListadoReclamos() throws RemoteException {
+		// TODO Auto-generated method stub
+		return AdministradorClientes.getInstancia().getListadoReclamos();
+	}
 	
 	
 	
