@@ -45,12 +45,14 @@ create table AreasProduccion (
 
 create table LineasProduccion (
 	idLineaProduccion int not null identity(1,1),
+	idAreaProduccion int not null,
 	estado bit not null,
 	capacidad int not null,
 	horaInicio datetime not null, 
 	tiempoUso DateTime not null,
 
-	constraint pk_LineasProd primary key (idLineaProduccion)
+	constraint pk_LineasProd primary key (idLineaProduccion),
+		constraint area_fk_lineap foreign key (idAreaProduccion) references AreasProduccion,
 )
 
 
@@ -116,14 +118,7 @@ create table Prenda_Areas (
 	constraint prenda_fk_area1 foreign key (idAreaProduccion) references AreasProduccion
 )
 
-create table Area_lineasProduccion (
-	idAreaProduccion int not null,
-	idLineaProduccion int not null,
-	
-	constraint pk_Area_Lp primary key (idAreaProduccion, idLineaProduccion),
-	constraint area_fk_lineap foreign key (idAreaProduccion) references AreasProduccion,
-	constraint area_fk_lineap1 foreign key (idLineaProduccion) references LineasProduccion
-)
+
 
 
 create table prenda_insumos (
