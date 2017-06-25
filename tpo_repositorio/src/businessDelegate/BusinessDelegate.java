@@ -101,7 +101,7 @@ public class BusinessDelegate {
 		return objetoRemoto.getPrendas();
 	}
 	public PrendaDTO getPrenda(int id, int talle, int color)  throws RemoteException {
-		return objetoRemoto.getPrenda(id, talle, color);
+		return objetoRemoto.getPrenda(id);
 	}
 	public void modificarPrenda(PrendaDTO prenda)   throws RemoteException {
 		 objetoRemoto.modificarPrenda(prenda);
