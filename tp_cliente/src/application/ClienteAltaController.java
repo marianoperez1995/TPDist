@@ -1,16 +1,16 @@
 package application;
 
-import java.awt.Frame;
 import java.io.IOException;
+import java.net.URL;
 import java.rmi.RemoteException;
-
-import javax.swing.JDialog;
-import javax.swing.JOptionPane;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
-import com.jfoenix.controls.JFXDialog.DialogTransition;
 import com.jfoenix.controls.JFXTextField;
 
 import businessDelegate.BusinessDelegate;
@@ -23,8 +23,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.fxml.Initializable;
+import javafx.util.Callback;
 
-public class ClienteAltaController {
+public class ClienteAltaController implements Initializable {
     @FXML
     private JFXTextField txtCorreoEncargado;
 
@@ -76,6 +78,16 @@ public class ClienteAltaController {
     @FXML
     private JFXTextField txtNombreEncargado;
 
+   /* @SuppressWarnings("unchecked")
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+    	lblFechaRegistro.setText(df.format(Calendar.getInstance().getTime()));*/
+
+    @SuppressWarnings("unchecked")
+	@Override
+    public void initialize (URL url, ResourceBundle rb){
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+    	lblFechaRegistro.setText("Fecha: " + df.format(Calendar.getInstance().getTime()));
+    }
     
     @FXML
     void enviarTramite(ActionEvent event) {
@@ -124,7 +136,7 @@ public class ClienteAltaController {
 	    	ccte.setCondiciones(txtCondicionesPago.getText());
 	    	ccte.setFecha(txtFechaPago.getText());
 	    	ccte.setEstado("Pendiente");
-	    	
+	    	cli.setFechaRegistro(Calendar.getInstance().getTime());
 	    	cli.setCuentaCorriente(ccte);
 	    	
 	    	try {

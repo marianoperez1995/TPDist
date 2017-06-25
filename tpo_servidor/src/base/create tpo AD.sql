@@ -152,7 +152,7 @@ create table CuentasCorriente(
 
 create table Clientes (
 	idCliente int not null identity(1,1),
-	fechaRegistro varchar(30) not null,
+	fechaRegistro Datetime not null,
 	nombre varchar(60) not null,
 	cuit varchar(30) not null,
 	telefono varchar(30) not null,

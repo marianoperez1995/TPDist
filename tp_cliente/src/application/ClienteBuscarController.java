@@ -2,6 +2,8 @@ package application;
 
 import java.net.URL;
 import java.rmi.RemoteException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
@@ -107,8 +109,6 @@ public class ClienteBuscarController implements Initializable{
 
     @FXML
     private FlowPane flowPanel;
-    
-    private TreeItem<ClienteTabla> seleccionado;
     
     @SuppressWarnings("unchecked")
 	@Override
@@ -446,10 +446,11 @@ public class ClienteBuscarController implements Initializable{
     
     private ArrayList<ClienteTabla> buscarClientes() {
 		ArrayList<ClienteTabla> resultado = new ArrayList<ClienteTabla>();
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 		
 		try {
 			for(ClienteDTO c : BusinessDelegate.getInstancia().listadoClientes())
-			resultado.add(new ClienteTabla(Integer.toString(c.getNumeroCliente()), c.getNombre(),c.getCuit(),c.getEstado(),c.getFechaRegistro()));
+			resultado.add(new ClienteTabla(Integer.toString(c.getNumeroCliente()), c.getNombre(),c.getCuit(),c.getEstado(),df.format(c.getFechaRegistro())));
 			return resultado;
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block

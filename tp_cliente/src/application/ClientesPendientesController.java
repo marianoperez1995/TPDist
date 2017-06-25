@@ -2,6 +2,8 @@ package application;
 
 import java.net.URL;
 import java.rmi.RemoteException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
@@ -15,8 +17,6 @@ import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
 import businessDelegate.BusinessDelegate;
 import dto.ClienteDTO;
-import dto.CuentaCorrienteDTO;
-import dto.PedidoClienteDTO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
@@ -32,7 +32,6 @@ import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableColumn.CellDataFeatures;
 import javafx.scene.control.TreeTablePosition;
 import javafx.scene.control.TreeTableView.TreeTableViewSelectionModel;
-import javafx.scene.layout.FlowPane;
 import javafx.util.Callback;
 
 public class ClientesPendientesController implements Initializable{
@@ -95,9 +94,7 @@ public class ClientesPendientesController implements Initializable{
 
     @FXML
     private Label lblIdCliente;
-    
-    private TreeItem<ClienteTabla> seleccionado;
-    
+        
     @SuppressWarnings("unchecked")
 	@Override
     public void initialize (URL url, ResourceBundle rb){
@@ -315,10 +312,11 @@ public class ClientesPendientesController implements Initializable{
     
     private ArrayList<ClienteTabla> buscarClientes() {
 		ArrayList<ClienteTabla> resultado = new ArrayList<ClienteTabla>();
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 		
 		try {
 			for(ClienteDTO c : BusinessDelegate.getInstancia().listadoClientes())
-			resultado.add(new ClienteTabla(Integer.toString(c.getNumeroCliente()), c.getNombre(),c.getCuit(),c.getTelefono(),c.getFechaRegistro()));
+			resultado.add(new ClienteTabla(Integer.toString(c.getNumeroCliente()), c.getNombre(),c.getCuit(),c.getTelefono(),df.format(c.getFechaRegistro())));
 			return resultado;
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
