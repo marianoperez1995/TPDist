@@ -15,8 +15,8 @@ public class HibernateUtil {
 
 			//config.addAnnotatedClass(DespachoEntity.class); No tiene tabla
 
-			config.addAnnotatedClass(LoteEntity.class);	
-			config.addAnnotatedClass(ItemPedidoInsumoEntity.class);
+			//config.addAnnotatedClass(LoteEntity.class);	
+			//config.addAnnotatedClass(ItemPedidoInsumoEntity.class);
 
 			/*config.addAnnotatedClass(ItemPedidoInsumoEntity.class);
 			config.addAnnotatedClass(ItemPrendaInsumoEntity.class);			

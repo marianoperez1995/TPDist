@@ -67,9 +67,9 @@ public class BusinessDelegate {
 		return objetoRemoto.buscarLogin(env);
     }
     
-	public void altaCliente(ClienteDTO cli) throws RemoteException {
+	public void altaClientePendiente(ClienteDTO cli) throws RemoteException {
 		// TODO Auto-generated method stub
-		objetoRemoto.altaCliente(cli);
+		objetoRemoto.altaClientePendiente(cli);
 		return;
 	}
 	
@@ -117,6 +117,10 @@ public class BusinessDelegate {
 	public int nuevoPedidoCliente(PedidoClienteDTO pedido) throws RemoteException{
 		return	objetoRemoto.nuevoPedidoCliente(pedido);
 		
+	}
+	public void altaCliente(ClienteDTO nuevo) throws RemoteException{
+		// TODO Auto-generated method stub
+		objetoRemoto.altaCliente(nuevo);
 	}
 
 }

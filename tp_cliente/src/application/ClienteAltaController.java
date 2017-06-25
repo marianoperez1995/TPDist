@@ -128,7 +128,7 @@ public class ClienteAltaController {
 	    	cli.setCuentaCorriente(ccte);
 	    	
 	    	try {
-				BusinessDelegate.getInstancia().altaCliente(cli);
+				BusinessDelegate.getInstancia().altaClientePendiente(cli);
 				limpiarCampos();
 				titulo.setText("Exito en la operación");
 	    		mensaje.setText("El cliente fue agregado correctamente, el\n" + "personal de administración de clientes\n" + "debe revisar la información");

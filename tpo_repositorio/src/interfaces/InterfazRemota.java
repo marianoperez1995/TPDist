@@ -21,7 +21,7 @@ public interface InterfazRemota extends Remote {
 	//Administrador Cliente
 	public void bajaCliente(ClienteDTO cliente) throws RemoteException;*/
 	public void modificarCliente(ClienteDTO cliente) throws RemoteException;
-	public void altaCliente(ClienteDTO cli) throws RemoteException;
+	public void altaClientePendiente(ClienteDTO cli) throws RemoteException;
 	public ArrayList<ClienteDTO> listadoClientes() throws RemoteException;
 	
 	/*//administrador Compras
@@ -57,6 +57,7 @@ public interface InterfazRemota extends Remote {
 	public ArrayList<PedidoClienteDTO> getPedidos() throws RemoteException;
 	public void aumentarLimiteCredito(ClienteDTO cliente, float limite) throws RemoteException;
 	public int nuevoPedidoCliente(PedidoClienteDTO pedido) throws RemoteException;
+	public void altaCliente(ClienteDTO nuevo) throws RemoteException;
 
 	//despacho
 	//falta agregar metodos al despacho

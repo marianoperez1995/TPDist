@@ -289,47 +289,21 @@ public class ClientesPendientesController implements Initializable{
     
     @FXML
     void altaCliente(ActionEvent event) {
-    	ClienteDTO cliente = new ClienteDTO();
-    	CuentaCorrienteDTO cuenta = new CuentaCorrienteDTO();
-    	String idc = lblIdCC.getText();
-    	idc = idc.substring(4, idc.length());
+    	ClienteDTO nuevo = new ClienteDTO();
     	
     	String idcl = lblIdCliente.getText();
     	idcl = idcl.substring(1, idcl.length());
     	
-    	cliente.setNumeroCliente(Integer.parseInt(idcl));
+    	nuevo.setNumeroCliente(Integer.parseInt(idcl));
     	try {
-			cliente = BusinessDelegate.getInstancia().buscarCliente(cliente);
+			nuevo = BusinessDelegate.getInstancia().buscarCliente(nuevo);
 		} catch (RemoteException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-  
-    	cuenta.setIdCuentaCorriente(Integer.parseInt(idc));
-    	
-    	try {	//esto se hace porque hay 2 datos que no son modificables de la cuenta, entonces los tengo que traer
-			cuenta = BusinessDelegate.getInstancia().buscarCuenta(cuenta);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	cuenta.setCondiciones(txtCondicPago.getText());
-    	cuenta.setLimite(Float.parseFloat(txtLimitePrecio.getText()));
-    	cuenta.setEstado("Alta");
-        cliente.setNumeroCliente(Integer.parseInt(idcl));
-        cliente.setNombre(txtRazon.getText());
-        cliente.setCuit(txtCuit.getText());
-        cliente.setTelefono(txtTelefono.getText());
-        cliente.setSucursal(MainController.getSuc());
-        cliente.setDireccion(txtDireccion.getText());
-        cliente.setEncargado(txtNombreE.getText());
-        cliente.setTelEncargado(txtTelE.getText());
-        cliente.setEstado("Alta");
-        cliente.setMailEncargado(txtMail.getText());
-        cliente.setGeneroEncargado(txtGenero.getText());
-        cliente.setCuentaCorriente(cuenta);
-        try {
-			BusinessDelegate.getInstancia().modificarCliente(cliente);
+ 
+    	try {
+			BusinessDelegate.getInstancia().altaCliente(nuevo);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -126,7 +126,7 @@ public class ObjetoRemoto extends UnicastRemoteObject implements InterfazRemota,
 	}
 	
 	@Override
-	public void altaCliente(ClienteDTO cli) throws RemoteException {
+	public void altaClientePendiente(ClienteDTO cli) throws RemoteException {
 		// TODO Auto-generated method stub
 		AdministradorClientes.getInstancia().agregarCliente(cli);
 	}
@@ -151,7 +151,7 @@ public class ObjetoRemoto extends UnicastRemoteObject implements InterfazRemota,
 	@Override
 	public void bajaCliente(ClienteDTO nuevo) throws RemoteException {
 		// TODO Auto-generated method stub
-		
+		AdministradorClientes.getInstancia().bajaCliente(nuevo);
 	}
 
 	@Override
@@ -160,6 +160,12 @@ public class ObjetoRemoto extends UnicastRemoteObject implements InterfazRemota,
 		AdministradorClientes.getInstancia().rechazarCliente(nuevo);
 	}
 
+	@Override
+	public void altaCliente(ClienteDTO nuevo) throws RemoteException {
+		// TODO Auto-generated method stub
+		AdministradorClientes.getInstancia().darDeAltaCliente(nuevo);
+	}
+	
 	@Override
 	public ArrayList<PrendaDTO> getPrendas() throws RemoteException {
 		// TODO Auto-generated method stub

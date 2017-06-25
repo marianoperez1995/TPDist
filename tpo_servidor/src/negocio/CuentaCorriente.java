@@ -115,4 +115,8 @@ public class CuentaCorriente {
 		
 	}
 
+	public void actualizar() {
+		CuentaCorrienteDAO.getInstancia().update(this);
+	}
+
 }
