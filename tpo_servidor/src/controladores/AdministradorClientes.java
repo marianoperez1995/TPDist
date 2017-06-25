@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import dto.ClienteDTO;
 import dto.CuentaCorrienteDTO;
 import dto.PedidoClienteDTO;
+import dto.ReclamoDTO;
 import negocio.Cliente;
 import negocio.CuentaCorriente;
 import negocio.PedidoCliente;
+import negocio.Reclamo;
 import negocio.Sucursal;
 import persistencia.ClienteDAO;
 import persistencia.CuentaCorrienteDAO;
@@ -121,5 +123,10 @@ public class AdministradorClientes {
 		cli.setEstado("Alta");
 		cli.actualizar();
 		ccorr.actualizar();
+	}
+
+	public void crearReclamo(ReclamoDTO reclamo) {
+		Reclamo rec = new Reclamo(reclamo);
+		rec.insertar();
 	}
 }

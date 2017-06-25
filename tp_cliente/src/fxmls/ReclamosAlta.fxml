@@ -201,5 +201,10 @@
             <Font name="System Bold" size="27.0" />
          </font>
       </Label>
+      <Label fx:id="lblIdCliente" layoutX="999.0" layoutY="145.0" text="ID Cliente:">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

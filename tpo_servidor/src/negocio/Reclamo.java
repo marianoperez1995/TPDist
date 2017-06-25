@@ -4,6 +4,8 @@ import java.util.Date;
 
 import dto.ReclamoDTO;
 import entities.ReclamosEntity;
+import persistencia.ClienteDAO;
+import persistencia.ReclamoDAO;
 
 public class Reclamo {
 
@@ -53,6 +55,11 @@ public class Reclamo {
 	}
 	public void setReclamo(String reclamo) {
 		this.reclamo = reclamo;
+	}
+
+
+	public void insertar() {
+		ReclamoDAO.getInstancia().insert(this);
 	}	
 	
 }

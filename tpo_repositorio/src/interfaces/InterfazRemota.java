@@ -8,6 +8,7 @@ import dto.CuentaCorrienteDTO;
 import dto.EmpleadoDTO;
 import dto.PedidoClienteDTO;
 import dto.PrendaDTO;
+import dto.ReclamoDTO;
 
 public interface InterfazRemota extends Remote {
 	
@@ -59,6 +60,7 @@ public interface InterfazRemota extends Remote {
 	public void altaCliente(ClienteDTO nuevo) throws RemoteException;
 	PrendaDTO getPrenda(int id) throws RemoteException;
 	public PedidoClienteDTO buscarPedido(PedidoClienteDTO seleccionado) throws RemoteException;
+	public void altaReclamo(ReclamoDTO reclamo) throws RemoteException;
 
 	//despacho
 	//falta agregar metodos al despacho
