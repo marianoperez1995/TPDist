@@ -74,7 +74,7 @@ public class MainController implements Initializable {
 
 	public static HamburgerSlideCloseTransition transitionP;
     
-    void initData(String usuario, int id, int permisos, SucursalDTO suc) {
+    public void initData(String usuario, int id, int permisos, SucursalDTO suc) {
         this.usuarioActual = usuario;
         this.idUsuarioActual = id;
         this.permisos = permisos;

@@ -1,6 +1,10 @@
 package application;
 
 import java.net.URL;
+import java.rmi.RemoteException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
@@ -12,6 +16,9 @@ import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
+import application.ClienteBuscarController.ClienteTabla;
+import businessDelegate.BusinessDelegate;
+import dto.PedidoClienteDTO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
@@ -54,6 +61,9 @@ public class PedidosPendientesController implements Initializable{
 
     @FXML
     private Label txtCuit;
+    
+    @FXML
+    private Label txtIdCliente;
     
     @FXML
     private Label lblPedido;
@@ -120,6 +130,8 @@ public class PedidosPendientesController implements Initializable{
 			}
 		});
     	
+    	vistaTabla.setPlaceholder(new Label("No hay pedidos pendientes"));
+    	vistaTabla2.setPlaceholder(new Label("Seleccione un pedido para ver el contenido"));
     	
     	idPedidoCol.setResizable(false);
     	razonSocialCol.setResizable(false);
@@ -213,6 +225,12 @@ public class PedidosPendientesController implements Initializable{
     	itemsPedido.add(new ItemPedido("Remera FEEL", "Discontinuo", "S", "Negro", "50"));
     	
     	
+    	/*//agregar clientes a la tabla
+    	for(ListaPedido p: buscarPedidos()){
+    		pedidos.add(p);
+    	}*/
+    	
+    	
     	//para manipular los datos de la tabla con el JFoenix se usa RecirsiveTreeItem. RecursiveTreeObject::getChildren Callback para obtener cada cliente de la tabla
     	final TreeItem<ListaPedido> root = new RecursiveTreeItem<ListaPedido>(pedidos, RecursiveTreeObject::getChildren);
     	vistaTabla.getColumns().setAll(idPedidoCol,razonSocialCol,estadoCol,fechaGeneracionCol);
@@ -288,7 +306,22 @@ public class PedidosPendientesController implements Initializable{
     	     });
     }
     
-    class ListaPedido extends RecursiveTreeObject<ListaPedido>{
+    private ArrayList<ListaPedido> buscarPedidos() {
+    	ArrayList<ListaPedido> resultado = new ArrayList<ListaPedido>();
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+
+		try {
+			for(PedidoClienteDTO p : BusinessDelegate.getInstancia().getPedidos())
+			resultado.add(new ListaPedido(Integer.toString(p.getIdPedidoCliente()), p.getCliente().getNombre(),p.getEstado(),df.format(p.getFechaGeneracion())));
+			return resultado;
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return resultado;
+	}
+
+	class ListaPedido extends RecursiveTreeObject<ListaPedido>{
     	StringProperty razonSocial;
     	StringProperty idPedido;
     	StringProperty estado;

@@ -83,12 +83,11 @@ public class AdministradorPedidos {
 		
 		return fact.toDTO();
 	}
-	public ArrayList<PedidoClienteDTO> BuscarAllCliente (){
+	public ArrayList<PedidoClienteDTO> getAllPedidos (){
 		ArrayList<PedidoCliente> prendas= PedidoClienteDAO.getInstancia().getAll();
 		ArrayList<PedidoClienteDTO> prendasDTO= new ArrayList<PedidoClienteDTO>();
 				
-		for (PedidoCliente p : prendas){
-				
+		for (PedidoCliente p : prendas){		
 				prendasDTO.add(p.toDTO());
 		}
 		return prendasDTO;

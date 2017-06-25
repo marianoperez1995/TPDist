@@ -185,7 +185,7 @@ public class ObjetoRemoto extends UnicastRemoteObject implements InterfazRemota,
 
 	@Override
 	public ArrayList<PedidoClienteDTO> getPedidos() throws RemoteException {
-		return AdministradorPedidos.getInstancia().BuscarAllCliente();
+		return AdministradorPedidos.getInstancia().getAllPedidos();
 	}
 	
 	
