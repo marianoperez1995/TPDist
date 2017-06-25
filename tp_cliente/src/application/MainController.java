@@ -15,12 +15,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class MainController implements Initializable {
 	
@@ -31,6 +33,9 @@ public class MainController implements Initializable {
     @FXML
     private Label lblTitulo;
 	
+    @FXML
+    private Label cerrarSes;
+    
     @FXML
     private JFXHamburger hamburgerMenu;
 
@@ -171,6 +176,24 @@ public class MainController implements Initializable {
 	        	actualStage.setFullScreen(false);
 	        	else
 	            actualStage.setFullScreen(true);
+	        });
+	        
+	        cerrarSes.addEventHandler(MouseEvent.MOUSE_PRESSED,(e)->{
+	        	Stage actualStage = (Stage)((Label)e.getSource()).getScene().getWindow();
+	        	actualStage.hide();
+	        	try {
+	        		
+	        		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmls/Login.fxml"));
+	        		
+	        		Stage stage = new Stage(StageStyle.DECORATED);
+	        		Scene scene;
+	        		scene = new Scene((AnchorPane) loader.load());
+	        		stage.setScene(scene);
+	        		stage.show();
+	        		} catch (IOException es) {
+	        			// TODO Auto-generated catch block
+	        			es.printStackTrace();
+	        		}
 	        });
 	        
     	} catch (IOException e1) {

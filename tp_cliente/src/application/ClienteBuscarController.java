@@ -2,6 +2,8 @@ package application;
 
 import java.net.URL;
 import java.rmi.RemoteException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
@@ -16,6 +18,7 @@ import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import businessDelegate.BusinessDelegate;
 import dto.ClienteDTO;
 import dto.CuentaCorrienteDTO;
+import dto.PedidoClienteDTO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
@@ -108,8 +111,6 @@ public class ClienteBuscarController implements Initializable{
     @FXML
     private FlowPane flowPanel;
     
-    private TreeItem<ClienteTabla> seleccionado;
-    
     @SuppressWarnings("unchecked")
 	@Override
     public void initialize (URL url, ResourceBundle rb){
@@ -143,7 +144,7 @@ public class ClienteBuscarController implements Initializable{
 			}
 		});
     	
-    	JFXTreeTableColumn<ClienteTabla, String> telefonoColumn = new JFXTreeTableColumn<>("Telefono");
+    	JFXTreeTableColumn<ClienteTabla, String> telefonoColumn = new JFXTreeTableColumn<>("Estado");
     	telefonoColumn.setPrefWidth(100);
     	telefonoColumn.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<ClienteTabla,String>, ObservableValue<String>>() {
 			
@@ -252,10 +253,13 @@ public class ClienteBuscarController implements Initializable{
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 	    	           }
-	    	           
+	    	           ArrayList<PedidoClienteDTO> ped = new ArrayList<PedidoClienteDTO>();
+	    	           if(seleccionado.getPedidosCliente() != null){
+	    	        	   ped = seleccionado.getPedidosCliente();
+	    	           }
 	    	           lblIdCC.setText("ID# " + Integer.toString(seleccionado.getCuentaCorriente().getIdCuentaCorriente()));
 	    	           lblIdCliente.setText("#"+Integer.toString(seleccionado.getNumeroCliente()));
-	    	           lblCantPedidos.setText(Integer.toString(seleccionado.getPedidosCliente().size()));
+	    	           lblCantPedidos.setText(Integer.toString(ped.size()));
 	    	           txtRazon.setText(seleccionado.getNombre());
 	    	           txtCuit.setText(seleccionado.getCuit());
 	    	           txtTelefono.setText(seleccionado.getTelefono());
@@ -267,10 +271,22 @@ public class ClienteBuscarController implements Initializable{
 	    	           txtLimitePrecio.setText(Float.toString(seleccionado.getCuentaCorriente().getLimite()));
 	    	           txtCondicPago.setText(seleccionado.getCuentaCorriente().getCondiciones());
 	    	           
-	    	       		btnCancelar.setDisable(true);
-	    	       		btnGuardar.setDisable(true);
-	    	       		btnEliminar.setDisable(false);
-	    	       		btnEditar.setDisable(false);
+	    	           if(seleccionado.getEstado().equalsIgnoreCase("Rechazado") || seleccionado.getEstado().equalsIgnoreCase("Baja")){
+	    	        	    btnCancelar.setDisable(true);
+		    	       		btnGuardar.setDisable(true);
+		    	       		btnEliminar.setDisable(true);
+		    	       		btnEditar.setDisable(true);  
+	    	           }else if(seleccionado.getEstado().equalsIgnoreCase("Pendiente")){
+	    	        	    btnCancelar.setDisable(true);
+		    	       		btnGuardar.setDisable(true);
+		    	       		btnEliminar.setDisable(true);
+		    	       		btnEditar.setDisable(false);  
+	    	           }else{
+		    	       		btnCancelar.setDisable(true);
+		    	       		btnGuardar.setDisable(true);
+		    	       		btnEliminar.setDisable(false);
+		    	       		btnEditar.setDisable(false);   
+	    	           }
 	    	        }
     	         }
     	     });
@@ -388,6 +404,13 @@ public class ClienteBuscarController implements Initializable{
     	
     	nuevo.setNumeroCliente(Integer.parseInt(idcl));
     	try {
+			nuevo = BusinessDelegate.getInstancia().buscarCliente(nuevo);
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+ 
+    	try {
 			BusinessDelegate.getInstancia().bajaCliente(nuevo);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -427,14 +450,12 @@ public class ClienteBuscarController implements Initializable{
     
     private ArrayList<ClienteTabla> buscarClientes() {
 		ArrayList<ClienteTabla> resultado = new ArrayList<ClienteTabla>();
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 		
 		try {
-			for(ClienteDTO c : BusinessDelegate.getInstancia().listadoClientes()){
-				if(!c.getEstado().equalsIgnoreCase("Baja"))
-					resultado.add(new ClienteTabla(Integer.toString(c.getNumeroCliente()), c.getNombre(),c.getCuit(),c.getTelefono(),c.getFechaRegistro()));
-			}
+			for(ClienteDTO c : BusinessDelegate.getInstancia().listadoClientes())
+			resultado.add(new ClienteTabla(Integer.toString(c.getNumeroCliente()), c.getNombre(),c.getCuit(),c.getEstado(),df.format(c.getFechaRegistro())));
 			return resultado;
-			
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

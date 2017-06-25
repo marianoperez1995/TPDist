@@ -18,7 +18,7 @@ public class testPedidoClienteEItems {
 		
 		PedidoCliente ped = new PedidoCliente();
 		ped.setCliente(ClienteDAO.getInstancia().getCliente(3));
-		ped.setEstado("Aceptado");
+		ped.setEstado("Alta");
 		Date f = new Date();
 		f=(Calendar.getInstance().getTime());
 		ped.setFechaDespacho(f);

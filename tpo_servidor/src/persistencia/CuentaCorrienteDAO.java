@@ -68,6 +68,15 @@ public class CuentaCorrienteDAO  {
 		res.setNroCC(cuenta.getIdCuentaCorriente());
 		return res;
 	}
+	public void update(CuentaCorriente cuentaCorriente) {
+		CuentaCorrienteEntity cta = toEntity(cuentaCorriente);
+		Session sesion;
+		sesion = sf.openSession();
+		sesion.beginTransaction();
+		sesion.update(cta);
+		sesion.getTransaction().commit();
+		sesion.close();
+	}
 
 
 }

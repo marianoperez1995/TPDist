@@ -33,42 +33,23 @@ public class AdministradorClientes {
 	public void bajaCliente(ClienteDTO cliente) {
 		for (Cliente c : clientes) {
 			if (c.sosElCliente(cliente.getNumeroCliente())) {
-				clientes.remove(c);
+				//clientes.remove(c);
+				c.setEstado("Baja");
 				return; // revisar si esta bien poner estos return aca...
 			}
 		}
 		
-		Cliente cli = new Cliente();
-		cli.setIdCliente(cliente.getNumeroCliente());
-		cli.borrar();
+		Cliente cli = new Cliente(cliente);
+		CuentaCorriente ccorr = new CuentaCorriente(cliente.getCuentaCorriente());
+		ccorr.setEstado("Baja");
+		cli.setEstado("Baja");
+		cli.actualizar();
+		ccorr.actualizar();
 	}
 
-	public void modificarCliente(ClienteDTO cliente) { // modificar este metodo
+	public void modificarCliente(ClienteDTO cliente) {
 		 Cliente modif = new Cliente(cliente);
 		 modif.actualizar();
-		/*for (Cliente c : clientes) {
-			if (c.sosElCliente(cliente.getNumeroCliente())) {
-				c.setCuentaCorriente(new CuentaCorriente(cliente.getCuentaCorriente()));
-				c.setCuit(cliente.getCuit());
-				c.setDireccion(cliente.getDireccion());
-				c.setEncargado(cliente.getEncargado());
-				c.setEstado(cliente.getEstado());
-				c.setGeneroEncargado(cliente.getGeneroEncargado());
-				c.setIdCliente(cliente.getNumeroCliente());
-				c.setMailEncargado(cliente.getMailEncargado());
-				c.setNombre(cliente.getNombre());
-				c.setSucursal(new Sucursal(cliente.getSucursal()));
-				ArrayList<PedidoCliente> pedidos = new ArrayList<>();
-				for (PedidoClienteDTO p : cliente.getPedidosCliente()) {
-					pedidos.add(new PedidoCliente(p));
-				}
-				c.setPedidosCliente(pedidos);
-				c.setTelefono(cliente.getTelefono());
-				c.setTelEncargado(cliente.getTelEncargado());
-				c.actualizar();
-			}
-		}*/
-		
 	}
 
 	public Cliente buscarCliente(int numeroCliente) {
@@ -100,11 +81,21 @@ public class AdministradorClientes {
 		return CuentaCorrienteDAO.getInstancia().getCuentaCorriente(cuenta.getIdCuentaCorriente()).toDTO();
 	}
 
-	public void rechazarCliente(ClienteDTO nuevo) {
-		// TODO Auto-generated method stub
-		Cliente cli = ClienteDAO.getInstancia().getCliente(nuevo.getNumeroCliente());
+	public void rechazarCliente(ClienteDTO cliente) {
+		for (Cliente c : clientes) {
+			if (c.sosElCliente(cliente.getNumeroCliente())) {
+				//clientes.remove(c);
+				c.setEstado("Rechazado");
+				return; // revisar si esta bien poner estos return aca...
+			}
+		}
+		
+		Cliente cli = new Cliente(cliente);
+		CuentaCorriente ccorr = new CuentaCorriente(cliente.getCuentaCorriente());
+		ccorr.setEstado("Rechazado");
 		cli.setEstado("Rechazado");
-		ClienteDAO.getInstancia().update(cli);
+		cli.actualizar();
+		ccorr.actualizar();
 	}
 	
 	public void aumentarLimiteCreditoCliente(float limite, ClienteDTO clientedto){
@@ -113,5 +104,22 @@ public class AdministradorClientes {
 		ClienteDAO.getInstancia().update(cliente);
 		
 		
+	}
+
+	public void darDeAltaCliente(ClienteDTO cliente) {
+		for (Cliente c : clientes) {
+			if (c.sosElCliente(cliente.getNumeroCliente())) {
+				//clientes.remove(c);
+				c.setEstado("Alta");
+				return; // revisar si esta bien poner estos return aca...
+			}
+		}
+		
+		Cliente cli = new Cliente(cliente);
+		CuentaCorriente ccorr = new CuentaCorriente(cliente.getCuentaCorriente());
+		ccorr.setEstado("Alta");
+		cli.setEstado("Alta");
+		cli.actualizar();
+		ccorr.actualizar();
 	}
 }

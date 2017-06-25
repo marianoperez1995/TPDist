@@ -96,9 +96,11 @@ private static AdministradorSucursales instancia;
 		ArrayList<Empleado> lista = new ArrayList<Empleado>();
 		lista = EmpleadoDAO.getInstancia().getAll();
 		
-		for(Empleado e: lista){
-			if(e.getUsuario().equalsIgnoreCase(emp.getUsuario()) && e.getPass().equals(emp.getPass())){
-				return e.toDTO();
+		if(lista != null){
+			for(Empleado e: lista){
+				if(e.getUsuario().equalsIgnoreCase(emp.getUsuario()) && e.getPass().equals(emp.getPass())){
+					return e.toDTO();
+				}
 			}
 		}
 		return null;

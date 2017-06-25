@@ -12,7 +12,7 @@ public class ClienteDTO  implements Serializable{
 	private int numeroCliente;
 	private String direccion;
 	private String cuit;
-	private String fechaRegistro;
+	private Date fechaRegistro;
 	private CuentaCorrienteDTO cuentaCorriente;
 	private String nombre;
 	private SucursalDTO sucursal;
@@ -32,11 +32,11 @@ public class ClienteDTO  implements Serializable{
 				+ ", generoEncargado=" + generoEncargado + ", estado=" + estado + "]";
 	}
 
-	public String getFechaRegistro() {
+	public Date getFechaRegistro() {
 		return fechaRegistro;
 	}
 
-	public void setFechaRegistro(String fechaRegistro) {
+	public void setFechaRegistro(Date fechaRegistro) {
 		this.fechaRegistro = fechaRegistro;
 	}
 

@@ -20,7 +20,7 @@ public class Cliente {
 	private String telEncargado;
 	private String mailEncargado;
 	private String generoEncargado;
-	private String fechaRegistro;
+	private Date fechaRegistro;
 	private String estado;
 	private Sucursal sucursal;
 	
@@ -33,11 +33,11 @@ public class Cliente {
 				+ " ]";
 	}
 
-	public String getFechaRegistro() {
+	public Date getFechaRegistro() {
 		return fechaRegistro;
 	}
 
-	public void setFechaRegistro(String fechaRegistro) {
+	public void setFechaRegistro(Date fechaRegistro) {
 		this.fechaRegistro = fechaRegistro;
 	}
 

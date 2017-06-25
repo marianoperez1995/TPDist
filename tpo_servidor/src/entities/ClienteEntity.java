@@ -51,7 +51,7 @@ public class ClienteEntity implements Serializable {
 	private String telencargado;
 	private String mailencargado;
 	private String generoencargado;
-	private String fechaRegistro;
+	private Date fechaRegistro;
 	
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "idSucursal", referencedColumnName = "idSucursal")
@@ -67,10 +67,10 @@ public class ClienteEntity implements Serializable {
 	public void setMailencargado(String mailencargado) {
 		this.mailencargado = mailencargado;
 	}
-	public String getFechaRegistro() {
+	public Date getFechaRegistro() {
 		return fechaRegistro;
 	}
-	public void setFechaRegistro(String fechaRegistro) {
+	public void setFechaRegistro(Date fechaRegistro) {
 		this.fechaRegistro = fechaRegistro;
 	}
 
