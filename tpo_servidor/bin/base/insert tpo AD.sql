@@ -73,6 +73,25 @@ insert into Insumos values ( 'Tela Jean', 0, '25/05/2017 08:20', 5, 200, 'm2', 6
 insert into Insumos values ( 'Botones', 0, '25/05/2017 08:20', 1, 100, 'unidades', 400 )
 insert into Insumos values ( 'Hilo blanco', 0, '25/05/2017 08:20', 5, 400, 'm', 800)
 
+--Areas produccion
+
+insert into areasPRoduccion values ('marcado')
+insert into areasPRoduccion values ('corte')
+insert into areasPRoduccion values ('habilitado')
+insert into areasPRoduccion values ('costura')
+insert into areasPRoduccion values ('estampado')
+insert into areasPRoduccion values ('acabado')
+insert into areasPRoduccion values ('planchado')
+insert into areasPRoduccion values ('empacado')
+insert into areasPRoduccion values ('marcado')
+insert into areasPRoduccion values ('corte')
+insert into areasPRoduccion values ('habilitado')
+insert into areasPRoduccion values ('costura')
+insert into areasPRoduccion values ('estampado')
+insert into areasPRoduccion values ('acabado')
+insert into areasPRoduccion values ('planchado')
+insert into areasPRoduccion values ('empacado')
+
 
 select * from clientes
 select * from empleados

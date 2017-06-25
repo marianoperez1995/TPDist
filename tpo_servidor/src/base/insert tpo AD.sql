@@ -66,11 +66,31 @@ insert into Prendas values ( 'Negro', 'S', 'Bufanda Negra y roja', 1, 200, 200, 
 insert into Proveedores values ( 'Insumos SRL', '123112312')
 insert into Proveedores values ( 'ParaPrendas SA', '1542433')
 
+
 --insumos
-insert into Insumos values ( 'Tela Negra', 0, '25/05/2017 08:20', 5, 200, 'm2', 600, 0)
-insert into Insumos values ( 'Tela Jean', 0, '25/05/2017 08:20', 5, 200, 'm2', 600, 0)
-insert into Insumos values ( 'Botones', 0, '25/05/2017 08:20', 1, 100, 'unidades', 400, 0)
-insert into Insumos values ( 'Hilo blanco', 0, '25/05/2017 08:20', 5, 400, 'm', 800, 0)
+insert into Insumos values ( 'Tela Negra', 0, '25/05/2017 08:20', 5, 200, 'm2', 600)
+insert into Insumos values ( 'Tela Jean', 0, '25/05/2017 08:20', 5, 200, 'm2', 600 )
+insert into Insumos values ( 'Botones', 0, '25/05/2017 08:20', 1, 100, 'unidades', 400 )
+insert into Insumos values ( 'Hilo blanco', 0, '25/05/2017 08:20', 5, 400, 'm', 800)
+
+--Areas produccion
+
+insert into areasPRoduccion values ('marcado')
+insert into areasPRoduccion values ('corte')
+insert into areasPRoduccion values ('habilitado')
+insert into areasPRoduccion values ('costura')
+insert into areasPRoduccion values ('estampado')
+insert into areasPRoduccion values ('acabado')
+insert into areasPRoduccion values ('planchado')
+insert into areasPRoduccion values ('empacado')
+insert into areasPRoduccion values ('marcado')
+insert into areasPRoduccion values ('corte')
+insert into areasPRoduccion values ('habilitado')
+insert into areasPRoduccion values ('costura')
+insert into areasPRoduccion values ('estampado')
+insert into areasPRoduccion values ('acabado')
+insert into areasPRoduccion values ('planchado')
+insert into areasPRoduccion values ('empacado')
 
 
 select * from clientes
