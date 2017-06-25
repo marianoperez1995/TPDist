@@ -112,3 +112,9 @@ insert into prenda_areas values(2,8, 3)
 
 --pedidos
 insert into pedidosCLiente values (1, 'pendiente', '02/06/2017 10:30','02/06/2017 10:30','02/06/2017 10:30','02/06/2017 10:30',45)
+
+--itempedido
+
+insert into itempedidocliente values (1, 1, 20, 55)
+insert into itempedidocliente values (1, 2, 20, 55)
+insert into itempedidocliente values (1, 3, 20, 55)
