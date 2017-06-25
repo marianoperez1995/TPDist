@@ -110,13 +110,5 @@ insert into prenda_areas values(2,6, 3)
 insert into prenda_areas values(2,7, 3)
 insert into prenda_areas values(2,8, 3)
 
-
-
-select * from clientes
-select * from empleados
-select * from sucursales
-select * from cuentascorriente
-select * from prendas
-select * from Lotes
-select * from Insumos
-select * from LotesInsumo
+--pedidos
+insert into pedidosCLiente values (1, 'pendiente', '02/06/2017 10:30','02/06/2017 10:30','02/06/2017 10:30','02/06/2017 10:30',45)

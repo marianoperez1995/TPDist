@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
@@ -32,6 +33,7 @@ import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableColumn.CellDataFeatures;
 import javafx.scene.control.TreeTablePosition;
 import javafx.scene.control.TreeTableView.TreeTableViewSelectionModel;
+import javafx.scene.text.Text;
 import javafx.util.Callback;
 
 public class ClientesPendientesController implements Initializable{
@@ -89,6 +91,7 @@ public class ClientesPendientesController implements Initializable{
     @FXML
     private Label lblIdCliente;
         
+  
     @SuppressWarnings("unchecked")
 	@Override
     public void initialize (URL url, ResourceBundle rb){
@@ -269,6 +272,7 @@ public class ClientesPendientesController implements Initializable{
  
     	try {
 			BusinessDelegate.getInstancia().rechazarCliente(nuevo);
+			
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
