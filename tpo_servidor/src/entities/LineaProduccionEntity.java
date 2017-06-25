@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -34,12 +36,21 @@ public class LineaProduccionEntity  implements Serializable {
 	@Column(name="tiempoUso")
 	private Date tiempoDeUso;
 	
+	@ManyToOne
+	@JoinColumn(name="idAreaProduccion")
+	private int idAreaProduccion;
 	
 	
 	
 	
 	
 	
+	public int getIdAreaProduccion() {
+		return idAreaProduccion;
+	}
+	public void setIdAreaProduccion(int idAreaProduccion) {
+		this.idAreaProduccion = idAreaProduccion;
+	}
 	public int getCapacidad() {
 		return capacidad;
 	}

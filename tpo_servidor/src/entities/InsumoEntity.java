@@ -42,12 +42,12 @@ public class InsumoEntity implements Serializable  {
 	private float cantAComprar;	
 	private Date fechaRecepcion;	
 
-	
+	/*
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REFRESH }, fetch = FetchType.EAGER)
 	@JoinTable(name = "Lote_Insumo", joinColumns = {
 	@JoinColumn(name = "idInsumo") }, inverseJoinColumns = { @JoinColumn(name = "idLote") })
 	private List<LoteEntity> lotes;
-
+*/
 
 	public int getCodigo() {
 		return codigo;
@@ -127,15 +127,5 @@ public class InsumoEntity implements Serializable  {
 	public void setFechaRecepcion(Date fechaRecepcion) {
 		this.fechaRecepcion = fechaRecepcion;
 	}
-
-	public List<LoteEntity> getLotes() {
-		return lotes;
-	}
-
-
-	public void setLotes(List<LoteEntity> lotes) {
-		this.lotes = lotes;
-	}
 	
-
 }
