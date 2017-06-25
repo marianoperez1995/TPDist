@@ -58,6 +58,7 @@ public interface InterfazRemota extends Remote {
 	public int nuevoPedidoCliente(PedidoClienteDTO pedido) throws RemoteException;
 	public void altaCliente(ClienteDTO nuevo) throws RemoteException;
 	PrendaDTO getPrenda(int id) throws RemoteException;
+	public PedidoClienteDTO buscarPedido(PedidoClienteDTO seleccionado) throws RemoteException;
 
 	//despacho
 	//falta agregar metodos al despacho

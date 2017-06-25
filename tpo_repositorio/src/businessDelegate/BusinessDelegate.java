@@ -122,5 +122,9 @@ public class BusinessDelegate {
 		// TODO Auto-generated method stub
 		objetoRemoto.altaCliente(nuevo);
 	}
+	public PedidoClienteDTO buscarPedido(PedidoClienteDTO seleccionado) throws RemoteException {
+		// TODO Auto-generated method stub
+		return objetoRemoto.buscarPedido(seleccionado);
+	}
 
 }
