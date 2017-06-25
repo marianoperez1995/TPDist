@@ -26,8 +26,8 @@ public class HibernateUtil {
 			config.addAnnotatedClass(InsumoEntity.class);*/
 			
 			//De aca para abajo andan bien en teoria
-			/*config.addAnnotatedClass(ClienteEntity.class);*/
-			config.addAnnotatedClass(SucursalEntity.class);/*
+			config.addAnnotatedClass(ClienteEntity.class);
+			config.addAnnotatedClass(SucursalEntity.class);
 			config.addAnnotatedClass(CuentaCorrienteEntity.class);
 			config.addAnnotatedClass(PedidoClienteEntity.class);
 			config.addAnnotatedClass(AreaProduccionEntity.class);
@@ -40,11 +40,10 @@ public class HibernateUtil {
 			config.addAnnotatedClass(MovimientosEntity.class);
 			config.addAnnotatedClass(ReclamosEntity.class);
 			config.addAnnotatedClass(TransporteEntity.class);
-			config.addAnnotatedClass(FacturaEntity.class);*/
-			config.addAnnotatedClass(EmpleadoEntity.class);/*
-			config.addAnnotatedClass(CuentaCorrienteEntity.class);
+			config.addAnnotatedClass(FacturaEntity.class);
+			config.addAnnotatedClass(EmpleadoEntity.class);
 			config.addAnnotatedClass(PedidoClienteEntity.class);
-			config.addAnnotatedClass(ItemPedidoClienteEntity.class);*/
+			config.addAnnotatedClass(ItemPedidoClienteEntity.class);
 			
 			sessionFactory = config.buildSessionFactory();
 
