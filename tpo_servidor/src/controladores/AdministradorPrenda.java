@@ -19,58 +19,39 @@ public class AdministradorPrenda {
 		return instancia;
 	}
 
-	
-	//public void generarPrenda(ArrayList<String> talles, ArrayList<String> colores, String desc, float costoProduccion,
-	//		float precio, float porcentaje) {
-	public void generarPrenda (PrendaDTO preDTO){ // SE asumio que con talles se quiso decir lo mismo, entonces use el dto
+	public void generarPrenda (PrendaDTO preDTO){ 
 		Prenda p = new Prenda(preDTO);
 		prendas.add(p);
 		p.insertar();
-//revisar parametros, en Prenda estan talles disponibles, no "talles", por ahi querian decir lo mismo, pero por ahi no
-	}
-
-	private Prenda buscarPrenda(int numero) {
-		for (Prenda p:prendas){
-			if (p.sosLaPrenda(numero)){
-				return p;
-			}
-		}
-		Prenda prenda = null;
-		prenda = prenda.buscarPrenda(numero);
-		return prenda;
 	}
 
 	public void bajaPrenda(PrendaDTO pren) {
 		for(Prenda p: prendas){
-			if(p.sosLaPrenda(pren.getCodigo())){
+			if(p.sosLaPrenda(pren.getIdPrenda())){
 				prendas.remove(p);
-				p.delete(); 
+				p.borrar(); 
 				return;
 			}
 		}
-		Prenda prenda = null;
-		prenda = prenda.buscarPrenda(pren.getCodigo());
-		
+		Prenda prenda = PrendaDAO.getInstancia().getPrenda(pren.getIdPrenda());		
 		if(prenda != null)
-			prenda.delete();
-	
-		
+			prenda.borrar();		
 	}
+	
 	public void modificarPrenda(PrendaDTO prenda){
 		PrendaDAO.getInstancia().update(new Prenda(prenda));
 	}
-	public PrendaDTO BuscarPrenda(int codigo){
+	
+	public PrendaDTO getPrenda(int codigo){
 		for (Prenda p : prendas){
 			if (p.sosLaPrenda(codigo)){
 				return p.toDTO();
 			}
 		}
-		Prenda fact = null;
-		fact = fact.buscarPrenda(codigo);
-		
-		return fact.toDTO();
+		Prenda p = PrendaDAO.getInstancia().getPrenda(codigo);		
+		return p.toDTO();
 	}
-	public ArrayList<PrendaDTO> BuscarAllPrenda (){
+	public ArrayList<PrendaDTO> buscarAllPrenda (){
 		ArrayList<Prenda> prendas= PrendaDAO.getInstancia().getAll();
 		ArrayList<PrendaDTO> prendasDTO= new ArrayList<PrendaDTO>();
 				
@@ -80,8 +61,4 @@ public class AdministradorPrenda {
 		return prendasDTO;
 	}
 
-
-	public PrendaDTO getPrenda(int id, int talle, int color) {
-		return PrendaDAO.getInstancia().getPrenda(id, talle, color).toDTO();
-	}
 }

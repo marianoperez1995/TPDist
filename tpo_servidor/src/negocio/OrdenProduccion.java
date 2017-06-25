@@ -30,6 +30,16 @@ public  class OrdenProduccion {
 	}
 
 
+	public OrdenProduccion(OrdenProduccionDTO orden) {
+		this.idOrdenProduccion = orden.getCodigo();
+		this.fecha = orden.getFecha();
+		this.prenda = new Prenda (orden.getPrenda());
+		this.pedidoCliente = new PedidoCliente(orden.getPedidoCliente());
+		this.cantidad = orden.getCantidad();
+		this.tipo = orden.getTipo();
+	}
+
+
 	public int getCantidad() {
 		return cantidad;
 	}

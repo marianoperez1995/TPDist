@@ -11,8 +11,6 @@ public class Lote {
 	
 	private int idLote;
 	private ArrayList<Bulto> bultos;
-	private String color;
-	private String talle;
 	private int cantidadTotal;
 	private OrdenProduccion orden;
 
@@ -24,24 +22,20 @@ public class Lote {
 		
 		this.idLote = lote.getCodigo();
 		this.bultos = new ArrayList<Bulto>();
-		this.color = lote.getColor();
-		this.talle = lote.getTalle();
+		this.orden = new OrdenProduccion(lote.getOrden());
 		this.cantidadTotal = lote.getCantidadTotal();
-		if (lote.getOrden().esParcial())
-			this.orden = new Opp (lote.getOrden());
-		else
-			this.orden = new Opc(lote.getOrden());		
-		
+	
 	}
 	public Lote(LoteEntity lote ) {
 		this.idLote = lote.getCodigo();
 		this.bultos = new ArrayList<Bulto>();
 		this.cantidadTotal = lote.getCantidadTotal();
-		if (lote.getOrden().esParcial())
-			this.orden = new Opp (lote.getOrden());
-		else
-			this.orden = new Opc(lote.getOrden());		
+		this.orden = new OrdenProduccion(lote.getOrden());	
 	}
+	public Lote() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public void insertar() {
 		LoteDAO.getInstancia().insert(this);		
 	}
@@ -64,22 +58,6 @@ public class Lote {
 
 	public void setBultos(ArrayList<Bulto> bultos) {
 		this.bultos = bultos;
-	}
-
-	public String getColor() {
-		return color;
-	}
-
-	public void setColor(String color) {
-		this.color = color;
-	}
-
-	public String getTalle() {
-		return talle;
-	}
-
-	public void setTalle(String talle) {
-		this.talle = talle;
 	}
 
 	public int getCantidadTotal() {
@@ -107,12 +85,8 @@ public class Lote {
 		lote.setBultos(bultos);
 		lote.setCantidadTotal(cantidadTotal);
 		lote.setCodigo(this.idLote);
-		lote.setColor(color);
-	
-		//FALTA MANEJAR ORDEN PARCIAL Y COMPLETA ACA ... 
 		lote.setOrden(orden.toDTO());
-		lote.setTalle(talle);
-		return null;
+		return lote;
 	}
 
 	

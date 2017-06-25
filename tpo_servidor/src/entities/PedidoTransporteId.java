@@ -1,14 +1,17 @@
 package entities;
 
-import javax.persistence.CascadeType;
+import java.io.Serializable;
+
 import javax.persistence.Embeddable;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 @Embeddable
-public class PedidoTransporteId {
+public class PedidoTransporteId implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8657171778525511751L;
 	@ManyToOne
 	@JoinColumn(name="idPedido")
 	private PedidoClienteEntity pedido;
