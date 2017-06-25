@@ -1,4 +1,3 @@
-package interfaces;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -52,12 +51,13 @@ public interface InterfazRemota extends Remote {
 	public void bajaCliente(ClienteDTO nuevo) throws RemoteException;
 	public void rechazarCliente(ClienteDTO nuevo) throws RemoteException;
 	public ArrayList<PrendaDTO> getPrendas() throws RemoteException;
-	public PrendaDTO getPrenda(int id, int talle, int color) throws RemoteException;
+	
 	public void modificarPrenda(PrendaDTO prenda)throws RemoteException;
 	public ArrayList<PedidoClienteDTO> getPedidos() throws RemoteException;
 	public void aumentarLimiteCredito(ClienteDTO cliente, float limite) throws RemoteException;
 	public int nuevoPedidoCliente(PedidoClienteDTO pedido) throws RemoteException;
 	public void altaCliente(ClienteDTO nuevo) throws RemoteException;
+	PrendaDTO getPrenda(int id) throws RemoteException;
 
 	//despacho
 	//falta agregar metodos al despacho

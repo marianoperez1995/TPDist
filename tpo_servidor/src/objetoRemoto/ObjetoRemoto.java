@@ -169,12 +169,12 @@ public class ObjetoRemoto extends UnicastRemoteObject implements InterfazRemota,
 	@Override
 	public ArrayList<PrendaDTO> getPrendas() throws RemoteException {
 		// TODO Auto-generated method stub
-		return AdministradorPrenda.getInstancia().BuscarAllPrenda();
+		return AdministradorPrenda.getInstancia().buscarAllPrenda();
 	}
 
 	@Override
-	public PrendaDTO getPrenda(int id, int talle, int color) throws RemoteException {
-		return AdministradorPrenda.getInstancia().getPrenda(id, talle, color);
+	public PrendaDTO getPrenda(int id) throws RemoteException {
+		return AdministradorPrenda.getInstancia().getPrenda(id);
 	}
 
 	@Override

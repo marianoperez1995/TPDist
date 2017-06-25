@@ -1,9 +1,9 @@
 /base/
-/hibernate.properties
-/lib/
 /controladores/
 /entities/
+/hibernate.properties
 /hibernate/
+/lib/
 /negocio/
 /objetoRemoto/
 /persistencia/
