@@ -33,7 +33,7 @@ public class AreaProduccionEntity implements Serializable {// ya esta bien
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idAreaProduccion")
 	private int idAreaP;
-	//private List<LineaProduccionEntity> lineas;
+	private List<LineaProduccionEntity> lineas;
 	private String nombre;
 
 /*	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REFRESH }, fetch = FetchType.EAGER)
@@ -60,6 +60,16 @@ public class AreaProduccionEntity implements Serializable {// ya esta bien
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+
+	public void setLineas(List<LineaProduccionEntity> lineas) {
+		this.lineas = lineas;
+	}
+
+	public LineaProduccionEntity getLineas() {
+		// TODO Auto-generated method stub
+		return lineas;
 	}
 
 

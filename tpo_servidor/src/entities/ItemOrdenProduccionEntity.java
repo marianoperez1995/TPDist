@@ -30,5 +30,11 @@ public class ItemOrdenProduccionEntity implements Serializable{
 	public void setCantidadRealizada(int cantidadRealizada) {
 		this.cantidadRealizada = cantidadRealizada;
 	}
+	public ItemOrdenProduccionID getId() {
+		return id;
+	}
+	public void setId(ItemOrdenProduccionID id) {
+		this.id = id;
+	}
 	
 }
