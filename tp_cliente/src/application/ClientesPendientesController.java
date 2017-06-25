@@ -309,8 +309,12 @@ public class ClientesPendientesController implements Initializable{
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 		
 		try {
-			for(ClienteDTO c : BusinessDelegate.getInstancia().listadoClientes())
-			resultado.add(new ClienteTabla(Integer.toString(c.getNumeroCliente()), c.getNombre(),c.getCuit(),c.getEstado(),df.format(c.getFechaRegistro())));
+			for(ClienteDTO c : BusinessDelegate.getInstancia().listadoClientes()){
+				if (c.getEstado().compareToIgnoreCase("pendiente")==0){
+				resultado.add(new ClienteTabla(Integer.toString(c.getNumeroCliente()), c.getNombre(),c.getCuit(),c.getEstado(),df.format(c.getFechaRegistro())));
+			}
+			}	
+			
 			return resultado;
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
