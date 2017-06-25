@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import dto.ClienteDTO;
 import dto.PedidoClienteDTO;
+import negocio.Cliente;
 import negocio.OrdenProduccion;
 import negocio.PedidoCliente;
 import persistencia.PedidoClienteDAO;
@@ -27,6 +28,7 @@ public class AdministradorPedidos {
 		
 		//verifica si el precio del pedido es inferior o igual al limite 
 		if(pc.getCliente().verificarLimite(pedido.getPrecioTotal())){
+			System.out.println("El limite de precio del cliente permite el ingreso del pedido"+pedido.getIdPedidoCliente());
 		//verifica si hay stock y puede generar una orden de compra
 		ArrayList<OrdenProduccion> ordenes=new ArrayList<OrdenProduccion>();
 		ordenes=AdministradorStock.getInstancia().verificarStockyGenerarOrdenes(pc);
@@ -91,6 +93,12 @@ public class AdministradorPedidos {
 				prendasDTO.add(p.toDTO());
 		}
 		return prendasDTO;
+	}
+
+	public void agregarPedido(PedidoClienteDTO dto) {
+		PedidoCliente ped = new PedidoCliente(dto);
+		pedidos.add(ped);
+		ped.insertar();
 	}
 	
 }

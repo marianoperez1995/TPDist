@@ -31,8 +31,8 @@ public class PedidoCliente {
 		//ItemPedidoCliente item=new ItemPedidoCliente();
 		ArrayList<ItemPedidoCliente> items=new ArrayList<ItemPedidoCliente>();
 		Float total=(float) 0;
-		for (int i=0;i<pedDTO.getItemsPedidoCliente().size();i++){
-			ItemPedidoCliente item=new ItemPedidoCliente(pedDTO.getItemsPedidoCliente().get(i));
+		for (ItemPedidoClienteDTO itped: pedDTO.getItemsPedidoCliente()){
+			ItemPedidoCliente item=new ItemPedidoCliente(itped);
 			total=total+item.getPrecio();
 			items.add(item);
 		}
