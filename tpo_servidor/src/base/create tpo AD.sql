@@ -67,15 +67,13 @@ create table Insumos (
 	idInsumo int not null identity (1,1),
 	nombre varchar(50) not null,
 	stock float not null,
-	idLote int not null,
 	fechaRecepcion DateTime not null,
 	precio float not null,
 	stockMin float not null,
 	unidad varchar(50) not null,
 	cantAComprar float not null,
 
-	constraint pk_Insumos primary key (idInsumo),
-	constraint fk_Lotes foreign key (idLote) references Lotes
+	constraint pk_Insumos primary key (idInsumo)
 )
 
 create table Proveedores(

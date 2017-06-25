@@ -63,12 +63,21 @@ insert into Prendas values ( 'Negro', 'S', 'Bufanda Negra y roja', 1, 200, 200, 
 
 
 --proveedor
-
 insert into Proveedores values ( 'Insumos SRL', '123112312')
 insert into Proveedores values ( 'ParaPrendas SA', '1542433')
+
+--insumos
+insert into Insumos values ( 'Tela Negra', 0, '25/05/2017 08:20', 5, 200, 'm2', 600, 0)
+insert into Insumos values ( 'Tela Jean', 0, '25/05/2017 08:20', 5, 200, 'm2', 600, 0)
+insert into Insumos values ( 'Botones', 0, '25/05/2017 08:20', 1, 100, 'unidades', 400, 0)
+insert into Insumos values ( 'Hilo blanco', 0, '25/05/2017 08:20', 5, 400, 'm', 800, 0)
+
 
 select * from clientes
 select * from empleados
 select * from sucursales
 select * from cuentascorriente
 select * from prendas
+select * from Lotes
+select * from Insumos
+select * from LotesInsumo
