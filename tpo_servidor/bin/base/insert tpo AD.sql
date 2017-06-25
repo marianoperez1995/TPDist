@@ -92,6 +92,25 @@ insert into areasPRoduccion values ('acabado')
 insert into areasPRoduccion values ('planchado')
 insert into areasPRoduccion values ('empacado')
 
+insert into prenda_areas values(1,1, 5)
+insert into prenda_areas values(1,2, 5)
+insert into prenda_areas values(1,3, 5)
+insert into prenda_areas values(1,4, 5)
+insert into prenda_areas values(1,5, 5)
+insert into prenda_areas values(1,6, 5)
+insert into prenda_areas values(1,7, 5)
+insert into prenda_areas values(1,8, 5)
+
+insert into prenda_areas values(2,1, 3)
+insert into prenda_areas values(2,2, 3)
+insert into prenda_areas values(2,3, 3)
+insert into prenda_areas values(2,4, 3)
+insert into prenda_areas values(2,5, 3)
+insert into prenda_areas values(2,6, 3)
+insert into prenda_areas values(2,7, 3)
+insert into prenda_areas values(2,8, 3)
+
+
 
 select * from clientes
 select * from empleados
