@@ -43,7 +43,7 @@ public class FacturaEntity implements Serializable {
 	private float impuestos;
 	private Date fechaGeneracion;
 	@ManyToOne
-	@JoinColumn(name="idCliente") //revisar
+	@JoinColumn(name="idCliente")
 	private ClienteEntity cliente;
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "idPedidoCliente", referencedColumnName = "idPedidoCliente")

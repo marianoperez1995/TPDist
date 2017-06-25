@@ -15,19 +15,13 @@ public class ItemPrendaAreaEntity implements Serializable{
 	 */
 	private static final long serialVersionUID = -7586234559367005579L;
 
-	public ItemPrendaAreaEntity(ItemPrendaAreaID id, int minutosEnArea) {
-		super();
-		this.id = id;
-		this.minutosEnArea = minutosEnArea;
-	}
-
 	public ItemPrendaAreaEntity() {
 		// TODO Auto-generated constructor stub
 	}
 
 	@EmbeddedId
 	private ItemPrendaAreaID id;	
-	private int minutosEnArea;
+	private int minutoEnArea;
 	
 
 	public ItemPrendaAreaID getId() {
@@ -39,11 +33,11 @@ public class ItemPrendaAreaEntity implements Serializable{
 	}
 
 	public int getMinutosEnArea() {
-		return minutosEnArea;
+		return minutoEnArea;
 	}
 
 	public void setMinutosEnArea(int minutosEnArea) {
-		this.minutosEnArea = minutosEnArea;
+		this.minutoEnArea = minutosEnArea;
 	}
 
 

@@ -43,7 +43,6 @@ public class ClienteEntity implements Serializable {
 	@JoinColumn(name = "idCCorriente", referencedColumnName = "idCuentaCorriente")
 	private CuentaCorrienteEntity cuentaCorriente;
 	//En Clientes esta como idCCorriente, en CuentasCorriente esta como idCuentaCorriente
-	//revisar q sea asi
 	private String nombre;
 	private String estado;
 	private String telefono;

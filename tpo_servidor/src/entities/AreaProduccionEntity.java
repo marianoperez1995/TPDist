@@ -33,17 +33,17 @@ public class AreaProduccionEntity implements Serializable {// ya esta bien
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idAreaProduccion")
 	private int idAreaP;
-	private List<LineaProduccionEntity> lineas;
+	//private List<LineaProduccionEntity> lineas;
 	private String nombre;
-/*
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REFRESH }, fetch = FetchType.EAGER)
+
+/*	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REFRESH }, fetch = FetchType.EAGER)
 	@JoinTable(name = "Area_lineasProduccion", joinColumns = {
 			@JoinColumn(name = "idAreaProduccion") }, inverseJoinColumns = { @JoinColumn(name = "idLineaProduccion") })
-	private List<LineaProduccionEntity> lineas;
+	private List<LineaProduccionEntity> lineas;*/
 
 	@OneToMany
 	@JoinColumn(name="idAreaProduccion")	
-	private List<ItemPrendaAreaEntity> prendas;*/
+	private List<ItemPrendaAreaEntity> prendas;
 
 	
 	public int getIdAreaP() {
