@@ -40,7 +40,7 @@
                   <Image url="@../img/profile_logo.png" />
                </image>
             </ImageView>
-            <Label layoutX="1064.0" layoutY="56.0" text="Cerrar sesion" textFill="#ff5e5e">
+            <Label fx:id="cerrarSes" layoutX="1064.0" layoutY="56.0" text="Cerrar sesion" textFill="#ff5e5e">
                <font>
                   <Font name="System Bold Italic" size="13.0" />
                </font>

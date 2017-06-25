@@ -18,6 +18,7 @@ import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import businessDelegate.BusinessDelegate;
 import dto.ClienteDTO;
 import dto.CuentaCorrienteDTO;
+import dto.PedidoClienteDTO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
@@ -252,10 +253,13 @@ public class ClienteBuscarController implements Initializable{
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 	    	           }
-	    	           
+	    	           ArrayList<PedidoClienteDTO> ped = new ArrayList<PedidoClienteDTO>();
+	    	           if(seleccionado.getPedidosCliente() != null){
+	    	        	   ped = seleccionado.getPedidosCliente();
+	    	           }
 	    	           lblIdCC.setText("ID# " + Integer.toString(seleccionado.getCuentaCorriente().getIdCuentaCorriente()));
 	    	           lblIdCliente.setText("#"+Integer.toString(seleccionado.getNumeroCliente()));
-	    	           lblCantPedidos.setText(Integer.toString(seleccionado.getPedidosCliente().size()));
+	    	           lblCantPedidos.setText(Integer.toString(ped.size()));
 	    	           txtRazon.setText(seleccionado.getNombre());
 	    	           txtCuit.setText(seleccionado.getCuit());
 	    	           txtTelefono.setText(seleccionado.getTelefono());

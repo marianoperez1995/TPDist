@@ -43,15 +43,9 @@ public class ClientesPendientesController implements Initializable{
     private JFXTextField txtDireccion;
 
     @FXML
-    private JFXTextField txtPiso;
-
-    @FXML
-    private JFXTextField lblIdCC;
+    private Label lblIdCC;
     @FXML
     private JFXTextField txtCondicPago;
-
-    @FXML
-    private JFXTextField txtNumero;
 
     @FXML
     private JFXTextField txtRazon;
@@ -128,7 +122,7 @@ public class ClientesPendientesController implements Initializable{
 			}
 		});
     	
-    	JFXTreeTableColumn<ClienteTabla, String> telefonoColumn = new JFXTreeTableColumn<>("Telefono");
+    	JFXTreeTableColumn<ClienteTabla, String> telefonoColumn = new JFXTreeTableColumn<>("Estado");
     	telefonoColumn.setPrefWidth(100);
     	telefonoColumn.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<ClienteTabla,String>, ObservableValue<String>>() {
 			
@@ -238,7 +232,7 @@ public class ClientesPendientesController implements Initializable{
 						e.printStackTrace();
 	    	           }
 	    	           
-	    	           lblIdCC.setText("ID# " + Integer.toString(seleccionado.getCuentaCorriente().getIdCuentaCorriente()));
+	    	           //lblIdCC.setText("ID# " + Integer.toString(seleccionado.getCuentaCorriente().getIdCuentaCorriente()));
 	    	           lblIdCliente.setText("#"+Integer.toString(seleccionado.getNumeroCliente()));
 	    	           txtRazon.setText(seleccionado.getNombre());
 	    	           txtCuit.setText(seleccionado.getCuit());
@@ -316,7 +310,7 @@ public class ClientesPendientesController implements Initializable{
 		
 		try {
 			for(ClienteDTO c : BusinessDelegate.getInstancia().listadoClientes())
-			resultado.add(new ClienteTabla(Integer.toString(c.getNumeroCliente()), c.getNombre(),c.getCuit(),c.getTelefono(),df.format(c.getFechaRegistro())));
+			resultado.add(new ClienteTabla(Integer.toString(c.getNumeroCliente()), c.getNombre(),c.getCuit(),c.getEstado(),df.format(c.getFechaRegistro())));
 			return resultado;
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
