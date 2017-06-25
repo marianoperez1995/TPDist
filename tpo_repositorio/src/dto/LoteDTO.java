@@ -10,8 +10,6 @@ public class LoteDTO  implements Serializable{
 	private static final long serialVersionUID = 489962179061807939L;
 	private ArrayList<BultoDTO> bultos;
 	private int codigo;
-	private String color;
-	private String talle;
 	private int cantidadTotal;
 	private OrdenProduccionDTO orden;
 
@@ -29,22 +27,6 @@ public class LoteDTO  implements Serializable{
 
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
-	}
-
-	public String getColor() {
-		return color;
-	}
-
-	public void setColor(String color) {
-		this.color = color;
-	}
-
-	public String getTalle() {
-		return talle;
-	}
-
-	public void setTalle(String talle) {
-		this.talle = talle;
 	}
 
 	public int getCantidadTotal() {

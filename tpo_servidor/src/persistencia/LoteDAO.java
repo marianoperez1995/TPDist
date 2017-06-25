@@ -59,9 +59,8 @@ public class LoteDAO {
 		LoteEntity lo= new LoteEntity();
 		lo.setCantidadTotal(lote.getCantidadTotal());
 		lo.setCodigo(lote.getIdLote());
-		lo.setColor(ColorDAO.getInstancia().toEntity(lote.getColor()));
 		lo.setOrden(OrdenProduccionDAO.getInstancia().toEntity(lote.getOrden()));
-		lo.setTalle(TalleDAO.getInstancia().toEntity(lote.getTalle()));
+		lo.setPrenda(PrendaDAO.getInstancia().toEntity(lote.getBultos().get(0).getPrenda())); //...
 		return lo;
 		
 	}
