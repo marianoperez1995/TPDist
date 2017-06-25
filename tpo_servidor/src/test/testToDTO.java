@@ -1,23 +1,5 @@
 package test;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-
-import entities.PrendaID;
-import negocio.Cliente;
-import negocio.Insumo;
-import negocio.ItemPedidoCliente;
-import negocio.ItemProveedorInsumo;
-import negocio.Opp;
-import negocio.PedidoCliente;
-import negocio.Prenda;
-import persistencia.ClienteDAO;
-import persistencia.ColorDAO;
-import persistencia.PedidoClienteDAO;
-import persistencia.PrendaDAO;
-import persistencia.TalleDAO;
-
 public class testToDTO {
 	public static void main(String[] args) {
 		

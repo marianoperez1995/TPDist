@@ -3,7 +3,6 @@ package persistencia;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import entities.ColorEntity;
 import entities.ItemProveedorInsumoEntity;
 import entities.ItemProveedorInsumoID;
 import hibernate.HibernateUtil;
