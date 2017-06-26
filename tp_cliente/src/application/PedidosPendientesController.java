@@ -467,8 +467,7 @@ public class PedidosPendientesController implements Initializable{
             seleccionado.setIdPedidoCliente(Integer.parseInt(selectedRow.getValue().getIdPedido().getValue()));
             try {
             	seleccionado = BusinessDelegate.getInstancia().buscarPedido(seleccionado);
-            	seleccionado.setEstado("En fabricacion");
-            	BusinessDelegate.getInstancia().modificarPedidoCliente(seleccionado);
+            	BusinessDelegate.getInstancia().aprobarPedido(seleccionado);
             } catch (RemoteException e) {
             	// TODO Auto-generated catch block
             	e.printStackTrace();

@@ -41,6 +41,9 @@ public class SidePanelController4 implements Initializable {
 
     @FXML
     private JFXButton btnVerAlmacenInsumos;
+
+    @FXML
+    private JFXButton btnVerOrdenes;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -89,6 +92,10 @@ public class SidePanelController4 implements Initializable {
             break;
             case "Recepcion de insumos":
             	body = FXMLLoader.load(getClass().getResource("/fxmls/InsumosPedidoRecepcion.fxml"));
+            	MainController.bodyPanelP.getChildren().setAll(body);
+            break;
+            case "Ver ordenes de produccion":
+            	body = FXMLLoader.load(getClass().getResource("/fxmls/OrdenProduccionFabricar.fxml"));
             	MainController.bodyPanelP.getChildren().setAll(body);
             break;
         }

@@ -3,6 +3,7 @@ package controladores;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import dto.OrdenProduccionDTO;
 import dto.PedidoClienteDTO;
 import negocio.Cliente;
 import negocio.Factura;
@@ -11,6 +12,7 @@ import negocio.OrdenProduccion;
 import negocio.PedidoCliente;
 import negocio.Prenda;
 import persistencia.FacturaDAO;
+import persistencia.OrdenProduccionDAO;
 import persistencia.PedidoClienteDAO;
 import persistencia.PrendaDAO;
 
@@ -177,5 +179,20 @@ public class AdministradorPedidos {
 		fac.generarPDF(id);		
 	
 		
+	}
+
+	public ArrayList<OrdenProduccionDTO> getAllOrdenes() {
+		// TODO Auto-generated method stub
+		ArrayList<OrdenProduccion> ord = OrdenProduccionDAO.getInstancia().getAll();
+		ArrayList<OrdenProduccionDTO> carlos = new ArrayList<OrdenProduccionDTO>(); 
+		for(OrdenProduccion c: ord){
+			carlos.add(c.toDTO());
+		}
+		
+		return carlos;
+	}
+
+	public OrdenProduccionDTO getOrden(OrdenProduccionDTO seleccionado) {
+		return OrdenProduccionDAO.getInstancia().getOrdenProduccion(seleccionado.getIdOrden()).toDTO();
 	}	
 }

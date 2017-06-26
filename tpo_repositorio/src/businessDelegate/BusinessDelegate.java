@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import dto.ClienteDTO;
 import dto.CuentaCorrienteDTO;
 import dto.EmpleadoDTO;
+import dto.OrdenProduccionDTO;
 import dto.PedidoClienteDTO;
 import dto.PrendaDTO;
 import dto.ReclamoDTO;
@@ -71,7 +72,6 @@ public class BusinessDelegate {
 	public void altaClientePendiente(ClienteDTO cli) throws RemoteException {
 		// TODO Auto-generated method stub
 		objetoRemoto.altaClientePendiente(cli);
-		return;
 	}
 	
 	public ArrayList<ClienteDTO> listadoClientes() throws RemoteException {
@@ -145,6 +145,17 @@ public class BusinessDelegate {
 	public void modificarPedidoCliente(PedidoClienteDTO seleccionado) throws RemoteException {
 		objetoRemoto.modificarPedidoCliente(seleccionado);
 		
+	}
+	public void enviarPedido(PedidoClienteDTO seleccionado) throws RemoteException {
+		// TODO Auto-generated method stub
+		objetoRemoto.enviarPedido(seleccionado);
+	}
+	public ArrayList<OrdenProduccionDTO> getOrdenes() throws RemoteException {
+		// TODO Auto-generated method stub
+		return objetoRemoto.getOrdenes();
+	}
+	public OrdenProduccionDTO buscarOrden(OrdenProduccionDTO seleccionado) throws RemoteException {
+		return objetoRemoto.getOrden(seleccionado);
 	}
 
 }

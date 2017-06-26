@@ -40,7 +40,7 @@ public  class OrdenProduccion {
 
 
 	public OrdenProduccion(OrdenProduccionDTO orden) {
-		this.idOrdenProduccion = orden.getCodigo();
+		this.idOrdenProduccion = orden.getIdOrden();
 		this.fecha = orden.getFecha();
 		this.prenda = new Prenda (orden.getPrenda());
 		this.pedidoCliente = new PedidoCliente(orden.getPedidoCliente());
@@ -111,8 +111,14 @@ public  class OrdenProduccion {
 	}
 
 	public OrdenProduccionDTO toDTO() {
-		//falta
-		return null;
+		OrdenProduccionDTO nuevo = new OrdenProduccionDTO();
+		nuevo.setCodigo(this.idOrdenProduccion);
+		nuevo.setCantidad(this.cantidad);
+		nuevo.setFecha(this.fecha);
+		nuevo.setPrenda(this.prenda.toDTO());
+		nuevo.setPedidoCliente(this.pedidoCliente.toDTO());
+		nuevo.setTipo(this.tipo);
+		return nuevo;
 	}
 	
 }

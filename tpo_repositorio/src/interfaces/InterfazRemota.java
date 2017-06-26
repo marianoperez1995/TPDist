@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import dto.ClienteDTO;
 import dto.CuentaCorrienteDTO;
 import dto.EmpleadoDTO;
+import dto.OrdenProduccionDTO;
 import dto.PedidoClienteDTO;
 import dto.PrendaDTO;
 import dto.ReclamoDTO;
@@ -65,6 +66,9 @@ public interface InterfazRemota extends Remote {
 	public ArrayList<ReclamoDTO> getListadoReclamos() throws RemoteException;
 	public String verificarPedido(PedidoClienteDTO seleccionado)throws RemoteException;
 	public void modificarPedidoCliente(PedidoClienteDTO seleccionado) throws RemoteException;
+	public void enviarPedido(PedidoClienteDTO seleccionado) throws RemoteException;
+	public ArrayList<OrdenProduccionDTO> getOrdenes() throws RemoteException;
+	public OrdenProduccionDTO getOrden(OrdenProduccionDTO seleccionado) throws RemoteException;
 
 	//despacho
 	//falta agregar metodos al despacho

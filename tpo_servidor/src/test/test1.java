@@ -1,18 +1,21 @@
 package test;
 
-import java.util.ArrayList;
+import java.util.Calendar;
 
-import negocio.OrdenProduccion;
-import persistencia.OrdenProduccionDAO;
+import controladores.AdministradorPedidos;
+import negocio.Cliente;
+import negocio.Factura;
+import negocio.PedidoCliente;
+import persistencia.ClienteDAO;
+import persistencia.FacturaDAO;
+import persistencia.PedidoClienteDAO;
 
 public class test1 {
 
 	public static void main(String[] args) {
-		ArrayList<OrdenProduccion> ordenes= new ArrayList<OrdenProduccion>();
-		ordenes= OrdenProduccionDAO.getInstancia().getAll();
-		for (OrdenProduccion or: ordenes){
-			System.out.println(or.toString());
-		}
+		PedidoCliente ped= PedidoClienteDAO.getInstancia().getPedidoCliente(1);
+		System.out.println(ped.getItemsPedidoCliente().size());
+		AdministradorPedidos.getInstancia().enviarPedido(ped.toDTO());
 	}
 
 }

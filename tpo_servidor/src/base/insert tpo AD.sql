@@ -127,3 +127,7 @@ insert into prenda_insumos values (1, 1, 10, 2)
 insert into prenda_insumos values (1, 2, 10, 2)
 insert into prenda_insumos values (1, 3, 10, 2)
 
+--ordenProd
+insert into OrdenesProduccion values (1, 10, 1, '04/06/2017 10:30', 'OPP')
+
+

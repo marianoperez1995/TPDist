@@ -14,10 +14,6 @@ import javafx.scene.layout.AnchorPane;
 
 
 public class SidePanelController2 implements Initializable {
-
-    @FXML
-    private JFXButton btnResumen;
-
     @FXML
     private JFXButton btnAltaCliente;
 
@@ -37,10 +33,6 @@ public class SidePanelController2 implements Initializable {
         AnchorPane body;
         switch(btn.getText())
         {
-            case "Resumen de clientes":
-            	body = FXMLLoader.load(getClass().getResource("/fxmls/ResumenClientes.fxml"));
-            	MainController.bodyPanelP.getChildren().setAll(body);
-            break;
             case "Pendientes de aceptacion":
             	body = FXMLLoader.load(getClass().getResource("/fxmls/ClientesPendientes.fxml"));
             	MainController.bodyPanelP.getChildren().setAll(body);

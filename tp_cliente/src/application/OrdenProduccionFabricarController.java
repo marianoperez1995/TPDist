@@ -22,6 +22,7 @@ import application.PedidosPendientesController.PedidoTabla;
 import businessDelegate.BusinessDelegate;
 import dto.ClienteDTO;
 import dto.ItemPedidoClienteDTO;
+import dto.OrdenProduccionDTO;
 import dto.PedidoClienteDTO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -41,60 +42,54 @@ import javafx.scene.control.TreeTableView.TreeTableViewSelectionModel;
 import javafx.scene.layout.FlowPane;
 import javafx.util.Callback;
 
-public class PedidosCompletosController implements Initializable{
+public class OrdenProduccionFabricarController implements Initializable{
 
-	@FXML
-    private Label txtFechaPago;
+	 @FXML
+	    private JFXButton btnEnviar;
 
-    @FXML
-    private JFXButton btnEnviar;
+	    @FXML
+	    private JFXTreeTableView<OrdenesTabla> vistaTabla;
 
-    @FXML
-    private JFXTreeTableView<PedidoTabla> vistaTabla;
+	    @FXML
+	    private JFXTextField filtroTipoOrden;
 
-    @FXML
-    private Label txtTel;
+	    @FXML
+	    private Label txtIdPedido;
 
-    @FXML
-    private Label txtBalance;
+	    @FXML
+	    private JFXTextField filtroIDOrden;
 
-    @FXML
-    private JFXTextField filtroRazonSocial;
+	    @FXML
+	    private JFXTextField filtroFechaRegistro;
 
-    @FXML
-    private JFXTextField filtroCuit;
+	    @FXML
+	    private Label txtIdCliente;
 
-    @FXML
-    private Label lblPedido;
+	    @FXML
+	    private Label txtTipoOrden;
 
-    @FXML
-    private Label txtCuit;
+	    @FXML
+	    private JFXTreeTableView<ItemPedTabla> vistaTabla2;
 
-    @FXML
-    private JFXTextField filtroFechaRegistro;
+	    @FXML
+	    private Label txtEstado;
 
-    @FXML
-    private Label txtIdCliente;
+	    @FXML
+	    private Label lblPedido;
 
-    @FXML
-    private Label txtLimiteCred;
+	    @FXML
+	    private Label txtRazonSocial;
 
-    @FXML
-    private JFXTreeTableView<ItemPedTabla> vistaTabla2;
+	    @FXML
+	    void fabricarOrden(ActionEvent event) {
 
-    @FXML
-    private Label txtEstado;
-
-    @FXML
-    private Label txtRazonSocial;
+	    }
     
-    JFXTreeTableColumn<PedidoTabla, String> idPedidoCol;
-    JFXTreeTableColumn<PedidoTabla, String> razonSocialCol;
-    JFXTreeTableColumn<PedidoTabla, String> estadoCol;
-    JFXTreeTableColumn<PedidoTabla, String> fechaGeneracionCol;
+    JFXTreeTableColumn<OrdenesTabla, String> idPedidoCol;
+    JFXTreeTableColumn<OrdenesTabla, String> tipoCol;
+    JFXTreeTableColumn<OrdenesTabla, String> fechaGeneracionCol;
 
 	JFXTreeTableColumn<ItemPedTabla, String> nombreProductoCol;
-	JFXTreeTableColumn<ItemPedTabla, String> tipoProductoCol;
 	JFXTreeTableColumn<ItemPedTabla, String> talleCol;
 	JFXTreeTableColumn<ItemPedTabla, String> colorCol;
 	JFXTreeTableColumn<ItemPedTabla, String> cantidadCol;
@@ -105,40 +100,30 @@ public class PedidosCompletosController implements Initializable{
     	
     	idPedidoCol = new JFXTreeTableColumn<>("Pedido");
     	idPedidoCol.setPrefWidth(170);
-    	idPedidoCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<PedidoTabla,String>, ObservableValue<String>>() {
+    	idPedidoCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<OrdenesTabla,String>, ObservableValue<String>>() {
 			
 			@Override
-			public ObservableValue<String> call(CellDataFeatures<PedidoTabla, String> param) {
-				return param.getValue().getValue().idPedido;
+			public ObservableValue<String> call(CellDataFeatures<OrdenesTabla, String> param) {
+				return param.getValue().getValue().idOrden;
 			}
 		});
     	
-    	razonSocialCol = new JFXTreeTableColumn<>("Razon Social");
-    	razonSocialCol.setPrefWidth(137);
-    	razonSocialCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<PedidoTabla,String>, ObservableValue<String>>() {
+    	tipoCol = new JFXTreeTableColumn<>("Estado");
+    	tipoCol.setPrefWidth(135);
+    	tipoCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<OrdenesTabla,String>, ObservableValue<String>>() {
 			
 			@Override
-			public ObservableValue<String> call(CellDataFeatures<PedidoTabla, String> param) {
-				return param.getValue().getValue().razonSocial;
-			}
-		});
-    	
-    	estadoCol = new JFXTreeTableColumn<>("Estado");
-    	estadoCol.setPrefWidth(135);
-    	estadoCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<PedidoTabla,String>, ObservableValue<String>>() {
-			
-			@Override
-			public ObservableValue<String> call(CellDataFeatures<PedidoTabla, String> param) {
-				return param.getValue().getValue().estado;
+			public ObservableValue<String> call(CellDataFeatures<OrdenesTabla, String> param) {
+				return param.getValue().getValue().tipo;
 			}
 		});
     	
     	fechaGeneracionCol = new JFXTreeTableColumn<>("Fecha de pedido");
     	fechaGeneracionCol.setPrefWidth(185);
-    	fechaGeneracionCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<PedidoTabla,String>, ObservableValue<String>>() {
+    	fechaGeneracionCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<OrdenesTabla,String>, ObservableValue<String>>() {
     		
 			@Override
-			public ObservableValue<String> call(CellDataFeatures<PedidoTabla, String> param) {
+			public ObservableValue<String> call(CellDataFeatures<OrdenesTabla, String> param) {
 				return param.getValue().getValue().fechaGeneracion;
 			}
 		});
@@ -146,13 +131,11 @@ public class PedidosCompletosController implements Initializable{
     	vistaTabla.setPlaceholder(new Label("No hay pedidos listos para enviar"));
     	
     	idPedidoCol.setResizable(false);
-    	razonSocialCol.setResizable(false);
-    	estadoCol.setResizable(false);
+    	tipoCol.setResizable(false);
     	fechaGeneracionCol.setResizable(false);
     	
     	idPedidoCol.impl_setReorderable(false);
-    	razonSocialCol.impl_setReorderable(false);
-    	estadoCol.impl_setReorderable(false);
+    	tipoCol.impl_setReorderable(false);
     	fechaGeneracionCol.impl_setReorderable(false);
     	
     	nombreProductoCol = new JFXTreeTableColumn<>("Producto");
@@ -162,16 +145,6 @@ public class PedidosCompletosController implements Initializable{
 			@Override
 			public ObservableValue<String> call(CellDataFeatures<ItemPedTabla, String> param) {
 				return param.getValue().getValue().nombreProducto;
-			}
-		});
-    	
-    	tipoProductoCol = new JFXTreeTableColumn<>("Tipo");
-    	tipoProductoCol.setPrefWidth(110);
-    	tipoProductoCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<ItemPedTabla,String>, ObservableValue<String>>() {
-			
-			@Override
-			public ObservableValue<String> call(CellDataFeatures<ItemPedTabla, String> param) {
-				return param.getValue().getValue().tipoProducto;
 			}
 		});
     	
@@ -205,49 +178,47 @@ public class PedidosCompletosController implements Initializable{
 			}
 		});
     	
-    	tipoProductoCol.setResizable(false);
     	nombreProductoCol.setResizable(false);
     	talleCol.setResizable(false);
     	colorCol.setResizable(false);
     	cantidadCol.setResizable(false);
     	
-    	tipoProductoCol.impl_setReorderable(false);
     	nombreProductoCol.impl_setReorderable(false);
     	talleCol.impl_setReorderable(false);
     	colorCol.impl_setReorderable(false);
     	cantidadCol.impl_setReorderable(false);
     	
-    	ObservableList<PedidoTabla> pedidos = FXCollections.observableArrayList();
-    	ObservableList<ItemPedTabla> itemsPedido = FXCollections.observableArrayList();
+    	ObservableList<OrdenesTabla> ordenes = FXCollections.observableArrayList();
+    	ObservableList<ItemPedTabla> itemsOrdenes = FXCollections.observableArrayList();
        	
     	
     	//agregar pedidos a la tabla
-    	for(PedidoTabla p: buscarPedidos()){
-    		pedidos.add(p);
+    	for(OrdenesTabla p: buscarOrdenes()){
+    		ordenes.add(p);
     	}
     	
     	
     	//para manipular los datos de la tabla con el JFoenix se usa RecirsiveTreeItem. RecursiveTreeObject::getChildren Callback para obtener cada cliente de la tabla
-    	final TreeItem<PedidoTabla> root = new RecursiveTreeItem<PedidoTabla>(pedidos, RecursiveTreeObject::getChildren);
-    	vistaTabla.getColumns().setAll(idPedidoCol,razonSocialCol,estadoCol,fechaGeneracionCol);
+    	final TreeItem<OrdenesTabla> root = new RecursiveTreeItem<OrdenesTabla>(ordenes, RecursiveTreeObject::getChildren);
+    	vistaTabla.getColumns().setAll(idPedidoCol,tipoCol,fechaGeneracionCol);
     	vistaTabla.setRoot(root);
     	vistaTabla.setShowRoot(false);
     	
     	//para manipular los datos de la tabla con el JFoenix se usa RecirsiveTreeItem. RecursiveTreeObject::getChildren Callback para obtener cada cliente de la tabla
-    	final TreeItem<ItemPedTabla> root2 = new RecursiveTreeItem<ItemPedTabla>(itemsPedido, RecursiveTreeObject::getChildren);
-    	vistaTabla2.getColumns().setAll(nombreProductoCol,tipoProductoCol,talleCol,colorCol,cantidadCol);
+    	final TreeItem<ItemPedTabla> root2 = new RecursiveTreeItem<ItemPedTabla>(itemsOrdenes, RecursiveTreeObject::getChildren);
+    	vistaTabla2.getColumns().setAll(nombreProductoCol, talleCol,colorCol,cantidadCol);
     	vistaTabla2.setRoot(root2);
     	vistaTabla2.setShowRoot(false);
     	
     	//El filtro distingue mayuscula y minuscula
-    	filtroRazonSocial.textProperty().addListener(new ChangeListener<String>() {
+    	filtroTipoOrden.textProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-					vistaTabla.setPredicate(new Predicate<TreeItem<PedidoTabla>>() {					
+					vistaTabla.setPredicate(new Predicate<TreeItem<OrdenesTabla>>() {					
 					@Override
-					public boolean test(TreeItem<PedidoTabla> cliente) {
+					public boolean test(TreeItem<OrdenesTabla> cliente) {
 						// TODO Auto-generated method stub
-						Boolean flag = cliente.getValue().razonSocial.getValue().contains(newValue);
+						Boolean flag = cliente.getValue().tipo	.getValue().contains(newValue);
 						return flag;
 					}
 				});
@@ -255,14 +226,14 @@ public class PedidosCompletosController implements Initializable{
 		});
     	
     	//El filtro distingue mayuscula y minuscula
-    	filtroCuit.textProperty().addListener(new ChangeListener<String>() {
+    	filtroIDOrden.textProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-					vistaTabla.setPredicate(new Predicate<TreeItem<PedidoTabla>>() {					
+					vistaTabla.setPredicate(new Predicate<TreeItem<OrdenesTabla>>() {					
 					@Override
-					public boolean test(TreeItem<PedidoTabla> cliente) {
+					public boolean test(TreeItem<OrdenesTabla> cliente) {
 						// TODO Auto-generated method stub
-						Boolean flag = cliente.getValue().idPedido.getValue().contains(newValue);
+						Boolean flag = cliente.getValue().idOrden.getValue().contains(newValue);
 						return flag;
 					}
 				});
@@ -272,9 +243,9 @@ public class PedidosCompletosController implements Initializable{
     	filtroFechaRegistro.textProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-					vistaTabla.setPredicate(new Predicate<TreeItem<PedidoTabla>>() {					
+					vistaTabla.setPredicate(new Predicate<TreeItem<OrdenesTabla>>() {					
 					@Override
-					public boolean test(TreeItem<PedidoTabla> cliente) {
+					public boolean test(TreeItem<OrdenesTabla> cliente) {
 						// TODO Auto-generated method stub
 						Boolean flag = cliente.getValue().fechaGeneracion.getValue().contains(newValue);
 						return flag;
@@ -286,46 +257,33 @@ public class PedidosCompletosController implements Initializable{
     	vistaTabla.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
     	    @Override
     	    public void changed(ObservableValue observableValue, Object oldValue, Object newValue) {
-	    		PedidoClienteDTO seleccionado = new PedidoClienteDTO();
+	    		OrdenProduccionDTO seleccionado = new OrdenProduccionDTO();
 		        //Check whether item is selected and set value of selected item to Label
 		        if(vistaTabla.getSelectionModel().getSelectedItem() != null) 
 		        {
-		        	TreeTableViewSelectionModel<PedidoTabla> selectionModel = vistaTabla.getSelectionModel();
+		        	TreeTableViewSelectionModel<OrdenesTabla> selectionModel = vistaTabla.getSelectionModel();
 				    ObservableList selectedCells = selectionModel.getSelectedCells();
 				    TreeTablePosition tablePosition = (TreeTablePosition) selectedCells.get(0);
-				    TreeItem<PedidoTabla> selectedRow = vistaTabla.getTreeItem(tablePosition.getRow());
+				    TreeItem<OrdenesTabla> selectedRow = vistaTabla.getTreeItem(tablePosition.getRow());
 		           
-		            seleccionado.setIdPedidoCliente(Integer.parseInt(selectedRow.getValue().getIdPedido().getValue()));
+		            seleccionado.setCodigo(Integer.parseInt(selectedRow.getValue().getIdOrden().getValue()));
 		            try {
-		            	seleccionado = BusinessDelegate.getInstancia().buscarPedido(seleccionado);
+		            	seleccionado = BusinessDelegate.getInstancia().buscarOrden(seleccionado);
 		            } catch (RemoteException e) {
 		            	// TODO Auto-generated catch block
 		            	e.printStackTrace();
 		            }
     	     	           
-				    txtIdCliente.setText("ID"+Integer.toString(seleccionado.getCliente().getNumeroCliente()));
-				    lblPedido.setText("DETALLE DE PEDIDO "+ Integer.toString(seleccionado.getIdPedidoCliente()));
-				    txtRazonSocial.setText(seleccionado.getCliente().getNombre());
-				    txtCuit.setText(seleccionado.getCliente().getCuit());
-				    txtTel.setText(seleccionado.getCliente().getTelefono());
-				    txtLimiteCred.setText(Float.toString(seleccionado.getCliente().getCuentaCorriente().getLimite()));
-				    txtFechaPago.setText(seleccionado.getCliente().getCuentaCorriente().getFecha());
-				    txtBalance.setText(Float.toString(seleccionado.getCliente().getCuentaCorriente().getBalanceActual()));
-				    txtEstado.setText("Listo para enviar");
+				    txtIdCliente.setText("ID"+Integer.toString(seleccionado.getIdOrden()));
+				    txtRazonSocial.setText(seleccionado.getPedidoCliente().getCliente().getNombre());
+				    txtIdPedido.setText(Integer.toString(seleccionado.getPedidoCliente().getIdPedidoCliente()));
+				    txtTipoOrden.setText(seleccionado.getTipo());
+				    txtEstado.setText("Listo para fabricar");
 				    
-				    for(ItemPedidoClienteDTO c : seleccionado.getItemsPedidoCliente()){
-				    	String estado;
-				    	if(c.getPrenda().isEstadoProduccion()){
-				    		estado = "Producción";
-				    	}else{
-				    		estado = "Discontinuo";
-				    	}
-				    	
-				    	itemsPedido.add(new ItemPedTabla(c.getPrenda().getDescripcion(), estado, c.getPrenda().getTalle(), c.getPrenda().getColor(), Integer.toString(c.getCantidad())));
-				    }
+				    itemsOrdenes.add(new ItemPedTabla(seleccionado.getPrenda().getDescripcion(), seleccionado.getPrenda().getTalle(), seleccionado.getPrenda().getColor(), Integer.toString(seleccionado.getCantidad())));
 
-				    final TreeItem<ItemPedTabla> root2 = new RecursiveTreeItem<ItemPedTabla>(itemsPedido, RecursiveTreeObject::getChildren);
-				    vistaTabla2.getColumns().setAll(nombreProductoCol,tipoProductoCol,talleCol,colorCol,cantidadCol);
+				    final TreeItem<ItemPedTabla> root2 = new RecursiveTreeItem<ItemPedTabla>(itemsOrdenes, RecursiveTreeObject::getChildren);
+				    vistaTabla2.getColumns().setAll(nombreProductoCol, talleCol,colorCol,cantidadCol);
 				    vistaTabla2.setRoot(root2);
 				    vistaTabla2.setShowRoot(false);
 				    
@@ -338,17 +296,12 @@ public class PedidosCompletosController implements Initializable{
     void limpiarC(){
 	    txtIdCliente.setText("ID");
 	    txtRazonSocial.setText("");
-	    txtCuit.setText("");
-	    txtTel.setText("");
-	    txtLimiteCred.setText("");
-	    txtFechaPago.setText("");
-	    txtBalance.setText("");
 	    txtEstado.setText("--");
 	    lblPedido.setText("DETALLE DE PEDIDO ");
 	    
     	ObservableList<ItemPedTabla> itemsPedido = FXCollections.observableArrayList();
 	    final TreeItem<ItemPedTabla> root2 = new RecursiveTreeItem<ItemPedTabla>(itemsPedido, RecursiveTreeObject::getChildren);
-	    vistaTabla2.getColumns().setAll(nombreProductoCol,tipoProductoCol,talleCol,colorCol,cantidadCol);
+	    vistaTabla2.getColumns().setAll(nombreProductoCol, talleCol,colorCol,cantidadCol);
 	    vistaTabla2.setRoot(root2);
 	    vistaTabla2.setShowRoot(false);
 
@@ -361,12 +314,12 @@ public class PedidosCompletosController implements Initializable{
         //Check whether item is selected and set value of selected item to Label
         if(vistaTabla.getSelectionModel().getSelectedItem() != null) 
         {
-        	TreeTableViewSelectionModel<PedidoTabla> selectionModel = vistaTabla.getSelectionModel();
+        	TreeTableViewSelectionModel<OrdenesTabla> selectionModel = vistaTabla.getSelectionModel();
 		    ObservableList selectedCells = selectionModel.getSelectedCells();
 		    TreeTablePosition tablePosition = (TreeTablePosition) selectedCells.get(0);
-		    TreeItem<PedidoTabla> selectedRow = vistaTabla.getTreeItem(tablePosition.getRow());
+		    TreeItem<OrdenesTabla> selectedRow = vistaTabla.getTreeItem(tablePosition.getRow());
            
-            seleccionado.setIdPedidoCliente(Integer.parseInt(selectedRow.getValue().getIdPedido().getValue()));
+            seleccionado.setIdPedidoCliente(Integer.parseInt(selectedRow.getValue().getIdOrden().getValue()));
             try {
             	seleccionado = BusinessDelegate.getInstancia().buscarPedido(seleccionado);
             	BusinessDelegate.getInstancia().enviarPedido(seleccionado);
@@ -376,30 +329,30 @@ public class PedidosCompletosController implements Initializable{
             }
         }
         
-    	ObservableList<PedidoTabla> pedidos = FXCollections.observableArrayList();
+    	ObservableList<OrdenesTabla> pedidos = FXCollections.observableArrayList();
     	//agregar pedidos a la tabla
-    	for(PedidoTabla p: buscarPedidos()){
+    	for(OrdenesTabla p: buscarOrdenes()){
     		pedidos.add(p);
     	}
    	
     	//para manipular los datos de la tabla con el JFoenix se usa RecirsiveTreeItem. RecursiveTreeObject::getChildren Callback para obtener cada cliente de la tabla
-    	final TreeItem<PedidoTabla> root = new RecursiveTreeItem<PedidoTabla>(pedidos, RecursiveTreeObject::getChildren);
-    	vistaTabla.getColumns().setAll(idPedidoCol,razonSocialCol,estadoCol,fechaGeneracionCol);
+    	final TreeItem<OrdenesTabla> root = new RecursiveTreeItem<OrdenesTabla>(pedidos, RecursiveTreeObject::getChildren);
+    	vistaTabla.getColumns().setAll(idPedidoCol, tipoCol,fechaGeneracionCol);
     	vistaTabla.setRoot(root);
     	vistaTabla.setShowRoot(false);
     	
     	limpiarC();
     }
     
-    private ArrayList<PedidoTabla> buscarPedidos() {
-    	ArrayList<PedidoTabla> resultado = new ArrayList<PedidoTabla>();
+    private ArrayList<OrdenesTabla> buscarOrdenes() {
+    	ArrayList<OrdenesTabla> resultado = new ArrayList<OrdenesTabla>();
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
 		try {
-			for(PedidoClienteDTO p : BusinessDelegate.getInstancia().getPedidos()){	
-				if(p.getEstado().equalsIgnoreCase("Completo")){
-					resultado.add(new PedidoTabla(Integer.toString(p.getIdPedidoCliente()), p.getCliente().getNombre(),p.getEstado(),df.format(p.getFechaGeneracion())));
-				}
+			for(OrdenProduccionDTO p : BusinessDelegate.getInstancia().getOrdenes()){	
+				//if(p.getEstado().equalsIgnoreCase("Completo")){
+					resultado.add(new OrdenesTabla(Integer.toString(p.getIdOrden()), p.getTipo(),df.format(p.getFecha())));
+				//}
 			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -408,29 +361,23 @@ public class PedidosCompletosController implements Initializable{
 		return resultado;
 	}
 
-	class PedidoTabla extends RecursiveTreeObject<PedidoTabla>{
-    	StringProperty razonSocial;
-    	StringProperty idPedido;
-    	StringProperty estado;
+	class OrdenesTabla extends RecursiveTreeObject<OrdenesTabla>{
+    	StringProperty idOrden;
+    	StringProperty tipo;
     	StringProperty fechaGeneracion;
     	
-    	public PedidoTabla(String idPedido, String razonSocial, String telefono, String fechaGeneracion){
-    		this.razonSocial = new SimpleStringProperty(razonSocial);
-    		this.idPedido = new SimpleStringProperty(idPedido);
-    		this.estado = new SimpleStringProperty(telefono);
+    	public OrdenesTabla(String idPedido, String telefono, String fechaGeneracion){
+    		this.idOrden = new SimpleStringProperty(idPedido);
+    		this.tipo = new SimpleStringProperty(telefono);
     		this.fechaGeneracion = new SimpleStringProperty(fechaGeneracion);
     	}
     	
-    	public String getRazonSocial(){
-    		return razonSocial.get();
-    	}
-    	
-    	public StringProperty getIdPedido(){
-    		return idPedido;
+    	public StringProperty getIdOrden(){
+    		return idOrden;
     	}
     	
     	public String getTelefono(){
-    		return estado.get();
+    		return tipo.get();
     	}
     	
     	public String getFechaGeneracion(){
@@ -440,15 +387,13 @@ public class PedidosCompletosController implements Initializable{
     
     class ItemPedTabla extends RecursiveTreeObject<ItemPedTabla>{
     	StringProperty nombreProducto;
-    	StringProperty tipoProducto;
     	StringProperty talle;
     	StringProperty color;
     	StringProperty cantidad;
     	
-    	public ItemPedTabla(String nombreProducto, String tipoProducto, String talle, String color, String cantidad){
+    	public ItemPedTabla(String nombreProducto, String talle, String color, String cantidad){
     		//Producto, Tipo Producto, Talle, Color, Cantidad
     		this.nombreProducto = new SimpleStringProperty(nombreProducto);
-    		this.tipoProducto = new SimpleStringProperty(tipoProducto);	//discontinuo o en produccion
     		this.talle = new SimpleStringProperty(talle);
     		this.color = new SimpleStringProperty(color);
     		this.cantidad = new SimpleStringProperty(cantidad);
@@ -457,10 +402,7 @@ public class PedidosCompletosController implements Initializable{
     	public String getNombreProducto(){
     		return nombreProducto.get();
     	}
-    	
-    	public String getTipoProducto(){
-    		return tipoProducto.get();
-    	}
+
     	
     	public String getTalle(){
     		return talle.get();

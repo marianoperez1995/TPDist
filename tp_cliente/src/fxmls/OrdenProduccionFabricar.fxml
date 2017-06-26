@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="668.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.OrdenProduccionFabricarController">
+   <children>
+      <FlowPane alignment="CENTER" layoutX="29.0" layoutY="79.0" prefHeight="176.0" prefWidth="252.0" style="-fx-background-color: #99b89b;">
+         <children>
+            <ImageView fitHeight="116.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/search.png" />
+               </image>
+            </ImageView>
+         </children>
+      </FlowPane>
+      <FlowPane layoutX="281.0" layoutY="79.0" prefHeight="176.0" prefWidth="364.0" style="-fx-background-color: #e1e5ed;">
+         <children>
+            <GridPane prefHeight="176.0" prefWidth="366.0" style="-fx-border-color: #99b89b; -fx-border-width: 2px;">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="415.0" minWidth="10.0" prefWidth="360.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="316.0" minWidth="0.0" prefWidth="0.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="39.0" minHeight="7.0" prefHeight="7.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="62.0" minHeight="10.0" prefHeight="57.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="58.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="62.0" minHeight="10.0" prefHeight="62.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <JFXTextField fx:id="filtroTipoOrden" labelFloat="true" promptText="Tipo" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="50.0" right="30.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXTextField fx:id="filtroIDOrden" labelFloat="true" promptText="ID Orden" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets left="50.0" right="30.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXTextField fx:id="filtroFechaRegistro" labelFloat="true" promptText="Fecha de  orden" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets left="50.0" right="30.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </JFXTextField>
+               </children>
+            </GridPane>
+         </children>
+      </FlowPane>
+      <Pane layoutX="29.0" layoutY="34.0" prefHeight="47.0" prefWidth="618.0" style="-fx-border-radius: 10 0 0 0; -fx-background-radius: 10 0 0 0; -fx-background-color: #355c7D;">
+         <children>
+            <Label alignment="CENTER" layoutY="9.0" prefHeight="30.0" prefWidth="618.0" text="ORDENES DE PRODUCCION PARA FABRICAR" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <FlowPane layoutX="30.0" layoutY="255.0" prefHeight="380.0" prefWidth="616.0">
+         <children>
+            <JFXTreeTableView fx:id="vistaTabla" prefHeight="380.0" prefWidth="616.0" style="-fx-border-color: #3a3a3a; -fx-border-width: 0 1 1 1;" stylesheets="@../styles/table.css" />
+         </children>
+      </FlowPane>
+      <Pane layoutX="656.0" layoutY="35.0" prefHeight="249.0" prefWidth="681.0" style="-fx-background-color: #e1e5ed; -fx-background-radius: 0 10 0 0;">
+         <children>
+            <GridPane layoutX="341.0" layoutY="72.0" prefHeight="74.0" prefWidth="307.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="203.0" minWidth="10.0" prefWidth="119.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="174.0" minWidth="10.0" prefWidth="165.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="190.0" minWidth="0.0" prefWidth="0.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="22.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label prefHeight="21.0" prefWidth="166.0" text="Razon social:">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="21.0" prefWidth="166.0" text="Razon social:">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="txtRazonSocial" prefHeight="21.0" prefWidth="166.0" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="21.0" prefWidth="166.0" text="Pedido:" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="21.0" prefWidth="166.0" text="Tipo orden:" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="txtIdPedido" prefHeight="21.0" prefWidth="166.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="txtTipoOrden" prefHeight="21.0" prefWidth="166.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </GridPane>
+            <Pane prefHeight="44.0" prefWidth="681.0" style="-fx-background-color: #355c7D; -fx-background-radius: 0 10 0 0;">
+               <children>
+                  <Label alignment="CENTER" layoutY="9.0" prefHeight="30.0" prefWidth="681.0" text="PEDIDO" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Label fx:id="txtIdCliente" layoutX="37.0" layoutY="62.0" prefHeight="94.0" prefWidth="271.0" text="ID" underline="true">
+               <font>
+                  <Font size="65.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="656.0" layoutY="297.0" prefHeight="336.0" prefWidth="681.0" style="-fx-background-color: #e1e5ed; -fx-background-radius: 0 10 0 0;">
+         <children>
+            <Pane prefHeight="44.0" prefWidth="681.0" style="-fx-background-color: #355c7D;">
+               <children>
+                  <Label fx:id="lblPedido" alignment="CENTER" layoutY="9.0" prefHeight="30.0" prefWidth="681.0" text="DETALLE DE ORDEN DE PRODUCCION" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <JFXTreeTableView fx:id="vistaTabla2" layoutX="1.0" layoutY="44.0" prefHeight="234.0" prefWidth="681.0" style="-fx-border-color: #3a3a3a; -fx-border-width: 0 1 1 1;" stylesheets="@../styles/table.css" />
+            <GridPane layoutX="11.0" layoutY="292.0" prefHeight="30.0" prefWidth="415.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="173.0" minWidth="10.0" prefWidth="67.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="348.0" minWidth="10.0" prefWidth="348.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label prefHeight="21.0" prefWidth="166.0" text="Estado:">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="txtEstado" prefHeight="21.0" prefWidth="342.0" text="--" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </GridPane>
+            <JFXButton fx:id="btnEnviar" layoutX="425.0" layoutY="292.0" onAction="#fabricarOrden" prefHeight="31.0" prefWidth="242.0" style="-fx-background-color: #8ac96a;" text="Fabricar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <effect>
+                  <DropShadow blurType="GAUSSIAN" height="18.0" radius="8.5" width="18.0" />
+               </effect>
+            </JFXButton>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

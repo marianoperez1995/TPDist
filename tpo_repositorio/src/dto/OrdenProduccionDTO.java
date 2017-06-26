@@ -55,7 +55,7 @@ public  class OrdenProduccionDTO implements Serializable {
 		this.pedidoCliente = pedidoCliente;
 	}
 
-	public int getCodigo() {
+	public int getIdOrden() {
 		return codigo;
 	}
 
