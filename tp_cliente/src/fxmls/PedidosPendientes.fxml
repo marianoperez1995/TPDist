@@ -111,17 +111,17 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="txtRazonSocial" prefHeight="21.0" prefWidth="166.0" text="RSoc" GridPane.columnIndex="1">
+                  <Label fx:id="txtRazonSocial" prefHeight="21.0" prefWidth="166.0" GridPane.columnIndex="1">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="txtCuit" prefHeight="21.0" prefWidth="166.0" text="CUIT" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Label fx:id="txtCuit" prefHeight="21.0" prefWidth="166.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="txtTel" prefHeight="21.0" prefWidth="166.0" text="Tel" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <Label fx:id="txtTel" prefHeight="21.0" prefWidth="166.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -137,7 +137,7 @@
                   </Label>
                </children>
             </Pane>
-            <Label fx:id="txtIdCliente" layoutX="37.0" layoutY="62.0" prefHeight="94.0" prefWidth="271.0" text="ID1234" underline="true">
+            <Label fx:id="txtIdCliente" layoutX="37.0" layoutY="62.0" prefHeight="94.0" prefWidth="271.0" text="ID" underline="true">
                <font>
                   <Font size="65.0" />
                </font>
@@ -175,17 +175,17 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="txtLimiteCred" prefHeight="21.0" prefWidth="50.0" text="RSoc" GridPane.columnIndex="1">
+                  <Label fx:id="txtLimiteCred" prefHeight="21.0" prefWidth="50.0" GridPane.columnIndex="1">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="txtFechaPago" prefHeight="21.0" prefWidth="50.0" text="RSoc" GridPane.columnIndex="3">
+                  <Label fx:id="txtFechaPago" prefHeight="21.0" prefWidth="50.0" GridPane.columnIndex="3">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="txtBalance" prefHeight="21.0" prefWidth="50.0" text="RSoc" GridPane.columnIndex="5">
+                  <Label fx:id="txtBalance" prefHeight="21.0" prefWidth="50.0" GridPane.columnIndex="5">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -206,28 +206,28 @@
                </children>
             </Pane>
             <JFXTreeTableView fx:id="vistaTabla2" layoutX="1.0" layoutY="44.0" prefHeight="234.0" prefWidth="681.0" style="-fx-border-color: #3a3a3a; -fx-border-width: 0 1 1 1;" stylesheets="@../styles/table.css" />
-            <GridPane layoutX="11.0" layoutY="292.0" prefHeight="30.0" prefWidth="415.0">
+            <GridPane layoutX="11.0" layoutY="292.0" prefHeight="30.0" prefWidth="307.0">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="173.0" minWidth="10.0" prefWidth="67.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="348.0" minWidth="10.0" prefWidth="348.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="173.0" minWidth="10.0" prefWidth="57.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="348.0" minWidth="10.0" prefWidth="250.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label prefHeight="21.0" prefWidth="166.0" text="Estado:">
+                  <Label prefHeight="21.0" prefWidth="85.0" text="Estado:">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label fx:id="txtEstado" prefHeight="21.0" prefWidth="342.0" text="--" GridPane.columnIndex="1">
                      <font>
-                        <Font name="System Bold" size="15.0" />
+                        <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
                </children>
             </GridPane>
-            <JFXButton fx:id="btnEnviar" layoutX="540.0" layoutY="292.0" prefHeight="31.0" prefWidth="127.0" style="-fx-background-color: #8ac96a;" text="Aprobar" textFill="WHITE">
+            <JFXButton fx:id="btnEnviar" layoutX="540.0" layoutY="292.0" onAction="#aprobarPedido" prefHeight="31.0" prefWidth="127.0" style="-fx-background-color: #8ac96a;" text="Aprobar" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -235,13 +235,21 @@
                   <DropShadow blurType="GAUSSIAN" height="18.0" radius="8.5" width="18.0" />
                </effect>
             </JFXButton>
-            <JFXButton fx:id="btnCancelar" layoutX="436.0" layoutY="292.0" prefHeight="31.0" prefWidth="91.0" style="-fx-background-color: #ed6861;" text="Rechazar" textFill="WHITE">
+            <JFXButton fx:id="btnCancelar" layoutX="436.0" layoutY="292.0" onAction="#rechazarPedido" prefHeight="31.0" prefWidth="91.0" style="-fx-background-color: #ed6861;" text="Rechazar" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
                <effect>
                   <DropShadow blurType="GAUSSIAN" height="18.0" radius="8.5" width="18.0" />
                </effect>
+            </JFXButton>
+            <JFXButton fx:id="btnLimpiar" layoutX="329.0" layoutY="292.0" onAction="#limpiarCampos" prefHeight="31.0" prefWidth="91.0" style="-fx-background-color: #a3a3a3;" text="Limpiar" textFill="WHITE">
+               <effect>
+                  <DropShadow blurType="GAUSSIAN" height="18.0" radius="8.5" width="18.0" />
+               </effect>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
             </JFXButton>
          </children>
       </Pane>
