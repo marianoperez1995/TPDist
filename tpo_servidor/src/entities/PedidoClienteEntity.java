@@ -3,7 +3,9 @@ package entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,8 +13,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 @Entity
 @Table(name="PedidosCliente")
 public class PedidoClienteEntity  implements Serializable {
@@ -42,8 +47,11 @@ public class PedidoClienteEntity  implements Serializable {
 	@Column(name="fechaRealDespacho")
 	private Date fechaDespacho;
 	private Date fechaEntregaCliente;
-	@Transient
-	private ArrayList<ItemPedidoClienteEntity> itemsPedidoCliente = new ArrayList<>();
+	
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="idPedidoCliente")
+	private List<ItemPedidoClienteEntity> itemsPedidoCliente;
 	
 	private float precioTotal;
 
@@ -95,7 +103,7 @@ public class PedidoClienteEntity  implements Serializable {
 		this.fechaDespacho = fechaDespacho;
 	}
 
-	public ArrayList<ItemPedidoClienteEntity> getItemsPedidoCliente() {
+	public List<ItemPedidoClienteEntity> getItemsPedidoCliente() {
 		return itemsPedidoCliente;
 	}
 

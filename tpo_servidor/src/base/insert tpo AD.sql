@@ -118,3 +118,9 @@ insert into pedidosCLiente values (1, 'pendiente', '02/06/2017 10:30','02/06/201
 insert into itempedidocliente values (1, 1, 20, 55)
 insert into itempedidocliente values (1, 2, 20, 55)
 insert into itempedidocliente values (1, 3, 20, 55)
+
+--iteminsumo
+insert into prenda_insumos values (1, 1, 10, 2)
+insert into prenda_insumos values (1, 2, 10, 2)
+insert into prenda_insumos values (1, 3, 10, 2)
+

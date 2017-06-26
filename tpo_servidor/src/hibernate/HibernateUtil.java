@@ -22,8 +22,8 @@ public class HibernateUtil {
 			config.addAnnotatedClass(PedidoInsumoEntity.class);
 			config.addAnnotatedClass(PedidoTransporteEntity.class);	
 			config.addAnnotatedClass(PrendasEliminadasEntity.class);	
-			config.addAnnotatedClass(ItemProveedorInsumoEntity.class);
-			config.addAnnotatedClass(InsumoEntity.class);*/
+			config.addAnnotatedClass(ItemProveedorInsumoEntity.class);*/
+			config.addAnnotatedClass(InsumoEntity.class);
 			
 			//De aca para abajo andan bien en teoria
 			config.addAnnotatedClass(ClienteEntity.class);

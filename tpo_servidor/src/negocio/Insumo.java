@@ -43,9 +43,7 @@ public class Insumo {
 		this.unidad = insumo.getUnidad();
 		this.cantAComprar = insumo.getCantAComprar();
 		this.fechaRecepcion = insumo.getFechaRecepcion();
-		for (LoteEntity l : insumo.getLotes()){
-			this.lotes.add(new Lote(l));
-		}
+		
 	}
 	
 	public int getIdInsumo() {
@@ -144,6 +142,13 @@ public class Insumo {
 		in.setStockMinimo(stockMinimo);
 		in.setUnidad(unidad);
 		return in;
+	}
+
+	@Override
+	public String toString() {
+		return "Insumo [idInsumo=" + idInsumo + ", nombre=" + nombre + ", stockActual=" + stockActual + ", precioFinal="
+				+ precioFinal + ", stockMinimo=" + stockMinimo + ", unidad=" + unidad + ", cantAComprar=" + cantAComprar
+				+ ", fechaRecepcion=" + fechaRecepcion + ", lotes=" + lotes + "]";
 	}
 
 	

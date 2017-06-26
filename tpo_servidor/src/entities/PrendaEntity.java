@@ -2,6 +2,7 @@ package entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -39,11 +40,14 @@ public class PrendaEntity  implements Serializable {
 	private int cantidadAConfeccionar;
 	private int stockMinimo;
 	private int stockActual;
+	
 	@Transient
-	private ArrayList<ItemPrendaInsumoEntity> items;
+	//@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	//@JoinColumn(name = "idPrenda", referencedColumnName = "idPrenda")
+	private List<ItemPrendaInsumoEntity> items;
 	
 	
-	public ArrayList<ItemPrendaInsumoEntity> getItems() {
+	public List<ItemPrendaInsumoEntity> getItems() {
 		return items;
 	}
 

@@ -52,6 +52,8 @@ public class PedidoCliente {
 		this.fechaGeneracion = pedE.getFechaGeneracion();
 		this.fechaProbableDespacho = pedE.getFechaProbableDespacho();
 		this.fechaDespacho = pedE.getFechaDespacho();
+		this.itemsPedidoCliente= new ArrayList<ItemPedidoCliente>();
+	
 		for (ItemPedidoClienteEntity p : pedE.getItemsPedidoCliente()){
 			this.itemsPedidoCliente.add(new ItemPedidoCliente(p));
 		}
@@ -230,6 +232,14 @@ public class PedidoCliente {
 		return 0;
 		
 		
+	}
+
+	@Override
+	public String toString() {
+		return "PedidoCliente [idPedidoCliente=" + idPedidoCliente + ", cliente=" + cliente + ", estado=" + estado
+				+ ", fechaGeneracion=" + fechaGeneracion + ", fechaProbableDespacho=" + fechaProbableDespacho
+				+ ", fechaDespacho=" + fechaDespacho + ", fechaEntregaCliente=" + fechaEntregaCliente
+				+ ", itemsPedidoCliente=" + itemsPedidoCliente + ", precioTotal=" + precioTotal + "]";
 	}
 
 	

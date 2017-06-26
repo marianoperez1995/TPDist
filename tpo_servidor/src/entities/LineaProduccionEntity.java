@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="LineasProduccion")
@@ -36,8 +37,7 @@ public class LineaProduccionEntity  implements Serializable {
 	@Column(name="tiempoUso")
 	private Date tiempoDeUso;
 	
-	@ManyToOne
-	@JoinColumn(name="idAreaProduccion")
+	@Transient
 	private int idAreaProduccion;
 	
 	

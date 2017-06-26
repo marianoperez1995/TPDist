@@ -110,13 +110,17 @@ insert into prenda_areas values(2,6, 3)
 insert into prenda_areas values(2,7, 3)
 insert into prenda_areas values(2,8, 3)
 
+--pedidos
+insert into pedidosCLiente values (1, 'pendiente', '02/06/2017 10:30','02/06/2017 10:30','02/06/2017 10:30','02/06/2017 10:30',45)
 
+--itempedido
 
-select * from clientes
-select * from empleados
-select * from sucursales
-select * from cuentascorriente
-select * from prendas
-select * from Lotes
-select * from Insumos
-select * from LotesInsumo
+insert into itempedidocliente values (1, 1, 20, 55)
+insert into itempedidocliente values (1, 2, 20, 55)
+insert into itempedidocliente values (1, 3, 20, 55)
+
+--iteminsumo
+insert into prenda_insumos values (1, 1, 10, 2)
+insert into prenda_insumos values (1, 2, 10, 2)
+insert into prenda_insumos values (1, 3, 10, 2)
+

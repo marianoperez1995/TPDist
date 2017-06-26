@@ -102,6 +102,7 @@ public class PedidoClienteDAO {
 		ArrayList<PedidoClienteEntity> pre = new ArrayList<PedidoClienteEntity>();
 		Query query = sesion.createQuery("from PedidoClienteEntity");
 		pre = (ArrayList<PedidoClienteEntity>) query.list();
+		System.out.println(pre.size());
 		sesion.close();
 		ArrayList<PedidoCliente> pedidos = new ArrayList<PedidoCliente>();
 		for (PedidoClienteEntity ee : pre){

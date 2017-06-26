@@ -75,6 +75,11 @@ public class ItemPedidoCliente {
 		return item;		
 	}
 
+	@Override
+	public String toString() {
+		return "ItemPedidoCliente [prenda=" + prenda + ", cantidad=" + cantidad + ", precio=" + precio + "]";
+	}
+
 	
 	
 }
