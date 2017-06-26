@@ -184,10 +184,12 @@ public class Prenda {
 		prenda.setStockActual(stockActual);
 		prenda.setStockMinimo(stockMinimo);
 		ArrayList<ItemPrendaInsumoDTO> items=new ArrayList<ItemPrendaInsumoDTO>();
+		if(insumos != null){
 		for(int i=0;i<insumos.size();i++){
 			ItemPrendaInsumoDTO dto=new ItemPrendaInsumoDTO();
 			dto=insumos.get(i).toDTO();
 			items.add(dto);
+		}
 		}
 		prenda.setInsumos(items);
 		return prenda;
