@@ -31,15 +31,15 @@ public class AreaProduccionEntity implements Serializable {// ya esta bien
 	@Transient
 	private List<LineaProduccionEntity> lineas;
 	private String nombre;
-/*
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REFRESH }, fetch = FetchType.EAGER)
+
+/*	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REFRESH }, fetch = FetchType.EAGER)
 	@JoinTable(name = "Area_lineasProduccion", joinColumns = {
 			@JoinColumn(name = "idAreaProduccion") }, inverseJoinColumns = { @JoinColumn(name = "idLineaProduccion") })
-	private List<LineaProduccionEntity> lineas;
+	private List<LineaProduccionEntity> lineas;*/
 
 	@OneToMany
 	@JoinColumn(name="idAreaProduccion")	
-	private List<ItemPrendaAreaEntity> prendas;*/
+	private List<ItemPrendaAreaEntity> prendas;
 
 	
 	public int getIdAreaP() {
@@ -56,6 +56,16 @@ public class AreaProduccionEntity implements Serializable {// ya esta bien
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+
+	public void setLineas(List<LineaProduccionEntity> lineas) {
+		this.lineas = lineas;
+	}
+
+	public LineaProduccionEntity getLineas() {
+		// TODO Auto-generated method stub
+		return lineas;
 	}
 
 

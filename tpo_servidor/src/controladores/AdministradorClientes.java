@@ -5,12 +5,15 @@ import java.util.ArrayList;
 import dto.ClienteDTO;
 import dto.CuentaCorrienteDTO;
 import dto.PedidoClienteDTO;
+import dto.ReclamoDTO;
 import negocio.Cliente;
 import negocio.CuentaCorriente;
 import negocio.PedidoCliente;
+import negocio.Reclamo;
 import negocio.Sucursal;
 import persistencia.ClienteDAO;
 import persistencia.CuentaCorrienteDAO;
+import persistencia.ReclamoDAO;
 
 public class AdministradorClientes {
 	private static AdministradorClientes instancia;
@@ -121,5 +124,26 @@ public class AdministradorClientes {
 		cli.setEstado("Alta");
 		cli.actualizar();
 		ccorr.actualizar();
+	}
+
+	public void crearReclamo(ReclamoDTO reclamo) {
+		Reclamo rec = new Reclamo(reclamo);
+		rec.insertar();
+	}
+
+	public ReclamoDTO getReclamo(ReclamoDTO reclamo) {
+		return ReclamoDAO.getInstancia().getReclamo(reclamo.getIdReclamo()).toDTO();	
+	}
+
+	public ArrayList<ReclamoDTO> getListadoReclamos() {
+		ArrayList<ReclamoDTO> resultado = new ArrayList<ReclamoDTO>();
+		ArrayList<Reclamo> lista = new ArrayList<Reclamo>();
+		lista = ReclamoDAO.getInstancia().getAll();
+		
+		for(Reclamo e: lista){
+			resultado.add(e.toDTO());
+		}
+		return resultado;
+		
 	}
 }

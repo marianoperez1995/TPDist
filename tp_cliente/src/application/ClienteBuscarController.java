@@ -164,6 +164,8 @@ public class ClienteBuscarController implements Initializable{
 			}
 		});
     	
+    	vistaTabla.setPlaceholder(new Label("No hay clientes para seleccionar"));
+    	
     	idCliente.setResizable(false);
     	clientName.setResizable(false);
     	cuitColumn.setResizable(false);

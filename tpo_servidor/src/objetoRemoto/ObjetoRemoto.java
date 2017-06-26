@@ -14,6 +14,7 @@ import dto.CuentaCorrienteDTO;
 import dto.EmpleadoDTO;
 import dto.PedidoClienteDTO;
 import dto.PrendaDTO;
+import dto.ReclamoDTO;
 import interfaces.InterfazRemota;
 
 public class ObjetoRemoto extends UnicastRemoteObject implements InterfazRemota,Serializable {
@@ -197,6 +198,27 @@ public class ObjetoRemoto extends UnicastRemoteObject implements InterfazRemota,
 	public void aumentarLimiteCredito(ClienteDTO cliente, float limite) throws RemoteException {
 		AdministradorClientes.getInstancia().aumentarLimiteCreditoCliente(limite, cliente);
 
+	}
+
+	@Override
+	public PedidoClienteDTO buscarPedido(PedidoClienteDTO seleccionado) throws RemoteException {
+		return AdministradorPedidos.getInstancia().getPedido(seleccionado);
+	}
+
+	@Override
+	public void altaReclamo(ReclamoDTO reclamo) throws RemoteException {
+		AdministradorClientes.getInstancia().crearReclamo(reclamo);
+	}
+
+	@Override
+	public ReclamoDTO getReclamo(ReclamoDTO reclamo) throws RemoteException {
+		return AdministradorClientes.getInstancia().getReclamo(reclamo);
+	}
+
+	@Override
+	public ArrayList<ReclamoDTO> getListadoReclamos() throws RemoteException {
+		// TODO Auto-generated method stub
+		return AdministradorClientes.getInstancia().getListadoReclamos();
 	}
 	
 	

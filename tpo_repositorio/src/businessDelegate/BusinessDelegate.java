@@ -13,6 +13,7 @@ import dto.CuentaCorrienteDTO;
 import dto.EmpleadoDTO;
 import dto.PedidoClienteDTO;
 import dto.PrendaDTO;
+import dto.ReclamoDTO;
 
 public class BusinessDelegate {
 	private static BusinessDelegate instancia;
@@ -121,6 +122,22 @@ public class BusinessDelegate {
 	public void altaCliente(ClienteDTO nuevo) throws RemoteException{
 		// TODO Auto-generated method stub
 		objetoRemoto.altaCliente(nuevo);
+	}
+	public PedidoClienteDTO buscarPedido(PedidoClienteDTO seleccionado) throws RemoteException {
+		// TODO Auto-generated method stub
+		return objetoRemoto.buscarPedido(seleccionado);
+	}
+	public void nuevoReclamo(ReclamoDTO reclamo) throws RemoteException {
+		// TODO Auto-generated method stub
+		objetoRemoto.altaReclamo(reclamo);
+	}
+	public ReclamoDTO buscarReclamo(ReclamoDTO reclamo) throws RemoteException {
+		// TODO Auto-generated method stub
+		return objetoRemoto.getReclamo(reclamo);
+	}
+	public ArrayList<ReclamoDTO> listadoReclamos() throws RemoteException{
+		// TODO Auto-generated method stub
+		return objetoRemoto.getListadoReclamos();
 	}
 
 }

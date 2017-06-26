@@ -22,8 +22,7 @@ public class ItemPedidoClienteId implements Serializable {
 		@JoinColumn(name = "idPrenda", referencedColumnName = "idPrenda"),
 		@JoinColumn(name = "idColor", referencedColumnName = "idColor"),
 		@JoinColumn(name = "idTalle", referencedColumnName = "idTalle") })*/
-	@JoinColumns(value = {
-			@JoinColumn(name = "idPrenda", referencedColumnName = "idPrenda") })
+	@JoinColumn(name = "idPrenda")
 	private PrendaEntity prenda;
 	
 	
