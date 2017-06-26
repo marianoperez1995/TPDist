@@ -23,27 +23,26 @@ public class HibernateUtil {
 			config.addAnnotatedClass(PedidoTransporteEntity.class);	
 			config.addAnnotatedClass(PrendasEliminadasEntity.class);	
 			config.addAnnotatedClass(ItemProveedorInsumoEntity.class);*/
-			config.addAnnotatedClass(InsumoEntity.class);
+			//config.addAnnotatedClass(InsumoEntity.class);
 			
 			//De aca para abajo andan bien en teoria
 			config.addAnnotatedClass(ClienteEntity.class);
 			config.addAnnotatedClass(SucursalEntity.class);
 			config.addAnnotatedClass(CuentaCorrienteEntity.class);
 			config.addAnnotatedClass(PedidoClienteEntity.class);
-			config.addAnnotatedClass(AreaProduccionEntity.class);
+			/*config.addAnnotatedClass(AreaProduccionEntity.class);
 			config.addAnnotatedClass(ItemPrendaAreaEntity.class);
 			config.addAnnotatedClass(OrdenProduccionEntity.class);
-			config.addAnnotatedClass(LineaProduccionEntity.class);
+			config.addAnnotatedClass(LineaProduccionEntity.class);*/
 			config.addAnnotatedClass(EmpleadoEntity.class);
 			config.addAnnotatedClass(PrendaEntity.class);
 			config.addAnnotatedClass(ProveedorEntity.class);
-			config.addAnnotatedClass(MovimientosEntity.class);
 			config.addAnnotatedClass(ReclamosEntity.class);
+			config.addAnnotatedClass(ItemPedidoClienteEntity.class);
+			/*config.addAnnotatedClass(MovimientosEntity.class);
 			config.addAnnotatedClass(TransporteEntity.class);
 			config.addAnnotatedClass(FacturaEntity.class);
-			config.addAnnotatedClass(EmpleadoEntity.class);
-			config.addAnnotatedClass(PedidoClienteEntity.class);
-			config.addAnnotatedClass(ItemPedidoClienteEntity.class);
+			config.addAnnotatedClass(ItemPedidoClienteEntity.class);*/
 			
 			sessionFactory = config.buildSessionFactory();
 
