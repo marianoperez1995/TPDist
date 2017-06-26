@@ -27,6 +27,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -46,6 +47,9 @@ public class PedidosPendientesController implements Initializable{
     @FXML
     private JFXButton btnEnviar;
 
+    @FXML
+    private JFXButton btnLimpiar;
+    
     @FXML
     private JFXTreeTableView<PedidoTabla> vistaTabla;
 
@@ -209,7 +213,7 @@ public class PedidosPendientesController implements Initializable{
     	
     	ObservableList<PedidoTabla> pedidos = FXCollections.observableArrayList();
     	ObservableList<ItemPedTabla> itemsPedido = FXCollections.observableArrayList();
-    	
+    	/*
     	//agregar pedidos a la tabla
     	pedidos.add(new PedidoTabla("123","Natanael SRL", "Pendiente", "10/10/2016"));
     	pedidos.add(new PedidoTabla("123","Nicolas SA", "Pendiente", "05/10/2013"));
@@ -219,13 +223,13 @@ public class PedidosPendientesController implements Initializable{
     	pedidos.add(new PedidoTabla("123","Ramiro SA", "Pendiente", "23/09/2014"));
     	pedidos.add(new PedidoTabla("123","Maturano SRL", "Pendiente", "30/10/2013"));
     	pedidos.add(new PedidoTabla("123","Matias Leonel SA", "Pendiente", "01/08/2014"));
- 
+ */
     	
     	
-    	/*//agregar clientes a la tabla
-    	for(ListaPedido p: buscarPedidos()){
+    	//agregar clientes a la tabla
+    	for(PedidoTabla p: buscarPedidos()){
     		pedidos.add(p);
-    	}*/
+    	}
     	
     	
     	//para manipular los datos de la tabla con el JFoenix se usa RecirsiveTreeItem. RecursiveTreeObject::getChildren Callback para obtener cada cliente de la tabla
@@ -332,9 +336,36 @@ public class PedidosPendientesController implements Initializable{
 				    
     	       		btnCancelar.setDisable(false);
     	       		btnEnviar.setDisable(false);
+    	       		btnLimpiar.setDisable(false);
     	        }
 	         }
     	     });
+    }
+    
+    @FXML
+    void limpiarCampos(ActionEvent event) {
+	    txtIdCliente.setText("ID");
+	    txtRazonSocial.setText("");
+	    txtCuit.setText("");
+	    txtTel.setText("");
+	    txtLimiteCred.setText("");
+	    txtFechaPago.setText("");
+	    txtBalance.setText("");
+	    txtEstado.setText("--");
+	    
+   		btnCancelar.setDisable(true);
+   		btnEnviar.setDisable(true);
+   		btnLimpiar.setDisable(true);
+    }
+    
+    @FXML
+    void rechazarPedido(ActionEvent event) {
+    	
+    }
+
+    @FXML
+    void aprobarPedido(ActionEvent event) {
+    	
     }
     
     private ArrayList<PedidoTabla> buscarPedidos() {
