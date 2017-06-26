@@ -147,38 +147,14 @@ public class AdministradorPedidos {
 		Factura fac= new Factura();
 		Cliente cli= new Cliente(seleccionado.getCliente());
 		PedidoCliente ped= new PedidoCliente(seleccionado);
-		
-		//CHEQUEAR QUE HAYA PRENDAS SUFICIENTES PARA EL PEDIDO ANTES DE INGRESAR FACT
-		for (ItemPedidoCliente item : ped.getItemsPedidoCliente()){
-			Prenda p = PrendaDAO.getInstancia().getPrenda(item.getPrenda().getIdPrenda());
-			//aca si se pasaba del stock minimo se aprobaba igual si habia suficientes? asumo que si, y setea cantidadaconfeccionar
-			//a la diferencia
-			if (p.getStockActual() >= item.getCantidad()){
-				PrendaDAO.getInstancia().disminuirStock(item.getPrenda(), item.getCantidad());
-				p.disminuirStock(item.getCantidad());
-			}
-			else{
-				System.out.println("No hay prendas suficientes para completar el pedido indicado");
-				return;
-			}
-			//reviso si se paso del stockmin
-			if (p.getStockMinimo() > p.getStockActual()){
-				p.setCantidadAConfeccionar(p.getStockMinimo());
-				System.out.println("Se deberian mandar a hacer "+p.getStockMinimo()+" de la prenda "+item.getPrenda().getIdPrenda());
-			}			
-			else 
-				p.setCantidadAConfeccionar(0); //Por defecto siempre deberia ser 0, solo cambiaria en el if de arriba
-		}	
-		////////////////////////////
+
 		fac.setCliente(cli);
 		fac.setFechaGeneracion(Calendar.getInstance().getTime());
 		fac.setImpuestos(35);
 		fac.setPedido(ped);
 		fac.setTotal(ped.getPrecioTotal());
 		int id=FacturaDAO.getInstancia().insert(fac);
-		fac.generarPDF(id);		
-	
-		
+		fac.generarPDF(id);			
 	}
 
 	public ArrayList<OrdenProduccionDTO> getAllOrdenes() {

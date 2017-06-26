@@ -240,15 +240,7 @@ public class PedidoCliente {
 	}
 
 	public String verificarPedido() {
-		int ok=0;
-		for (ItemPedidoCliente item: this.itemsPedidoCliente){
-			if (!item.getPrenda().isEstadoProduccion()){
-				if (!item.getPrenda().verificarCantidad(item.getCantidad())){
-					ok=1;
-				}
-			}
-		}
-		if (this.getCliente().verificarLimite(this.precioTotal) && ok==0){
+		if (this.getCliente().verificarLimite(this.precioTotal)){
 			return "Aprobado";
 		} else {
 			return "Desaprobado";

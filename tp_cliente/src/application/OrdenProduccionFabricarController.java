@@ -261,6 +261,7 @@ public class OrdenProduccionFabricarController implements Initializable{
 		        //Check whether item is selected and set value of selected item to Label
 		        if(vistaTabla.getSelectionModel().getSelectedItem() != null) 
 		        {
+		        	itemsOrdenes.clear();
 		        	TreeTableViewSelectionModel<OrdenesTabla> selectionModel = vistaTabla.getSelectionModel();
 				    ObservableList selectedCells = selectionModel.getSelectedCells();
 				    TreeTablePosition tablePosition = (TreeTablePosition) selectedCells.get(0);

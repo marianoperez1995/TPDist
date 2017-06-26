@@ -108,7 +108,7 @@ public class CuentaCorriente {
 	}
 
 	public boolean verificarLimite(float precioPedido) {
-		if(precioPedido <= this.limite){
+		if(precioPedido <= this.limite + this.balanceActual){
 			return true;
 		}
 		return false;

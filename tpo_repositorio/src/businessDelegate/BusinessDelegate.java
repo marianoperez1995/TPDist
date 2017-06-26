@@ -157,5 +157,9 @@ public class BusinessDelegate {
 	public OrdenProduccionDTO buscarOrden(OrdenProduccionDTO seleccionado) throws RemoteException {
 		return objetoRemoto.getOrden(seleccionado);
 	}
+	public void aprobarPedido(PedidoClienteDTO seleccionado) throws RemoteException {
+		// TODO Auto-generated method stub
+		objetoRemoto.aprobarPedido(seleccionado);
+	}
 
 }
