@@ -74,6 +74,12 @@ public class ItemPrendaInsumo {
 	public void insertar() {
 		ItemPrendaInsumoDAO.getInstancia().insert(this);		
 	}
+
+	@Override
+	public String toString() {
+		return "ItemPrendaInsumo [insumo=" + insumo + ", cantidad=" + cantidad + ", desperdicio=" + desperdicio
+				+ ", prenda=" + prenda + "]";
+	}
 	
 	
 }
