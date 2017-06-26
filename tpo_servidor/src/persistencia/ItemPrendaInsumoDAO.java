@@ -37,18 +37,18 @@ public class ItemPrendaInsumoDAO{
 		sesion.close();		
 		return itemPI;
 	}
-	public ItemPrendaInsumoEntity toEntity(ItemPrendaInsumo item, Prenda prenda) {
+	public ItemPrendaInsumoEntity toEntity(ItemPrendaInsumo item) {
 		ItemPrendaInsumoEntity e = new ItemPrendaInsumoEntity();
 		e.setCantidad(item.getCantidad());
 		e.setDesperdicio(item.getDesperdicio());
 		ItemPrendaInsumoID id = new ItemPrendaInsumoID();
 		id.setInsumo(InsumoDAO.getInstancia().toEntity(item.getInsumo()));
-		id.setPrenda(PrendaDAO.getInstancia().toEntity(prenda));
+		id.setPrenda(PrendaDAO.getInstancia().toEntity(item.getPrenda()));
 		e.setId(id);
 		return e;
 	}
-	public void insert(ItemPrendaInsumo item, Prenda prenda) {
-		ItemPrendaInsumoEntity it= toEntity(item, prenda);
+	public void insert(ItemPrendaInsumo item) {
+		ItemPrendaInsumoEntity it= toEntity(item);
 		Session sesion;
 		sesion = sf.openSession();
 		sesion.beginTransaction();

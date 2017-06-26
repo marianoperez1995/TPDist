@@ -2,9 +2,9 @@ package negocio;
 
 import dto.ItemPrendaInsumoDTO;
 import entities.ItemPrendaInsumoEntity;
+import persistencia.ItemPrendaInsumoDAO;
 
 public class ItemPrendaInsumo {
-	private int idItemPrendaInsumo;
 	private Insumo insumo;
 	private float cantidad;
 	private float desperdicio;
@@ -24,30 +24,10 @@ public class ItemPrendaInsumo {
 		this.desperdicio = ipie.getDesperdicio();
 		this.prenda = new Prenda(ipie.getId().getPrenda());
 	}
-
-/*	public void insertar() {
-		ItemPrendaInsumoDAO.getInstancia().insert(this);		
-	}
-
-	public void borrar() {
-		ItemPrendaInsumoDAO.getInstancia().eliminar(this.idItemPrendaInsumo);
-	}
-*/	
-	
-	//NO EXISTEN INSERT NI DELETE EN ESTE DAO
-
 	
 	
 	public ItemPrendaInsumo() {
 		// TODO Auto-generated constructor stub
-	}
-
-	public int getIdItemPrendaInsumo() {
-		return idItemPrendaInsumo;
-	}
-
-	public void setIdItemPrendaInsumo(int idItemPrendaInsumo) {
-		this.idItemPrendaInsumo = idItemPrendaInsumo;
 	}
 
 	public Insumo getInsumo() {
@@ -89,6 +69,10 @@ public class ItemPrendaInsumo {
 		item.setInsumo(insumo.toDTO());
 		item.setPrenda(prenda.toDTO());
 		return item;
+	}
+
+	public void insertar() {
+		ItemPrendaInsumoDAO.getInstancia().insert(this);		
 	}
 	
 	

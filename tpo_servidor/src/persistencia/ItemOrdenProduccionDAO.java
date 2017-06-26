@@ -47,15 +47,13 @@ public class ItemOrdenProduccionDAO {
 	}
 	
 
-	public void eliminar() {	
+	public void eliminar( int idPrenda,  int idOrden) {	
 		Session sesion = sf.openSession();
 		sesion.beginTransaction();
-		ItemPedidoClienteEntity item =  new ItemPedidoClienteEntity();
-		item = (ItemPedidoClienteEntity) sesion.createQuery("from ItemPedidoClienteEntity where idPedidoCliente = ? and idPrenda = ? and idColor = ? and idTalle = ?")
-				.setParameter(0, idPedidoCliente)
-				.setParameter(1, idPrenda)
-				.setParameter(2,idColor)
-				.setParameter(3, idTalle)
+		ItemOrdenProduccionEntity item =  new ItemOrdenProduccionEntity();
+		item = (ItemOrdenProduccionEntity) sesion.createQuery("from ItemOrdenProduccionEntity where idPrenda = ? and idOrdenProduccion = ?")
+				.setParameter(0, idPrenda)
+				.setParameter(1, idOrden)				
 				.uniqueResult();
 		sesion.delete(item);
 		sesion.close();	
