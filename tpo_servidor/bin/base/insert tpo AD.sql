@@ -5,12 +5,12 @@ insert into Sucursales values ( 'Sucursal 3C', 'CalleFalsa 453', '09:00-18:00')
 insert into Sucursales values ( 'Sucursal 4D', 'Calle de asfafa 225', '09:00-18:00')
 
 --trabajadores
-insert into empleados values ('Franco', 'gerente', 'usuario1','123456', 1, 1)
-insert into empleados values ('Benjamin', 'empleado','usuario2','123456', 2, 1)
-insert into empleados values ('Lucas', 'empleado','usuario3','123456', 3, 1)
-insert into empleados values ('Martin', 'empleado','usuario4','123456', 4, 1)
-insert into empleados values ('Manuel', 'empleado','usuario5','123456', 5, 1)
-insert into empleados values ('Mariano', 'empleado','usuario6','123456', 6, 1)
+insert into empleados values ('Franco', 'Gerente', 'usuario1','123456', 1, 1)
+insert into empleados values ('Benjamin', 'Empleado','usuario2','123456', 2, 1)
+insert into empleados values ('Lucas', 'Empleado','usuario3','123456', 3, 1)
+insert into empleados values ('Martin', 'Empleado','usuario4','123456', 4, 1)
+insert into empleados values ('Manuel', 'Empleado','usuario5','123456', 5, 1)
+insert into empleados values ('Mariano', 'Empleado','usuario6','123456', 6, 1)
 
 --cuenta corriente
 insert into CuentasCorriente values (10000, 'Pago completo', '02 de cada mes', 'Pendiente', 1000)
@@ -75,22 +75,22 @@ insert into Insumos values ( 'Hilo blanco', 0, '25/05/2017 08:20', 5, 400, 'm', 
 
 --Areas produccion
 
-insert into areasPRoduccion values ('marcado')
-insert into areasPRoduccion values ('corte')
-insert into areasPRoduccion values ('habilitado')
-insert into areasPRoduccion values ('costura')
-insert into areasPRoduccion values ('estampado')
-insert into areasPRoduccion values ('acabado')
-insert into areasPRoduccion values ('planchado')
-insert into areasPRoduccion values ('empacado')
-insert into areasPRoduccion values ('marcado')
-insert into areasPRoduccion values ('corte')
-insert into areasPRoduccion values ('habilitado')
-insert into areasPRoduccion values ('costura')
-insert into areasPRoduccion values ('estampado')
-insert into areasPRoduccion values ('acabado')
-insert into areasPRoduccion values ('planchado')
-insert into areasPRoduccion values ('empacado')
+insert into areasPRoduccion values ('Marcado')
+insert into areasPRoduccion values ('Corte')
+insert into areasPRoduccion values ('Habilitado')
+insert into areasPRoduccion values ('Costura')
+insert into areasPRoduccion values ('Estampado')
+insert into areasPRoduccion values ('Acabado')
+insert into areasPRoduccion values ('Planchado')
+insert into areasPRoduccion values ('Empacado')
+insert into areasPRoduccion values ('Marcado')
+insert into areasPRoduccion values ('Corte')
+insert into areasPRoduccion values ('Habilitado')
+insert into areasPRoduccion values ('Costura')
+insert into areasPRoduccion values ('Estampado')
+insert into areasPRoduccion values ('Acabado')
+insert into areasPRoduccion values ('Planchado')
+insert into areasPRoduccion values ('Empacado')
 
 insert into prenda_areas values(1,1, 5)
 insert into prenda_areas values(1,2, 5)
@@ -111,13 +111,16 @@ insert into prenda_areas values(2,7, 3)
 insert into prenda_areas values(2,8, 3)
 
 --pedidos
-insert into pedidosCLiente values (1, 'pendiente', '02/06/2017 10:30','02/06/2017 10:30','02/06/2017 10:30','02/06/2017 10:30',45)
+insert into pedidosCLiente values (1, 'Pendiente', '02/06/2017 10:30','02/06/2017 10:30','02/06/2017 10:30','02/06/2017 10:30',45)
+insert into pedidosCLiente values (2, 'Pendiente', '04/06/2017 10:30','04/06/2017 10:30','04/06/2017 10:30','04/06/2017 10:30',45)
 
 --itempedido
-
 insert into itempedidocliente values (1, 1, 20, 55)
 insert into itempedidocliente values (1, 2, 20, 55)
 insert into itempedidocliente values (1, 3, 20, 55)
+insert into itempedidocliente values (2, 1, 20, 55)
+insert into itempedidocliente values (2, 2, 20, 55)
+insert into itempedidocliente values (2, 3, 20, 55)
 
 --iteminsumo
 insert into prenda_insumos values (1, 1, 10, 2)

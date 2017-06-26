@@ -18,6 +18,15 @@ public  class OrdenProduccion {
 		
 	}
 	
+	
+
+	@Override
+	public String toString() {
+		return "OrdenProduccion [idOrdenProduccion=" + idOrdenProduccion + ", fecha=" + fecha + ", prenda=" + prenda
+				+ ", pedidoCliente=" + pedidoCliente + ", cantidad=" + cantidad + ", tipo=" + tipo + "]";
+	}
+
+
 
 	public OrdenProduccion(OrdenProduccionEntity ordenEntity) {
 		super();

@@ -30,9 +30,10 @@ public class HibernateUtil {
 			config.addAnnotatedClass(SucursalEntity.class);
 			config.addAnnotatedClass(CuentaCorrienteEntity.class);
 			config.addAnnotatedClass(PedidoClienteEntity.class);
+			config.addAnnotatedClass(OrdenProduccionEntity.class);
 			/*config.addAnnotatedClass(AreaProduccionEntity.class);
 			config.addAnnotatedClass(ItemPrendaAreaEntity.class);
-			config.addAnnotatedClass(OrdenProduccionEntity.class);
+			
 			config.addAnnotatedClass(LineaProduccionEntity.class);*/
 			config.addAnnotatedClass(EmpleadoEntity.class);
 			config.addAnnotatedClass(PrendaEntity.class);

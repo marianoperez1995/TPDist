@@ -48,7 +48,25 @@ public class AdministradorPedidos {
 	}
 	
 	
-	
+	public void aprobarPedido(PedidoClienteDTO pedi){
+		int ok=0;
+		PedidoCliente ped= new PedidoCliente(pedi);
+		for (ItemPedidoCliente item : ped.getItemsPedidoCliente()){
+			if (!item.getPrenda().verificarCantidad(item.getCantidad())){
+				ok=1;
+				ped.generarOrdenProduccion(item);
+				
+			}
+		}
+		if (ok==1){
+			ped.setEstado("En Fabricacion");
+			
+		}else{
+			ped.setEstado("Completo");
+		}
+		PedidoClienteDAO.getInstancia().update(ped);
+		
+	}
 	private PedidoCliente buscarPedidoCliente(int numero) {
 		for (PedidoCliente pc : pedidos){
 			if (pc.getIdPedidoCliente()== numero){
@@ -121,8 +139,8 @@ public class AdministradorPedidos {
 		
 	}
 	
-	public void completarPedido(PedidoClienteDTO seleccionado){
-				
+	public void enviarPedido(PedidoClienteDTO seleccionado){
+		seleccionado.setEstado("Enviado");
 		PedidoClienteDAO.getInstancia().update(new PedidoCliente(seleccionado));
 		Factura fac= new Factura();
 		Cliente cli= new Cliente(seleccionado.getCliente());

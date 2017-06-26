@@ -2,14 +2,15 @@ package persistencia;
 
 import java.util.ArrayList;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import entities.ClienteEntity;
 import entities.OrdenProduccionEntity;
-import entities.PedidoClienteEntity;
 import hibernate.HibernateUtil;
+import negocio.Cliente;
 import negocio.OrdenProduccion;
-import negocio.PedidoCliente;
 
 public class OrdenProduccionDAO{
 	
@@ -69,4 +70,20 @@ public class OrdenProduccionDAO{
 		return or;
 		
 	}
+	
+	public ArrayList<OrdenProduccion> getAll() {
+
+		Session sesion = sf.openSession();
+		sesion.beginTransaction();
+		ArrayList<OrdenProduccionEntity> ordenes = new ArrayList<OrdenProduccionEntity>();
+		Query query = sesion.createQuery("from OrdenProduccionEntity");
+		ordenes = (ArrayList<OrdenProduccionEntity>) query.list();
+		sesion.close();
+		ArrayList<OrdenProduccion> orde = new ArrayList<OrdenProduccion>();
+		for (OrdenProduccionEntity ee : ordenes) {
+			orde.add(new OrdenProduccion(ee));
+		}
+		return orde;
+	}
+
 }

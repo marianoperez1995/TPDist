@@ -1,12 +1,15 @@
 package negocio;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import dto.ItemPedidoClienteDTO;
 import dto.PedidoClienteDTO;
 import entities.ItemPedidoClienteEntity;
+import entities.OrdenProduccionEntity;
 import entities.PedidoClienteEntity;
+import persistencia.OrdenProduccionDAO;
 import persistencia.PedidoClienteDAO;
 
 public class PedidoCliente {
@@ -250,6 +253,16 @@ public class PedidoCliente {
 		} else {
 			return "Desaprobado";
 		}
+	}
+
+	public void generarOrdenProduccion(ItemPedidoCliente item) {
+		OrdenProduccion orden= new OrdenProduccion();
+		orden.setFecha(Calendar.getInstance().getTime());
+		orden.setPedidoCliente(this);
+		orden.setTipo("OPP");
+		orden.setPrenda(item.getPrenda());
+		orden.setCantidad(item.getCantidad()-item.getPrenda().getStockActual());
+		OrdenProduccionDAO.getInstancia().insert(orden);
 	}
 
 	
