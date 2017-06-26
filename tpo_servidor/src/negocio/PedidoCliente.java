@@ -248,7 +248,7 @@ public class PedidoCliente {
 		if (this.getCliente().verificarLimite(this.precioTotal) && ok==0){
 			return "Aprobado";
 		} else {
-			return "desaprobado";
+			return "Desaprobado";
 		}
 	}
 

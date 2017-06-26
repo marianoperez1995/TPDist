@@ -150,42 +150,57 @@
             <GridPane layoutX="39.0" layoutY="196.0" prefHeight="44.0" prefWidth="624.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="166.0" minWidth="10.0" prefWidth="123.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="123.0" minWidth="10.0" prefWidth="117.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="165.0" minWidth="10.0" prefWidth="104.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="124.0" minWidth="10.0" prefWidth="104.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0" prefWidth="73.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="10.0" prefWidth="102.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="172.0" minWidth="10.0" prefWidth="172.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="165.0" minWidth="10.0" prefWidth="46.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="155.0" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0" prefWidth="146.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label prefHeight="21.0" prefWidth="147.0" text="Limite de credito:">
+                  <Label prefHeight="21.0" prefWidth="147.0" text="Limite de credito:" textFill="#797979">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="21.0" prefWidth="166.0" text="Fecha de pago:" GridPane.columnIndex="2">
+                  <Label prefHeight="21.0" prefWidth="166.0" text="Fecha de pago:" textFill="#797979" GridPane.columnIndex="3">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="21.0" prefWidth="166.0" text="Balance:" GridPane.columnIndex="4">
+                  <Label fx:id="txtLimiteCred" prefHeight="21.0" prefWidth="168.0" textFill="#797979" GridPane.columnIndex="1">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="txtLimiteCred" prefHeight="21.0" prefWidth="50.0" GridPane.columnIndex="1">
+                  <Label fx:id="txtFechaPago" prefHeight="21.0" prefWidth="156.0" textFill="#797979" GridPane.columnIndex="4">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="txtFechaPago" prefHeight="21.0" prefWidth="50.0" GridPane.columnIndex="3">
+               </children>
+            </GridPane>
+            <ImageView fitHeight="45.0" fitWidth="670.0" layoutX="6.0" layoutY="144.0">
+               <image>
+                  <Image url="@../../../../../Desktop/Línea_horizontal_1.png" />
+               </image>
+            </ImageView>
+            <GridPane layoutX="400.0" layoutY="174.0" prefHeight="30.0" prefWidth="195.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="114.0" minWidth="10.0" prefWidth="114.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="86.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label prefHeight="21.0" prefWidth="116.0" text="Balance:" textFill="#797979">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="txtBalance" prefHeight="21.0" prefWidth="50.0" GridPane.columnIndex="5">
+                  <Label fx:id="txtBalance" prefHeight="21.0" prefWidth="50.0" textFill="#797979" GridPane.columnIndex="1">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -206,10 +221,10 @@
                </children>
             </Pane>
             <JFXTreeTableView fx:id="vistaTabla2" layoutX="1.0" layoutY="44.0" prefHeight="234.0" prefWidth="681.0" style="-fx-border-color: #3a3a3a; -fx-border-width: 0 1 1 1;" stylesheets="@../styles/table.css" />
-            <GridPane layoutX="11.0" layoutY="292.0" prefHeight="30.0" prefWidth="307.0">
+            <GridPane layoutX="11.0" layoutY="292.0" prefHeight="30.0" prefWidth="168.0">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="173.0" minWidth="10.0" prefWidth="57.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="348.0" minWidth="10.0" prefWidth="250.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="173.0" minWidth="10.0" prefWidth="63.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="348.0" minWidth="10.0" prefWidth="105.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -220,7 +235,7 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="txtEstado" prefHeight="21.0" prefWidth="342.0" text="--" GridPane.columnIndex="1">
+                  <Label fx:id="txtEstado" prefHeight="21.0" prefWidth="90.0" text="--" GridPane.columnIndex="1">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -251,6 +266,27 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </JFXButton>
+            <GridPane layoutX="161.0" layoutY="293.0" prefHeight="30.0" prefWidth="155.0">
+               <children>
+                  <Label prefHeight="21.0" prefWidth="85.0" text="Total:">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblTotal" prefHeight="21.0" prefWidth="90.0" text="--" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="173.0" minWidth="10.0" prefWidth="63.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="348.0" minWidth="10.0" prefWidth="105.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
          </children>
       </Pane>
    </children>

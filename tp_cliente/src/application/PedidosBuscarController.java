@@ -27,6 +27,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -44,9 +45,6 @@ public class PedidosBuscarController implements Initializable{
     private Label txtFechaPago;
 
     @FXML
-    private JFXButton btnEnviar;
-
-    @FXML
     private JFXTreeTableView<PedidoTabla> vistaTabla;
 
     @FXML
@@ -59,40 +57,47 @@ public class PedidosBuscarController implements Initializable{
     private JFXTextField filtroRazonSocial;
 
     @FXML
-    private JFXTextField filtroCuit;
+    private Label lblPedido;
 
     @FXML
     private Label txtCuit;
-    
-    @FXML
-    private Label txtIdCliente;
-    
-    @FXML
-    private Label lblPedido;
 
     @FXML
     private JFXTextField filtroFechaRegistro;
 
     @FXML
-    private JFXButton btnCancelar;
+    private JFXTextField filtroEstado;
+
+    @FXML
+    private Label txtIdCliente;
 
     @FXML
     private Label txtLimiteCred;
 
     @FXML
+    private Label lblEstado;
+    
+    @FXML
     private JFXTreeTableView<ItemPedTabla> vistaTabla2;
 
     @FXML
-    private Label txtEstado;
-
-    @FXML
     private Label txtRazonSocial;
+    
+    JFXTreeTableColumn<PedidoTabla, String> idPedidoCol;
+    JFXTreeTableColumn<PedidoTabla, String> razonSocialCol;
+    JFXTreeTableColumn<PedidoTabla, String> estadoCol;
+    JFXTreeTableColumn<PedidoTabla, String> fechaGeneracionCol;
+    JFXTreeTableColumn<ItemPedTabla, String> cantidadCol;
+    JFXTreeTableColumn<ItemPedTabla, String> colorCol;
+    JFXTreeTableColumn<ItemPedTabla, String> talleCol;
+    JFXTreeTableColumn<ItemPedTabla, String> tipoProductoCol;
+    JFXTreeTableColumn<ItemPedTabla, String> nombreProductoCol;
     
     @SuppressWarnings("unchecked")
 	@Override
     public void initialize (URL url, ResourceBundle rb){
     	
-    	JFXTreeTableColumn<PedidoTabla, String> idPedidoCol = new JFXTreeTableColumn<>("Pedido");
+    	idPedidoCol = new JFXTreeTableColumn<>("Pedido");
     	idPedidoCol.setPrefWidth(170);
     	idPedidoCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<PedidoTabla,String>, ObservableValue<String>>() {
 			
@@ -102,7 +107,7 @@ public class PedidosBuscarController implements Initializable{
 			}
 		});
     	
-    	JFXTreeTableColumn<PedidoTabla, String> razonSocialCol = new JFXTreeTableColumn<>("Razon Social");
+    	razonSocialCol = new JFXTreeTableColumn<>("Razon Social");
     	razonSocialCol.setPrefWidth(137);
     	razonSocialCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<PedidoTabla,String>, ObservableValue<String>>() {
 			
@@ -112,7 +117,7 @@ public class PedidosBuscarController implements Initializable{
 			}
 		});
     	
-    	JFXTreeTableColumn<PedidoTabla, String> estadoCol = new JFXTreeTableColumn<>("Estado");
+    	estadoCol = new JFXTreeTableColumn<>("Estado");
     	estadoCol.setPrefWidth(135);
     	estadoCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<PedidoTabla,String>, ObservableValue<String>>() {
 			
@@ -122,7 +127,7 @@ public class PedidosBuscarController implements Initializable{
 			}
 		});
     	
-    	JFXTreeTableColumn<PedidoTabla, String> fechaGeneracionCol = new JFXTreeTableColumn<>("Fecha de pedido");
+    	fechaGeneracionCol = new JFXTreeTableColumn<>("Fecha de pedido");
     	fechaGeneracionCol.setPrefWidth(185);
     	fechaGeneracionCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<PedidoTabla,String>, ObservableValue<String>>() {
     		
@@ -145,7 +150,7 @@ public class PedidosBuscarController implements Initializable{
     	estadoCol.impl_setReorderable(false);
     	fechaGeneracionCol.impl_setReorderable(false);
     	
-    	JFXTreeTableColumn<ItemPedTabla, String> nombreProductoCol = new JFXTreeTableColumn<>("Producto");
+    	nombreProductoCol = new JFXTreeTableColumn<>("Producto");
     	nombreProductoCol.setPrefWidth(190);
     	nombreProductoCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<ItemPedTabla,String>, ObservableValue<String>>() {
 			
@@ -155,7 +160,7 @@ public class PedidosBuscarController implements Initializable{
 			}
 		});
     	
-    	JFXTreeTableColumn<ItemPedTabla, String> tipoProductoCol = new JFXTreeTableColumn<>("Tipo");
+    	tipoProductoCol = new JFXTreeTableColumn<>("Tipo");
     	tipoProductoCol.setPrefWidth(110);
     	tipoProductoCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<ItemPedTabla,String>, ObservableValue<String>>() {
 			
@@ -165,7 +170,7 @@ public class PedidosBuscarController implements Initializable{
 			}
 		});
     	
-    	JFXTreeTableColumn<ItemPedTabla, String> talleCol = new JFXTreeTableColumn<>("Talle");
+    	talleCol = new JFXTreeTableColumn<>("Talle");
     	talleCol.setPrefWidth(60);
     	talleCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<ItemPedTabla,String>, ObservableValue<String>>() {
 			
@@ -175,7 +180,7 @@ public class PedidosBuscarController implements Initializable{
 			}
 		});
     	
-    	JFXTreeTableColumn<ItemPedTabla, String> colorCol = new JFXTreeTableColumn<>("Color");
+    	colorCol = new JFXTreeTableColumn<>("Color");
     	colorCol.setPrefWidth(170);
     	colorCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<ItemPedTabla,String>, ObservableValue<String>>() {
     		
@@ -185,7 +190,7 @@ public class PedidosBuscarController implements Initializable{
 			}
 		});
     	
-    	JFXTreeTableColumn<ItemPedTabla, String> cantidadCol = new JFXTreeTableColumn<>("Cantidad");
+    	cantidadCol = new JFXTreeTableColumn<>("Cantidad");
     	cantidadCol.setPrefWidth(120);
     	cantidadCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<ItemPedTabla,String>, ObservableValue<String>>() {
     		
@@ -209,24 +214,11 @@ public class PedidosBuscarController implements Initializable{
     	
     	ObservableList<PedidoTabla> pedidos = FXCollections.observableArrayList();
     	ObservableList<ItemPedTabla> itemsPedido = FXCollections.observableArrayList();
-    	
+
     	//agregar pedidos a la tabla
-    	pedidos.add(new PedidoTabla("123","Natanael SRL", "Pendiente", "10/10/2016"));
-    	pedidos.add(new PedidoTabla("123","Nicolas SA", "Pendiente", "05/10/2013"));
-    	pedidos.add(new PedidoTabla("123","Luciano SRL", "Pendiente", "07/11/2014"));
-    	pedidos.add(new PedidoTabla("123","Franco SH", "Pendiente", "18/05/2016"));
-    	pedidos.add(new PedidoTabla("123","Francisco SRL", "Pendiente", "25/04/2016"));
-    	pedidos.add(new PedidoTabla("123","Ramiro SA", "Pendiente", "23/09/2014"));
-    	pedidos.add(new PedidoTabla("123","Maturano SRL", "Pendiente", "30/10/2013"));
-    	pedidos.add(new PedidoTabla("123","Matias Leonel SA", "Pendiente", "01/08/2014"));
- 
-    	
-    	
-    	/*//agregar clientes a la tabla
-    	for(ListaPedido p: buscarPedidos()){
+    	for(PedidoTabla p: buscarPedidos()){
     		pedidos.add(p);
-    	}*/
-    	
+    	}
     	
     	//para manipular los datos de la tabla con el JFoenix se usa RecirsiveTreeItem. RecursiveTreeObject::getChildren Callback para obtener cada cliente de la tabla
     	final TreeItem<PedidoTabla> root = new RecursiveTreeItem<PedidoTabla>(pedidos, RecursiveTreeObject::getChildren);
@@ -256,14 +248,14 @@ public class PedidosBuscarController implements Initializable{
 		});
     	
     	//El filtro distingue mayuscula y minuscula
-    	filtroCuit.textProperty().addListener(new ChangeListener<String>() {
+    	filtroEstado.textProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 					vistaTabla.setPredicate(new Predicate<TreeItem<PedidoTabla>>() {					
 					@Override
 					public boolean test(TreeItem<PedidoTabla> cliente) {
 						// TODO Auto-generated method stub
-						Boolean flag = cliente.getValue().idPedido.getValue().contains(newValue);
+						Boolean flag = cliente.getValue().estado.getValue().contains(newValue);
 						return flag;
 					}
 				});
@@ -288,6 +280,7 @@ public class PedidosBuscarController implements Initializable{
     	    @Override
     	    public void changed(ObservableValue observableValue, Object oldValue, Object newValue) {
 	    		PedidoClienteDTO seleccionado = new PedidoClienteDTO();
+	    		float total;
 		        //Check whether item is selected and set value of selected item to Label
 		        if(vistaTabla.getSelectionModel().getSelectedItem() != null) 
 		        {
@@ -295,7 +288,9 @@ public class PedidosBuscarController implements Initializable{
 				    ObservableList selectedCells = selectionModel.getSelectedCells();
 				    TreeTablePosition tablePosition = (TreeTablePosition) selectedCells.get(0);
 				    TreeItem<PedidoTabla> selectedRow = vistaTabla.getTreeItem(tablePosition.getRow());
-		           
+		            total = 0;
+		            itemsPedido.clear();
+		            
 		            seleccionado.setIdPedidoCliente(Integer.parseInt(selectedRow.getValue().getIdPedido().getValue()));
 		            try {
 		            	seleccionado = BusinessDelegate.getInstancia().buscarPedido(seleccionado);
@@ -305,16 +300,16 @@ public class PedidosBuscarController implements Initializable{
 		            }
     	     	           
 				    txtIdCliente.setText("ID"+Integer.toString(seleccionado.getCliente().getNumeroCliente()));
+				    lblPedido.setText("PEDIDO " + Integer.toString(seleccionado.getIdPedidoCliente()));
 				    txtRazonSocial.setText(seleccionado.getCliente().getNombre());
 				    txtCuit.setText(seleccionado.getCliente().getCuit());
 				    txtTel.setText(seleccionado.getCliente().getTelefono());
 				    txtLimiteCred.setText(Float.toString(seleccionado.getCliente().getCuentaCorriente().getLimite()));
 				    txtFechaPago.setText(seleccionado.getCliente().getCuentaCorriente().getFecha());
 				    txtBalance.setText(Float.toString(seleccionado.getCliente().getCuentaCorriente().getBalanceActual()));
-				    txtEstado.setText("CAMBIAR ESTO!!!!!!");
-				    
+				    lblEstado.setText(seleccionado.getEstado());
 				    for(ItemPedidoClienteDTO c : seleccionado.getItemsPedidoCliente()){
-				    	itemsPedido.add(new ItemPedTabla("Remera FAL", "Discontinuo", "L", "Blanco", "36"));
+				    	total = total + c.getPrecio();
 				    	String estado;
 				    	if(c.getPrenda().isEstadoProduccion()){
 				    		estado = "Producción";
@@ -329,12 +324,26 @@ public class PedidosBuscarController implements Initializable{
 				    vistaTabla2.getColumns().setAll(nombreProductoCol,tipoProductoCol,talleCol,colorCol,cantidadCol);
 				    vistaTabla2.setRoot(root2);
 				    vistaTabla2.setShowRoot(false);
-				    
-    	       		btnCancelar.setDisable(false);
-    	       		btnEnviar.setDisable(false);
     	        }
 	         }
     	     });
+    }
+    
+    @FXML
+    void limpiarCampos(ActionEvent event) {
+	    txtIdCliente.setText("ID");
+	    txtRazonSocial.setText("");
+	    txtCuit.setText("");
+	    txtTel.setText("");
+	    txtLimiteCred.setText("");
+	    txtFechaPago.setText("");
+	    txtBalance.setText("");
+	    
+    	ObservableList<ItemPedTabla> itemsPedido = FXCollections.observableArrayList();
+	    final TreeItem<ItemPedTabla> root2 = new RecursiveTreeItem<ItemPedTabla>(itemsPedido, RecursiveTreeObject::getChildren);
+	    vistaTabla2.getColumns().setAll(nombreProductoCol,tipoProductoCol,talleCol,colorCol,cantidadCol);
+	    vistaTabla2.setRoot(root2);
+	    vistaTabla2.setShowRoot(false);
     }
     
     private ArrayList<PedidoTabla> buscarPedidos() {
@@ -342,9 +351,9 @@ public class PedidosBuscarController implements Initializable{
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
 		try {
-			for(PedidoClienteDTO p : BusinessDelegate.getInstancia().getPedidos())
-			resultado.add(new PedidoTabla(Integer.toString(p.getIdPedidoCliente()), p.getCliente().getNombre(),p.getEstado(),df.format(p.getFechaGeneracion())));
-			return resultado;
+			for(PedidoClienteDTO p : BusinessDelegate.getInstancia().getPedidos()){	
+					resultado.add(new PedidoTabla(Integer.toString(p.getIdPedidoCliente()), p.getCliente().getNombre(),p.getEstado(),df.format(p.getFechaGeneracion())));
+			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

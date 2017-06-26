@@ -27,6 +27,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -62,19 +63,16 @@ public class PedidosCompletosController implements Initializable{
     private JFXTextField filtroCuit;
 
     @FXML
-    private Label txtCuit;
-    
-    @FXML
-    private Label txtIdCliente;
-    
-    @FXML
     private Label lblPedido;
+
+    @FXML
+    private Label txtCuit;
 
     @FXML
     private JFXTextField filtroFechaRegistro;
 
     @FXML
-    private JFXButton btnCancelar;
+    private Label txtIdCliente;
 
     @FXML
     private Label txtLimiteCred;
@@ -208,23 +206,12 @@ public class PedidosCompletosController implements Initializable{
     	
     	ObservableList<PedidoTabla> pedidos = FXCollections.observableArrayList();
     	ObservableList<ItemPedTabla> itemsPedido = FXCollections.observableArrayList();
+       	
     	
     	//agregar pedidos a la tabla
-    	pedidos.add(new PedidoTabla("123","Natanael SRL", "Pendiente", "10/10/2016"));
-    	pedidos.add(new PedidoTabla("123","Nicolas SA", "Pendiente", "05/10/2013"));
-    	pedidos.add(new PedidoTabla("123","Luciano SRL", "Pendiente", "07/11/2014"));
-    	pedidos.add(new PedidoTabla("123","Franco SH", "Pendiente", "18/05/2016"));
-    	pedidos.add(new PedidoTabla("123","Francisco SRL", "Pendiente", "25/04/2016"));
-    	pedidos.add(new PedidoTabla("123","Ramiro SA", "Pendiente", "23/09/2014"));
-    	pedidos.add(new PedidoTabla("123","Maturano SRL", "Pendiente", "30/10/2013"));
-    	pedidos.add(new PedidoTabla("123","Matias Leonel SA", "Pendiente", "01/08/2014"));
- 
-    	
-    	
-    	/*//agregar clientes a la tabla
-    	for(ListaPedido p: buscarPedidos()){
+    	for(PedidoTabla p: buscarPedidos()){
     		pedidos.add(p);
-    	}*/
+    	}
     	
     	
     	//para manipular los datos de la tabla con el JFoenix se usa RecirsiveTreeItem. RecursiveTreeObject::getChildren Callback para obtener cada cliente de la tabla
@@ -304,16 +291,16 @@ public class PedidosCompletosController implements Initializable{
 		            }
     	     	           
 				    txtIdCliente.setText("ID"+Integer.toString(seleccionado.getCliente().getNumeroCliente()));
+				    lblPedido.setText("DETALLE DE PEDIDO "+ Integer.toString(seleccionado.getIdPedidoCliente()));
 				    txtRazonSocial.setText(seleccionado.getCliente().getNombre());
 				    txtCuit.setText(seleccionado.getCliente().getCuit());
 				    txtTel.setText(seleccionado.getCliente().getTelefono());
 				    txtLimiteCred.setText(Float.toString(seleccionado.getCliente().getCuentaCorriente().getLimite()));
 				    txtFechaPago.setText(seleccionado.getCliente().getCuentaCorriente().getFecha());
 				    txtBalance.setText(Float.toString(seleccionado.getCliente().getCuentaCorriente().getBalanceActual()));
-				    txtEstado.setText("CAMBIAR ESTO!!!!!!");
+				    txtEstado.setText("Listo para enviar");
 				    
 				    for(ItemPedidoClienteDTO c : seleccionado.getItemsPedidoCliente()){
-				    	itemsPedido.add(new ItemPedTabla("Remera FAL", "Discontinuo", "L", "Blanco", "36"));
 				    	String estado;
 				    	if(c.getPrenda().isEstadoProduccion()){
 				    		estado = "Producción";
@@ -329,11 +316,15 @@ public class PedidosCompletosController implements Initializable{
 				    vistaTabla2.setRoot(root2);
 				    vistaTabla2.setShowRoot(false);
 				    
-    	       		btnCancelar.setDisable(false);
     	       		btnEnviar.setDisable(false);
     	        }
 	         }
     	     });
+    }
+    
+    @FXML
+    void enviarPedido(ActionEvent event) {
+
     }
     
     private ArrayList<PedidoTabla> buscarPedidos() {

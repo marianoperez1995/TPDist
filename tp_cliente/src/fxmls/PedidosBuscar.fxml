@@ -51,11 +51,14 @@
                         <Font size="14.0" />
                      </font>
                   </JFXTextField>
-                  <JFXComboBox fx:id="comboEstado" prefHeight="25.0" prefWidth="362.0" promptText="Estado" GridPane.rowIndex="3">
+                  <JFXTextField fx:id="filtroEstado" labelFloat="true" promptText="Estado" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
                      <GridPane.margin>
                         <Insets left="50.0" right="30.0" />
                      </GridPane.margin>
-                  </JFXComboBox>
+                  </JFXTextField>
                </children>
             </GridPane>
          </children>
@@ -108,17 +111,17 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="txtRazonSocial" prefHeight="21.0" prefWidth="166.0" text="RSoc" GridPane.columnIndex="1">
+                  <Label fx:id="txtRazonSocial" prefHeight="21.0" prefWidth="166.0" GridPane.columnIndex="1">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="txtCuit" prefHeight="21.0" prefWidth="166.0" text="CUIT" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Label fx:id="txtCuit" prefHeight="21.0" prefWidth="166.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="txtTel" prefHeight="21.0" prefWidth="166.0" text="Tel" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <Label fx:id="txtTel" prefHeight="21.0" prefWidth="166.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -134,7 +137,7 @@
                   </Label>
                </children>
             </Pane>
-            <Label fx:id="txtIdCliente" layoutX="37.0" layoutY="62.0" prefHeight="94.0" prefWidth="271.0" text="ID1234" underline="true">
+            <Label fx:id="txtIdCliente" layoutX="37.0" layoutY="62.0" prefHeight="94.0" prefWidth="271.0" text="ID" underline="true">
                <font>
                   <Font size="65.0" />
                </font>
@@ -146,49 +149,63 @@
             </Label>
             <GridPane layoutX="39.0" layoutY="196.0" prefHeight="44.0" prefWidth="624.0">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="166.0" minWidth="10.0" prefWidth="123.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="123.0" minWidth="10.0" prefWidth="117.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="165.0" minWidth="10.0" prefWidth="104.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="124.0" minWidth="10.0" prefWidth="104.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0" prefWidth="73.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="10.0" prefWidth="102.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="234.0" minWidth="10.0" prefWidth="120.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="268.0" minWidth="10.0" prefWidth="189.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="271.0" minWidth="10.0" prefWidth="107.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="208.0" minWidth="10.0" prefWidth="200.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label prefHeight="21.0" prefWidth="147.0" text="Limite de credito:">
+                  <Label prefHeight="21.0" prefWidth="116.0" text="Limite de credito:" textFill="#797979">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="21.0" prefWidth="166.0" text="Fecha de pago:" GridPane.columnIndex="2">
+                  <Label prefHeight="21.0" prefWidth="166.0" text="Fecha de pago:" textFill="#797979" GridPane.columnIndex="2">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="21.0" prefWidth="166.0" text="Balance:" GridPane.columnIndex="4">
+                  <Label fx:id="txtLimiteCred" prefHeight="21.0" prefWidth="174.0" textFill="#686868" GridPane.columnIndex="1">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="txtLimiteCred" prefHeight="21.0" prefWidth="50.0" text="RSoc" GridPane.columnIndex="1">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="txtFechaPago" prefHeight="21.0" prefWidth="50.0" text="RSoc" GridPane.columnIndex="3">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="txtBalance" prefHeight="21.0" prefWidth="50.0" text="RSoc" GridPane.columnIndex="5">
+                  <Label fx:id="txtFechaPago" prefHeight="21.0" prefWidth="191.0" textFill="#686868" GridPane.columnIndex="3">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
                </children>
             </GridPane>
+            <GridPane layoutX="351.0" layoutY="172.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label fx:id="txtBalance" prefHeight="21.0" prefWidth="94.0" textFill="#797979" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="21.0" prefWidth="99.0" text="Balance:" textFill="#797979">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </GridPane>
+            <ImageView fitHeight="45.0" fitWidth="670.0" layoutX="5.0" layoutY="136.0">
+               <image>
+                  <Image url="@../../../../../Desktop/Línea_horizontal_1.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
       <Pane layoutX="656.0" layoutY="297.0" prefHeight="336.0" prefWidth="681.0" style="-fx-background-color: #e1e5ed; -fx-background-radius: 0 10 0 0;">
@@ -198,6 +215,11 @@
                   <Label fx:id="lblPedido" alignment="CENTER" layoutY="9.0" prefHeight="30.0" prefWidth="681.0" text="PEDIDO" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblEstado" layoutX="530.0" layoutY="7.0" textFill="#b9b9b9">
+                     <font>
+                        <Font name="System Bold Italic" size="20.0" />
                      </font>
                   </Label>
                </children>
