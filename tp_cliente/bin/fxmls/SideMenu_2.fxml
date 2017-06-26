@@ -39,7 +39,7 @@
          <font>
             <Font size="14.0" />
          </font></JFXButton>
-      <JFXButton fx:id="btnBuscarCliente" alignment="CENTER_RIGHT" buttonType="RAISED" minHeight="28.0" onAction="#changeBody" prefHeight="28.0" prefWidth="250.0" ripplerFill="BLACK" style="-fx-background-color: #c06C84;" text="Buscar cliente" textAlignment="RIGHT">
+      <JFXButton fx:id="btnBuscarCliente" alignment="CENTER_RIGHT" buttonType="RAISED" minHeight="28.0" onAction="#changeBody" prefHeight="28.0" prefWidth="250.0" ripplerFill="BLACK" style="-fx-background-color: #c06C84;" text="Buscar clientes" textAlignment="RIGHT">
          <font>
             <Font size="14.0" />
          </font>

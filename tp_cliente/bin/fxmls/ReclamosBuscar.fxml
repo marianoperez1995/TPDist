@@ -116,7 +116,7 @@
       </FlowPane>
       <Pane layoutX="26.0" layoutY="27.0" prefHeight="47.0" prefWidth="618.0" style="-fx-border-radius: 10 0 0 0; -fx-background-radius: 10 0 0 0; -fx-background-color: #355c7D;">
          <children>
-            <Label alignment="CENTER" layoutY="9.0" prefHeight="30.0" prefWidth="618.0" text="BUSCAR CLIENTE" textFill="WHITE">
+            <Label alignment="CENTER" layoutY="9.0" prefHeight="30.0" prefWidth="618.0" text="BUSCAR RECLAMOS" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -127,7 +127,7 @@
          <children>
             <GridPane prefHeight="176.0" prefWidth="366.0" style="-fx-border-color: #99b89b; -fx-border-width: 2px;">
                <children>
-                  <JFXTextField fx:id="filtroRazonSocial" labelFloat="true" promptText="Razon social" GridPane.rowIndex="1">
+                  <JFXTextField fx:id="filtroIDReclamo" labelFloat="true" promptText="Nº Reclamo" GridPane.rowIndex="1">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -143,7 +143,7 @@
                         <Insets left="50.0" right="30.0" />
                      </GridPane.margin>
                   </JFXTextField>
-                  <JFXTextField fx:id="filtroIdReclamo" labelFloat="true" promptText="ID Reclamo" GridPane.rowIndex="3">
+                  <JFXTextField fx:id="filtroFechaRegistro" labelFloat="true" promptText="Fecha de registro" GridPane.rowIndex="3">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -174,7 +174,7 @@
             </ImageView>
          </children>
       </FlowPane>
-      <Label layoutX="996.0" layoutY="71.0" text="Ver reclamos cargados">
+      <Label layoutX="1020.0" layoutY="71.0" text="Detalle del reclamo">
          <font>
             <Font name="System Bold" size="27.0" />
          </font>
