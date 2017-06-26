@@ -10,7 +10,9 @@ import java.util.Date;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import dto.FacturaDTO;
@@ -131,27 +133,58 @@ public class Factura {
 		return fac;
 	}
 	
-	public void generarPDF(int id) {
-		String arch = "c:/temp/Pedido Cliente n‹ "+this.getPedido().getIdPedidoCliente()+".pdf";
+	public void generarPDF() {
+		String arch = "C:/TestPDF/Factura N° "+this.idFactura+".pdf";
 		Document doc = new Document();
 		try {
 			PdfWriter.getInstance(doc, new FileOutputStream (new File(arch)));
 			doc.open();
-			Paragraph p = new Paragraph();
-			p.add("Factura del Pedido n‹ "+this.getPedido().getIdPedidoCliente());
+			Font titulo = new Font(Font.FontFamily.TIMES_ROMAN, 25, Font.BOLD);			
+			Paragraph p = new Paragraph("Factura N° "+this.idFactura, titulo);
 			p.setAlignment(Element.ALIGN_CENTER);
 			doc.add(p); 
+			Date hoy = Calendar.getInstance().getTime();
+			
+			doc.add(new Paragraph("Pedido N° " + this.pedido.getIdPedidoCliente()));
+			doc.add(new Paragraph("                        "));
+			doc.add(new Paragraph("Nombre cliente: " + this.cliente.getNombre()));
+			doc.add(new Paragraph("Fecha: " + hoy.toString()));
+			doc.add(new Paragraph("Direccion cliente: " + this.cliente.getDireccion()));
+			doc.add(new Paragraph("CUIT: " + this.cliente.getCuit()));
+			doc.add(new Paragraph("Telefono: " + this.cliente.getTelefono()));
+			doc.add(new Paragraph("Sucursal: " + this.cliente.getSucursal().getNombre()));
 			
 			Paragraph p2 = new Paragraph();
+			doc.add(new Paragraph("                        "));
 			p2.add("Items del pedido:");
 			p2.setAlignment(Element.ALIGN_LEFT);
 			doc.add(p2);
+			doc.add(new Paragraph("                        "));
+			//doc.add(new Paragraph("Prenda Cantidad Subtotal"));
+			PdfPTable tabla = new PdfPTable(3);
+			tabla.addCell("Prenda");
+			tabla.addCell("Cantidad");
+			tabla.addCell("Subtotal");
+			doc.add(tabla);
 			
-			for (ItemPedidoCliente item : this.getPedido().getItemsPedidoCliente()){
-				doc.add(new Paragraph (item.getPrecio()+ " " + item.getCantidad() + item.getPrenda().getIdPrenda()));
+			float total = 0;
+			for (ItemPedidoCliente item : this.pedido.getItemsPedidoCliente()){
+				PdfPTable t = new PdfPTable(3);
+
+				t.addCell(item.getPrenda().getDescripcion());
+			
+				t.addCell(String.valueOf(item.getCantidad()));
+				t.addCell(String.valueOf(item.getPrecio()));
+				
+				total = total + item.getPrecio();
+				doc.add(t);
 			}			
+			Paragraph p4 = new Paragraph();
+			p4.add("Total : "+total);
+			p4.setAlignment(Element.ALIGN_RIGHT);
+			doc.add(p4);
 			doc.close();
-			System.out.println("Se creo la factura.");
+			
 		} catch (FileNotFoundException | DocumentException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
