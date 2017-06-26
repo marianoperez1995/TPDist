@@ -25,6 +25,10 @@ public class PrendasEliminadas {
 		this.gerente = new Empleado(p.getGerente());
 		this.descripcion = p.getDescripcion();
 	}
+	public PrendasEliminadas() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getIdPrendaEliminada() {
 		return idPrendaEliminada;
 	}

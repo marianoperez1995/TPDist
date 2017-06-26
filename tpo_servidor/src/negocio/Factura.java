@@ -133,8 +133,8 @@ public class Factura {
 		return fac;
 	}
 	
-	public void generarPDF() {
-		String arch = "C:/TestPDF/Factura N° "+this.idFactura+".pdf";
+	public void generarPDF(int id) {
+		String arch = "C:/TestPDF/Factura N° "+id+".pdf";
 		Document doc = new Document();
 		try {
 			PdfWriter.getInstance(doc, new FileOutputStream (new File(arch)));
@@ -160,29 +160,60 @@ public class Factura {
 			p2.setAlignment(Element.ALIGN_LEFT);
 			doc.add(p2);
 			doc.add(new Paragraph("                        "));
-			//doc.add(new Paragraph("Prenda Cantidad Subtotal"));
-			PdfPTable tabla = new PdfPTable(3);
+			
+			PdfPTable tabla = new PdfPTable(4);
 			tabla.addCell("Prenda");
+			tabla.addCell("Precio Unitario");
 			tabla.addCell("Cantidad");
 			tabla.addCell("Subtotal");
 			doc.add(tabla);
 			
 			float total = 0;
 			for (ItemPedidoCliente item : this.pedido.getItemsPedidoCliente()){
-				PdfPTable t = new PdfPTable(3);
+				PdfPTable t = new PdfPTable(4);
 
-				t.addCell(item.getPrenda().getDescripcion());
-			
-				t.addCell(String.valueOf(item.getCantidad()));
+				t.addCell(item.getPrenda().getDescripcion());			
 				t.addCell(String.valueOf(item.getPrecio()));
+				t.addCell(String.valueOf(item.getCantidad()));
+				t.addCell(String.valueOf(item.getPrecio()*item.getCantidad()));
 				
-				total = total + item.getPrecio();
+				total = total + item.getPrecio()*item.getCantidad();
 				doc.add(t);
-			}			
-			Paragraph p4 = new Paragraph();
-			p4.add("Total : "+total);
-			p4.setAlignment(Element.ALIGN_RIGHT);
-			doc.add(p4);
+			}	
+			//SI ES QUE MANEJABAMOS IBA/DESCUENTOS PONGO ESTO, BORRAR LOS Q NO HAGNA FALTA
+			PdfPTable filaSubTotal = new PdfPTable(4);
+			filaSubTotal.addCell("");
+			filaSubTotal.addCell("");
+			filaSubTotal.addCell("SUBTOTAL");			
+			filaSubTotal.addCell(String.valueOf(total));
+			doc.add(filaSubTotal);
+			//////////////////
+			PdfPTable filaDesc = new PdfPTable(4);
+			filaDesc.addCell("");
+			filaDesc.addCell("");
+			filaDesc.addCell("DESCUENTO");
+			float tasaD = (float) 0.15;
+			float descuento = tasaD*total;
+			filaDesc.addCell(String.valueOf(descuento));
+			doc.add(filaDesc);
+			//////////////////
+			PdfPTable filaIva = new PdfPTable(4);
+			filaIva.addCell("");
+			filaIva.addCell("");
+			filaIva.addCell("IVA ");
+			float tasaI = (float) 0.25;
+			float iva = tasaI*total;
+			filaIva.addCell(String.valueOf(iva));
+			doc.add(filaIva);
+			//////////////////
+			//Total desp de descuentos e iva
+			PdfPTable filaTotal = new PdfPTable(4);
+			filaTotal.addCell("");
+			filaTotal.addCell("");
+			filaTotal.addCell("TOTAL");
+			float totalFinal = total-descuento+iva;
+			filaTotal.addCell(String.valueOf(totalFinal));
+			doc.add(filaTotal);
 			doc.close();
 			
 		} catch (FileNotFoundException | DocumentException e) {

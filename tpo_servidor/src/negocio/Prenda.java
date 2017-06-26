@@ -253,6 +253,11 @@ public class Prenda {
 	}
 
 
+	public void disminuirStock(int cantidad) {
+		this.stockActual = this.stockActual - cantidad;		
+	}
+
+
 	
 		
 	
