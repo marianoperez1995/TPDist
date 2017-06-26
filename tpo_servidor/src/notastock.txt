@@ -1,0 +1,6 @@
+Cuando fabricamos la prenda hacemos un lote, y el lote se guarda en el almacen en bultos. Sumamos la cantidad de prendas en los bultos y la guardamos en StockActual de la prenda.
+
+Para ver el almacen seleccionamos de un listado de prendas yme muestra los bultos asociados y su ubicacion.
+
+
+Cuando enviamos, descontamos del bulto con fechaGeneracion mas vieja y si se termina agarro del bulto siguiente hasta completar el pedido. Descuento también del stockActual de la prenda.
