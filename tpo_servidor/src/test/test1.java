@@ -14,6 +14,7 @@ public class test1 {
 
 	public static void main(String[] args) {
 		PedidoCliente ped= PedidoClienteDAO.getInstancia().getPedidoCliente(1);
+		System.out.println(ped.getItemsPedidoCliente().size());
 		AdministradorPedidos.getInstancia().completarPedido(ped.toDTO());
 	}
 

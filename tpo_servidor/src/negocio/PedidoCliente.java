@@ -3,8 +3,6 @@ package negocio;
 import java.util.ArrayList;
 import java.util.Date;
 
-import org.hibernate.cache.ReadWriteCache.Item;
-
 import dto.ItemPedidoClienteDTO;
 import dto.PedidoClienteDTO;
 import entities.ItemPedidoClienteEntity;
@@ -34,9 +32,10 @@ public class PedidoCliente {
 		//System.out.println(items.get(0).getPrenda().getDescripcion());
 		//System.out.println(items.get(1).getPrenda().getDescripcion());
 		this.precioTotal=pedDTO.getPrecioTotal();
-
+		for (ItemPedidoClienteDTO item:  pedDTO.getItemsPedidoCliente()){
+			items.add(new ItemPedidoCliente(item));
+		}
 		this.itemsPedidoCliente=items;
-		
 		this.fechaEntregaCliente=pedDTO.getFechaEntregaCliente();
 	}
 
