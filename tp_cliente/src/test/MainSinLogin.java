@@ -19,7 +19,7 @@ public class MainSinLogin extends Application {
 			EmpleadoDTO empleado = null;
 	    	EmpleadoDTO env = new EmpleadoDTO();
 	    	String usuario = "usuario1";
-	    	String password = "1";
+	    	String password = "123456";
 	    	env.setUsuario(usuario);
 	    	env.setPass(password);
 
