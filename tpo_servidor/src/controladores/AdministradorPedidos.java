@@ -2,9 +2,7 @@ package controladores;
 
 import java.util.ArrayList;
 
-import dto.ClienteDTO;
 import dto.PedidoClienteDTO;
-import negocio.Cliente;
 import negocio.OrdenProduccion;
 import negocio.PedidoCliente;
 import persistencia.PedidoClienteDAO;
@@ -99,6 +97,11 @@ public class AdministradorPedidos {
 		PedidoCliente ped = new PedidoCliente(dto);
 		pedidos.add(ped);
 		ped.insertar();
+	}
+
+	public PedidoClienteDTO getPedido(PedidoClienteDTO seleccionado) {
+		PedidoCliente ped= PedidoClienteDAO.getInstancia().getPedidoCliente(seleccionado.getIdPedidoCliente());
+		return ped.toDTO();
 	}
 	
 }
