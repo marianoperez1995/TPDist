@@ -129,7 +129,21 @@ public class PedidoClienteDAO {
 		entity.setPrecioTotal(pedidoCliente.getPrecioTotal());
 		return entity;
 		}
+	public void update(PedidoCliente pedido) {
+		
+		Session sesion;
+		sesion = sf.openSession();
+		sesion.beginTransaction();
+		Query query = sesion.createQuery("update from  PedidoClienteEntity set estado=? where idPedidoCliente=?").setParameter(0, pedido.getEstado()).setParameter(1, pedido.getIdPedidoCliente());
+		query.executeUpdate();
+		sesion.getTransaction().commit();
+		sesion.close();
+		
+			
+		}
+		
+	}
 	
 	
 
-}
+

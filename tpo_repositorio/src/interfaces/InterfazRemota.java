@@ -63,6 +63,8 @@ public interface InterfazRemota extends Remote {
 	public void altaReclamo(ReclamoDTO reclamo) throws RemoteException;
 	public ReclamoDTO getReclamo(ReclamoDTO reclamo) throws RemoteException;
 	public ArrayList<ReclamoDTO> getListadoReclamos() throws RemoteException;
+	public String verificarPedido(PedidoClienteDTO seleccionado)throws RemoteException;
+	public void modificarPedidoCliente(PedidoClienteDTO seleccionado) throws RemoteException;
 
 	//despacho
 	//falta agregar metodos al despacho

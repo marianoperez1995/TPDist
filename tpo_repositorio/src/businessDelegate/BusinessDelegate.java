@@ -139,5 +139,12 @@ public class BusinessDelegate {
 		// TODO Auto-generated method stub
 		return objetoRemoto.getListadoReclamos();
 	}
+	public String verificarPedido(PedidoClienteDTO seleccionado) throws RemoteException{
+		return objetoRemoto.verificarPedido(seleccionado);
+	}
+	public void modificarPedidoCliente(PedidoClienteDTO seleccionado) throws RemoteException {
+		objetoRemoto.modificarPedidoCliente(seleccionado);
+		
+	}
 
 }

@@ -3,7 +3,8 @@ package negocio;
 import java.util.ArrayList;
 import java.util.Date;
 
-import dto.ClienteDTO;
+import org.hibernate.cache.ReadWriteCache.Item;
+
 import dto.ItemPedidoClienteDTO;
 import dto.PedidoClienteDTO;
 import entities.ItemPedidoClienteEntity;
@@ -240,6 +241,22 @@ public class PedidoCliente {
 				+ ", fechaGeneracion=" + fechaGeneracion + ", fechaProbableDespacho=" + fechaProbableDespacho
 				+ ", fechaDespacho=" + fechaDespacho + ", fechaEntregaCliente=" + fechaEntregaCliente
 				+ ", itemsPedidoCliente=" + itemsPedidoCliente + ", precioTotal=" + precioTotal + "]";
+	}
+
+	public String verificarPedido() {
+		int ok=0;
+		for (ItemPedidoCliente item: this.itemsPedidoCliente){
+			if (!item.getPrenda().isEstadoProduccion()){
+				if (!item.getPrenda().verificarCantidad(item.getCantidad())){
+					ok=1;
+				}
+			}
+		}
+		if (this.getCliente().verificarLimite(this.precioTotal) && ok==0){
+			return "Aprobado";
+		} else {
+			return "desaprobado";
+		}
 	}
 
 	

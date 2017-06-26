@@ -244,6 +244,15 @@ public class Prenda {
 	}
 
 
+	public boolean verificarCantidad(int cantidad) {
+		if (this.stockActual>=cantidad){
+			return true;
+		} else{
+			return false;
+		}
+	}
+
+
 	
 		
 	

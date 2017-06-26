@@ -103,5 +103,17 @@ public class AdministradorPedidos {
 		PedidoCliente ped= PedidoClienteDAO.getInstancia().getPedidoCliente(seleccionado.getIdPedidoCliente());
 		return ped.toDTO();
 	}
+
+	public String verificarPedido(PedidoClienteDTO seleccionado) {
+		PedidoCliente ped= PedidoClienteDAO.getInstancia().getPedidoCliente(seleccionado.getIdPedidoCliente());
+		return ped.verificarPedido();
+	}
+
+	public void modificarPedido(PedidoClienteDTO seleccionado) {
+		PedidoClienteDAO.getInstancia().update(new PedidoCliente(seleccionado));
+		
+	}
+
+	
 	
 }

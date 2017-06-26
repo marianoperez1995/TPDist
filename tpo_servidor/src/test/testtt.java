@@ -25,7 +25,7 @@ public class testtt {
 		}
 		*/
 		ArrayList<ItemPrendaInsumo> items = new ArrayList<>();
-		items = ItemPrendaInsumoDAO.getInstancia().obtenerTodosDePrenda(2);
+		items = ItemPrendaInsumoDAO.getInstancia().obtenerTodosDePrenda(1);
 		for (ItemPrendaInsumo p : items){
 			System.out.println(p.toString());
 		}

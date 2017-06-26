@@ -220,6 +220,17 @@ public class ObjetoRemoto extends UnicastRemoteObject implements InterfazRemota,
 		// TODO Auto-generated method stub
 		return AdministradorClientes.getInstancia().getListadoReclamos();
 	}
+
+	@Override
+	public String verificarPedido(PedidoClienteDTO seleccionado) throws RemoteException {
+		return AdministradorPedidos.getInstancia().verificarPedido(seleccionado);
+	}
+
+	@Override
+	public void modificarPedidoCliente(PedidoClienteDTO seleccionado) throws RemoteException {
+		AdministradorPedidos.getInstancia().modificarPedido(seleccionado);
+		
+	}
 	
 	
 	

@@ -315,7 +315,12 @@ public class PedidosPendientesController implements Initializable{
 				    txtLimiteCred.setText(Float.toString(seleccionado.getCliente().getCuentaCorriente().getLimite()));
 				    txtFechaPago.setText(seleccionado.getCliente().getCuentaCorriente().getFecha());
 				    txtBalance.setText(Float.toString(seleccionado.getCliente().getCuentaCorriente().getBalanceActual()));
-				    txtEstado.setText("CAMBIAR ESTO!!!!!!");
+				    try {
+						txtEstado.setText(BusinessDelegate.getInstancia().verificarPedido(seleccionado));
+					} catch (RemoteException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				    
 				    for(ItemPedidoClienteDTO c : seleccionado.getItemsPedidoCliente()){
 				    	itemsPedido.add(new ItemPedTabla("Remera FAL", "Discontinuo", "L", "Blanco", "36"));
@@ -365,7 +370,25 @@ public class PedidosPendientesController implements Initializable{
 
     @FXML
     void aprobarPedido(ActionEvent event) {
-    	
+    		PedidoClienteDTO seleccionado = new PedidoClienteDTO();
+	        //Check whether item is selected and set value of selected item to Label
+	        if(vistaTabla.getSelectionModel().getSelectedItem() != null) 
+	        {
+	        	TreeTableViewSelectionModel<PedidoTabla> selectionModel = vistaTabla.getSelectionModel();
+			    ObservableList selectedCells = selectionModel.getSelectedCells();
+			    TreeTablePosition tablePosition = (TreeTablePosition) selectedCells.get(0);
+			    TreeItem<PedidoTabla> selectedRow = vistaTabla.getTreeItem(tablePosition.getRow());
+	           
+	            seleccionado.setIdPedidoCliente(Integer.parseInt(selectedRow.getValue().getIdPedido().getValue()));
+	            try {
+	            	seleccionado = BusinessDelegate.getInstancia().buscarPedido(seleccionado);
+	            	seleccionado.setEstado("En fabricacion");
+	            	BusinessDelegate.getInstancia().modificarPedidoCliente(seleccionado);
+	            } catch (RemoteException e) {
+	            	// TODO Auto-generated catch block
+	            	e.printStackTrace();
+	            }
+	        }
     }
     
     private ArrayList<PedidoTabla> buscarPedidos() {
