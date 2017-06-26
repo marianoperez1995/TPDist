@@ -1,21 +1,22 @@
 package test;
 
-import java.util.Calendar;
-
-import controladores.AdministradorPedidos;
-import negocio.Cliente;
-import negocio.Factura;
-import negocio.PedidoCliente;
-import persistencia.ClienteDAO;
-import persistencia.FacturaDAO;
-import persistencia.PedidoClienteDAO;
+import negocio.AreaProduccion;
+import negocio.ItemPrendaArea;
+import persistencia.AreaProduccionDAO;
+import persistencia.ItemPrendaAreaDAO;
 
 public class test1 {
 
 	public static void main(String[] args) {
-		PedidoCliente ped= PedidoClienteDAO.getInstancia().getPedidoCliente(1);
-		System.out.println(ped.getItemsPedidoCliente().size());
-		AdministradorPedidos.getInstancia().enviarPedido(ped.toDTO());
+	//	AreaProduccion area= AreaProduccionDAO.getInstancia().getAreaProduccion(1);
+	//	System.out.println(area.toString());
+	//	LineaProduccion lineas = LineaProduccionDAO.getInstancia().getLineaProduccion(3);
+		//System.out.println(lineas.toString());
+		
+		ItemPrendaArea itemPA = ItemPrendaAreaDAO.getInstancia().get(2,2);
+		System.out.println(itemPA.toString());
+		
+		
 	}
 
 }

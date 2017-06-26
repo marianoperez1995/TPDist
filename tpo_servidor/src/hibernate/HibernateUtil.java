@@ -13,7 +13,7 @@ public class HibernateUtil {
 
 			AnnotationConfiguration config = new AnnotationConfiguration();
 
-			//config.addAnnotatedClass(DespachoEntity.class); No tiene tabla
+			
 			//config.addAnnotatedClass(LoteEntity.class);	
 			//config.addAnnotatedClass(ItemPedidoInsumoEntity.class);
 			//config.addAnnotatedClass(ItemPedidoInsumoEntity.class);
@@ -31,10 +31,10 @@ public class HibernateUtil {
 			config.addAnnotatedClass(CuentaCorrienteEntity.class);
 			config.addAnnotatedClass(PedidoClienteEntity.class);
 			config.addAnnotatedClass(OrdenProduccionEntity.class);
-			/*config.addAnnotatedClass(AreaProduccionEntity.class);
+			config.addAnnotatedClass(AreaProduccionEntity.class);
 			config.addAnnotatedClass(ItemPrendaAreaEntity.class);
 			
-			config.addAnnotatedClass(LineaProduccionEntity.class);*/
+			config.addAnnotatedClass(LineaProduccionEntity.class);
 			config.addAnnotatedClass(EmpleadoEntity.class);
 			config.addAnnotatedClass(PrendaEntity.class);
 			config.addAnnotatedClass(ProveedorEntity.class);

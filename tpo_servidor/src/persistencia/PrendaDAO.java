@@ -6,10 +6,8 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import entities.ItemPrendaInsumoEntity;
 import entities.PrendaEntity;
 import hibernate.HibernateUtil;
-import negocio.ItemPedidoCliente;
 import negocio.ItemPrendaInsumo;
 import negocio.Prenda;
 

@@ -91,6 +91,16 @@ public class InsumoDAO  {
 		}
 		return insumos;		
 	}
+	public void update(Insumo ins) {
+		// TODO Auto-generated method stub
+		InsumoEntity in= toEntity(ins);
+		Session sesion;
+		sesion = sf.openSession();
+		sesion.beginTransaction();
+		sesion.update(in);
+		sesion.getTransaction().commit();
+		sesion.close();
+	}
 	
 	
 	

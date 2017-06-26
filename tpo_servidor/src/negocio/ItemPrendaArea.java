@@ -6,7 +6,6 @@ import entities.ItemPrendaAreaEntity;
 import persistencia.ItemPrendaAreaDAO;
 
 public class ItemPrendaArea {
-	private int idItemPrendaArea;
 	private int minutoEnArea;
 	private AreaProduccion area;
 	private Prenda prenda;
@@ -14,6 +13,7 @@ public class ItemPrendaArea {
 	public ItemPrendaArea(ItemPrendaAreaDTO ipaDTO) {
 		this.minutoEnArea = ipaDTO.getMinutoEnArea();
 		this.area = new AreaProduccion (ipaDTO.getArea());
+		this.prenda = new Prenda(ipaDTO.getPrenda());	
 	}
 /*
 	public ItemPrendaArea(ItemPrendaAreaEntity ipae) {
@@ -21,21 +21,23 @@ public class ItemPrendaArea {
 		this.area = new AreaProduccion (ipae.getId().getArea());
 	}*/
 
+	public ItemPrendaArea(ItemPrendaAreaEntity item) {
+		this.minutoEnArea = item.getMinutosEnArea();
+		this.area = new AreaProduccion (item.getId().getArea());
+		this.prenda = new Prenda(item.getId().getPrenda());	
+	}
+
+	@Override
+	public String toString() {
+		return "ItemPrendaArea [minutoEnArea=" + minutoEnArea + ", area=" + area + ", prenda=" + prenda + "]";
+	}
+
 	public void insertar() {
 		ItemPrendaAreaDAO.getInstancia().insert(this);		
 	}
 
-	public void borrar() {
-		ItemPrendaAreaDAO.getInstancia().eliminar(this.idItemPrendaArea);
-	}
 
-	public int getIdItemPrendaArea() {
-		return idItemPrendaArea;
-	}
 
-	public void setIdItemPrendaArea(int idItemPrendaArea) {
-		this.idItemPrendaArea = idItemPrendaArea;
-	}
 
 	public int getMinutoEnArea() {
 		return minutoEnArea;

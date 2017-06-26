@@ -3,15 +3,21 @@ package entities;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 @Table(name = "AreasProduccion")
@@ -30,14 +36,14 @@ public class AreaProduccionEntity implements Serializable {// ya esta bien
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idAreaProduccion")
 	private int idAreaP;
-	@Transient
-	private List<LineaProduccionEntity> lineas;
+	//@Transient
+	//private List<LineaProduccionEntity> lineas;
 	private String nombre;
 
-/*	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REFRESH }, fetch = FetchType.EAGER)
-	@JoinTable(name = "Area_lineasProduccion", joinColumns = {
-			@JoinColumn(name = "idAreaProduccion") }, inverseJoinColumns = { @JoinColumn(name = "idLineaProduccion") })
-	private List<LineaProduccionEntity> lineas;*/
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany
+	@JoinColumn(name="idAreaProduccion")
+	private List<LineaProduccionEntity> lineas;
 
 	@OneToMany
 	@JoinColumn(name="idAreaProduccion")	
@@ -64,12 +70,12 @@ public class AreaProduccionEntity implements Serializable {// ya esta bien
 	public void setLineas(List<LineaProduccionEntity> lineas) {
 		this.lineas = lineas;
 	}
-/*
-	public LineaProduccionEntity getLineas() {
+
+	public List<LineaProduccionEntity>getLineas() {
 		// TODO Auto-generated method stub
 		return lineas;
 	}
-*/
+
 
 
 

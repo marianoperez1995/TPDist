@@ -258,6 +258,12 @@ public class Prenda {
 	}
 
 
+	public void aumentarStock(int cantidad) {
+		this.stockActual = this.stockActual + cantidad;
+		PrendaDAO.getInstancia().update(this);
+	}
+
+
 	
 		
 	

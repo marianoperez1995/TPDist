@@ -2,6 +2,8 @@ package negocio;
 
 import java.util.ArrayList;
 
+import com.sun.scenario.effect.impl.state.LinearConvolveRenderState;
+
 import dto.AreaProduccionDTO;
 import dto.LineaProduccionDTO;
 import entities.AreaProduccionEntity;
@@ -12,25 +14,33 @@ public class AreaProduccion {
 	private int idAreaProduccion;
 	private String nombre;
 	private ArrayList<LineaProduccion> lineasProduccion;
-	
+
 	public AreaProduccion(AreaProduccionDTO area) {
 		this.nombre = area.getNombre();
-		for (LineaProduccionDTO lp : area.getLineasProduccion()){
+		for (LineaProduccionDTO lp : area.getLineasProduccion()) {
 			this.lineasProduccion.add(new LineaProduccion(lp));
 		}
-	}
-	
-	public AreaProduccion(){
-		
+		this.idAreaProduccion = area.getIdAreaProduccion();
 	}
 
-/*	public AreaProduccion(AreaProduccionEntity area) {
+	public AreaProduccion() {
+
+	}
+
+	public AreaProduccion(AreaProduccionEntity area) {
 		this.nombre = area.getNombre();
+		this.lineasProduccion= new ArrayList<LineaProduccion>();
 		for (LineaProduccionEntity lp : area.getLineas()){
 			this.lineasProduccion.add(new LineaProduccion(lp));
 		}
+		this.idAreaProduccion = area.getIdAreaP();
 	}
-*/
+
+	/*
+	 * public AreaProduccion(AreaProduccionEntity area) { this.nombre =
+	 * area.getNombre(); for (LineaProduccionEntity lp : area.getLineas()){
+	 * this.lineasProduccion.add(new LineaProduccion(lp)); } }
+	 */
 	public String getNombre() {
 		return nombre;
 	}
@@ -54,28 +64,30 @@ public class AreaProduccion {
 	public void setIdAreaProduccion(int idAreaProduccion) {
 		this.idAreaProduccion = idAreaProduccion;
 	}
-	
+
 	public void insertar() {
-		AreaProduccionDAO.getInstancia().insert(this);		
+		AreaProduccionDAO.getInstancia().insert(this);
 	}
 
 	public void borrar() {
 		AreaProduccionDAO.getInstancia().eliminar(this.idAreaProduccion);
 	}
-	public AreaProduccionDTO toDTO(){
-		AreaProduccionDTO area= new AreaProduccionDTO();
+
+	public AreaProduccionDTO toDTO() {
+		AreaProduccionDTO area = new AreaProduccionDTO();
 		area.setIdAreaProduccion(idAreaProduccion);
 		area.setNombre(nombre);
-		ArrayList <LineaProduccionDTO> lineasProduccion= new ArrayList<LineaProduccionDTO>();
-		for (LineaProduccion li: this.lineasProduccion)
+		ArrayList<LineaProduccionDTO> lineasProduccion = new ArrayList<LineaProduccionDTO>();
+		for (LineaProduccion li : this.lineasProduccion)
 			lineasProduccion.add(li.toDTO());
 		area.setLineasProduccion(lineasProduccion);
 		return area;
 	}
 
+	@Override
 	public String toString() {
 		return "AreaProduccion [idAreaProduccion=" + idAreaProduccion + ", nombre=" + nombre + ", lineasProduccion="
 				+ lineasProduccion + "]";
 	}
-	
+
 }
