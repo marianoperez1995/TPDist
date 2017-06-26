@@ -1,6 +1,7 @@
 package dto;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class BultoDTO implements Serializable {
 	/**
@@ -10,7 +11,9 @@ public class BultoDTO implements Serializable {
 	private int codigoBulto;
 	private PrendaDTO prenda;
 	private int cantidad;
-
+	private Date fechaGen;
+	private String ubicacion;
+	
 	public int getCodigoBulto() {
 		return codigoBulto;
 	}
@@ -33,6 +36,14 @@ public class BultoDTO implements Serializable {
 
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
+	}
+
+	public Date getFechagen() {
+		return fechaGen;
+	}
+	
+	public String getUbicacion(){
+		return ubicacion;
 	}
 
 }

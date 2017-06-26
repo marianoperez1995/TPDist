@@ -101,7 +101,7 @@ public class BusinessDelegate {
 	public ArrayList<PrendaDTO> getPrendas() throws RemoteException {
 		return objetoRemoto.getPrendas();
 	}
-	public PrendaDTO getPrenda(int id, int talle, int color)  throws RemoteException {
+	public PrendaDTO getPrenda(int id)  throws RemoteException {
 		return objetoRemoto.getPrenda(id);
 	}
 	public void modificarPrenda(PrendaDTO prenda)   throws RemoteException {
