@@ -24,13 +24,13 @@ public class AreaProduccion {
 		
 	}
 
-	public AreaProduccion(AreaProduccionEntity area) {
+/*	public AreaProduccion(AreaProduccionEntity area) {
 		this.nombre = area.getNombre();
 		for (LineaProduccionEntity lp : area.getLineas()){
 			this.lineasProduccion.add(new LineaProduccion(lp));
 		}
 	}
-
+*/
 	public String getNombre() {
 		return nombre;
 	}

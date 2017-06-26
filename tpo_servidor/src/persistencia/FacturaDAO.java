@@ -37,14 +37,16 @@ public class FacturaDAO {
 		session.close();	
 	}
 
-	public void insert(Factura fac){
+	public Integer insert(Factura fac){
 		FacturaEntity fa= toEntity(fac);
 		Session sesion;
 		sesion = sf.openSession();
 		sesion.beginTransaction();
-		sesion.saveOrUpdate(fa);
+		sesion.evict(fa);
+		Integer id=(Integer) sesion.save(fa);
 		sesion.getTransaction().commit();
 		sesion.close();
+		return id;
 	}
 
 	public Factura getFactura(int id) {

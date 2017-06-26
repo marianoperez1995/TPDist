@@ -1,7 +1,17 @@
 package negocio;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
+
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 
 import dto.FacturaDTO;
 import entities.FacturaEntity;
@@ -119,6 +129,34 @@ public class Factura {
 		fac.setPedido(pedido.toDTO(this));
 		fac.setTotal(total);
 		return fac;
+	}
+	
+	public void generarPDF(int id) {
+		String arch = "c:/temp/Pedido Cliente n‹ "+this.getPedido().getIdPedidoCliente()+".pdf";
+		Document doc = new Document();
+		try {
+			PdfWriter.getInstance(doc, new FileOutputStream (new File(arch)));
+			doc.open();
+			Paragraph p = new Paragraph();
+			p.add("Factura del Pedido n‹ "+this.getPedido().getIdPedidoCliente());
+			p.setAlignment(Element.ALIGN_CENTER);
+			doc.add(p); 
+			
+			Paragraph p2 = new Paragraph();
+			p2.add("Items del pedido:");
+			p2.setAlignment(Element.ALIGN_LEFT);
+			doc.add(p2);
+			
+			for (ItemPedidoCliente item : this.getPedido().getItemsPedidoCliente()){
+				doc.add(new Paragraph (item.getPrecio()+ " " + item.getCantidad() + item.getPrenda().getIdPrenda()));
+			}			
+			doc.close();
+			System.out.println("Se creo la factura.");
+		} catch (FileNotFoundException | DocumentException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 

@@ -74,6 +74,7 @@ public class PedidoClienteDAO {
 		sesion.close();		
 		return new PedidoCliente(emp);
 	}
+	
 	public PedidoClienteEntity toEntity(PedidoCliente pedido, ClienteEntity cliente) {
 		PedidoClienteEntity ped= new PedidoClienteEntity();
 		ped.setCliente(cliente);

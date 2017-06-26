@@ -39,9 +39,10 @@ public class HibernateUtil {
 			config.addAnnotatedClass(ProveedorEntity.class);
 			config.addAnnotatedClass(ReclamosEntity.class);
 			config.addAnnotatedClass(ItemPedidoClienteEntity.class);
+			config.addAnnotatedClass(FacturaEntity.class);
 			/*config.addAnnotatedClass(MovimientosEntity.class);
 			config.addAnnotatedClass(TransporteEntity.class);
-			config.addAnnotatedClass(FacturaEntity.class);
+		
 			config.addAnnotatedClass(ItemPedidoClienteEntity.class);*/
 			
 			sessionFactory = config.buildSessionFactory();

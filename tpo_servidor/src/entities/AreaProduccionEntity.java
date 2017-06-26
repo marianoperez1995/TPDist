@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -62,12 +64,12 @@ public class AreaProduccionEntity implements Serializable {// ya esta bien
 	public void setLineas(List<LineaProduccionEntity> lineas) {
 		this.lineas = lineas;
 	}
-
+/*
 	public LineaProduccionEntity getLineas() {
 		// TODO Auto-generated method stub
 		return lineas;
 	}
-
+*/
 
 
 

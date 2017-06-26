@@ -1,10 +1,15 @@
 package controladores;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import dto.PedidoClienteDTO;
+import negocio.Cliente;
+import negocio.Factura;
 import negocio.OrdenProduccion;
 import negocio.PedidoCliente;
+import persistencia.ClienteDAO;
+import persistencia.FacturaDAO;
 import persistencia.PedidoClienteDAO;
 
 public class AdministradorPedidos {
@@ -113,7 +118,20 @@ public class AdministradorPedidos {
 		PedidoClienteDAO.getInstancia().update(new PedidoCliente(seleccionado));
 		
 	}
-
+	
+	public void completarPedido(PedidoClienteDTO seleccionado){
+		PedidoClienteDAO.getInstancia().update(new PedidoCliente(seleccionado));
+		Factura fac= new Factura();
+		Cliente cli= new Cliente(seleccionado.getCliente());
+		PedidoCliente ped= new PedidoCliente(seleccionado);
+		fac.setCliente(cli);
+		fac.setFechaGeneracion(Calendar.getInstance().getTime());
+		fac.setImpuestos(35);
+		fac.setPedido(ped);
+		fac.setTotal(ped.getPrecioTotal());
+		int id=FacturaDAO.getInstancia().insert(fac);
+		fac.generarPDF(id);
+	}
 	
 	
 }

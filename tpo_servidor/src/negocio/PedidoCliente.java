@@ -31,15 +31,9 @@ public class PedidoCliente {
 		this.fechaDespacho = pedDTO.getFechaDespacho();
 		//ItemPedidoCliente item=new ItemPedidoCliente();
 		ArrayList<ItemPedidoCliente> items=new ArrayList<ItemPedidoCliente>();
-		Float total=(float) 0;
-		for (ItemPedidoClienteDTO itped: pedDTO.getItemsPedidoCliente()){
-			ItemPedidoCliente item=new ItemPedidoCliente(itped);
-			total=total+item.getPrecio();
-			items.add(item);
-		}
 		//System.out.println(items.get(0).getPrenda().getDescripcion());
 		//System.out.println(items.get(1).getPrenda().getDescripcion());
-		this.precioTotal=total;
+		this.precioTotal=pedDTO.getPrecioTotal();
 
 		this.itemsPedidoCliente=items;
 		
@@ -54,7 +48,7 @@ public class PedidoCliente {
 		this.fechaProbableDespacho = pedE.getFechaProbableDespacho();
 		this.fechaDespacho = pedE.getFechaDespacho();
 		this.itemsPedidoCliente= new ArrayList<ItemPedidoCliente>();
-	
+		this.precioTotal=pedE.getPrecioTotal();
 		for (ItemPedidoClienteEntity p : pedE.getItemsPedidoCliente()){
 			this.itemsPedidoCliente.add(new ItemPedidoCliente(p));
 		}

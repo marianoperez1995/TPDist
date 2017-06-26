@@ -45,7 +45,7 @@ public class FacturaEntity implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="idCliente")
 	private ClienteEntity cliente;
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToOne( fetch = FetchType.EAGER)
 	@JoinColumn(name = "idPedidoCliente", referencedColumnName = "idPedidoCliente")
 	private PedidoClienteEntity pedido;
 

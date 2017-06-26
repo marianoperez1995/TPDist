@@ -15,11 +15,11 @@ public class ItemPrendaArea {
 		this.minutoEnArea = ipaDTO.getMinutoEnArea();
 		this.area = new AreaProduccion (ipaDTO.getArea());
 	}
-
+/*
 	public ItemPrendaArea(ItemPrendaAreaEntity ipae) {
 		this.minutoEnArea = ipae.getMinutosEnArea();
 		this.area = new AreaProduccion (ipae.getId().getArea());
-	}
+	}*/
 
 	public void insertar() {
 		ItemPrendaAreaDAO.getInstancia().insert(this);		
