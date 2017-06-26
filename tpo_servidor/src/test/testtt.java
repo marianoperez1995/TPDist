@@ -6,7 +6,7 @@ import negocio.Prenda;
 import persistencia.InsumoDAO;
 import persistencia.PrendaDAO;
 
-public class test1 {
+public class testtt {
 
 	public static void main(String[] args) {
 		

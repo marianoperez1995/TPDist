@@ -44,7 +44,7 @@ public class PrendaEntity  implements Serializable {
 	@Transient
 	//@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	//@JoinColumn(name = "idPrenda", referencedColumnName = "idPrenda")
-	private List<ItemPrendaInsumoEntity> items;
+/*	private List<ItemPrendaInsumoEntity> items;
 	
 	
 	public List<ItemPrendaInsumoEntity> getItems() {
@@ -54,7 +54,7 @@ public class PrendaEntity  implements Serializable {
 	public void setItems(ArrayList<ItemPrendaInsumoEntity> items) {
 		this.items = items;
 	}
-
+*/
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}

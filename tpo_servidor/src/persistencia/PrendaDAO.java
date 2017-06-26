@@ -54,7 +54,7 @@ public class PrendaDAO  {
 		for (int i=0;i<prenda.getInsumos().size();i++){
 			ItemPrendaInsumo item=new ItemPrendaInsumo();
 			item=prenda.getInsumos().get(i);
-			ItemPrendaInsumoDAO.getInstancia().insert(item,prenda);
+			item.insertar();
 		}
 	}
 
@@ -85,17 +85,11 @@ public class PrendaDAO  {
 		p.setStockMinimo(prenda.getStockMinimo());	
 		p.setColor(prenda.getColor());
 		p.setTalle(prenda.getTalle());
-		ArrayList<ItemPrendaInsumoEntity> itemsEntity=new ArrayList<ItemPrendaInsumoEntity>();
-		for(int i=0;i<prenda.getInsumos().size();i++){
-			ItemPrendaInsumoEntity item=new ItemPrendaInsumoEntity();
-			item=ItemPrendaInsumoDAO.getInstancia().toEntity(prenda.getInsumos().get(i), prenda);
-			itemsEntity.add(item);
-		}
-		p.setItems(itemsEntity);
 		return p;
 	}
 	
 	
+	@SuppressWarnings("unchecked")
 	public ArrayList<Prenda> getAll(){
 		
 		Session sesion = sf.openSession();
