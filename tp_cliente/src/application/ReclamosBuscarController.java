@@ -52,7 +52,7 @@ public class ReclamosBuscarController implements Initializable{
     private JFXTextField txtRazon;
 
     @FXML
-    private JFXTextField filtroRazonSocial;
+    private JFXTextField filtroIDReclamo;
 
     @FXML
     private JFXTextField filtroCuit;
@@ -144,15 +144,16 @@ public class ReclamosBuscarController implements Initializable{
     	vistaTabla.setRoot(root);
     	vistaTabla.setShowRoot(false);
     	
+    	
     	//El filtro distingue mayuscula y minuscula
-    	filtroRazonSocial.textProperty().addListener(new ChangeListener<String>() {
+    	filtroIDReclamo.textProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 					vistaTabla.setPredicate(new Predicate<TreeItem<ReclamoTabla>>() {					
 					@Override
 					public boolean test(TreeItem<ReclamoTabla> cliente) {
 						// TODO Auto-generated method stub
-						Boolean flag = cliente.getValue().idCliente.getValue().contains(newValue);
+						Boolean flag = cliente.getValue().idReclamo.getValue().contains(newValue);
 						return flag;
 					}
 				});
@@ -187,7 +188,7 @@ public class ReclamosBuscarController implements Initializable{
 				});
 			}
 		});
-    	
+   
     	vistaTabla.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
     	    @Override
     	    public void changed(ObservableValue observableValue, Object oldValue, Object newValue) {
@@ -222,7 +223,7 @@ public class ReclamosBuscarController implements Initializable{
 	    	           txtCuit.setText(seleccionado.getCuit());
 	    	           txtTelefonoEncargado.setText(seleccionado.getTelEncargado());
 	    	           txtTelefono.setText(seleccionado.getTelefono());
-	    	           txtReclamo.setText("");
+	    	           txtReclamo.setText(reclamo.getReclamo());
 	    	           
 	    	        }
     	         }

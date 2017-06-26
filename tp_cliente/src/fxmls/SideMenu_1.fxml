@@ -98,7 +98,7 @@
             <Insets top="3.0" />
          </VBox.margin>
       </JFXButton>
-      <Label text="Novedades" textFill="WHITE">
+      <Label text="Novedades" textFill="#838383">
          <VBox.margin>
             <Insets top="10.0" />
          </VBox.margin>
@@ -109,7 +109,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <JFXButton fx:id="btnAltaPrenda" alignment="CENTER_RIGHT" buttonType="RAISED" minHeight="28.0" onAction="#changeBody" prefHeight="28.0" prefWidth="250.0" ripplerFill="BLACK" style="-fx-background-color: #c06C84;" text="Generar nueva novedad" textAlignment="RIGHT">
+      <JFXButton fx:id="btnAltaPrenda" alignment="CENTER_RIGHT" buttonType="RAISED" disable="true" minHeight="28.0" onAction="#changeBody" prefHeight="28.0" prefWidth="250.0" ripplerFill="BLACK" style="-fx-background-color: #838383;" text="Generar nueva novedad" textAlignment="RIGHT">
          <font>
             <Font size="14.0" />
          </font>

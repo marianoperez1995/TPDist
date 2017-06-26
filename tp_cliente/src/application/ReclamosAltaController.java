@@ -234,11 +234,12 @@ public class ReclamosAltaController implements Initializable{
 	    	           txtCuit.setText(seleccionado.getCuit());
 	    	           txtTelefonoEncargado.setText(seleccionado.getTelEncargado());
 	    	           txtTelefono.setText(seleccionado.getTelefono());
+	    	           txtMailEncargado.setText(seleccionado.getMailEncargado());
 	    	           txtReclamo.setText("");
 	    	           txtReclamo.setEditable(true);
 	    	           
 	    	           btnLimpiar.setDisable(false);
-	    	           btnLimpiar.setDisable(false);
+	    	           btnEnviar.setDisable(false);
 	    	        }
     	         }
     	     });
@@ -278,10 +279,11 @@ public class ReclamosAltaController implements Initializable{
         txtCuit.setText("");
         txtTelefonoEncargado.setText("");
         txtTelefono.setText("");
+        txtMailEncargado.setText("");
         txtReclamo.setText("");
         
         btnLimpiar.setDisable(true);
-        btnLimpiar.setDisable(true);
+        btnEnviar.setDisable(true);
     }
     
     @FXML
@@ -292,11 +294,12 @@ public class ReclamosAltaController implements Initializable{
         txtCuit.setText("");
         txtTelefonoEncargado.setText("");
         txtTelefono.setText("");
+        txtMailEncargado.setText("");
         txtReclamo.setText("");
         txtReclamo.setEditable(false);
         
         btnLimpiar.setDisable(true);
-        btnLimpiar.setDisable(true);
+        btnEnviar.setDisable(true);
     }
     
     private ArrayList<ClienteTabla> buscarClientes() {

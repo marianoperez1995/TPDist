@@ -61,7 +61,7 @@ public class ReclamoDAO {
 		Session sesion = sf.openSession();
 		sesion.beginTransaction();
 		ArrayList<ReclamosEntity> pre = new ArrayList<ReclamosEntity>();
-		Query query = sesion.createQuery("from ReclamoEntity");
+		Query query = sesion.createQuery("from ReclamosEntity");
 		pre = (ArrayList<ReclamosEntity>) query.list();
 		sesion.close();
 		ArrayList<Reclamo> reclamos = new ArrayList<Reclamo>();

@@ -145,6 +145,8 @@ public class ClientesPendientesController implements Initializable{
 			}
 		});
     	
+    	vistaTabla.setPlaceholder(new Label("No hay clientes pendientes para aceptar"));
+    	
     	idCliente.setResizable(false);
     	clientName.setResizable(false);
     	cuitColumn.setResizable(false);
