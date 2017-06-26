@@ -2,20 +2,19 @@ package controladores;
 
 import java.util.ArrayList;
 
-import dto.BultoDTO;
 import dto.LoteInsumoDTO;
+import dto.OrdenProduccionDTO;
 import negocio.Bulto;
 import negocio.Insumo;
 import negocio.ItemPedidoCliente;
+import negocio.ItemPrendaInsumo;
 import negocio.LoteInsumo;
 import negocio.OrdenProduccion;
 import negocio.PedidoCliente;
-import negocio.Prenda;
 import negocio.Ubicacion;
-import negocio.UbicacionBulto;
-import negocio.UbicacionLoteInsumo;
+import persistencia.InsumoDAO;
+import persistencia.ItemPrendaInsumoDAO;
 import persistencia.MovimientosDAO;
-import persistencia.PedidoClienteDAO;
 import persistencia.PrendaDAO;
 
 public class AdministradorStock {
@@ -66,7 +65,24 @@ public class AdministradorStock {
 		return ordenes;
 	}
 	
-
+	public void fabricar(OrdenProduccionDTO orden){
+		OrdenProduccion o = new OrdenProduccion(orden);
+		o.getPrenda().aumentarStock(o.getCantidad());
+		ArrayList<ItemPrendaInsumo> itemsIns = new ArrayList<>();
+		itemsIns = ItemPrendaInsumoDAO.getInstancia().obtenerTodosDePrenda(o.getPrenda().getIdPrenda());
+		System.out.println(itemsIns.size());
+		//itemsIns = o.getPrenda().getInsumos();		
+		for (ItemPrendaInsumo i : itemsIns){
+			
+			Insumo ins = i.getInsumo();
+			System.out.println(ins.toString());
+			float stockAct = ins.getStockActual();
+			stockAct = stockAct - i.getCantidad();
+			ins.setStockActual(stockAct);
+			InsumoDAO.getInstancia().update(ins);;
+		}
+		
+	}
 	
 	
 	/*

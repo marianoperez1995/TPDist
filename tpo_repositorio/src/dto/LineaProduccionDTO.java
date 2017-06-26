@@ -14,7 +14,7 @@ public class LineaProduccionDTO  implements Serializable{
 	private int capacidad;
 	private boolean estado;
 	private Date horaInicio;
-	private Date tiempoDeUso;
+	private float tiempoDeUso;
 
 	public int getCapacidad() {
 		return capacidad;
@@ -33,11 +33,11 @@ public class LineaProduccionDTO  implements Serializable{
 		this.horaInicio = horaInicio;
 	}
 
-	public Date getTiempoDeUso() {
+	public float getTiempoDeUso() {
 		return tiempoDeUso;
 	}
 
-	public void setTiempoDeUso(Date tiempoDeUso) {
+	public void setTiempoDeUso(float tiempoDeUso) {
 		this.tiempoDeUso = tiempoDeUso;
 	}
 

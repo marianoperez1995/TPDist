@@ -11,7 +11,7 @@ public class LineaProduccion {
 	private int capacidad;
 	private boolean estado;
 	private Date horaInicio;
-	private Date tiempoDeUso;
+	private float tiempoDeUso;
 	
 	public LineaProduccion(LineaProduccionDTO lp) {
 		this.capacidad = lp.getCapacidad();
@@ -28,6 +28,7 @@ public class LineaProduccion {
 		this.tiempoDeUso = lp.getTiempoDeUso();
 		this.idLineaProduccion = lp.getIdLinea();
 	}
+	
 
 	public LineaProduccion() {
 		// TODO Auto-generated constructor stub
@@ -79,11 +80,11 @@ public class LineaProduccion {
 		this.horaInicio = horaInicio;
 	}
 
-	public Date getTiempoDeUso() {
+	public float getTiempoDeUso() {
 		return tiempoDeUso;
 	}
 
-	public void setTiempoDeUso(Date tiempoDeUso) {
+	public void setTiempoDeUso(float tiempoDeUso) {
 		this.tiempoDeUso = tiempoDeUso;
 	}
 

@@ -3,6 +3,3 @@ drop table itempedidocliente, itempedidoinsumos, lineasproduccion, lotes, lotesi
 drop table pedidoscliente, prenda_areas, prenda_insumos, prendas, prendas_eliminadas, proveedor_insumos, pedidoinsumos, reclamos
 drop table sucursales, transportes
 
-select  * from sys.tables
-
-drop database tpoad

@@ -49,7 +49,7 @@ create table LineasProduccion (
 	estado bit not null,
 	capacidad int not null,
 	horaInicio datetime null, 
-	tiempoUso DateTime null,
+	tiempoUso float null,
 
 	constraint pk_LineasProd primary key (idLineaProduccion),
 		constraint area_fk_lineap foreign key (idAreaProduccion) references AreasProduccion,

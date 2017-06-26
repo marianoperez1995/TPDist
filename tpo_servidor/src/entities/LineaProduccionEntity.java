@@ -35,7 +35,7 @@ public class LineaProduccionEntity  implements Serializable {
 	private Date horaInicio;
 	
 	@Column(name="tiempoUso")
-	private Date tiempoDeUso;
+	private float tiempoDeUso;
 	
 	@Transient
 	private int idAreaProduccion;
@@ -74,10 +74,10 @@ public class LineaProduccionEntity  implements Serializable {
 	public void setHoraInicio(Date horaInicio) {
 		this.horaInicio = horaInicio;
 	}
-	public Date getTiempoDeUso() {
+	public float getTiempoDeUso() {
 		return tiempoDeUso;
 	}
-	public void setTiempoDeUso(Date tiempoDeUso) {
+	public void setTiempoDeUso(float tiempoDeUso) {
 		this.tiempoDeUso = tiempoDeUso;
 	}
 

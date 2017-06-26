@@ -1,5 +1,7 @@
 package persistencia;
 
+import javax.persistence.Query;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -27,12 +29,13 @@ public class ItemPrendaAreaDAO  {
 		
 	}
 
-	protected ItemPrendaArea get(Integer id) {
+	public ItemPrendaArea get(int idArea, int idPrenda) {
 		Session sesion = sf.openSession();
 		sesion.beginTransaction();
-		ItemPrendaArea itemPA = (ItemPrendaArea) sesion.get(ItemPrendaAreaEntity.class, id);	
+		ItemPrendaAreaEntity item = (ItemPrendaAreaEntity) sesion.createQuery("from ItemPrendaAreaEntity where idAreaProduccion = ? and idPrenda = ?")
+				.setParameter(0, idArea).setParameter(1, idPrenda).uniqueResult();
 		sesion.close();		
-		return itemPA;
+		return new ItemPrendaArea(item);
 	}
 	public void insert(ItemPrendaArea itemPrendaArea) {
 		ItemPrendaAreaEntity i= toEntity(itemPrendaArea);
@@ -55,14 +58,7 @@ public class ItemPrendaAreaDAO  {
 		i.setMinutosEnArea(itemPrendaArea.getMinutoEnArea());
 		return i;
 	}
-	public void eliminar(int idItemPrendaArea) {
-		SessionFactory sf= HibernateUtil.getSessionFactory();
-		Session session = sf.openSession();
-		ItemPrendaAreaEntity res= (ItemPrendaAreaEntity) session.get(ItemPrendaAreaEntity.class, idItemPrendaArea);
-		session.beginTransaction();
-		session.delete(res);
-		session.getTransaction().commit();
-		session.close();		
-	}
+	
+	
 
 }
