@@ -70,6 +70,7 @@ public interface InterfazRemota extends Remote {
 	public ArrayList<OrdenProduccionDTO> getOrdenes() throws RemoteException;
 	public OrdenProduccionDTO getOrden(OrdenProduccionDTO seleccionado) throws RemoteException;
 	public void aprobarPedido(PedidoClienteDTO seleccionado) throws RemoteException;
+	public ArrayList<PrendaDTO> getPrendaPorNombre(PrendaDTO prenda)throws RemoteException;
 
 	//despacho
 	//falta agregar metodos al despacho

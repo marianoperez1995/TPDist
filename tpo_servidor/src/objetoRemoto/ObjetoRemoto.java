@@ -255,6 +255,12 @@ public class ObjetoRemoto extends UnicastRemoteObject implements InterfazRemota,
 	public void aprobarPedido(PedidoClienteDTO seleccionado) throws RemoteException {
 		AdministradorPedidos.getInstancia().aprobarPedido(seleccionado);
 	}
+
+	@Override
+	public ArrayList<PrendaDTO> getPrendaPorNombre(PrendaDTO prenda) throws RemoteException {
+		
+		return AdministradorPrenda.getInstancia().getPrendaPorNombre(prenda);
+	}
 	
 	
 	

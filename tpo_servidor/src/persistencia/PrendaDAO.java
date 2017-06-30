@@ -6,6 +6,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import dto.PrendaDTO;
 import entities.PrendaEntity;
 import hibernate.HibernateUtil;
 import negocio.ItemPrendaInsumo;
@@ -121,5 +122,20 @@ public class PrendaDAO  {
 		update(prenda);
 		
 	}
+	@SuppressWarnings("unchecked")
+	public ArrayList<Prenda> getPrendasPorNombre(PrendaDTO prenda) {
+			Session sesion = sf.openSession();
+			sesion.beginTransaction();
+			ArrayList<PrendaEntity> pre = new ArrayList<PrendaEntity>();
+			Query query = sesion.createQuery("from PrendaEntity where nombre=?").setParameter(0, prenda.getDescripcion());
+			pre = (ArrayList<PrendaEntity>) query.list();
+			sesion.close();
+			ArrayList<Prenda> prendas = new ArrayList<Prenda>();
+			for (PrendaEntity ee : pre){
+				prendas.add(new Prenda(ee));
+			}
+			return prendas;		
+		}
+	}
 	
-}
+

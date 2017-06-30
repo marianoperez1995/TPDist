@@ -79,6 +79,10 @@ public class BusinessDelegate {
 		return objetoRemoto.listadoClientes();
 	}
 	
+	public ArrayList<PrendaDTO> getPrendasPorNombre(PrendaDTO prenda) throws RemoteException{
+		return objetoRemoto.getPrendaPorNombre(prenda);
+	}
+	
 	public ClienteDTO buscarCliente(ClienteDTO b) throws RemoteException {
 		// TODO Auto-generated method stub
 		return objetoRemoto.obtenerCliente(b);

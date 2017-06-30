@@ -30,7 +30,6 @@ insert into Clientes values ('02/06/2017 10:30', 'Cliente 5', '3255212', '466633
 insert into Clientes values ('02/06/2017 10:30', 'Cliente 6', '5223421', '46663333', 'Jose Pedro 1500 2A', 1, 6, 'Pendiente', 'Piter', '44223312', 'Piter@ejemplo.com', 'Masculino')
 insert into Clientes values ('02/06/2017 10:30', 'Cliente 7', '67432123', '46663333', 'Jose Eduardo 1500 2A', 1, 7, 'Pendiente', 'German', '44223312', 'german@ejemplo.com', 'Masculino')
 
-
 --prendas
 insert into Prendas values ( 'Azul', 'S', 'Pantalon Azul', 1, 200, 200, 0.15, 230, 50, 20, 50)
 insert into Prendas values ( 'Rojo', 'S', 'Pantalon Rojo', 1, 200, 200, 0.15, 230, 50, 20, 50)
@@ -83,14 +82,7 @@ insert into areasPRoduccion values ('Estampado')
 insert into areasPRoduccion values ('Acabado')
 insert into areasPRoduccion values ('Planchado')
 insert into areasPRoduccion values ('Empacado')
-insert into areasPRoduccion values ('Marcado')
-insert into areasPRoduccion values ('Corte')
-insert into areasPRoduccion values ('Habilitado')
-insert into areasPRoduccion values ('Costura')
-insert into areasPRoduccion values ('Estampado')
-insert into areasPRoduccion values ('Acabado')
-insert into areasPRoduccion values ('Planchado')
-insert into areasPRoduccion values ('Empacado')
+
 
 insert into prenda_areas values(1,1, 5)
 insert into prenda_areas values(1,2, 5)
@@ -111,19 +103,54 @@ insert into prenda_areas values(2,7, 3)
 insert into prenda_areas values(2,8, 3)
 
 --pedidos
-insert into pedidosCLiente values (1, 'Pendiente', '02/06/2017 10:30','02/06/2017 10:30','02/06/2017 10:30','02/06/2017 10:30',45)
+insert into pedidosCLiente values (1, 'Pendiente', '02/06/2017 10:30','02/06/2017 10:30','02/06/2017 10:30','02/06/2017 10:30',400000)
 insert into pedidosCLiente values (2, 'Pendiente', '04/06/2017 10:30','04/06/2017 10:30','04/06/2017 10:30','04/06/2017 10:30',45)
-
+insert into pedidosCLiente values (3, 'Pendiente', '04/06/2017 10:30','04/06/2017 10:30','04/06/2017 10:30','04/06/2017 10:30',4500)
 --itempedido
-insert into itempedidocliente values (1, 1, 20, 55)
+insert into itempedidocliente values (1, 1, 800, 55)
 insert into itempedidocliente values (1, 2, 20, 55)
 insert into itempedidocliente values (1, 3, 20, 55)
 insert into itempedidocliente values (2, 1, 20, 55)
 insert into itempedidocliente values (2, 2, 20, 55)
 insert into itempedidocliente values (2, 3, 20, 55)
+insert into itempedidocliente values (3, 3, 800, 55)
+insert into itempedidocliente values (3, 4, 20, 55)
 
 --iteminsumo
 insert into prenda_insumos values (1, 1, 10, 2)
 insert into prenda_insumos values (1, 2, 10, 2)
 insert into prenda_insumos values (1, 3, 10, 2)
 
+--ordenProd
+--insert into OrdenesProduccion values (1, 10, 1, '04/06/2017 10:30', 'OPP')
+
+
+insert into prenda_insumos values (3,2,400,4)
+insert into prenda_insumos values (3,1,40,3)
+
+--lineas de produccion
+
+insert into lineasproduccion values (1,0, 10, null, 0)
+insert into lineasproduccion values (1,0, 10, null, 0)
+insert into lineasproduccion values (1,0, 10, null, 0)
+insert into lineasproduccion values (2,0, 10, null, 0)
+insert into lineasproduccion values (2,0, 10, null, 0)
+insert into lineasproduccion values (2,0, 10, null, 0)
+insert into lineasproduccion values (3,0, 10, null, 0)
+insert into lineasproduccion values (3,0, 10, null, 0)
+insert into lineasproduccion values (3,0, 10, null, 0)
+insert into lineasproduccion values (4,0, 10, null, 0)
+insert into lineasproduccion values (4,0, 10, null, 0)
+insert into lineasproduccion values (4,0, 10, null, 0)
+insert into lineasproduccion values (5,0, 10, null, 0)
+insert into lineasproduccion values (5,0, 10, null, 0)
+insert into lineasproduccion values (5,0, 10, null, 0)
+insert into lineasproduccion values (6,0, 10, null, 0)
+insert into lineasproduccion values (6,0, 10, null, 0)
+insert into lineasproduccion values (6,0, 10, null, 0)
+insert into lineasproduccion values (7,0, 10, null, 0)
+insert into lineasproduccion values (7,0, 10, null, 0)
+insert into lineasproduccion values (7,0, 10, null, 0)
+insert into lineasproduccion values (8,0, 10, null, 0)
+insert into lineasproduccion values (8,0, 10, null, 0)
+insert into lineasproduccion values (8,0, 10, null, 0)

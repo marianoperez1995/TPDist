@@ -61,4 +61,13 @@ public class AdministradorPrenda {
 		return prendasDTO;
 	}
 
+	public ArrayList<PrendaDTO> getPrendaPorNombre(PrendaDTO prenda) {
+		ArrayList<Prenda> prendas= PrendaDAO.getInstancia().getPrendasPorNombre(prenda);
+		ArrayList<PrendaDTO> prendasDTO= new ArrayList<PrendaDTO>();
+		for (Prenda pre: prendas){
+			prendasDTO.add(pre.toDTO());
+		}
+		return prendasDTO;
+	}
+
 }
