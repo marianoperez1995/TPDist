@@ -51,6 +51,8 @@ public class ClienteEntity implements Serializable {
 	private String mailencargado;
 	private String generoencargado;
 	private Date fechaRegistro;
+	private String pass;
+	private String usuario;
 	
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "idSucursal", referencedColumnName = "idSucursal")
@@ -60,6 +62,18 @@ public class ClienteEntity implements Serializable {
 
 	public String getMailencargado() {
 		return mailencargado;
+	}
+	public String getPass() {
+		return pass;
+	}
+	public void setPass(String pass) {
+		this.pass = pass;
+	}
+	public String getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
 	public void setMailencargado(String mailencargado) {
 		this.mailencargado = mailencargado;
@@ -151,17 +165,7 @@ public class ClienteEntity implements Serializable {
 		this.sucursal = sucursal;
 	}
 
-	public List<PedidoClienteEntity> getPedidosCliente() {		
-		if (pedidosCliente == null){
-			pedidosCliente = new ArrayList<>();
-			return pedidosCliente;
-		}
-		return pedidosCliente;
-	}
 
-	public void setPedidosCliente(List<PedidoClienteEntity> pedidosCliente) {
-		this.pedidosCliente = pedidosCliente;
-	}
 	public String getTelefono() {
 		return telefono;
 	}

@@ -165,5 +165,9 @@ public class BusinessDelegate {
 		// TODO Auto-generated method stub
 		objetoRemoto.aprobarPedido(seleccionado);
 	}
+	public ClienteDTO buscarLoginCliente(ClienteDTO env) throws RemoteException {
+		// TODO Auto-generated method stub
+		return objetoRemoto.buscarLoginCliente(env);
+	}
 
 }

@@ -97,6 +97,8 @@ public class ClienteDAO {
 		cliente.setFechaRegistro(cli.getFechaRegistro());	
 		cliente.setEncargado(cli.getEncargado());
 		cliente.setEstado(cli.getEstado());
+		cliente.setPass(cli.getPass());
+		cliente.setUsuario(cli.getUsuario());
 		return cliente;
 	}
 

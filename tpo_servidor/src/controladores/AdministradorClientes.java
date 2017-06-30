@@ -4,15 +4,18 @@ import java.util.ArrayList;
 
 import dto.ClienteDTO;
 import dto.CuentaCorrienteDTO;
+import dto.EmpleadoDTO;
 import dto.PedidoClienteDTO;
 import dto.ReclamoDTO;
 import negocio.Cliente;
 import negocio.CuentaCorriente;
+import negocio.Empleado;
 import negocio.PedidoCliente;
 import negocio.Reclamo;
 import negocio.Sucursal;
 import persistencia.ClienteDAO;
 import persistencia.CuentaCorrienteDAO;
+import persistencia.EmpleadoDAO;
 import persistencia.ReclamoDAO;
 
 public class AdministradorClientes {
@@ -146,4 +149,19 @@ public class AdministradorClientes {
 		return resultado;
 		
 	}
-}
+
+	public ClienteDTO buscarLoginCliente(ClienteDTO env) {
+			ArrayList<Cliente> lista = new ArrayList<Cliente>();
+			lista = ClienteDAO.getInstancia().getAll();
+			
+			if(lista != null){
+				for(Cliente e: lista){
+					if(e.getUsuario().equalsIgnoreCase(env.getUsuario()) && e.getPass().equals(env.getPass())){
+						return e.toDTO();
+					}
+				}
+			}
+			return null;
+		}
+	}
+

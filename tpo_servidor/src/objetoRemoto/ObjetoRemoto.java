@@ -261,6 +261,16 @@ public class ObjetoRemoto extends UnicastRemoteObject implements InterfazRemota,
 		
 		return AdministradorPrenda.getInstancia().getPrendaPorNombre(prenda);
 	}
+
+	@Override
+	public ArrayList<PrendaDTO> buscarPrendasPorColorYNombre(PrendaDTO prenda) throws RemoteException {
+		return AdministradorPrenda.getInstancia().getPrendaPorNombreYColor(prenda);
+	}
+
+	@Override
+	public ClienteDTO buscarLoginCliente(ClienteDTO env) throws RemoteException {
+		return AdministradorClientes.getInstancia().buscarLoginCliente(env);
+	}
 	
 	
 	

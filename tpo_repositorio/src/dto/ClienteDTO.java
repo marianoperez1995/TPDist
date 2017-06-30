@@ -22,16 +22,10 @@ public class ClienteDTO  implements Serializable{
 	private String telEncargado;
 	private String mailEncargado;
 	private String generoEncargado;
+	private String usuario;
+	private String pass;
 	
-	@Override
-	public String toString() {
-		return "ClienteDTO [numeroCliente=" + numeroCliente + ", direccion=" + direccion + ", cuit=" + cuit
-				+ ", fechaRegistro=" + fechaRegistro + ", cuentaCorriente=" + cuentaCorriente + ", nombre=" + nombre
-				+ ", sucursal=" + sucursal + ", pedidosCliente=" + pedidosCliente + ", encargado=" + encargado
-				+ ", telefono=" + telefono + ", telEncargado=" + telEncargado + ", mailEncargado=" + mailEncargado
-				+ ", generoEncargado=" + generoEncargado + ", estado=" + estado + "]";
-	}
-
+	
 	public Date getFechaRegistro() {
 		return fechaRegistro;
 	}
@@ -42,6 +36,32 @@ public class ClienteDTO  implements Serializable{
 
 	public String getTelEncargado() {
 		return telEncargado;
+	}
+	
+	@Override
+	public String toString() {
+		return "ClienteDTO [numeroCliente=" + numeroCliente + ", direccion=" + direccion + ", cuit=" + cuit
+				+ ", fechaRegistro=" + fechaRegistro + ", cuentaCorriente=" + cuentaCorriente + ", nombre=" + nombre
+				+ ", sucursal=" + sucursal + ", pedidosCliente=" + pedidosCliente + ", encargado=" + encargado
+				+ ", telefono=" + telefono + ", telEncargado=" + telEncargado + ", mailEncargado=" + mailEncargado
+				+ ", generoEncargado=" + generoEncargado + ", usuario=" + usuario + ", pass=" + pass + ", estado="
+				+ estado + "]";
+	}
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
+	public String getPass() {
+		return pass;
+	}
+
+	public void setPass(String pass) {
+		this.pass = pass;
 	}
 
 	public void setTelEncargado(String telEncargado) {

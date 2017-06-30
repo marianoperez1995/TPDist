@@ -127,7 +127,7 @@ public class PrendaDAO  {
 			Session sesion = sf.openSession();
 			sesion.beginTransaction();
 			ArrayList<PrendaEntity> pre = new ArrayList<PrendaEntity>();
-			Query query = sesion.createQuery("from PrendaEntity where nombre=?").setParameter(0, prenda.getDescripcion());
+			Query query = sesion.createQuery("from PrendaEntity where descripcion=?").setParameter(0, prenda.getDescripcion());
 			pre = (ArrayList<PrendaEntity>) query.list();
 			sesion.close();
 			ArrayList<Prenda> prendas = new ArrayList<Prenda>();
@@ -136,6 +136,22 @@ public class PrendaDAO  {
 			}
 			return prendas;		
 		}
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList<Prenda> getPrendasPorNombreYColor(PrendaDTO prenda) {
+		Session sesion = sf.openSession();
+		sesion.beginTransaction();
+		ArrayList<PrendaEntity> pre = new ArrayList<PrendaEntity>();
+		Query query = sesion.createQuery("from PrendaEntity where descripcion=? and color=?").setParameter(0, prenda.getDescripcion()).setParameter(1, prenda.getColor());
+		pre = (ArrayList<PrendaEntity>) query.list();
+		sesion.close();
+		ArrayList<Prenda> prendas = new ArrayList<Prenda>();
+		for (PrendaEntity ee : pre){
+			prendas.add(new Prenda(ee));
+		}
+		return prendas;	
 	}
+
+}
 	
 

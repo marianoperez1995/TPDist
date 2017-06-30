@@ -23,15 +23,9 @@ public class Cliente {
 	private Date fechaRegistro;
 	private String estado;
 	private Sucursal sucursal;
+	private String usuario;
+	private String pass;
 	
-	@Override
-	public String toString() {
-		return "Cliente [idCliente=" + idCliente + ", direccion=" + direccion + ", cuit=" + cuit + ", cuentaCorriente="
-				+ cuentaCorriente + ", nombre=" + nombre + ", telefono=" + telefono + ", encargado=" + encargado
-				+ ", telEncargado=" + telEncargado + ", mailEncargado=" + mailEncargado + ", generoEncargado="
-				+ generoEncargado + ", fechaRegistro=" + fechaRegistro + ", estado=" + estado + ", sucursal=" + sucursal
-				+ " ]";
-	}
 
 	public Date getFechaRegistro() {
 		return fechaRegistro;
@@ -43,6 +37,24 @@ public class Cliente {
 
 	public String getTelEncargado() {
 		return telEncargado;
+	}
+	
+	
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
+	public String getPass() {
+		return pass;
+	}
+
+	public void setPass(String pass) {
+		this.pass = pass;
 	}
 
 	public void setTelEncargado(String telEncargado) {
@@ -88,6 +100,8 @@ public class Cliente {
 		this.telEncargado = cliE.getTelencargado();
 		this.encargado = cliE.getEncargado();
 		this.estado = cliE.getEstado();
+		this.pass= cliE.getPass();
+		this.usuario= cliE.getUsuario();
 		
 	}
 
@@ -113,6 +127,8 @@ public class Cliente {
 		this.fechaRegistro = cliDTO.getFechaRegistro();
 		this.encargado = cliDTO.getEncargado();
 		this.estado = cliDTO.getEstado();
+		this.pass= cliDTO.getPass();
+		this.usuario= cliDTO.getUsuario();
 	}
 
 	public Cliente() {
