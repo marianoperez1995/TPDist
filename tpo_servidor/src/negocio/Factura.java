@@ -11,9 +11,11 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.Image;
 
 import dto.FacturaDTO;
 import entities.FacturaEntity;
@@ -141,8 +143,15 @@ public class Factura {
 			doc.open();
 			Font titulo = new Font(Font.FontFamily.TIMES_ROMAN, 25, Font.BOLD);			
 			Paragraph p = new Paragraph("Factura N° "+this.idFactura, titulo);
-			p.setAlignment(Element.ALIGN_CENTER);
+	        Image logo = Image.getInstance("src/archivos/afipylogo.png");        
+
+			
+			logo.setAlignment(Element.ALIGN_CENTER);
+			p.setAlignment(Element.ALIGN_LEFT);
+			
+			doc.add(logo);
 			doc.add(p); 
+
 			Date hoy = Calendar.getInstance().getTime();
 			
 			doc.add(new Paragraph("Pedido N° " + this.pedido.getIdPedidoCliente()));
