@@ -12,10 +12,10 @@ import persistencia.FacturaDAO;
 public class AdministradorFacturacion {
 	private ArrayList<Factura> facturas;
 	private ArrayList<Cliente> clientes;
-private static AdministradorFacturacion instancia = null;
+	private static AdministradorFacturacion instancia = null;
 	
 	
-	private static AdministradorFacturacion getInstancia (){
+	public static AdministradorFacturacion getInstancia (){
 		if(instancia== null)
 			instancia= new AdministradorFacturacion();
 		return instancia;

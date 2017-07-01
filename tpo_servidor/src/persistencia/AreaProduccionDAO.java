@@ -7,12 +7,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import entities.AreaProduccionEntity;
-import entities.ClienteEntity;
 import entities.LineaProduccionEntity;
 import entities.PrendaEntity;
 import hibernate.HibernateUtil;
 import negocio.AreaProduccion;
-import negocio.Cliente;
 import negocio.LineaProduccion;
 
 public class AreaProduccionDAO {
@@ -49,6 +47,7 @@ public class AreaProduccionDAO {
 		area.setLineas(lineasEntity);
 		area.setIdAreaP(ar.getIdAreaProduccion());
 		ArrayList<PrendaEntity> prendasEntity= new ArrayList<PrendaEntity>();
+		
 		return area;
 		
 	}
@@ -71,6 +70,7 @@ public class AreaProduccionDAO {
 		sesion.close();
 	}
 
+	@SuppressWarnings("unchecked")
 	public ArrayList<AreaProduccion> getAll(){
 		
 		Session sesion = sf.openSession();

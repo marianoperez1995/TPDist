@@ -6,12 +6,10 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import entities.ItemPedidoClienteEntity;
-import entities.PedidoClienteEntity;
+import entities.ItemPedidoInsumoEntity;
 import entities.PedidoInsumoEntity;
 import hibernate.HibernateUtil;
-import negocio.ItemPedidoCliente;
-import negocio.PedidoCliente;
+import negocio.ItemPedidoInsumo;
 import negocio.PedidoInsumo;
 
 public class PedidoInsumoDAO {
@@ -61,10 +59,22 @@ public class PedidoInsumoDAO {
 		return new PedidoInsumo(p);
 	}
 	public PedidoInsumoEntity toEntity(PedidoInsumo pedido) {
-		return null;
-//hacer
+		PedidoInsumoEntity p = new PedidoInsumoEntity();
+		p.setFechaEntrega(pedido.getFechaEntrega());
+		p.setFechaPedido(pedido.getFechaPedido());
+		p.setIdPedidoInsumo(pedido.getIdPedidoInsumo());
+		p.setProveedor(ProveedorDAO.getInstancia().toEntity(pedido.getProveedor()));
+		ArrayList<ItemPedidoInsumoEntity> items = new ArrayList<>();
+		for (ItemPedidoInsumo item : pedido.getItemsPedidoInsumo()){
+			items.add(ItemPedidoInsumoDAO.getInstancia().toEntity(item));
+			
+		}
+		
+		return p;
+
 	}
 	
+	@SuppressWarnings("unchecked")
 	public ArrayList<PedidoInsumo> getAll(){
 		
 		Session sesion = sf.openSession();

@@ -7,12 +7,8 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import entities.EmpleadoEntity;
-import entities.PrendaEntity;
 import entities.SucursalEntity;
 import hibernate.HibernateUtil;
-import negocio.Empleado;
-import negocio.Prenda;
 import negocio.Sucursal;
 
 public class SucursalDAO {
@@ -75,6 +71,7 @@ public class SucursalDAO {
 		return sucursal;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public ArrayList<Sucursal> getAll(){
 		
 		Session sesion = sf.openSession();

@@ -7,7 +7,6 @@ import java.util.Date;
 import dto.ItemPedidoClienteDTO;
 import dto.PedidoClienteDTO;
 import entities.ItemPedidoClienteEntity;
-import entities.OrdenProduccionEntity;
 import entities.PedidoClienteEntity;
 import persistencia.OrdenProduccionDAO;
 import persistencia.PedidoClienteDAO;

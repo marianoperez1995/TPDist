@@ -3,13 +3,8 @@ package persistencia;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import entities.ClienteEntity;
-import entities.LineaProduccionEntity;
-import entities.LoteInsumoEntity;
 import entities.LoteInsumoEntity;
 import hibernate.HibernateUtil;
-import negocio.LineaProduccion;
-import negocio.LoteInsumo;
 import negocio.LoteInsumo;
 
 public class LoteInsumoDAO  {

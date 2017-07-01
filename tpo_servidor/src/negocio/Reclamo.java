@@ -4,7 +4,6 @@ import java.util.Date;
 
 import dto.ReclamoDTO;
 import entities.ReclamosEntity;
-import persistencia.ClienteDAO;
 import persistencia.ReclamoDAO;
 
 public class Reclamo {

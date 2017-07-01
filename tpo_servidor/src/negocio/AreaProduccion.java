@@ -2,8 +2,6 @@ package negocio;
 
 import java.util.ArrayList;
 
-import com.sun.scenario.effect.impl.state.LinearConvolveRenderState;
-
 import dto.AreaProduccionDTO;
 import dto.LineaProduccionDTO;
 import entities.AreaProduccionEntity;

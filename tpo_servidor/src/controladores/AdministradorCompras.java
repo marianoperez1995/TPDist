@@ -3,6 +3,9 @@ package controladores;
 import java.util.ArrayList;
 import java.util.Date;
 
+import dto.InsumoDTO;
+import dto.PedidoClienteDTO;
+import dto.ProveedorDTO;
 import negocio.Insumo;
 import negocio.ItemPedidoInsumo;
 import negocio.OrdenProduccion;
@@ -11,7 +14,6 @@ import negocio.PedidoInsumo;
 import negocio.Proveedor;
 import persistencia.OrdenProduccionDAO;
 import persistencia.PedidoInsumoDAO;
-import dto.*;
 
 public class AdministradorCompras {
 	
@@ -22,8 +24,7 @@ public class AdministradorCompras {
 	
 	
 
-	public void generarOrdenCompra(InsumoDTO insDTO,ProveedorDTO proDto,Date Forigen, Date despachoProbable, 
-			Date despachoReal, int codOP) {
+	public void generarOrdenCompra(InsumoDTO insDTO,ProveedorDTO proDto,Date fEntrega, Date fPedido, int codOP) {
 	
 		
 		Insumo i= new Insumo(insDTO);
@@ -34,10 +35,9 @@ public class AdministradorCompras {
 		PedidoInsumo nuevo = new PedidoInsumo();
 		nuevo.setProveedor(p);
 		nuevo.setOrdenProduccion(op);
-		nuevo.setFechaGeneracion(Forigen);
-		nuevo.setFechaProbableDespacho(despachoProbable);
-		nuevo.setFechaDespacho(despachoReal);
-		ItemPedidoInsumo aux=null;
+		nuevo.setFechaEntrega(fEntrega);
+		nuevo.setFechaPedido(fPedido);
+		ItemPedidoInsumo aux= new ItemPedidoInsumo();
 		aux.setInsumo(i);
 		aux.setCantidad(i.getCantAComprar());
 		nuevo.getItemsPedidoInsumo().add(aux);
@@ -59,5 +59,13 @@ public class AdministradorCompras {
 				return p;
 		}
 		return PedidoInsumoDAO.getInstancia().getPedidoInsumo(codigo);		
+	}
+
+	public ArrayList<Proveedor> getProveedores() {
+		return proveedores;
+	}
+
+	public void setProveedores(ArrayList<Proveedor> proveedores) {
+		this.proveedores = proveedores;
 	}
 }

@@ -1,7 +1,5 @@
 package persistencia;
 
-import javax.persistence.Query;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 

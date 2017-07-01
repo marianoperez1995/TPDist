@@ -6,10 +6,8 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import entities.ClienteEntity;
 import entities.OrdenProduccionEntity;
 import hibernate.HibernateUtil;
-import negocio.Cliente;
 import negocio.OrdenProduccion;
 
 public class OrdenProduccionDAO{
@@ -71,6 +69,7 @@ public class OrdenProduccionDAO{
 		
 	}
 	
+	@SuppressWarnings("unchecked")
 	public ArrayList<OrdenProduccion> getAll() {
 
 		Session sesion = sf.openSession();

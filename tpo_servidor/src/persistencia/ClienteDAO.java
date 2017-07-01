@@ -1,9 +1,6 @@
 package persistencia;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -11,10 +8,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import entities.ClienteEntity;
-import entities.PedidoClienteEntity;
 import hibernate.HibernateUtil;
 import negocio.Cliente;
-import negocio.PedidoCliente;
 
 public class ClienteDAO {
 	private static SessionFactory sf;
@@ -102,6 +97,7 @@ public class ClienteDAO {
 		return cliente;
 	}
 
+	@SuppressWarnings("unchecked")
 	public ArrayList<Cliente> getAll() {
 
 		Session sesion = sf.openSession();

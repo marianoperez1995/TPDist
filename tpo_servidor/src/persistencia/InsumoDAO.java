@@ -6,15 +6,8 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import entities.ClienteEntity;
-import entities.FacturaEntity;
-import entities.InsumoEntity;
-import entities.PrendaEntity;
 import entities.InsumoEntity;
 import hibernate.HibernateUtil;
-import negocio.Empleado;
-import negocio.Insumo;
-import negocio.Prenda;
 import negocio.Insumo;
 
 public class InsumoDAO  {
@@ -77,6 +70,7 @@ public class InsumoDAO  {
 		return in;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public ArrayList<Insumo> getAll(){
 		
 		Session sesion = sf.openSession();
@@ -92,7 +86,7 @@ public class InsumoDAO  {
 		return insumos;		
 	}
 	public void update(Insumo ins) {
-		// TODO Auto-generated method stub
+
 		InsumoEntity in= toEntity(ins);
 		Session sesion;
 		sesion = sf.openSession();

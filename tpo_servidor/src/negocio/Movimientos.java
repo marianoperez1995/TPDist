@@ -9,7 +9,7 @@ public class Movimientos {
 	public Movimientos(MovimientosEntity mov) {
 		this.idMovimiento = mov.getIdMovimiento();
 		this.prenda = new Prenda(mov.getPrenda());
-		this.detalle = mov.getDetalle();
+		this.setDetalle(mov.getDetalle());
 		this.cantidad = mov.getCantidad();
 		
 	}
@@ -17,7 +17,7 @@ public class Movimientos {
 	public Movimientos (MovimientosDTO mov){
 		this.idMovimiento = mov.getIdMovimiento();
 		this.prenda = new Prenda(mov.getPrenda());
-		this.detalle = mov.getDetalle();
+		this.setDetalle(mov.getDetalle());
 		this.cantidad = mov.getCantidad();
 	}
 	private int idMovimiento;
@@ -44,6 +44,14 @@ public class Movimientos {
 	}
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
+	}
+
+	public String getDetalle() {
+		return detalle;
+	}
+
+	public void setDetalle(String detalle) {
+		this.detalle = detalle;
 	}
 	
 	

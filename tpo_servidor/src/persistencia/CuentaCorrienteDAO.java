@@ -3,13 +3,8 @@ package persistencia;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import dto.CuentaCorrienteDTO;
-import entities.ClienteEntity;
-import entities.CuentaCorrienteEntity;
 import entities.CuentaCorrienteEntity;
 import hibernate.HibernateUtil;
-import negocio.AreaProduccion;
-import negocio.CuentaCorriente;
 import negocio.CuentaCorriente;
 
 public class CuentaCorrienteDAO  {

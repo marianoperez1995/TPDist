@@ -3,8 +3,6 @@ package controladores;
 import java.util.ArrayList;
 import java.util.Date;
 
-import dto.LoteDTO;
-import dto.OrdenProduccionDTO;
 import negocio.AreaProduccion;
 import negocio.ItemPedidoCliente;
 import negocio.Lote;
@@ -219,6 +217,30 @@ public class AdministradorProduccion {
 			}
 		}
 		
+	}
+	public ArrayList<Prenda> getPrendas() {
+		return prendas;
+	}
+	public void setPrendas(ArrayList<Prenda> prendas) {
+		this.prendas = prendas;
+	}
+	public ArrayList<AreaProduccion> getAreasProduccion() {
+		return areasProduccion;
+	}
+	public void setAreasProduccion(ArrayList<AreaProduccion> areasProduccion) {
+		this.areasProduccion = areasProduccion;
+	}
+	public ArrayList<OrdenProduccion> getOrdenesProduccion() {
+		return ordenesProduccion;
+	}
+	public void setOrdenesProduccion(ArrayList<OrdenProduccion> ordenesProduccion) {
+		this.ordenesProduccion = ordenesProduccion;
+	}
+	public ArrayList<Lote> getLotes() {
+		return lotes;
+	}
+	public void setLotes(ArrayList<Lote> lotes) {
+		this.lotes = lotes;
 	}
 	
 

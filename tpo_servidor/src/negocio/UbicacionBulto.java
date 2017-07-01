@@ -11,4 +11,12 @@ public class UbicacionBulto extends Ubicacion {
 	public void setBulto(Bulto bulto) {
 		this.bulto = bulto;
 	}
+
+	public int getIdUbicacionBulto() {
+		return idUbicacionBulto;
+	}
+
+	public void setIdUbicacionBulto(int idUbicacionBulto) {
+		this.idUbicacionBulto = idUbicacionBulto;
+	}
 }

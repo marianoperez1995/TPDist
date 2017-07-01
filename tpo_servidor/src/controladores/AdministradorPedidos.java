@@ -10,11 +10,9 @@ import negocio.Factura;
 import negocio.ItemPedidoCliente;
 import negocio.OrdenProduccion;
 import negocio.PedidoCliente;
-import negocio.Prenda;
 import persistencia.FacturaDAO;
 import persistencia.OrdenProduccionDAO;
 import persistencia.PedidoClienteDAO;
-import persistencia.PrendaDAO;
 
 public class AdministradorPedidos {
 	private static ArrayList<PedidoCliente> pedidos;
@@ -69,7 +67,7 @@ public class AdministradorPedidos {
 		PedidoClienteDAO.getInstancia().update(ped);
 		
 	}
-	private PedidoCliente buscarPedidoCliente(int numero) {
+	public PedidoCliente buscarPedidoCliente(int numero) {
 		for (PedidoCliente pc : pedidos){
 			if (pc.getIdPedidoCliente()== numero){
 				return pc;

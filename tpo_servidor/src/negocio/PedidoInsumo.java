@@ -9,9 +9,8 @@ public class PedidoInsumo {
 	
 	private int idPedidoInsumo;
 	private Proveedor proveedor;
-	private Date fechaGeneracion;
-	private Date fechaProbableDespacho;
-	private Date fechaDespacho;
+	private Date fechaPedido;
+	private Date fechaEntrega;
 	private ArrayList<ItemPedidoInsumo> itemsPedidoInsumo;
 	private OrdenProduccion ordenProduccion;
 	
@@ -35,23 +34,19 @@ public class PedidoInsumo {
 	public void setProveedor(Proveedor proveedor) {
 		this.proveedor = proveedor;
 	}
-	public Date getFechaGeneracion() {
-		return fechaGeneracion;
+
+	
+	public Date getFechaPedido() {
+		return fechaPedido;
 	}
-	public void setFechaGeneracion(Date fechaGeneracion) {
-		this.fechaGeneracion = fechaGeneracion;
+	public void setFechaPedido(Date fechaPedido) {
+		this.fechaPedido = fechaPedido;
 	}
-	public Date getFechaProbableDespacho() {
-		return fechaProbableDespacho;
+	public Date getFechaEntrega() {
+		return fechaEntrega;
 	}
-	public void setFechaProbableDespacho(Date fechaProbableDespacho) {
-		this.fechaProbableDespacho = fechaProbableDespacho;
-	}
-	public Date getFechaDespacho() {
-		return fechaDespacho;
-	}
-	public void setFechaDespacho(Date fechaDespacho) {
-		this.fechaDespacho = fechaDespacho;
+	public void setFechaEntrega(Date fechaEntrega) {
+		this.fechaEntrega = fechaEntrega;
 	}
 	public ArrayList<ItemPedidoInsumo> getItemsPedidoInsumo() {
 		return itemsPedidoInsumo;

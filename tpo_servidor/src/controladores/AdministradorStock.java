@@ -84,6 +84,25 @@ public class AdministradorStock {
 		
 	}
 	
+	public ArrayList<LoteInsumo> getLotesInsumos() {
+		return lotesInsumos;
+	}
+	public void setLotesInsumos(ArrayList<LoteInsumo> lotesInsumos) {
+		this.lotesInsumos = lotesInsumos;
+	}
+	public ArrayList<Bulto> getBultos() {
+		return bultos;
+	}
+	public void setBultos(ArrayList<Bulto> bultos) {
+		this.bultos = bultos;
+	}
+	public ArrayList<Ubicacion> getUbicaciones() {
+		return ubicaciones;
+	}
+	public void setUbicaciones(ArrayList<Ubicacion> ubicaciones) {
+		this.ubicaciones = ubicaciones;
+	}
+	
 	
 	/*
 	public void agregarBulto(BultoDTO bulDto) { // lo cambie por DTO la entrada,  
@@ -275,4 +294,6 @@ public class AdministradorStock {
 		return list;
 	}
 	*/
+	
+	
 }

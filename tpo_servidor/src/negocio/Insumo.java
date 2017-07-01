@@ -6,7 +6,6 @@ import java.util.Date;
 import dto.InsumoDTO;
 import dto.LoteDTO;
 import entities.InsumoEntity;
-import entities.LoteEntity;
 import persistencia.InsumoDAO;
 
 public class Insumo {

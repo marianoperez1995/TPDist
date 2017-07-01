@@ -12,4 +12,12 @@ public class UbicacionLoteInsumo extends Ubicacion {
 		this.loteInsumo = loteInsumo;
 	}
 
+	public int getIdUbicacionLoteInsumo() {
+		return idUbicacionLoteInsumo;
+	}
+
+	public void setIdUbicacionLoteInsumo(int idUbicacionLoteInsumo) {
+		this.idUbicacionLoteInsumo = idUbicacionLoteInsumo;
+	}
+
 }

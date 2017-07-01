@@ -1,11 +1,7 @@
 package negocio;
 
-import dto.AreaProduccionDTO;
 import dto.ItemOrdenProduccionDTO;
-import dto.LineaProduccionDTO;
-import entities.AreaProduccionEntity;
 import entities.ItemOrdenProduccionEntity;
-import entities.LineaProduccionEntity;
 
 public class ItemOrdenProduccion {
 	

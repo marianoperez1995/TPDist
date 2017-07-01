@@ -2,7 +2,6 @@ package negocio;
 
 import dto.EmpleadoDTO;
 import entities.EmpleadoEntity;
-import persistencia.CuentaCorrienteDAO;
 import persistencia.EmpleadoDAO;
 
 public class Empleado {

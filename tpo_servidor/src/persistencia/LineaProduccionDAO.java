@@ -1,16 +1,10 @@
 package persistencia;
 
-import java.util.Date;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import entities.ClienteEntity;
-import entities.LineaProduccionEntity;
 import entities.LineaProduccionEntity;
 import hibernate.HibernateUtil;
-import negocio.Cliente;
-import negocio.LineaProduccion;
 import negocio.LineaProduccion;
 
 public class LineaProduccionDAO  {

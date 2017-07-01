@@ -2,12 +2,9 @@ package controladores;
 
 import java.util.ArrayList;
 
-import dto.ClienteDTO;
 import dto.EmpleadoDTO;
-import negocio.Cliente;
 import negocio.Empleado;
 import negocio.Sucursal;
-import persistencia.ClienteDAO;
 import persistencia.EmpleadoDAO;
 
 public class AdministradorSucursales {
@@ -105,4 +102,15 @@ private static AdministradorSucursales instancia;
 		}
 		return null;
 	}
+
+
+	public ArrayList<Sucursal> getSucursales() {
+		return sucursales;
+	}
+
+
+	public void setSucursales(ArrayList<Sucursal> sucursales) {
+		this.sucursales = sucursales;
+	}
+	
 }

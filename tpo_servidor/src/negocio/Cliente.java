@@ -1,12 +1,9 @@
 package negocio;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 import dto.ClienteDTO;
-import dto.PedidoClienteDTO;
 import entities.ClienteEntity;
-import entities.PedidoClienteEntity;
 import persistencia.ClienteDAO;
 
 public class Cliente {

@@ -5,7 +5,6 @@ import org.hibernate.SessionFactory;
 
 import entities.ItemOrdenProduccionEntity;
 import entities.ItemOrdenProduccionID;
-import entities.ItemPedidoClienteEntity;
 import hibernate.HibernateUtil;
 import negocio.ItemOrdenProduccion;
 

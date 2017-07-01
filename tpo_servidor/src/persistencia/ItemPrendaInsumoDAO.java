@@ -2,21 +2,13 @@ package persistencia;
 
 import java.util.ArrayList;
 
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import entities.ItemPedidoClienteEntity;
-import entities.ItemPedidoInsumoEntity;
-import entities.ItemPedidoInsumoID;
 import entities.ItemPrendaInsumoEntity;
 import entities.ItemPrendaInsumoID;
-import entities.PrendaEntity;
 import hibernate.HibernateUtil;
-import negocio.ItemPedidoCliente;
 import negocio.ItemPrendaInsumo;
-import negocio.PedidoCliente;
-import negocio.Prenda;
 
 public class ItemPrendaInsumoDAO{
 	
