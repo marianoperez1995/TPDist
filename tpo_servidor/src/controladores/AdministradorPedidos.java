@@ -3,6 +3,7 @@ package controladores;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import dto.ClienteDTO;
 import dto.OrdenProduccionDTO;
 import dto.PedidoClienteDTO;
 import negocio.Cliente;
@@ -168,5 +169,15 @@ public class AdministradorPedidos {
 
 	public OrdenProduccionDTO getOrden(OrdenProduccionDTO seleccionado) {
 		return OrdenProduccionDAO.getInstancia().getOrdenProduccion(seleccionado.getIdOrden()).toDTO();
+	}
+
+	public ArrayList<PedidoClienteDTO> getPedidosDeCliente(ClienteDTO env) {
+		ArrayList<PedidoCliente> prendas= PedidoClienteDAO.getInstancia().getPedidosDeCliente(env);
+		ArrayList<PedidoClienteDTO> prendasDTO= new ArrayList<PedidoClienteDTO>();
+				
+		for (PedidoCliente p : prendas){		
+				prendasDTO.add(p.toDTO());
+		}
+		return prendasDTO;
 	}	
 }
