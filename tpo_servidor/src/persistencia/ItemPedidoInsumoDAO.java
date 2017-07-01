@@ -5,12 +5,10 @@ import java.util.ArrayList;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import entities.ItemPedidoClienteEntity;
 import entities.ItemPedidoInsumoEntity;
+import entities.ItemPedidoInsumoID;
 import hibernate.HibernateUtil;
-import negocio.ItemPedidoCliente;
 import negocio.ItemPedidoInsumo;
-import negocio.PedidoCliente;
 import negocio.PedidoInsumo;
 
 public class ItemPedidoInsumoDAO {
@@ -29,7 +27,7 @@ public class ItemPedidoInsumoDAO {
 		
 	}
 	public void insert(ItemPedidoInsumo item, int ped){
-		PedidoCliente pedido = PedidoClienteDAO.getInstancia().getPedidoCliente(ped);
+		PedidoInsumo pedido = PedidoInsumoDAO.getInstancia().getPedidoInsumo(ped);
 		ItemPedidoInsumoEntity it= toEntity(item, pedido);
 		Session sesion;
 		sesion = sf.openSession();
@@ -40,9 +38,11 @@ public class ItemPedidoInsumoDAO {
 	}
 
 	private ItemPedidoInsumoEntity toEntity(ItemPedidoInsumo item, PedidoInsumo ped) {
-		ItemPedidoInsumoEntity ent = new ItemPedidoClienteEntity();
+		ItemPedidoInsumoEntity ent = new ItemPedidoInsumoEntity();
 		ent.setCantidad(item.getCantidad());
-		
+		ItemPedidoInsumoID id = new ItemPedidoInsumoID();
+		id.setInsumo(InsumoDAO.getInstancia().toEntity(item.getInsumo()));
+		id.setPedido(PedidoInsumoDAO.getInstancia().toEntity(ped));
 		ent.setId(id);
 		return ent;	
 	}
