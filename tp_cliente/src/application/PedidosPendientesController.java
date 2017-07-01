@@ -339,7 +339,7 @@ public class PedidosPendientesController implements Initializable{
 				    }
 				    
 				    for(ItemPedidoClienteDTO c : seleccionado.getItemsPedidoCliente()){
-				    	total = total + c.getPrecio();
+				    	total = total + c.getPrecio() * c.getCantidad();
 				    	String estado;
 				    	if(c.getPrenda().isEstadoProduccion()){
 				    		estado = "Producción";

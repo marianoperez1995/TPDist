@@ -38,8 +38,7 @@ public class AdministradorCompras {
 		nuevo.setFechaEntrega(fEntrega);
 		nuevo.setFechaPedido(fPedido);
 		ItemPedidoInsumo aux= new ItemPedidoInsumo();
-		aux.setInsumo(i);
-		aux.setCantidad(i.getCantAComprar());
+		
 		nuevo.getItemsPedidoInsumo().add(aux);
 		
 		pedidosInsumos.add(nuevo);
