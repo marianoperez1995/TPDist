@@ -1,9 +1,13 @@
+/archivos/
+/base/
 /controladores/
 /entities/
+/hibernate.properties
 /hibernate/
+/lib/
 /negocio/
+/notastock.txt
 /objetoRemoto/
 /persistencia/
 /servidor/
 /test/
-/base/
