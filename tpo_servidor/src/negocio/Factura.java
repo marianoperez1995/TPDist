@@ -208,7 +208,7 @@ public class Factura {
 			PdfPTable filaIva = new PdfPTable(4);
 			filaIva.addCell("");
 			filaIva.addCell("");
-			filaIva.addCell("IVA ");
+			filaIva.addCell("IVA (21%)");
 			float tasaI = (float) 0.21;
 			float iva = tasaI*total;
 			filaIva.addCell(String.valueOf(iva));
