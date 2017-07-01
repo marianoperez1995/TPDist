@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import dto.ClienteDTO;
 import dto.CuentaCorrienteDTO;
 import dto.EmpleadoDTO;
+import dto.FacturaDTO;
 import dto.OrdenProduccionDTO;
 import dto.PedidoClienteDTO;
 import dto.PrendaDTO;
@@ -177,6 +178,9 @@ public class BusinessDelegate {
 	}
 	public ArrayList<PedidoClienteDTO> obtenerPedidosDeCliente(ClienteDTO env) throws RemoteException {
 		return objetoRemoto.buscarPedidosDeCliente(env);
+	}
+	public FacturaDTO buscarFactura(FacturaDTO factSel) throws RemoteException  {
+		return objetoRemoto.buscarFactura(factSel);
 	}
 
 }

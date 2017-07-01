@@ -2,6 +2,7 @@ package controladores;
 
 import java.util.ArrayList;
 
+import dto.FacturaDTO;
 import dto.PedidoClienteDTO;
 import negocio.Cliente;
 import negocio.Factura;
@@ -44,13 +45,13 @@ public class AdministradorFacturacion {
 		}
 	}
 
-	public Factura buscarFactura(int numero) {
+	public FacturaDTO buscarFactura(int numero) {
 		for (Factura f : facturas){
 			if (f.sosLaFactura (numero)){
-				return f;
+				return f.toDTO();
 			}
 		}	
-		return FacturaDAO.getInstancia().getFactura(numero);	
+		return FacturaDAO.getInstancia().getFactura(numero).toDTO();	
 	}
 	public void bajaFactura(int numero) {
 		for (Factura f : facturas){
