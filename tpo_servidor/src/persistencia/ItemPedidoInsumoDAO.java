@@ -37,7 +37,7 @@ public class ItemPedidoInsumoDAO {
 		sesion.close();
 	}
 
-	private ItemPedidoInsumoEntity toEntity(ItemPedidoInsumo item, PedidoInsumo ped) {
+	public ItemPedidoInsumoEntity toEntity(ItemPedidoInsumo item, PedidoInsumo ped) {
 		ItemPedidoInsumoEntity ent = new ItemPedidoInsumoEntity();
 		ent.setCantidad(item.getCantidad());
 		ItemPedidoInsumoID id = new ItemPedidoInsumoID();

@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import entities.FacturaEntity;
+import entities.ItemPedidoInsumoEntity;
 import hibernate.HibernateUtil;
 import negocio.Factura;
 
@@ -52,9 +53,11 @@ public class FacturaDAO {
 	public Factura getFactura(int id) {
 		Session sesion = sf.openSession();
 		sesion.beginTransaction();
-		FacturaEntity emp = (FacturaEntity) sesion.get(FacturaEntity.class, id);	
+		//FacturaEntity emp = (FacturaEntity) sesion.get(FacturaEntity.class, id);	
+		FacturaEntity fact = (FacturaEntity) sesion.createQuery("from FacturaEntity where idPedidoCliente = ?")
+				.setParameter(0, id).uniqueResult();
 		sesion.close();		
-		return new Factura(emp);
+		return new Factura(fact);
 	}
 	
 	public FacturaEntity toEntity(Factura fac){

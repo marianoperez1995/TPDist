@@ -1,9 +1,7 @@
 package test;
 
-import java.util.ArrayList;
-
-import negocio.ItemPrendaInsumo;
-import persistencia.ItemPrendaInsumoDAO;
+import dto.FacturaDTO;
+import persistencia.FacturaDAO;
 
 public class testtt {
 
@@ -24,11 +22,14 @@ public class testtt {
 			System.out.println(p.toString());
 		}
 		*/
-		ArrayList<ItemPrendaInsumo> items = new ArrayList<>();
+	/*	ArrayList<ItemPrendaInsumo> items = new ArrayList<>();
 		items = ItemPrendaInsumoDAO.getInstancia().obtenerTodosDePrenda(1);
 		for (ItemPrendaInsumo p : items){
 			System.out.println(p.toString());
-		}
+		}*/
+		
+		FacturaDTO f = FacturaDAO.getInstancia().getFactura(4).toDTO();
+		System.out.println(f.toString());
 	}
 
 }

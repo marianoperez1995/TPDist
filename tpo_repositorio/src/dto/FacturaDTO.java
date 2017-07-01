@@ -62,4 +62,14 @@ public class FacturaDTO  implements Serializable{
 	public void setPedido(PedidoClienteDTO pedido) {
 		this.pedido = pedido;
 	}
+
+	@Override
+	public String toString() {
+		return "FacturaDTO [total=" + total + ", impuestos=" + impuestos + ", fechaGeneracion=" + fechaGeneracion
+				+ ", cliente=" + cliente + ", pedido=" + pedido + ", numeroFact=" + numeroFact + "]";
+	}
+	
+	
+	
+	
 }

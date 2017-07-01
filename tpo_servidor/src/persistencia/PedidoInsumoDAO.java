@@ -66,7 +66,7 @@ public class PedidoInsumoDAO {
 		p.setProveedor(ProveedorDAO.getInstancia().toEntity(pedido.getProveedor()));
 		ArrayList<ItemPedidoInsumoEntity> items = new ArrayList<>();
 		for (ItemPedidoInsumo item : pedido.getItemsPedidoInsumo()){
-			items.add(ItemPedidoInsumoDAO.getInstancia().toEntity(item));
+			items.add(ItemPedidoInsumoDAO.getInstancia().toEntity(item, pedido));
 			
 		}
 		
