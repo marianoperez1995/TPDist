@@ -135,7 +135,7 @@ public class Factura {
 	}
 	
 	public void generarPDF(int id) {
-		String arch = "C:/TestPDF/Factura N° "+id+".pdf";
+		String arch = "Factura N° "+id+".pdf";
 		Document doc = new Document();
 		try {
 			PdfWriter.getInstance(doc, new FileOutputStream (new File(arch)));
