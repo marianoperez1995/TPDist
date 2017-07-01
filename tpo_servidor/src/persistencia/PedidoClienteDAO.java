@@ -6,6 +6,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import dto.ClienteDTO;
 import entities.ClienteEntity;
 import entities.ItemPedidoClienteEntity;
 import entities.PedidoClienteEntity;
@@ -142,6 +143,21 @@ public class PedidoClienteDAO {
 		
 			
 		}
+	public ArrayList<PedidoCliente> getPedidosDeCliente(ClienteDTO env) {
+
+		Session sesion = sf.openSession();
+		sesion.beginTransaction();
+		ArrayList<PedidoClienteEntity> pre = new ArrayList<PedidoClienteEntity>();
+		Query query = sesion.createQuery("from PedidoClienteEntity where idCliente=?").setParameter(0, env.getNumeroCliente());
+		pre = (ArrayList<PedidoClienteEntity>) query.list();
+		System.out.println(pre.size());
+		sesion.close();
+		ArrayList<PedidoCliente> pedidos = new ArrayList<PedidoCliente>();
+		for (PedidoClienteEntity ee : pre){
+			pedidos.add(new PedidoCliente(ee));
+		}
+		return pedidos;	
+	}
 		
 	}
 	

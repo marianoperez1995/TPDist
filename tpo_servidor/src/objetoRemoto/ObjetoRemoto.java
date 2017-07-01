@@ -271,6 +271,11 @@ public class ObjetoRemoto extends UnicastRemoteObject implements InterfazRemota,
 	public ClienteDTO buscarLoginCliente(ClienteDTO env) throws RemoteException {
 		return AdministradorClientes.getInstancia().buscarLoginCliente(env);
 	}
+
+	@Override
+	public ArrayList<PedidoClienteDTO> buscarPedidosDeCliente(ClienteDTO env) throws RemoteException {
+		return AdministradorPedidos.getInstancia().getPedidosDeCliente(env);
+	}
 	
 	
 	

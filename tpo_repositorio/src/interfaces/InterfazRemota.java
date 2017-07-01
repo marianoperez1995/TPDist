@@ -73,6 +73,7 @@ public interface InterfazRemota extends Remote {
 	public ArrayList<PrendaDTO> getPrendaPorNombre(PrendaDTO prenda)throws RemoteException;
 	public ArrayList<PrendaDTO> buscarPrendasPorColorYNombre(PrendaDTO prenda) throws RemoteException;
 	public ClienteDTO buscarLoginCliente(ClienteDTO env)throws RemoteException;
+	public ArrayList<PedidoClienteDTO> buscarPedidosDeCliente(ClienteDTO env)throws RemoteException;
 
 	//despacho
 	//falta agregar metodos al despacho
