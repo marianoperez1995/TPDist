@@ -156,9 +156,9 @@ create table Clientes (
 	encargado varchar(40) not null,
 	telencargado varchar(40) not null,
 	mailencargado varchar(40) not null,
-	generoencargado varchar(40) not null
-	usuario vachar(50) null, 
-	password varcha(50) null,
+	generoencargado varchar(40) not null,
+	usuario varchar(50) null, 
+	pass varchar(50) null,
 	
 	constraint pk_Cliente primary key (idCliente),
 	constraint cliente_fk_cuentacor foreign key (idCCorriente) references CuentasCorriente,
