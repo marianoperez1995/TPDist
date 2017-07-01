@@ -1,15 +1,16 @@
 package test;
 
-import negocio.Factura;
-import persistencia.FacturaDAO;
+import controladores.AdministradorPedidos;
+import dto.PedidoClienteDTO;
+import persistencia.PedidoClienteDAO;
 
 public class testGenerarFacturaPDF {
 
 	public static void main(String[] args) {
 		
-		//Tiene que haber valores en itemPedidoCliente, cambiar el numero en ambas lineas..
-		Factura f = FacturaDAO.getInstancia().getFactura(3);
-		f.generarPDF(3);
+		PedidoClienteDTO p = PedidoClienteDAO.getInstancia().getPedidoCliente(1).toDTO();
+		AdministradorPedidos.getInstancia().enviarPedido(p);
+
 	}
 
 }

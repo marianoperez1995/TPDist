@@ -153,7 +153,11 @@ public class PedidoCliente {
 	}
 
 	public float getPrecioTotal() {
-		return precioTotal;
+		float total = 0;
+		for (ItemPedidoCliente item: this.itemsPedidoCliente){
+			total = total+(item.getCantidad()*item.getPrenda().getPrecio());
+		}		
+		return total;
 	}
 
 	public void setPrecioTotal(float precioTotal) {

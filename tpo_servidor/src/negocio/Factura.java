@@ -141,7 +141,7 @@ public class Factura {
 			PdfWriter.getInstance(doc, new FileOutputStream (new File(arch)));
 			doc.open();
 			Font titulo = new Font(Font.FontFamily.TIMES_ROMAN, 25, Font.BOLD);			
-			Paragraph p = new Paragraph("Factura N° "+this.idFactura, titulo);
+			Paragraph p = new Paragraph("Factura N° "+ id, titulo);
 	        Image logo = Image.getInstance("src/archivos/afipylogo.png");        
 
 			
@@ -181,11 +181,11 @@ public class Factura {
 				PdfPTable t = new PdfPTable(4);
 
 				t.addCell(item.getPrenda().getDescripcion());			
-				t.addCell(String.valueOf(item.getPrecio()));
+				t.addCell(String.valueOf(item.getPrenda().getPrecio()));
 				t.addCell(String.valueOf(item.getCantidad()));
-				t.addCell(String.valueOf(item.getPrecio()*item.getCantidad()));
+				t.addCell(String.valueOf(item.getPrenda().getPrecio()*item.getCantidad()));
 				
-				total = total + item.getPrecio()*item.getCantidad();
+				total = total + item.getPrenda().getPrecio()*item.getCantidad();
 				doc.add(t);
 			}	
 			//SI ES QUE MANEJABAMOS IBA/DESCUENTOS PONGO ESTO, BORRAR LOS Q NO HAGNA FALTA
@@ -196,20 +196,20 @@ public class Factura {
 			filaSubTotal.addCell(String.valueOf(total));
 			doc.add(filaSubTotal);
 			//////////////////
-			PdfPTable filaDesc = new PdfPTable(4);
+		/*	PdfPTable filaDesc = new PdfPTable(4);
 			filaDesc.addCell("");
 			filaDesc.addCell("");
 			filaDesc.addCell("DESCUENTO");
 			float tasaD = (float) 0.15;
 			float descuento = tasaD*total;
 			filaDesc.addCell(String.valueOf(descuento));
-			doc.add(filaDesc);
+			doc.add(filaDesc);*/
 			//////////////////
 			PdfPTable filaIva = new PdfPTable(4);
 			filaIva.addCell("");
 			filaIva.addCell("");
 			filaIva.addCell("IVA ");
-			float tasaI = (float) 0.25;
+			float tasaI = (float) 0.21;
 			float iva = tasaI*total;
 			filaIva.addCell(String.valueOf(iva));
 			doc.add(filaIva);
@@ -219,10 +219,13 @@ public class Factura {
 			filaTotal.addCell("");
 			filaTotal.addCell("");
 			filaTotal.addCell("TOTAL");
-			float totalFinal = total-descuento+iva;
+		//	float totalFinal = total-descuento+iva;
+			float totalFinal = total+iva;
 			filaTotal.addCell(String.valueOf(totalFinal));
 			doc.add(filaTotal);
 			doc.close();
+			
+
 			
 		} catch (FileNotFoundException | DocumentException e) {
 			e.printStackTrace();

@@ -165,6 +165,17 @@ create table Clientes (
 	constraint cliente_fk_sucursal foreign key (idSucursal) references Sucursales
 )
 
+
+create table Pagos (
+	idPago int not null identity (1,1),
+	monto float,
+	idCliente int not null,
+	fechaPago datetime not null,
+	
+	constraint pk_Pago primary key (idPago),
+	constraint pago_fk_cliente foreign key (idCliente) references Clientes
+)
+	
 create table PedidosCliente (
 	idPedidoCliente int not null identity(1,1),
 	idCliente int not null,

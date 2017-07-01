@@ -146,14 +146,15 @@ public class AdministradorPedidos {
 		Factura fac= new Factura();
 		Cliente cli= new Cliente(seleccionado.getCliente());
 		PedidoCliente ped= new PedidoCliente(seleccionado);
-
 		fac.setCliente(cli);
 		fac.setFechaGeneracion(Calendar.getInstance().getTime());
-		fac.setImpuestos(35);
+		float tot = ped.getPrecioTotal();
+		fac.setImpuestos((float) (tot*0.21));
 		fac.setPedido(ped);
-		fac.setTotal(ped.getPrecioTotal());
+		fac.setTotal(tot);
 		int id=FacturaDAO.getInstancia().insert(fac);
-		fac.generarPDF(id);			
+		fac.generarPDF(id);		
+		
 	}
 
 	public ArrayList<OrdenProduccionDTO> getAllOrdenes() {
