@@ -175,5 +175,8 @@ public class BusinessDelegate {
 	public ArrayList<PrendaDTO> buscarPrendaPorNombreYColor(PrendaDTO prenda) throws RemoteException {
 		return objetoRemoto.buscarPrendasPorColorYNombre(prenda);
 	}
+	public ArrayList<PedidoClienteDTO> obtenerPedidosDeCliente(ClienteDTO env) {
+		return objetoRemoto.
+	}
 
 }
