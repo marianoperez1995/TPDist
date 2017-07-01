@@ -169,5 +169,11 @@ public class BusinessDelegate {
 		// TODO Auto-generated method stub
 		return objetoRemoto.buscarLoginCliente(env);
 	}
+	public ArrayList<PrendaDTO> buscarPrendaPorNombre(PrendaDTO prenda) throws RemoteException {
+		return objetoRemoto.getPrendaPorNombre(prenda);
+	}
+	public ArrayList<PrendaDTO> buscarPrendaPorNombreYColor(PrendaDTO prenda) throws RemoteException {
+		return objetoRemoto.buscarPrendasPorColorYNombre(prenda);
+	}
 
 }
