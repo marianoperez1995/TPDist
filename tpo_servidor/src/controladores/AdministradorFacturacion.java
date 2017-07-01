@@ -46,13 +46,9 @@ public class AdministradorFacturacion {
 	}
 
 	public FacturaDTO buscarFactura(int numero) {
-		for (Factura f : facturas){
-			if (f.sosLaFactura (numero)){
-				return f.toDTO();
-			}
-		}	
 		return FacturaDAO.getInstancia().getFactura(numero).toDTO();	
 	}
+	
 	public void bajaFactura(int numero) {
 		for (Factura f : facturas){
 			if (f.sosLaFactura (numero)){

@@ -6,12 +6,14 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import controladores.AdministradorClientes;
+import controladores.AdministradorFacturacion;
 import controladores.AdministradorPedidos;
 import controladores.AdministradorPrenda;
 import controladores.AdministradorSucursales;
 import dto.ClienteDTO;
 import dto.CuentaCorrienteDTO;
 import dto.EmpleadoDTO;
+import dto.FacturaDTO;
 import dto.OrdenProduccionDTO;
 import dto.PedidoClienteDTO;
 import dto.PrendaDTO;
@@ -275,6 +277,11 @@ public class ObjetoRemoto extends UnicastRemoteObject implements InterfazRemota,
 	@Override
 	public ArrayList<PedidoClienteDTO> buscarPedidosDeCliente(ClienteDTO env) throws RemoteException {
 		return AdministradorPedidos.getInstancia().getPedidosDeCliente(env);
+	}
+
+	@Override
+	public FacturaDTO buscarFactura(FacturaDTO factSel) throws RemoteException {
+		return AdministradorFacturacion.getInstancia().buscarFactura(factSel.getPedido().getIdPedidoCliente());
 	}
 	
 	
