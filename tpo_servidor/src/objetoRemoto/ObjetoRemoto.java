@@ -295,6 +295,12 @@ public class ObjetoRemoto extends UnicastRemoteObject implements InterfazRemota,
 	public void agregarPago(PagoDTO pago) throws RemoteException {
 		AdministradorFacturacion.getInstancia().agregarPago(pago);
 	}
+
+	@Override
+	public void cancelarPedido(PedidoClienteDTO ped) throws RemoteException {
+		AdministradorPedidos.getInstancia().cancelarPedido(ped);
+		
+	}
 	
 }
 	

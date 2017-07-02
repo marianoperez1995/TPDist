@@ -183,5 +183,10 @@ public class AdministradorPedidos {
 				prendasDTO.add(p.toDTO());
 		}
 		return prendasDTO;
+	}
+
+	public void cancelarPedido(PedidoClienteDTO ped) {
+		ped.setEstado("Cancelado");
+		PedidoClienteDAO.getInstancia().update(new PedidoCliente(ped));
 	}	
 }
