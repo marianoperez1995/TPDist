@@ -1,10 +1,15 @@
 package persistencia;
 
+import java.util.ArrayList;
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import entities.EmpleadoEntity;
 import entities.PagoEntity;
 import hibernate.HibernateUtil;
+import negocio.Empleado;
 import negocio.Pago;
 
 public class PagoDAO {
@@ -41,6 +46,21 @@ public class PagoDAO {
 		sesion.close();
 		Pago p = new Pago(pago);
 		return p;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList<Pago> getPagosPorCliente (int idCliente){
+		ArrayList<Pago> pagos = new ArrayList<>();
+		Session s = sf.openSession();
+		s.beginTransaction();
+		ArrayList<PagoEntity> pe = new ArrayList<>();
+		Query query = s.createQuery("from PagoEntity where idCliente = ?").setParameter(0, idCliente);
+		pe = (ArrayList<PagoEntity>) query.list();
+		for (PagoEntity p : pe){
+			pagos.add(new Pago(p));
+		}
+		s.close();
+		return pagos;
 	}
 
 	public void insert(Pago p) {
