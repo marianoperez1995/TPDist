@@ -148,10 +148,13 @@ public class AdministradorPedidos {
 		PedidoCliente ped= new PedidoCliente(seleccionado);
 		fac.setCliente(cli);
 		fac.setFechaGeneracion(Calendar.getInstance().getTime());
-		float tot = ped.getPrecioTotal();
-		fac.setImpuestos((float) (tot*0.21));
+		float subtotal = ped.getPrecioTotal();
+		float impuestos=  (float) (subtotal*0.21);
+		fac.setImpuestos(impuestos);
+		float total = subtotal + impuestos;
 		fac.setPedido(ped);
-		fac.setTotal(tot);
+		fac.setTotal(total);
+		fac.setSubtotal(subtotal);
 		int id=FacturaDAO.getInstancia().insert(fac);
 		fac.generarPDF(id);		
 		
