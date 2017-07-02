@@ -19,12 +19,11 @@ import dto.CuentaCorrienteDTO;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.fxml.Initializable;
-import javafx.util.Callback;
 
 public class ClienteAltaController implements Initializable {
     @FXML

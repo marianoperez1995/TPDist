@@ -9,7 +9,6 @@ import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
@@ -33,7 +32,6 @@ import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableColumn.CellDataFeatures;
 import javafx.scene.control.TreeTablePosition;
 import javafx.scene.control.TreeTableView.TreeTableViewSelectionModel;
-import javafx.scene.text.Text;
 import javafx.util.Callback;
 
 public class ClientesPendientesController implements Initializable{

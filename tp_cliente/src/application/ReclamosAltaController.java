@@ -19,8 +19,6 @@ import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
 import businessDelegate.BusinessDelegate;
 import dto.ClienteDTO;
-import dto.CuentaCorrienteDTO;
-import dto.PedidoClienteDTO;
 import dto.ReclamoDTO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -37,7 +35,6 @@ import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableColumn.CellDataFeatures;
 import javafx.scene.control.TreeTablePosition;
 import javafx.scene.control.TreeTableView.TreeTableViewSelectionModel;
-import javafx.scene.layout.FlowPane;
 import javafx.util.Callback;
 
 public class ReclamosAltaController implements Initializable{

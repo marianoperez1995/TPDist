@@ -9,19 +9,13 @@ import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
-import application.ClienteBuscarController.ClienteTabla;
-import application.PedidosPendientesController.ItemPedTabla;
-import application.PedidosPendientesController.PedidoTabla;
 import businessDelegate.BusinessDelegate;
-import dto.ClienteDTO;
-import dto.ItemPedidoClienteDTO;
 import dto.OrdenProduccionDTO;
 import dto.PedidoClienteDTO;
 import javafx.beans.property.SimpleStringProperty;
@@ -39,7 +33,6 @@ import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableColumn.CellDataFeatures;
 import javafx.scene.control.TreeTablePosition;
 import javafx.scene.control.TreeTableView.TreeTableViewSelectionModel;
-import javafx.scene.layout.FlowPane;
 import javafx.util.Callback;
 
 public class OrdenProduccionFabricarController implements Initializable{

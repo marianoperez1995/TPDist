@@ -9,7 +9,6 @@ import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
 
-import dto.EmpleadoDTO;
 import dto.SucursalDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
