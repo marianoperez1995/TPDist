@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="668.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ClienteBuscarController">
+<AnchorPane prefHeight="668.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PagosAgregarController">
    <children>
       <FlowPane alignment="CENTER" layoutX="29.0" layoutY="79.0" prefHeight="176.0" prefWidth="252.0" style="-fx-background-color: #99b89b;">
          <children>
@@ -101,7 +101,7 @@
                   </Label>
                </children>
             </Pane>
-            <Label fx:id="lblIdCliente" layoutX="54.0" layoutY="78.0" prefHeight="94.0" prefWidth="271.0" text="#123456" underline="true">
+            <Label fx:id="lblIdCliente" layoutX="54.0" layoutY="78.0" prefHeight="94.0" prefWidth="271.0" text="ID--" underline="true">
                <font>
                   <Font size="65.0" />
                </font>
@@ -137,16 +137,6 @@
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
                   </JFXTextField>
-                  <JFXTextField fx:id="txtNumero" editable="false" labelFloat="true" promptText="Numero" GridPane.rowIndex="5">
-                     <GridPane.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </GridPane.margin>
-                  </JFXTextField>
-                  <JFXTextField fx:id="txtPiso" editable="false" labelFloat="true" promptText="Piso/Depto" GridPane.rowIndex="6">
-                     <GridPane.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </GridPane.margin>
-                  </JFXTextField>
                   <Label prefHeight="21.0" prefWidth="142.0" text="Datos generales:">
                      <font>
                         <Font name="System Bold" size="15.0" />
@@ -165,7 +155,7 @@
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
                   </JFXTextField>
-                  <JFXTextField fx:id="txtCondicPago" editable="false" promptText="Condiciones de pago" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <JFXTextField fx:id="txtCondicPago" editable="false" labelFloat="true" promptText="Condiciones de pago" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
@@ -180,19 +170,19 @@
                   </Label>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
                      <children>
-                        <JFXButton fx:id="btnCancelar" buttonType="RAISED" prefHeight="28.0" prefWidth="110.0" style="-fx-background-color: #ff5e5e;" text="Limpiar">
+                        <JFXButton fx:id="btnLimpiar" buttonType="RAISED" onAction="#limpiarCampos" prefHeight="28.0" prefWidth="110.0" style="-fx-background-color: #ff5e5e;" text="Limpiar">
                            <HBox.margin>
                               <Insets right="20.0" top="20.0" />
                            </HBox.margin>
                         </JFXButton>
-                        <JFXButton fx:id="btnGuardar" buttonType="RAISED" prefHeight="28.0" prefWidth="110.0" style="-fx-background-color: #d1ff8c;" text="Agregar pago">
+                        <JFXButton fx:id="btnAgregarPago" buttonType="RAISED" onAction="#agregarPago" prefHeight="28.0" prefWidth="110.0" style="-fx-background-color: #d1ff8c;" text="Agregar pago">
                            <HBox.margin>
                               <Insets top="20.0" />
                            </HBox.margin>
                         </JFXButton>
                      </children>
                   </HBox>
-                  <JFXTextField fx:id="txtCondicPago2" editable="false" promptText="Balance actual" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <JFXTextField fx:id="txtBalance" editable="false" labelFloat="true" promptText="Balance actual" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>
@@ -202,7 +192,7 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <JFXTextField fx:id="txtLimitePrecio1" labelFloat="true" promptText="Monto ($$$)" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                  <JFXTextField fx:id="txtMonto" labelFloat="true" promptText="Monto ($$$)" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>

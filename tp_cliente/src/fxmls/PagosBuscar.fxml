@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="668.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.FacturaNuevaController">
+<AnchorPane prefHeight="668.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PagosBuscarController">
    <children>
       <FlowPane alignment="CENTER" layoutX="29.0" layoutY="79.0" prefHeight="176.0" prefWidth="252.0" style="-fx-background-color: #99b89b;">
          <children>
@@ -43,7 +43,7 @@
                         <Font size="14.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField fx:id="filtroIdPedido" labelFloat="true" promptText="ID Pedido" GridPane.rowIndex="2">
+                  <JFXTextField fx:id="filtroIdPedido" labelFloat="true" promptText="CUIT" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="50.0" right="30.0" />
                      </GridPane.margin>
@@ -51,7 +51,7 @@
                         <Font size="14.0" />
                      </font>
                   </JFXTextField>
-                  <JFXTextField fx:id="filtroFechaFactura" labelFloat="true" promptText="Fecha def factura" GridPane.rowIndex="3">
+                  <JFXTextField fx:id="filtroFechaFactura" labelFloat="true" promptText="Fecha def registro" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="50.0" right="30.0" />
                      </GridPane.margin>
@@ -65,7 +65,7 @@
       </FlowPane>
       <Pane layoutX="29.0" layoutY="34.0" prefHeight="47.0" prefWidth="618.0" style="-fx-border-radius: 10 0 0 0; -fx-background-radius: 10 0 0 0; -fx-background-color: #355c7D;">
          <children>
-            <Label alignment="CENTER" layoutY="9.0" prefHeight="30.0" prefWidth="618.0" text="VER FACTURAS" textFill="WHITE">
+            <Label alignment="CENTER" layoutY="9.0" prefHeight="30.0" prefWidth="618.0" text="BUSCAR CLIENTES" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -142,7 +142,7 @@
                   <Font size="65.0" />
                </font>
             </Label>
-            <Label alignment="BOTTOM_CENTER" layoutX="174.0" layoutY="166.0" prefHeight="30.0" prefWidth="80.0" text="Balance: $" textFill="#940000">
+            <Label alignment="BOTTOM_CENTER" layoutX="184.0" layoutY="166.0" prefHeight="30.0" prefWidth="80.0" text="Balance: $" textFill="#940000">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -180,7 +180,7 @@
                   </Label>
                </children>
             </GridPane>
-            <Label fx:id="txtBalance" layoutX="256.0" layoutY="173.0" prefHeight="21.0" prefWidth="50.0" text="--" textFill="#940000">
+            <Label fx:id="txtBalance" layoutX="264.0" layoutY="173.0" prefHeight="21.0" prefWidth="189.0" text="--" textFill="#940000">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -196,80 +196,14 @@
          <children>
             <Pane prefHeight="44.0" prefWidth="681.0" style="-fx-background-color: #355c7D;">
                <children>
-                  <Label fx:id="lblPedido" alignment="CENTER" layoutY="9.0" prefHeight="30.0" prefWidth="681.0" text="DETALLE DE PEDIDO" textFill="WHITE">
+                  <Label fx:id="lblPedido" alignment="CENTER" layoutY="9.0" prefHeight="30.0" prefWidth="681.0" text="DETALLE DE PAGOS" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <JFXTreeTableView fx:id="vistaTabla2" layoutX="1.0" layoutY="44.0" prefHeight="234.0" prefWidth="681.0" style="-fx-border-color: #3a3a3a; -fx-border-width: 0 1 1 1;" stylesheets="@../styles/table.css" />
-            <GridPane layoutX="17.0" layoutY="292.0" prefHeight="30.0" prefWidth="409.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="173.0" minWidth="10.0" prefWidth="61.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="348.0" minWidth="10.0" prefWidth="72.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="348.0" minWidth="10.0" prefWidth="48.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="348.0" minWidth="10.0" prefWidth="85.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="348.0" minWidth="10.0" prefWidth="70.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="348.0" minWidth="10.0" prefWidth="106.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Label prefHeight="21.0" prefWidth="166.0" text="STot:">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="txtSubtotal" prefHeight="21.0" prefWidth="63.0" text="--" GridPane.columnIndex="1">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label prefHeight="21.0" prefWidth="166.0" text="IVA:" GridPane.columnIndex="2">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="txtImpuestos" prefHeight="21.0" prefWidth="109.0" text="--" GridPane.columnIndex="3">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="lblTotal" prefHeight="21.0" prefWidth="166.0" text="Total:" GridPane.columnIndex="4">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="txtTotal" prefHeight="21.0" prefWidth="109.0" text="--" GridPane.columnIndex="5">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-               </children>
-            </GridPane>
-            <GridPane layoutX="426.0" layoutY="292.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="107.0" minWidth="10.0" prefWidth="106.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="94.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Label text="Fecha factura:">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="txtFechaFactura" text="--" GridPane.columnIndex="1">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-               </children>
-            </GridPane>
+            <JFXTreeTableView fx:id="vistaTabla2" layoutX="1.0" layoutY="44.0" prefHeight="294.0" prefWidth="681.0" style="-fx-border-color: #3a3a3a; -fx-border-width: 0 1 1 1;" stylesheets="@../styles/table.css" />
          </children>
       </Pane>
    </children>

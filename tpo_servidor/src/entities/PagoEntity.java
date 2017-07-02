@@ -28,6 +28,8 @@ public class PagoEntity implements Serializable{
 	@JoinColumn(name="idCliente")
 	private ClienteEntity cliente;
 	private Date fechaPago;
+	private float montoAnterior;
+	
 	public int getIdPago() {
 		return idPago;
 	}
@@ -51,6 +53,12 @@ public class PagoEntity implements Serializable{
 	}
 	public void setFechaPago(Date fechaPago) {
 		this.fechaPago = fechaPago;
+	}
+	public float getMontoAnterior() {
+		return this.montoAnterior;
+	}
+	public void setMontoAnterior(float montoAnterior2) {
+		this.montoAnterior = montoAnterior2;
 	}
 	
 	

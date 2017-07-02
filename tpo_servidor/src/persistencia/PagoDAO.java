@@ -87,6 +87,7 @@ public class PagoDAO {
 		pa.setFechaPago(p.getFechaPago());
 		pa.setIdPago(p.getIdPago());
 		pa.setMonto(p.getMonto());
+		pa.setMontoAnterior(p.getMontoAnterior());
 		return pa;
 	}
 

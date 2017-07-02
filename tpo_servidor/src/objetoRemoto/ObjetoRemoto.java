@@ -15,6 +15,7 @@ import dto.CuentaCorrienteDTO;
 import dto.EmpleadoDTO;
 import dto.FacturaDTO;
 import dto.OrdenProduccionDTO;
+import dto.PagoDTO;
 import dto.PedidoClienteDTO;
 import dto.PrendaDTO;
 import dto.ReclamoDTO;
@@ -283,9 +284,18 @@ public class ObjetoRemoto extends UnicastRemoteObject implements InterfazRemota,
 	public FacturaDTO buscarFactura(FacturaDTO factSel) throws RemoteException {
 		return AdministradorFacturacion.getInstancia().buscarFactura(factSel.getPedido().getIdPedidoCliente());
 	}
-	
-	
-	
+
+	@Override
+	public ArrayList<PagoDTO> buscarPagos(ClienteDTO seleccionado) throws RemoteException {
+		// TODO Auto-generated method stub
+		return AdministradorFacturacion.getInstancia().buscarPagos(seleccionado.getNumeroCliente());
 	}
+
+	@Override
+	public void agregarPago(PagoDTO pago) throws RemoteException {
+		AdministradorFacturacion.getInstancia().agregarPago(pago);
+	}
+	
+}
 	
 

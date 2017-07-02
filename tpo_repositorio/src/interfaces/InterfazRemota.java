@@ -8,6 +8,7 @@ import dto.CuentaCorrienteDTO;
 import dto.EmpleadoDTO;
 import dto.FacturaDTO;
 import dto.OrdenProduccionDTO;
+import dto.PagoDTO;
 import dto.PedidoClienteDTO;
 import dto.PrendaDTO;
 import dto.ReclamoDTO;
@@ -75,7 +76,9 @@ public interface InterfazRemota extends Remote {
 	public ArrayList<PrendaDTO> buscarPrendasPorColorYNombre(PrendaDTO prenda) throws RemoteException;
 	public ClienteDTO buscarLoginCliente(ClienteDTO env)throws RemoteException;
 	public ArrayList<PedidoClienteDTO> buscarPedidosDeCliente(ClienteDTO env)throws RemoteException;
-	public FacturaDTO buscarFactura(FacturaDTO factSel)throws RemoteException;;
+	public FacturaDTO buscarFactura(FacturaDTO factSel)throws RemoteException;
+	public ArrayList<PagoDTO> buscarPagos(ClienteDTO seleccionado) throws RemoteException;
+	public void agregarPago(PagoDTO pago) throws RemoteException;
 
 	//despacho
 	//falta agregar metodos al despacho

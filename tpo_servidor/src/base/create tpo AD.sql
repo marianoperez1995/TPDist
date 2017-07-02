@@ -169,6 +169,7 @@ create table Clientes (
 create table Pagos (
 	idPago int not null identity (1,1),
 	monto float,
+	montoAnterior float,
 	idCliente int not null,
 	fechaPago datetime not null,
 	

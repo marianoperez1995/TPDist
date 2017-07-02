@@ -38,7 +38,7 @@ public class SidePanelController5 implements Initializable {
         switch(btn.getText())
         {
             case "Ver pagos de cliente":
-            	body = FXMLLoader.load(getClass().getResource("/fxmls/ResumenFacturacion.fxml"));
+            	body = FXMLLoader.load(getClass().getResource("/fxmls/PagosBuscar.fxml"));
             	MainController.bodyPanelP.getChildren().setAll(body);
             break;
             case "Ver facturas generadas":
