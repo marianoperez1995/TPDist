@@ -43,9 +43,8 @@ public class PedidoClienteDAO {
 	
 	
 	public PedidoCliente insert(PedidoCliente pedido){
-		Cliente cliente = ClienteDAO.getInstancia().getCliente(pedido.getCliente().getIdCliente());
-		ClienteEntity clienteE = ClienteDAO.getInstancia().toEntity(cliente);
-		PedidoClienteEntity ped= toEntity(pedido, clienteE);
+		
+		PedidoClienteEntity ped= toEntity(pedido);
 		Session sesion;
 		sesion = sf.openSession();
 		sesion.beginTransaction();
@@ -76,25 +75,7 @@ public class PedidoClienteDAO {
 		return new PedidoCliente(emp);
 	}
 	
-	public PedidoClienteEntity toEntity(PedidoCliente pedido, ClienteEntity cliente) {
-		PedidoClienteEntity ped= new PedidoClienteEntity();
-		ped.setCliente(cliente);
-		ped.setEstado(pedido.getEstado());
-		ped.setFechaDespacho(pedido.getFechaDespacho());
-		ped.setFechaGeneracion(pedido.getFechaGeneracion());
-		ped.setFechaProbableDespacho(pedido.getFechaProbableDespacho());
-		ped.setFechaEntregaCliente(pedido.getFechaEntregaCliente());
-		ped.setNumPedidoCliente(pedido.getIdPedidoCliente());
-		ped.setPrecioTotal(pedido.getPrecioTotal());
-		ArrayList <ItemPedidoClienteEntity> itemsPedidoCliente= new ArrayList<ItemPedidoClienteEntity>();
-		if (pedido.getItemsPedidoCliente() != null){
-			for (ItemPedidoCliente item:pedido.getItemsPedidoCliente()){
-				itemsPedidoCliente.add(ItemPedidoClienteDAO.getInstancia().toE(item, ped));
-			}
-		}
-		ped.setItemsPedidoCliente(itemsPedidoCliente);	
-		return ped;
-	}
+	
 	
 	@SuppressWarnings("unchecked")
 	public ArrayList<PedidoCliente> getAll(){

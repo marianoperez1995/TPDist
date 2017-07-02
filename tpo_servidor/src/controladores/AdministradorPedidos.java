@@ -186,7 +186,17 @@ public class AdministradorPedidos {
 	}
 
 	public void cancelarPedido(PedidoClienteDTO ped) {
-		ped.setEstado("Cancelado");
+		ped.setEstado("Cliente Cancelado");
 		PedidoClienteDAO.getInstancia().update(new PedidoCliente(ped));
+	}
+
+	public void confirmarClientePedido(PedidoClienteDTO ped) {
+		ped.setEstado("Cliente Confirmado");
+		PedidoClienteDAO.getInstancia().update(new PedidoCliente(ped));
+	}
+
+	public void altaPedido(PedidoClienteDTO pedido) {
+		PedidoClienteDAO.getInstancia().insert(new PedidoCliente(pedido));
+		
 	}	
 }

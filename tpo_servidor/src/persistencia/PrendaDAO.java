@@ -151,6 +151,15 @@ public class PrendaDAO  {
 		}
 		return prendas;	
 	}
+	public Prenda getPrendasPorNombreYColorYTalle(String prenda, String color, String talle) {
+		Session sesion = sf.openSession();
+		sesion.beginTransaction();
+		PrendaEntity pre = new PrendaEntity();
+		Query query = sesion.createQuery("from PrendaEntity where descripcion=? and color=? and talle=?").setParameter(0, prenda).setParameter(1, color).setParameter(2,talle);
+		pre =  (PrendaEntity) query.uniqueResult();
+		sesion.close();
+		return new Prenda(pre);	
+	}
 
 }
 	

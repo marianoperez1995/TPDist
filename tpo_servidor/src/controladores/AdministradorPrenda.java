@@ -79,4 +79,9 @@ public class AdministradorPrenda {
 		return prendasDTO;
 	}
 
+	public PrendaDTO getPrendaPorNombreYColorYTalle(String color, String prenda, String talle) {
+		Prenda pre= PrendaDAO.getInstancia().getPrendasPorNombreYColorYTalle(prenda, color, talle);
+		return pre.toDTO();
+	}
+
 }

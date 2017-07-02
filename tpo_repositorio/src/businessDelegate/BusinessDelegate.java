@@ -182,5 +182,20 @@ public class BusinessDelegate {
 	public FacturaDTO buscarFactura(FacturaDTO factSel) throws RemoteException  {
 		return objetoRemoto.buscarFactura(factSel);
 	}
+	public void cancelarPedido(PedidoClienteDTO ped) throws RemoteException  {
+		objetoRemoto.cancelarPedido(ped);
+		
+	}
+	public void confirmarClientePedido(PedidoClienteDTO ped) throws RemoteException  {
+		objetoRemoto.confirmarClientePedido(ped);
+		
+	}
+	public PrendaDTO buscarPrendaPorNombreYColorYTalle(String color, String prenda, String talle) throws RemoteException  {
+		return objetoRemoto.buscarPrendaPorNombreYColorYTalle(color,  prenda, talle);
+	}
+	public void altaPedido(PedidoClienteDTO pedido) throws RemoteException {
+		objetoRemoto.altaPedido(pedido);
+		
+	}
 
 }
