@@ -233,6 +233,7 @@ create table Pedido_Transporte (
 
 create table Facturas (
 	idFactura int identity (1,1),
+	subtotal float not null,
 	total float not null,
 	impuestos float null,
 	fechaGeneracion datetime not null,

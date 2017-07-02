@@ -14,7 +14,7 @@ insert into empleados values ('Mariano', 'Empleado','usuario6','123456', 6, 1)
 
 --cuenta corriente
 insert into CuentasCorriente values (10000, 'Pago completo', '02 de cada mes', 'Pendiente', 1000)
-insert into CuentasCorriente values (20000, 'Pago parcial', '03 de cada mes', 'Pendiente', 1000)
+insert into CuentasCorriente values (200000, 'Pago parcial', '03 de cada mes', 'Pendiente', 1000)
 insert into CuentasCorriente values (30000, 'Pago completo', '05 de cada mes', 'Pendiente', 1000)
 insert into CuentasCorriente values (45000, 'Pago parcial', '07 de cada mes', 'Pendiente', 1000)
 insert into CuentasCorriente values (15000, 'Pago completo', '09 de cada mes', 'Pendiente', 1000)
@@ -103,18 +103,20 @@ insert into prenda_areas values(2,7, 3)
 insert into prenda_areas values(2,8, 3)
 
 --pedidos
-insert into pedidosCLiente values (1, 'Pendiente', '02/06/2017 10:30','02/06/2017 10:30','02/06/2017 10:30','02/06/2017 10:30',400000)
-insert into pedidosCLiente values (2, 'Pendiente', '04/06/2017 10:30','04/06/2017 10:30','04/06/2017 10:30','04/06/2017 10:30',45)
-insert into pedidosCLiente values (3, 'Pendiente', '04/06/2017 10:30','04/06/2017 10:30','04/06/2017 10:30','04/06/2017 10:30',4500)
+insert into pedidosCLiente values (1, 'Pendiente', '02/06/2017 10:30','02/06/2017 10:30','02/06/2017 10:30','02/06/2017 10:30',193200)
+insert into pedidosCLiente values (2, 'Pendiente', '04/06/2017 10:30','04/06/2017 10:30','04/06/2017 10:30','04/06/2017 10:30',13800)
+insert into pedidosCLiente values (3, 'Pendiente', '04/06/2017 10:30','04/06/2017 10:30','04/06/2017 10:30','04/06/2017 10:30',39100)
+
 --itempedido
-insert into itempedidocliente values (1, 1, 800, 55)
-insert into itempedidocliente values (1, 2, 20, 55)
-insert into itempedidocliente values (1, 3, 20, 55)
-insert into itempedidocliente values (2, 1, 20, 55)
-insert into itempedidocliente values (2, 2, 20, 55)
-insert into itempedidocliente values (2, 3, 20, 55)
-insert into itempedidocliente values (3, 3, 800, 55)
-insert into itempedidocliente values (3, 4, 20, 55)
+--idpedido, prenda, cantidad, subtotal
+insert into itempedidocliente values (1, 1, 800, 184000)
+insert into itempedidocliente values (1, 2, 20, 4600)
+insert into itempedidocliente values (1, 3, 20, 4600)
+insert into itempedidocliente values (2, 1, 20, 4600)
+insert into itempedidocliente values (2, 2, 20, 4600)
+insert into itempedidocliente values (2, 3, 20, 4600)
+insert into itempedidocliente values (3, 3, 150, 34500)
+insert into itempedidocliente values (3, 4, 20, 4600)
 
 --iteminsumo
 insert into prenda_insumos values (1, 1, 10, 2)

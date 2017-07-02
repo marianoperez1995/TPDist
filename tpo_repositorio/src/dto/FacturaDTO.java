@@ -8,6 +8,11 @@ public class FacturaDTO  implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 7521753737564240137L;
+	private float subtotal;
+	public void setSubtotal(float subtotal) {
+		this.subtotal = subtotal;
+	}
+
 	private float total;
 	private float impuestos;
 	private Date fechaGeneracion;
@@ -68,8 +73,9 @@ public class FacturaDTO  implements Serializable{
 		return "FacturaDTO [total=" + total + ", impuestos=" + impuestos + ", fechaGeneracion=" + fechaGeneracion
 				+ ", cliente=" + cliente + ", pedido=" + pedido + ", numeroFact=" + numeroFact + "]";
 	}
-	
-	
-	
+
+	public float getSubtotal() {
+		return subtotal;
+	}
 	
 }

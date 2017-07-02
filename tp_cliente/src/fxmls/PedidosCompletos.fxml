@@ -142,7 +142,7 @@
                   <Font size="65.0" />
                </font>
             </Label>
-            <Label alignment="BOTTOM_CENTER" layoutX="37.0" layoutY="166.0" prefHeight="30.0" prefWidth="133.0" text="Datos financieros:">
+            <Label alignment="BOTTOM_CENTER" layoutX="37.0" layoutY="166.0" prefHeight="30.0" prefWidth="219.0" text="Datos financieros - Balance: $">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -154,7 +154,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="21.0" prefWidth="166.0" text="Fecha de pago:" textFill="#797979" GridPane.columnIndex="3">
+                  <Label prefHeight="21.0" prefWidth="166.0" text="Fecha de pago:" textFill="#797979" GridPane.columnIndex="2">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -164,7 +164,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="txtFechaPago" prefHeight="21.0" prefWidth="156.0" textFill="#797979" GridPane.columnIndex="4">
+                  <Label fx:id="txtFechaPago" prefHeight="21.0" prefWidth="156.0" textFill="#797979" GridPane.columnIndex="3">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -173,7 +173,6 @@
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="166.0" minWidth="10.0" prefWidth="123.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="172.0" minWidth="10.0" prefWidth="172.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="165.0" minWidth="10.0" prefWidth="46.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="155.0" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0" prefWidth="146.0" />
                </columnConstraints>
@@ -181,27 +180,11 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
             </GridPane>
-            <GridPane layoutX="399.0" layoutY="172.0" prefHeight="30.0" prefWidth="195.0">
-               <children>
-                  <Label prefHeight="21.0" prefWidth="116.0" text="Balance:" textFill="#797979">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="txtBalance" prefHeight="21.0" prefWidth="50.0" textFill="#797979" GridPane.columnIndex="1">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-               </children>
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="114.0" minWidth="10.0" prefWidth="114.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="86.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-            </GridPane>
+            <Label fx:id="txtBalance" layoutX="252.0" layoutY="176.0" prefHeight="21.0" prefWidth="155.0" textFill="#797979">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
       <Pane layoutX="656.0" layoutY="297.0" prefHeight="336.0" prefWidth="681.0" style="-fx-background-color: #e1e5ed; -fx-background-radius: 0 10 0 0;">
@@ -237,7 +220,7 @@
                   </Label>
                </children>
             </GridPane>
-            <JFXButton fx:id="btnEnviar" layoutX="425.0" layoutY="292.0" onAction="#enviarPedido" prefHeight="31.0" prefWidth="242.0" style="-fx-background-color: #8ac96a;" text="Enviar pedido" textFill="WHITE">
+            <JFXButton fx:id="btnEnviar" disable="true" layoutX="425.0" layoutY="292.0" onAction="#enviarPedido" prefHeight="31.0" prefWidth="242.0" style="-fx-background-color: #8ac96a;" text="Enviar pedido" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>

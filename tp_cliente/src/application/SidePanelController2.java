@@ -37,7 +37,7 @@ public class SidePanelController2 implements Initializable {
             	body = FXMLLoader.load(getClass().getResource("/fxmls/ClientesPendientes.fxml"));
             	MainController.bodyPanelP.getChildren().setAll(body);
             break;
-            case "Buscar cliente":
+            case "Buscar clientes":
             	body = FXMLLoader.load(getClass().getResource("/fxmls/ClienteBuscar.fxml"));
             	MainController.bodyPanelP.getChildren().setAll(body);
             break;

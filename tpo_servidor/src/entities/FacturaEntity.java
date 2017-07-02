@@ -39,6 +39,7 @@ public class FacturaEntity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int numeroFact;	
 	private float total;
+	private float subtotal;
 	private float impuestos;
 	private Date fechaGeneracion;
 	@ManyToOne
@@ -62,6 +63,14 @@ public class FacturaEntity implements Serializable {
 
 	public void setTotal(float total) {
 		this.total = total;
+	}
+	
+	public float getSubtotal() {
+		return subtotal;
+	}
+
+	public void setSubtotal(float subtotal) {
+		this.subtotal = subtotal;
 	}
 
 	public float getImpuestos() {

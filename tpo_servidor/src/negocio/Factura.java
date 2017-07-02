@@ -23,6 +23,7 @@ import persistencia.FacturaDAO;
 public class Factura {
 	private int idFactura;
 	private float total;
+	private float subtotal;
 	private float impuestos;
 	private Date fechaGeneracion;
 	private Cliente cliente;
@@ -30,6 +31,7 @@ public class Factura {
 
 	public Factura(FacturaDTO factDTO) {
 		this.total = factDTO.getTotal();
+		this.subtotal = factDTO.getSubtotal();
 		this.impuestos = factDTO.getImpuestos();
 		this.fechaGeneracion = factDTO.getFechaGeneracion();
 		this.cliente = new Cliente(factDTO.getCliente());
@@ -40,6 +42,7 @@ public class Factura {
 	public Factura(FacturaEntity fact) {
 		this.total = fact.getTotal();
 		this.impuestos = fact.getImpuestos();
+		this.subtotal = fact.getSubtotal();
 		this.fechaGeneracion = fact.getFechaGeneracion();
 		this.cliente = new Cliente(fact.getCliente());
 		this.idFactura = fact.getNumeroFact();
@@ -229,6 +232,10 @@ public class Factura {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void setSubtotal(float subtotal) {
+		this.subtotal=subtotal;
 	}
 
 }
