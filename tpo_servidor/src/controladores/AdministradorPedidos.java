@@ -41,7 +41,7 @@ public class AdministradorPedidos {
 		AdministradorStock.getInstancia().disminuirStockPorPedido(pc.getItemsPedidoCliente());
 		//el pedido aux tiene el ID del pedido generado por la base de datos
 		PedidoCliente aux=PedidoClienteDAO.getInstancia().insert(pc);
-		AdministradorProduccion.getInstancia().persistirOrdenes(aux, ordenes);
+		AdministradorProduccion.getInstancia().persistirOrdenes(ordenes);
 		pedidos.add(aux);
 		return aux.getIdPedidoCliente();
 		}

@@ -111,7 +111,29 @@ public class PedidoClienteDAO {
 		entity.setNumPedidoCliente(pedidoCliente.getIdPedidoCliente());
 		entity.setPrecioTotal(pedidoCliente.getPrecioTotal());
 		return entity;
+	}
+	
+	public PedidoClienteEntity toEntity(PedidoCliente pedido, ClienteEntity cliente) {
+		PedidoClienteEntity ped = new PedidoClienteEntity();
+		ped.setCliente(cliente);
+		ped.setEstado(pedido.getEstado());
+		ped.setFechaDespacho(pedido.getFechaDespacho());
+		ped.setFechaGeneracion(pedido.getFechaGeneracion());
+		ped.setFechaProbableDespacho(pedido.getFechaProbableDespacho());
+		ped.setFechaEntregaCliente(pedido.getFechaEntregaCliente());
+		ped.setNumPedidoCliente(pedido.getIdPedidoCliente());
+		ped.setPrecioTotal(pedido.getPrecioTotal());
+		ArrayList<ItemPedidoClienteEntity> itemsPedidoCliente = new ArrayList<ItemPedidoClienteEntity>();
+		if (pedido.getItemsPedidoCliente() != null) {
+			for (ItemPedidoCliente item : pedido.getItemsPedidoCliente()) {
+				itemsPedidoCliente.add(ItemPedidoClienteDAO.getInstancia().toE(item, ped));
+			}
 		}
+		ped.setItemsPedidoCliente(itemsPedidoCliente);
+		return ped;
+	}
+	
+	
 	public void update(PedidoCliente pedido) {
 		
 		Session sesion;

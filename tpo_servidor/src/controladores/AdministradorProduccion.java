@@ -241,7 +241,7 @@ public class AdministradorProduccion {
 			orden.setPedidoCliente(p);
 			orden.setPrenda(prenda);
 			
-			if (entry.getValue().size() <= 6){
+			if (entry.getValue().size() <= 5){
 				orden.setTipo("PARCIAL");
 			}
 			else{
@@ -276,6 +276,12 @@ public class AdministradorProduccion {
 	}
 	public void setLotes(ArrayList<Lote> lotes) {
 		this.lotes = lotes;
+	}
+
+	public void persistirOrdenes(ArrayList<OrdenProduccion> ordenes) {
+		for (OrdenProduccion o : ordenes){			
+			o.insertar();
+		}
 	}
 	
 

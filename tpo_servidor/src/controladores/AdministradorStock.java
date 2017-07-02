@@ -51,18 +51,9 @@ public class AdministradorStock {
 		
 		
 	}
+	
 	public ArrayList<OrdenProduccion> verificarStockyGenerarOrdenes(PedidoCliente pc) {
-		ArrayList<OrdenProduccion> ordenes= new ArrayList<OrdenProduccion>();
-		for(int i=0;i<pc.getItemsPedidoCliente().size();i++){
-			OrdenProduccion orden=new OrdenProduccion();
-
-			orden=AdministradorProduccion.getInstancia().generarOrdenProduccion(pc.getItemsPedidoCliente().get(i), pc);
-			if(orden!=null){
-				ordenes.add(orden);
-			}
-			
-		}
-		return ordenes;
+		return AdministradorProduccion.getInstancia().generarOrdenes(pc);		
 	}
 	
 	public void fabricar(OrdenProduccionDTO orden){
