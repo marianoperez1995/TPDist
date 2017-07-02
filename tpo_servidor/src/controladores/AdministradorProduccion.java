@@ -1,7 +1,10 @@
 package controladores;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map.Entry;
 
 import negocio.AreaProduccion;
 import negocio.ItemPedidoCliente;
@@ -9,7 +12,6 @@ import negocio.Lote;
 import negocio.OrdenProduccion;
 import negocio.PedidoCliente;
 import negocio.Prenda;
-import persistencia.OrdenProduccionDAO;
 
 public class AdministradorProduccion {
 	private ArrayList<Prenda> prendas;
@@ -183,7 +185,7 @@ public class AdministradorProduccion {
 		return list;
 	}
 */
-	public OrdenProduccion generarOrdenProduccion(ItemPedidoCliente itemPed, PedidoCliente pc) {
+/*	public OrdenProduccion generarOrdenProduccion(ItemPedidoCliente itemPed, PedidoCliente pc) {
 		if(itemPed.getCantidad()>=itemPed.getPrenda().getStockActual()){
 			if((itemPed.getCantidad()-itemPed.getPrenda().getStockActual())<=3){
 				OrdenProduccion ordenP=new OrdenProduccion();
@@ -206,18 +208,80 @@ public class AdministradorProduccion {
 			//OrdenProduccionDAO.getInstancia().insert(ordenC);
 			return ordenC;
 		}
-		return null;
+		return null;		
+	}*/
+
+	public ArrayList<OrdenProduccion> generarOrdenes(PedidoCliente p){ 
+		ArrayList<ItemPedidoCliente> items = p.getItemsPedidoCliente();
+		ArrayList<OrdenProduccion> ordenes = new ArrayList<>();
+		ArrayList<Prenda> prendasAFabricar = new ArrayList<>();
+		for (ItemPedidoCliente i : items)
+			if (i.getPrenda().getStockActual() < i.getCantidad())
+				prendasAFabricar.add(i.getPrenda());	
 		
-	}
-	public void persistirOrdenes(PedidoCliente aux, ArrayList<OrdenProduccion> ordenes) {
-		if(ordenes!=null){
-			for(int i=0;i<ordenes.size();i++){
-				ordenes.get(i).setPedidoCliente(aux);
-				OrdenProduccionDAO.getInstancia().insert(ordenes.get(i));
+		HashMap<Prenda, HashSet<String>> mapa = new HashMap<>();
+		
+		for (Prenda prenda : prendasAFabricar) {
+			HashSet<String> distintos = mapa.get(prenda);
+			
+			if (distintos == null) {
+				distintos = mapa.put(prenda, new HashSet<>());
 			}
+			
+			distintos.add("COLOR_" + prenda.getColor());
+			distintos.add("TALLE_" + prenda.getTalle());
 		}
-		
+
+		for (Entry<Prenda, HashSet<String>> entry : mapa.entrySet()){
+			OrdenProduccion orden = new OrdenProduccion();
+			Prenda prenda = entry.getKey();
+			orden.setCantidad(prenda.getCantidadAConfeccionar());
+			orden.setFecha(Calendar.getInstance().getTime());
+			orden.setPedidoCliente(p);
+			orden.setPrenda(prenda);
+			
+			if (entry.getValue().size() <= 6){
+				orden.setTipo("PARCIAL");
+			}
+			else{
+				orden.setTipo("COMPLETA");
+			}
+			ordenes.add(orden);
+		}
+		return ordenes;		
 	}
+	
+	
+	/*if (i.getCantidad() >= i.getPrenda().getStockActual()){ //si no alcanza el stock...
+				
+				OrdenProduccion orden = new OrdenProduccion();				
+				orden.setFecha(Calendar.getInstance().getTime());
+				orden.setPedidoCliente(p);
+				orden.setPrenda(i.getPrenda());
+				
+				if (){ 					
+					orden.setTipo("PARCIAL");
+					ordenes.add(orden);
+				}
+				else{	
+					orden.setCantidad(i.getPrenda().getCantidadAConfeccionar());
+					orden.setTipo("COMPLETA");
+					ordenes.add(orden);
+				}
+			}*/
+	
+	
+	
+	/*	public void persistirOrdenes(PedidoCliente aux, ArrayList<OrdenProduccion> ordenes) {
+	if(ordenes!=null){
+		for(int i=0;i<ordenes.size();i++){
+			ordenes.get(i).setPedidoCliente(aux);
+			OrdenProduccionDAO.getInstancia().insert(ordenes.get(i));
+		}
+	}
+	
+}*/
+
 	public ArrayList<Prenda> getPrendas() {
 		return prendas;
 	}

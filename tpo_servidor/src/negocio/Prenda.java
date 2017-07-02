@@ -264,7 +264,14 @@ public class Prenda {
 	}
 
 
-	
+	@Override
+	public boolean equals(Object other) {
+		if (other == null) return false;
+		if (!(other instanceof Prenda)) return false;
+		Prenda p = (Prenda) other;
+		
+		return getDescripcion().equals(p.getDescripcion());
+	}
 		
 	
 
