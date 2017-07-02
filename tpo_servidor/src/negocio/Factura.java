@@ -238,4 +238,9 @@ public class Factura {
 		this.subtotal=subtotal;
 	}
 
+	public float getSubtotal() {
+		return subtotal;
+	}
+	
+
 }

@@ -153,7 +153,6 @@ public class PedidoCliente {
 	}
 
 	public float getPrecioTotal() {
-		float total = 0;
 		return this.precioTotal;
 	}
 
