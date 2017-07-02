@@ -225,7 +225,8 @@ public class AdministradorProduccion {
 			HashSet<String> distintos = mapa.get(prenda);
 			
 			if (distintos == null) {
-				distintos = mapa.put(prenda, new HashSet<>());
+				distintos = new HashSet<>();
+				mapa.put(prenda, distintos);
 			}
 			
 			distintos.add("COLOR_" + prenda.getColor());
@@ -233,7 +234,7 @@ public class AdministradorProduccion {
 		}
 
 		for (Entry<Prenda, HashSet<String>> entry : mapa.entrySet()){
-			OrdenProduccion orden = new OrdenProduccion();
+ 			OrdenProduccion orden = new OrdenProduccion();
 			Prenda prenda = entry.getKey();
 			orden.setCantidad(prenda.getCantidadAConfeccionar());
 			orden.setFecha(Calendar.getInstance().getTime());
@@ -251,36 +252,6 @@ public class AdministradorProduccion {
 		return ordenes;		
 	}
 	
-	
-	/*if (i.getCantidad() >= i.getPrenda().getStockActual()){ //si no alcanza el stock...
-				
-				OrdenProduccion orden = new OrdenProduccion();				
-				orden.setFecha(Calendar.getInstance().getTime());
-				orden.setPedidoCliente(p);
-				orden.setPrenda(i.getPrenda());
-				
-				if (){ 					
-					orden.setTipo("PARCIAL");
-					ordenes.add(orden);
-				}
-				else{	
-					orden.setCantidad(i.getPrenda().getCantidadAConfeccionar());
-					orden.setTipo("COMPLETA");
-					ordenes.add(orden);
-				}
-			}*/
-	
-	
-	
-	/*	public void persistirOrdenes(PedidoCliente aux, ArrayList<OrdenProduccion> ordenes) {
-	if(ordenes!=null){
-		for(int i=0;i<ordenes.size();i++){
-			ordenes.get(i).setPedidoCliente(aux);
-			OrdenProduccionDAO.getInstancia().insert(ordenes.get(i));
-		}
-	}
-	
-}*/
 
 	public ArrayList<Prenda> getPrendas() {
 		return prendas;
