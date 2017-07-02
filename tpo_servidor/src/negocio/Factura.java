@@ -4,15 +4,20 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
@@ -139,41 +144,49 @@ public class Factura {
 	}
 
 	public void generarPDF(int id) {
-		String arch = "Factura N° " + id + ".pdf";
+		String arch = "Factura NÂ° " + id + ".pdf";
 		Document doc = new Document();
 		try {
+			DateFormat df = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+			
 			PdfWriter.getInstance(doc, new FileOutputStream(new File(arch)));
 			doc.open();
-			Font titulo = new Font(Font.FontFamily.TIMES_ROMAN, 25, Font.BOLD);
-			Paragraph p = new Paragraph("Factura N° " + id, titulo);
+			Font titulo = new Font(Font.FontFamily.HELVETICA, 20, Font.BOLD);
+			Font titulo2 = new Font(Font.FontFamily.HELVETICA, 17, Font.BOLD);
+			Paragraph p = new Paragraph("FACTURA NÂ° 0001-0000" + id, titulo);
+			p.setAlignment(Element.ALIGN_RIGHT);
 			Image logo = Image.getInstance("src/archivos/afipylogo.png");
-
+			
 			logo.setAlignment(Element.ALIGN_CENTER);
-			p.setAlignment(Element.ALIGN_LEFT);
-
+			logo.scaleToFit(550f, 550f);
+			Date hoy = Calendar.getInstance().getTime();
+			Paragraph p3 = new Paragraph("Fecha: " + df.format(hoy));
 			doc.add(logo);
 			doc.add(p);
-
-			Date hoy = Calendar.getInstance().getTime();
-
-			doc.add(new Paragraph("Pedido N° " + this.pedido.getIdPedidoCliente()));
-			doc.add(new Paragraph("                        "));
+			p3.setAlignment(Element.ALIGN_RIGHT);
+			doc.add(p3);
+			
+			doc.add(new Paragraph("Datos del cliente", titulo2));
 			doc.add(new Paragraph("Nombre cliente: " + this.cliente.getNombre()));
-			doc.add(new Paragraph("Fecha: " + hoy.toString()));
 			doc.add(new Paragraph("Direccion cliente: " + this.cliente.getDireccion()));
 			doc.add(new Paragraph("CUIT: " + this.cliente.getCuit()));
 			doc.add(new Paragraph("Telefono: " + this.cliente.getTelefono()));
 			doc.add(new Paragraph("Sucursal: " + this.cliente.getSucursal().getNombre()));
-
-			Paragraph p2 = new Paragraph();
 			doc.add(new Paragraph("                        "));
+			Paragraph p2 = new Paragraph();
+			doc.add(new Paragraph("Detalle de la compra", titulo2));
+			doc.add(new Paragraph("DescripciÃ³n: Pedido NÂ° " + this.pedido.getIdPedidoCliente()));
+
 			p2.add("Items del pedido:");
 			p2.setAlignment(Element.ALIGN_LEFT);
 			doc.add(p2);
 			doc.add(new Paragraph("                        "));
 
-			PdfPTable tabla = new PdfPTable(4);
+			PdfPTable tabla = new PdfPTable(6);
+			tabla.setWidthPercentage(100);
 			tabla.addCell("Prenda");
+			tabla.addCell("Color");
+			tabla.addCell("Talle");
 			tabla.addCell("Precio Unitario");
 			tabla.addCell("Cantidad");
 			tabla.addCell("Subtotal");
@@ -181,9 +194,11 @@ public class Factura {
 
 			float total = 0;
 			for (ItemPedidoCliente item : this.pedido.getItemsPedidoCliente()) {
-				PdfPTable t = new PdfPTable(4);
-
+				PdfPTable t = new PdfPTable(6);
+				t.setWidthPercentage(100);
 				t.addCell(item.getPrenda().getDescripcion());
+				t.addCell(item.getPrenda().getColor());
+				t.addCell(item.getPrenda().getTalle());
 				t.addCell(String.valueOf(item.getPrenda().getPrecio()));
 				t.addCell(String.valueOf(item.getCantidad()));
 				t.addCell(String.valueOf(item.getPrenda().getPrecio() * item.getCantidad()));
@@ -193,9 +208,13 @@ public class Factura {
 			}
 			// SI ES QUE MANEJABAMOS IBA/DESCUENTOS PONGO ESTO, BORRAR LOS Q NO
 			// HAGNA FALTA
+			PdfPCell cell = new PdfPCell(new Phrase(""));
+			cell.setBackgroundColor(BaseColor.GRAY);
+			
 			PdfPTable filaSubTotal = new PdfPTable(4);
-			filaSubTotal.addCell("");
-			filaSubTotal.addCell("");
+			filaSubTotal.setWidthPercentage(100);
+			filaSubTotal.addCell(cell);
+			filaSubTotal.addCell(cell);
 			filaSubTotal.addCell("SUBTOTAL");
 			filaSubTotal.addCell(String.valueOf(total));
 			doc.add(filaSubTotal);
@@ -208,8 +227,9 @@ public class Factura {
 			 */
 			//////////////////
 			PdfPTable filaIva = new PdfPTable(4);
-			filaIva.addCell("");
-			filaIva.addCell("");
+			filaIva.setWidthPercentage(100);
+			filaIva.addCell(cell);
+			filaIva.addCell(cell);
 			filaIva.addCell("IVA (21%)");
 			float tasaI = (float) 0.21;
 			float iva = tasaI * total;
@@ -218,13 +238,18 @@ public class Factura {
 			//////////////////
 			// Total desp de descuentos e iva
 			PdfPTable filaTotal = new PdfPTable(4);
-			filaTotal.addCell("");
-			filaTotal.addCell("");
+			filaTotal.setWidthPercentage(100);
+			filaTotal.addCell(cell);
+			filaTotal.addCell(cell);
 			filaTotal.addCell("TOTAL");
 			// float totalFinal = total-descuento+iva;
 			float totalFinal = total + iva;
 			filaTotal.addCell(String.valueOf(totalFinal));
 			doc.add(filaTotal);
+			Image fin = Image.getInstance("src/archivos/fondo.png");
+			fin.setAlignment(Element.ALIGN_CENTER);
+			fin.scaleToFit(550f, 550f);
+			doc.add(fin);
 			doc.close();
 
 		} catch (FileNotFoundException | DocumentException e) {

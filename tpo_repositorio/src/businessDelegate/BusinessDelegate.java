@@ -13,6 +13,7 @@ import dto.CuentaCorrienteDTO;
 import dto.EmpleadoDTO;
 import dto.FacturaDTO;
 import dto.OrdenProduccionDTO;
+import dto.PagoDTO;
 import dto.PedidoClienteDTO;
 import dto.PrendaDTO;
 import dto.ReclamoDTO;
@@ -196,6 +197,12 @@ public class BusinessDelegate {
 	public void altaPedido(PedidoClienteDTO pedido) throws RemoteException {
 		objetoRemoto.altaPedido(pedido);
 		
+	}
+	public ArrayList<PagoDTO> buscarPagos(ClienteDTO seleccionado) throws RemoteException  {
+		return objetoRemoto.buscarPagos(seleccionado);
+	}
+	public void agregarPago(PagoDTO pago)  throws RemoteException  {
+		objetoRemoto.agregarPago(pago);
 	}
 
 }

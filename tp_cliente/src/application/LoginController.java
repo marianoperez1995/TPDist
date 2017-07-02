@@ -1,6 +1,8 @@
 package application;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
@@ -10,11 +12,13 @@ import com.jfoenix.controls.JFXTextField;
 import businessDelegate.BusinessDelegate;
 import dto.EmpleadoDTO;
 import dto.SucursalDTO;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -31,53 +35,97 @@ public class LoginController {
     private Label lblStatus;
     
     @FXML
-    private JFXPasswordField txtPassword;
-
+    private Label txtOblig1;
+    
     @FXML
-    private JFXSpinner loginSpinner;
-        
+    private ProgressIndicator progreso;
+    
+    @FXML
+    private Label txtOblig2;
+    
+    @FXML
+    private JFXPasswordField txtPassword;
+       
+    String usuario;
+    String password;
+    int idt;
+    int permisos;
+    SucursalDTO suc;
+    
     @FXML
     void makeLogin(ActionEvent event) throws InterruptedException, IOException {
-    	String usuario = txtUser.getText();
-    	String password = txtPassword.getText();
-    	EmpleadoDTO empleado = null;
-    	EmpleadoDTO env = new EmpleadoDTO();
-    	
-    	env.setUsuario(usuario);
-    	env.setPass(password);
+    	btnLogin.setDisable(true);
+    	usuario = txtUser.getText();
+    	password = txtPassword.getText();
+		txtOblig1.setVisible(false);
+		txtOblig2.setVisible(false);
+    	if(!usuario.equalsIgnoreCase("") && !password.equalsIgnoreCase("")){
+	    	EmpleadoDTO empleado = null;
+	    	EmpleadoDTO env = new EmpleadoDTO();
+	    	
+	    	env.setUsuario(usuario);
+	    	env.setPass(password);
 
-    	loginSpinner.setVisible(true);	
-    	empleado = BusinessDelegate.getInstancia().buscarLogin(env);
-     	
-    	if(empleado != null){
-    		int idt = empleado.getIdTrabajador();
-			int permisos = empleado.getPermisos();
-			usuario = empleado.getUsuario();
-			SucursalDTO suc = empleado.getSucursal();
-			
-    		lblStatus.setText("Login correcto. Iniciando sesión");
-    		loginSpinner.setVisible(false);
-		
-    		//obtengo la escena del login y la cierro
-    		Stage loginStage = (Stage) btnLogin.getScene().getWindow();
-    		loginStage.hide();
-    		
-    		//creo la escena nueva para el menu y la muestro en pantalla completa
-    		Stage menuStage = new Stage();
-    		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmls/MainWin.fxml"));
-    		menuStage.setScene(new Scene((AnchorPane) loader.load()));
-			
-    		MainController controller = loader.<MainController>getController();
-    		controller.initData(usuario, idt, permisos, suc);
-			
-    		//menuStage.setFullScreen(true);
-			//menuStage.setFullScreenExitHint("");
-			menuStage.initStyle(StageStyle.UNDECORATED);
-			menuStage.show();
-    		
+	    	empleado = BusinessDelegate.getInstancia().buscarLogin(env);
+	     	
+	    	if(empleado != null){
+	    		idt = empleado.getIdTrabajador();
+				permisos = empleado.getPermisos();
+				usuario = empleado.getUsuario();
+				suc = empleado.getSucursal();
+				
+	    		lblStatus.setText("Login correcto. Iniciando sesión");
+	    		progreso.setVisible(true);
+	    		
+	    		final int max = 35000000;
+	    		
+	    		Task task = new Task<Void>() {
+	    		    @Override public Void call() throws IOException {
+	    		        for (int i = 1; i <= max; i++) {
+	    		            updateProgress(i, max);
+	    		        }
+	    				return null;
+	    		    }
+	    		};
+	    		
+	    		progreso.progressProperty().bind(task.progressProperty());
+	    		Thread t = new Thread(task);
+	    		t.start();
+	    		
+	    		loguear();
+	    		
+	    	}else{
+	    		lblStatus.setText("Usuario o contraseña incorrectos");
+	    		btnLogin.setDisable(false);
+	    	}
     	}else{
-    		loginSpinner.setVisible(false);
-    		lblStatus.setText("Usuario o contraseña incorrectos");
+    		if(usuario.equalsIgnoreCase(""))
+    		txtOblig1.setVisible(true);
+    		
+    		if(password.equalsIgnoreCase(""))
+    		txtOblig2.setVisible(true);
+    		
+    		btnLogin.setDisable(false);
     	}
     }
+    
+    public void loguear() throws IOException{
+		//obtengo la escena del login y la cierro
+		Stage loginStage = (Stage) btnLogin.getScene().getWindow();
+		loginStage.hide();
+		
+		//creo la escena nueva para el menu y la muestro en pantalla completa
+		Stage menuStage = new Stage();
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmls/MainWin.fxml"));
+		menuStage.setScene(new Scene((AnchorPane) loader.load()));
+		
+		MainController controller = loader.<MainController>getController();
+		controller.initData(usuario, idt, permisos, suc);
+		
+		//menuStage.setFullScreen(true);
+		//menuStage.setFullScreenExitHint("");
+		menuStage.initStyle(StageStyle.UNDECORATED);
+		menuStage.show();
+    }
+    
 }

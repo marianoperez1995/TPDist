@@ -23,12 +23,12 @@
       </Pane>
       <Pane layoutX="399.0" layoutY="183.0" prefHeight="571.0" prefWidth="569.0" style="-fx-background-color: #ffffff;">
          <children>
-            <JFXTextField fx:id="txtUser" focusColor="#f67280" labelFloat="true" layoutX="82.0" layoutY="269.0" prefHeight="31.0" prefWidth="406.0" promptText="Nombre de usuario">
+            <JFXTextField fx:id="txtUser" focusColor="#355c7d" labelFloat="true" layoutX="82.0" layoutY="269.0" prefHeight="31.0" prefWidth="406.0" promptText="Nombre de usuario">
                <font>
                   <Font size="16.0" />
                </font>
             </JFXTextField>
-            <JFXPasswordField fx:id="txtPassword" focusColor="#f67280" labelFloat="true" layoutX="82.0" layoutY="336.0" prefHeight="31.0" prefWidth="406.0" promptText="Contraseña">
+            <JFXPasswordField fx:id="txtPassword" focusColor="#355c7d" labelFloat="true" layoutX="82.0" layoutY="336.0" prefHeight="31.0" prefWidth="406.0" promptText="Contraseña">
                <font>
                   <Font size="16.0" />
                </font>
@@ -47,7 +47,17 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <JFXSpinner fx:id="loginSpinner" layoutX="264.0" layoutY="443.0" radius="17.0" startingAngle="0.0" visible="false" />
+            <Label fx:id="txtOblig1" layoutX="497.0" layoutY="276.0" text="Este campo es obligatorio" textFill="RED" visible="false">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="txtOblig2" layoutX="497.0" layoutY="349.0" text="Este campo es obligatorio" textFill="RED" visible="false">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <ProgressIndicator fx:id="progreso" layoutX="268.0" layoutY="452.0" progress="0.0" visible="false" />
          </children>
          <effect>
             <DropShadow blurType="GAUSSIAN" />
