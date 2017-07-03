@@ -46,6 +46,7 @@ public class BultoDAO {
 		bultoE.setFechaGeneracion(Calendar.getInstance().getTime());
 		bultoE.setUbicacion(UbicacionDAO.getInstancia().toEntity(bul.getUbicacion()));
 		bultoE.setPrenda(PrendaDAO.getInstancia().toEntity(bul.getPrenda()));
+		return bultoE;
 	}	
 	
 	@SuppressWarnings("unchecked")
