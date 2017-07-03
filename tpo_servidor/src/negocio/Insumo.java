@@ -29,8 +29,10 @@ public class Insumo {
 		this.cantAComprar = insumo.getCantAComprar();
 		this.fechaRecepcion = insumo.getFechaRecepcion();
 		this.lotes = new ArrayList<>();
-		for (LoteDTO l : insumo.getLotes()){
-			this.lotes.add(new Lote(l));
+		if (insumo.getLotes() != null){
+			for (LoteDTO l : insumo.getLotes()){
+				this.lotes.add(new Lote(l));
+			}
 		}
 	}
 

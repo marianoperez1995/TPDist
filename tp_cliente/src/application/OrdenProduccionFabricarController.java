@@ -110,7 +110,7 @@ public class OrdenProduccionFabricarController implements Initializable{
 		});
     	
     	estadoCol = new JFXTreeTableColumn<>("Estado");
-    	estadoCol.setPrefWidth(280);
+    	estadoCol.setPrefWidth(140);
     	estadoCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<OrdenesTabla,String>, ObservableValue<String>>() {
     		
 			@Override
@@ -293,7 +293,9 @@ public class OrdenProduccionFabricarController implements Initializable{
 				    vistaTabla2.setShowRoot(false);
 				    
 				    if(seleccionado.getEstado().equalsIgnoreCase("Pendiente confirmacion"))
-    	       		btnEnviar.setDisable(false);
+    	       		btnEnviar.setDisable(true);
+				    else
+				    btnEnviar.setDisable(false);
     	        }
 	         }
     	     });

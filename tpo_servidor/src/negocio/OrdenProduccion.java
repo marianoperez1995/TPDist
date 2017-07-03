@@ -132,6 +132,7 @@ public  class OrdenProduccion {
 		nuevo.setCantidad(this.cantidad);
 		nuevo.setFecha(this.fecha);
 		nuevo.setPrenda(this.prenda.toDTO());
+		nuevo.setEstado(this.estado);
 		nuevo.setPedidoCliente(this.pedidoCliente.toDTO());
 		nuevo.setTipo(this.tipo);
 		return nuevo;

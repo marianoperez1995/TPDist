@@ -55,11 +55,19 @@ public class BultoDAO {
 	@SuppressWarnings("unchecked")
 	public ArrayList<Bulto> getBultos(int idPrenda) {
 		ArrayList<Bulto> bultos = new ArrayList<>();
+		ArrayList<BultoEntity> bultoaux = new ArrayList<>();
+		
 		Session sesion = sf.openSession();
 		sesion.beginTransaction();
 		Query query = (Query) sesion.createQuery("from BultoEntity where idPrenda = ?")
 				.setParameter(0, idPrenda);
-		bultos = (ArrayList<Bulto>) ((org.hibernate.Query) query).list();
+
+		bultoaux = (ArrayList<BultoEntity>) ((org.hibernate.Query) query).list();
+		
+		for(BultoEntity b : bultoaux){
+			bultos.add(new Bulto(b));
+		}
+		
 		sesion.close();		
 		return bultos;
 	}

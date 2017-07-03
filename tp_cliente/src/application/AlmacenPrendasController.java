@@ -94,7 +94,6 @@ public class AlmacenPrendasController implements Initializable{
     JFXTreeTableColumn<PrendaTabla, String> estadoCol;
     JFXTreeTableColumn<PrendaTabla, String> talleCol;
     JFXTreeTableColumn<PrendaTabla, String> colorCol;
-    JFXTreeTableColumn<BultoTabla, String> idBultoCol;
     JFXTreeTableColumn<BultoTabla, String> fechaBultoCol;
     JFXTreeTableColumn<BultoTabla, String> cantCol;
     JFXTreeTableColumn<BultoTabla, String> ubicacionCol;
@@ -168,15 +167,6 @@ public class AlmacenPrendasController implements Initializable{
     	talleCol.impl_setReorderable(false);
     	colorCol.impl_setReorderable(false);
     	
-    	idBultoCol = new JFXTreeTableColumn<>("ID");
-    	idBultoCol.setPrefWidth(40);
-    	idBultoCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<BultoTabla,String>, ObservableValue<String>>() {
-    		
-			@Override
-			public ObservableValue<String> call(CellDataFeatures<BultoTabla, String> param) {
-				return param.getValue().getValue().ubicacion;
-			}
-		});
     	
     	fechaBultoCol = new JFXTreeTableColumn<>("Fecha de generación");
     	fechaBultoCol.setPrefWidth(230);
@@ -211,12 +201,10 @@ public class AlmacenPrendasController implements Initializable{
     	cantCol.setResizable(false);
     	ubicacionCol.setResizable(false);
     	fechaBultoCol.setResizable(false);
-    	idBultoCol.setResizable(false);
     	
     	cantCol.impl_setReorderable(false);
     	ubicacionCol.impl_setReorderable(false);
     	fechaBultoCol.impl_setReorderable(false);
-    	idBultoCol.impl_setReorderable(false);
     	
     	ObservableList<PrendaTabla> pedidos = FXCollections.observableArrayList();
     	ObservableList<BultoTabla> itemsPedido = FXCollections.observableArrayList();
@@ -234,7 +222,7 @@ public class AlmacenPrendasController implements Initializable{
     	
     	//para manipular los datos de la tabla con el JFoenix se usa RecirsiveTreeItem. RecursiveTreeObject::getChildren Callback para obtener cada cliente de la tabla
     	final TreeItem<BultoTabla> root2 = new RecursiveTreeItem<BultoTabla>(itemsPedido, RecursiveTreeObject::getChildren);
-    	vistaTabla2.getColumns().setAll(idBultoCol, fechaBultoCol, cantCol, ubicacionCol);
+    	vistaTabla2.getColumns().setAll(ubicacionCol,fechaBultoCol, cantCol );
     	vistaTabla2.setRoot(root2);
     	vistaTabla2.setShowRoot(false);
     	
@@ -324,11 +312,11 @@ public class AlmacenPrendasController implements Initializable{
 				    
 					DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 				    for(BultoDTO b : bultos){
-				    	itemsPedido.add(new BultoTabla(Integer.toString(b.getCodigoBulto()),df.format(b.getFechagen()),Integer.toString(b.getCantidad()),b.getUbicacion().getCodigo()));
+				    	itemsPedido.add(new BultoTabla(b.getUbicacion().getCodigo(),df.format(b.getFechagen()),Integer.toString(b.getCantidad())));
 				    }
 				    
 				    final TreeItem<BultoTabla> root2 = new RecursiveTreeItem<BultoTabla>(itemsPedido, RecursiveTreeObject::getChildren);
-			    	vistaTabla2.getColumns().setAll(idBultoCol, fechaBultoCol, cantCol, ubicacionCol);
+			    	vistaTabla2.getColumns().setAll(ubicacionCol,fechaBultoCol, cantCol );
 				    vistaTabla2.setRoot(root2);
 				    vistaTabla2.setShowRoot(false);
     	        }
@@ -349,7 +337,7 @@ public class AlmacenPrendasController implements Initializable{
 	    
     	ObservableList<BultoTabla> itemsPedido = FXCollections.observableArrayList();
 	    final TreeItem<BultoTabla> root2 = new RecursiveTreeItem<BultoTabla>(itemsPedido, RecursiveTreeObject::getChildren);
-    	vistaTabla2.getColumns().setAll(idBultoCol, fechaBultoCol, cantCol, ubicacionCol);
+    	vistaTabla2.getColumns().setAll(ubicacionCol,fechaBultoCol, cantCol );
 	    vistaTabla2.setRoot(root2);
 	    vistaTabla2.setShowRoot(false);
 	    
@@ -412,21 +400,16 @@ public class AlmacenPrendasController implements Initializable{
     }
     
     class BultoTabla extends RecursiveTreeObject<BultoTabla>{
-    	StringProperty idBulto;
     	StringProperty fechaGen;
     	StringProperty cant;
     	StringProperty ubicacion;
     	
-    	public BultoTabla(String idBulto, String fechaGen, String cant, String ubicacion){
-    		this.idBulto = new SimpleStringProperty(idBulto);
+    	public BultoTabla(String ubicacion, String fechaGen, String cant){
     		this.fechaGen = new SimpleStringProperty(fechaGen);	//discontinuo o en produccion
     		this.cant = new SimpleStringProperty(cant);
     		this.ubicacion = new SimpleStringProperty(ubicacion);
     	}
     	
-    	public String getIdBulto(){
-    		return idBulto.get();
-    	}
     	
     	public String getFechaGen(){
     		return fechaGen.get();

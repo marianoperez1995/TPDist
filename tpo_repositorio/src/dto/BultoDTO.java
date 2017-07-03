@@ -46,6 +46,10 @@ public class BultoDTO implements Serializable {
 		return ubicacion;
 	}
 
+	public void setFechaGen(Date fechaGen) {
+		this.fechaGen = fechaGen;
+	}
+
 	public void setUbicacion(UbicacionDTO dto) {
 		this.ubicacion = dto;	
 	}

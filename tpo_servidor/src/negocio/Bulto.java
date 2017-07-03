@@ -1,6 +1,10 @@
 package negocio;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import dto.BultoDTO;
+import entities.BultoEntity;
 import persistencia.BultoDAO;
 
 public class Bulto {
@@ -8,11 +12,19 @@ public class Bulto {
 	private Prenda prenda;
 	private int cantidad;
 	private Ubicacion ubicacion;
-	
+	private Date fechaGeneracion;
 	
 	
 	public Bulto() {
 		this.ubicacion = new Ubicacion();
+	}
+
+	public Bulto(BultoEntity b) {
+		this.idBulto = b.getIdBulto();
+		this.prenda = new Prenda(b.getPrenda());
+		this.cantidad=b.getCantidad();
+		this.fechaGeneracion = b.getFechaGeneracion();
+		this.ubicacion = new Ubicacion(b.getUbicacion());
 	}
 
 	public int getIdBulto() {
@@ -72,6 +84,7 @@ public class Bulto {
 	public BultoDTO toDTO(){
 		BultoDTO bul=  new BultoDTO();
 		bul.setCantidad(this.cantidad);
+		bul.setFechaGen(this.fechaGeneracion);
 		bul.setCodigoBulto(idBulto);
 		bul.setPrenda(prenda.toDTO());
 		bul.setUbicacion(ubicacion.toDTO());

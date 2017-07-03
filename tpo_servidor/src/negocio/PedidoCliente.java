@@ -270,6 +270,7 @@ public class PedidoCliente {
 		OrdenProduccion orden= new OrdenProduccion();
 		orden.setFecha(Calendar.getInstance().getTime());
 		orden.setPedidoCliente(this);
+		orden.setEstado("Alta");
 		orden.setTipo("OPP");
 		orden.setPrenda(item.getPrenda());
 		orden.setCantidad(item.getCantidad()-item.getPrenda().getStockActual());

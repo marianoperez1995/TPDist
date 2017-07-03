@@ -107,11 +107,11 @@ public class PedidoClienteDAO {
 		Session sesion;
 		sesion = sf.openSession();
 		sesion.beginTransaction();
-		Query query = sesion.createQuery("update from  PedidoClienteEntity set estado=?, causa= ?, fechaEstimadaDespacho = ?, fechaEnregaCliente = ? where idPedidoCliente=?")
+		Query query = sesion.createQuery("update from  PedidoClienteEntity set estado=?, causa= ?, fechaEstimadaDespacho = ?, fechaEntregaCliente = ? where idPedidoCliente=?")
 				.setParameter(0, pedido.getEstado()).setParameter(1, pedido.getCausa())
-				.setParameter(2, pedido.getIdPedidoCliente())
-				.setParameter(3, pedido.getFechaProbableDespacho())
-				.setParameter(4, pedido.getFechaEntregaCliente());
+				.setParameter(2, pedido.getFechaProbableDespacho())
+				.setParameter(3, pedido.getFechaEntregaCliente())
+				.setParameter(4, pedido.getIdPedidoCliente());
 		query.executeUpdate();
 		sesion.getTransaction().commit();
 		sesion.close();
