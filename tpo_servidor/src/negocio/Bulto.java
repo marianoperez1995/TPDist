@@ -10,6 +10,11 @@ public class Bulto {
 	private Ubicacion ubicacion;
 	
 	
+	
+	public Bulto() {
+		this.ubicacion = new Ubicacion();
+	}
+
 	public int getIdBulto() {
 		return idBulto;
 	}

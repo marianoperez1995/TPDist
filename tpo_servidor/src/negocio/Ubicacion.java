@@ -2,6 +2,7 @@ package negocio;
 
 import dto.UbicacionDTO;
 import entities.UbicacionEntity;
+import persistencia.UbicacionDAO;
 
 public class Ubicacion {
 	protected String codigo;
@@ -14,6 +15,9 @@ public class Ubicacion {
 	public Ubicacion(UbicacionDTO ue) {
 		this.estado = ue.getEstado();
 		this.codigo = ue.getCodigo();
+	}
+	public Ubicacion() {
+		// TODO Auto-generated constructor stub
 	}
 	public UbicacionDTO toDTO() {
 		UbicacionDTO ubiDTO = new UbicacionDTO();
@@ -36,6 +40,10 @@ public class Ubicacion {
 
 	public void setEstado(String estado) {
 		this.estado = estado;
+	}
+	public void update() {
+		UbicacionDAO.getInstancia().update(this);
+		
 	}
 
 	

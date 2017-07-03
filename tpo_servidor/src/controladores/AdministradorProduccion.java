@@ -19,6 +19,7 @@ import negocio.PedidoCliente;
 import negocio.Prenda;
 import persistencia.InsumoDAO;
 import persistencia.ItemPrendaAreaDAO;
+import persistencia.ItemPrendaInsumoDAO;
 
 public class AdministradorProduccion {
 	private ArrayList<Prenda> prendas;
@@ -68,10 +69,10 @@ public class AdministradorProduccion {
 			//Si hay 6 o menos strings diferentes (entre la combinacion de colores y talles), lo toma como parcial
 			//no se repiten los valores, porque es un hashset
 			if (entry.getValue().size() <= 6){
-				orden.setTipo("PARCIAL");
+				orden.setTipo("OPP");
 			}
 			else{
-				orden.setTipo("COMPLETA");
+				orden.setTipo("OPC");
 			}
 			ordenes.add(orden);
 		}
@@ -99,7 +100,7 @@ public class AdministradorProduccion {
 						else{
 							AreaProduccion area = item.getArea();
 							for (LineaProduccion l : area.getLineasProduccion()){
-								minutosTotal = minutosTotal - l.getTiempoDeUso();
+								minutosTotal = minutosTotal - item.getMinutoEnArea();
 								try {
 									if (!l.isEstado()){//no esta en uso la linea
 										if (esFabricable (i.getPrenda(), i.getCantidad())){ //alcanzan los insumos
@@ -107,7 +108,9 @@ public class AdministradorProduccion {
 											l.setHoraInicio(Calendar.getInstance().getTime());
 											l.setEstado(true);			
 											l.actualizar();
-											Thread.sleep((long) (l.getTiempoDeUso() * 1000 *5)); //paso el tiempo, produjo la prenda en su cantidad maxima
+											long tiempo = item.getMinutoEnArea() *10;
+											System.out.println("espera por "+tiempo +" ms");
+											Thread.sleep(tiempo); //paso el tiempo, produjo la prenda en su cantidad maxima
 											//agregarle *60 para q sean minutos
 											l.setEstado(false);		
 											l.actualizar();
@@ -136,9 +139,8 @@ public class AdministradorProduccion {
 	}
 
 	private boolean esFabricable(Prenda prenda, int cantidad) {
-		ArrayList<ItemPrendaInsumo> insumosNecesarios = prenda.getInsumos();
+		ArrayList<ItemPrendaInsumo> insumosNecesarios = ItemPrendaInsumoDAO.getInstancia().obtenerTodosDePrenda(prenda.getIdPrenda());
 		HashMap<Insumo, Float> mapa = new HashMap<>();
-		
 		for (ItemPrendaInsumo i : insumosNecesarios){
 			mapa.put(i.getInsumo(), i.getCantidad());
 		}

@@ -66,8 +66,10 @@ public class PrendaDAO  {
 		PrendaEntity p = (PrendaEntity) sesion.createQuery("from PrendaEntity where idPrenda = ? ")
 				.setParameter(0, idP)				
 				.uniqueResult();
+		Prenda prenda = new Prenda(p);
+		prenda.setInsumos(ItemPrendaInsumoDAO.getInstancia().obtenerTodosDePrenda(prenda.getIdPrenda()));
 		sesion.close();
-		return new Prenda(p);
+		return prenda;
 	}
 	
 	
@@ -103,6 +105,10 @@ public class PrendaDAO  {
 		for (PrendaEntity ee : pre){
 			prendas.add(new Prenda(ee));
 		}
+		for (Prenda p : prendas){
+			p.setInsumos(ItemPrendaInsumoDAO.getInstancia().obtenerTodosDePrenda(p.getIdPrenda()));
+		}
+		
 		return prendas;		
 	}
 	
@@ -137,6 +143,9 @@ public class PrendaDAO  {
 			for (PrendaEntity ee : pre){
 				prendas.add(new Prenda(ee));
 			}
+			for (Prenda p : prendas){
+				p.setInsumos(ItemPrendaInsumoDAO.getInstancia().obtenerTodosDePrenda(p.getIdPrenda()));
+			}
 			return prendas;		
 		}
 	
@@ -152,6 +161,9 @@ public class PrendaDAO  {
 		for (PrendaEntity ee : pre){
 			prendas.add(new Prenda(ee));
 		}
+		for (Prenda p : prendas){
+			p.setInsumos(ItemPrendaInsumoDAO.getInstancia().obtenerTodosDePrenda(p.getIdPrenda()));
+		}
 		return prendas;	
 	}
 	public Prenda getPrendasPorNombreYColorYTalle(String prenda, String color, String talle) {
@@ -161,7 +173,9 @@ public class PrendaDAO  {
 		Query query = sesion.createQuery("from PrendaEntity where descripcion=? and color=? and talle=?").setParameter(0, prenda).setParameter(1, color).setParameter(2,talle);
 		pre =  (PrendaEntity) query.uniqueResult();
 		sesion.close();
-		return new Prenda(pre);	
+		Prenda prend = new Prenda(pre);
+		prend.setInsumos(ItemPrendaInsumoDAO.getInstancia().obtenerTodosDePrenda(prend.getIdPrenda()));
+		return prend;	
 	}
 
 }

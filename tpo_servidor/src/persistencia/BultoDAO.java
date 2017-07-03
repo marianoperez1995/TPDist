@@ -34,7 +34,13 @@ public class BultoDAO {
 		Session sesion;
 		sesion = sf.openSession();
 		sesion.beginTransaction();
+		UbicacionEntity ue = UbicacionDAO.getInstancia().obtenerPrimeraUbicacionLibre();
+		be.setUbicacion(ue);
+		Ubicacion u = UbicacionDAO.getInstancia().get(be.getUbicacion().getCodigo());
+		u.setEstado("Ocupado");
+		u.update();
 		sesion.save(be);
+	
 		sesion.getTransaction().commit();
 		sesion.close();
 	}
@@ -43,7 +49,7 @@ public class BultoDAO {
 		BultoEntity bultoE = new BultoEntity();
 		bultoE.setCantidad(bul.getCantidad());
 		bultoE.setFechaGeneracion(Calendar.getInstance().getTime());
-		bultoE.setUbicacion(UbicacionDAO.getInstancia().toEntity(bul.getUbicacion()));
+		//bultoE.setUbicacion(UbicacionDAO.getInstancia().toEntity(bul.getUbicacion()));
 		bultoE.setPrenda(PrendaDAO.getInstancia().toEntity(bul.getPrenda()));
 		return bultoE;
 	}	
