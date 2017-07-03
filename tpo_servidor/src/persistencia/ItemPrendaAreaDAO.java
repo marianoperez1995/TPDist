@@ -1,5 +1,8 @@
 package persistencia;
 
+import java.util.ArrayList;
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -35,6 +38,19 @@ public class ItemPrendaAreaDAO  {
 		sesion.close();		
 		return new ItemPrendaArea(item);
 	}
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList<ItemPrendaArea> obtenerPorPrenda(int idPrenda) {
+		Session sesion = sf.openSession();
+		sesion.beginTransaction();
+		Query query = (Query) sesion.createQuery("from ItemPrendaAreaEntity where idPrenda = ?")
+				.setParameter(0, idPrenda);
+		ArrayList<ItemPrendaArea> items = new ArrayList<>();
+		items = (ArrayList<ItemPrendaArea>) query.list();
+		sesion.close();		
+		return items;
+	}
+	
 	public void insert(ItemPrendaArea itemPrendaArea) {
 		ItemPrendaAreaEntity i= toEntity(itemPrendaArea);
 		Session sesion;

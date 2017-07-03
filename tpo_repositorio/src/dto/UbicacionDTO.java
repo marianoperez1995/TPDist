@@ -8,7 +8,7 @@ public class UbicacionDTO  implements Serializable{
 	 */
 	private static final long serialVersionUID = 9131810978389884362L;
 	protected String codigo;
-	protected boolean ocupado;
+	protected String estado;
 
 	public String getCodigo() {
 		return codigo;
@@ -19,11 +19,15 @@ public class UbicacionDTO  implements Serializable{
 	}
 
 	public boolean isOcupado() {
-		return ocupado;
+		return estado.equalsIgnoreCase("Ocupado");
 	}
 
-	public void setOcupado(boolean ocupado) {
-		this.ocupado = ocupado;
+	public void setOcupado() {
+		this.estado = "Ocupado";
+	}
+
+	public void setEstado(String estado2) {
+		this.estado = estado2;		
 	}
 
 }

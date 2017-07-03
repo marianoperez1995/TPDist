@@ -1,13 +1,22 @@
 package negocio;
 
-public abstract class Ubicacion {
-	protected int idUbicacion;
+import dto.UbicacionDTO;
+import entities.UbicacionEntity;
+
+public class Ubicacion {
 	protected String codigo;
-	protected boolean ocupado;
+	protected String estado;
 
-	public boolean estaOcupado() {
-		return ocupado;
+	public Ubicacion(UbicacionEntity ue) {
+		this.estado = ue.getEstado();
+		this.codigo = ue.getCodigo();
+	}
 
+	public UbicacionDTO toDTO() {
+		UbicacionDTO ubiDTO = new UbicacionDTO();
+		ubiDTO.setCodigo(this.codigo);
+		ubiDTO.setEstado(this.estado);
+		return ubiDTO;
 	}
 
 	public String getCodigo() {
@@ -17,9 +26,14 @@ public abstract class Ubicacion {
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
-	
-	public void setOcupado(){
-		this.ocupado = true;
+
+	public String getEstado() {
+		return estado;
 	}
 
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	
 }

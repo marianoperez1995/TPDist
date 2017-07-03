@@ -12,7 +12,7 @@ public class BultoDTO implements Serializable {
 	private PrendaDTO prenda;
 	private int cantidad;
 	private Date fechaGen;
-	private String ubicacion;
+	private UbicacionDTO ubicacion;
 	
 	public int getCodigoBulto() {
 		return codigoBulto;
@@ -42,8 +42,12 @@ public class BultoDTO implements Serializable {
 		return fechaGen;
 	}
 	
-	public String getUbicacion(){
+	public UbicacionDTO getUbicacion(){
 		return ubicacion;
+	}
+
+	public void setUbicacion(UbicacionDTO dto) {
+		this.ubicacion = dto;	
 	}
 
 }

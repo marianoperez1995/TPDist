@@ -7,11 +7,15 @@ import java.util.HashSet;
 import java.util.Map.Entry;
 
 import negocio.AreaProduccion;
+import negocio.Bulto;
 import negocio.ItemPedidoCliente;
+import negocio.ItemPrendaArea;
+import negocio.LineaProduccion;
 import negocio.Lote;
 import negocio.OrdenProduccion;
 import negocio.PedidoCliente;
 import negocio.Prenda;
+import persistencia.ItemPrendaAreaDAO;
 
 public class AdministradorProduccion {
 	private ArrayList<Prenda> prendas;
@@ -241,7 +245,9 @@ public class AdministradorProduccion {
 			orden.setPedidoCliente(p);
 			orden.setPrenda(prenda);
 			
-			if (entry.getValue().size() <= 5){
+			//Si hay 6 o menos strings diferentes (entre la combinacion de colores y talles), lo toma como parcial
+			//no se repiten los valores, porque es un hashset
+			if (entry.getValue().size() <= 6){
 				orden.setTipo("PARCIAL");
 			}
 			else{
@@ -252,7 +258,97 @@ public class AdministradorProduccion {
 		return ordenes;		
 	}
 	
+	/*public void fabricar (OrdenProduccion orden){
+	//	ArrayList<LineaProduccion> lineas = LineaProduccionDAO.getInstancia().getAll();
+		PedidoCliente p = orden.getPedidoCliente();
+		
+		for (ItemPedidoCliente i : p.getItemsPedidoCliente()){
+			ArrayList <ItemPrendaArea> itemspa = ItemPrendaAreaDAO.getInstancia().obtenerPorPrenda(i.getPrenda().getIdPrenda());
+			int minutosTotal = 0;
+			for (ItemPrendaArea item : itemspa){
+				minutosTotal = minutosTotal + item.getMinutoEnArea(); //Total q tarda la prenda en hacerse 
+			}
+			while (minutosTotal > 0){
+				
+			}
+		}
+	}*/
+	public void fabricar(OrdenProduccion orden) { //SI NO FUNCIONA,hacer      new Thread(() -> fabricar(orden)).start();     cuando se llama al metodo, quitar lo del thread
+		Thread t1 = new Thread(new Runnable() { //Hace todo en un nuevo thread, para que no tilde toda la aplicacion
+			public void run() {
+				PedidoCliente p = orden.getPedidoCliente();
 
+				for (ItemPedidoCliente i : p.getItemsPedidoCliente()) {
+					ArrayList<ItemPrendaArea> itemspa = ItemPrendaAreaDAO.getInstancia()
+							.obtenerPorPrenda(i.getPrenda().getIdPrenda());
+					int cantAProducirDePrenda = i.getCantidad();
+					float minutosTotal = 0;
+					for (ItemPrendaArea item : itemspa) {
+						minutosTotal = minutosTotal + item.getMinutoEnArea(); 
+						
+					}
+					for (ItemPrendaArea item : itemspa){
+						if (minutosTotal <= 0){
+							break;
+						}
+						else{
+							AreaProduccion area = item.getArea();
+							for (LineaProduccion l : area.getLineasProduccion()){
+								minutosTotal = minutosTotal - l.getTiempoDeUso();
+								try {
+									if (!l.isEstado()){//no esta en uso
+										l.setHoraInicio(Calendar.getInstance().getTime());
+										l.setEstado(true);			
+										l.actualizar();
+										Thread.sleep((long) (l.getTiempoDeUso() * 1000 *5)); //paso el tiempo, producio la prenda en su cantidad maxima
+										//agregarle *60 para q sean minutos
+										l.setEstado(false);		
+										l.actualizar();
+									}
+								} catch (InterruptedException e) {
+									e.printStackTrace();
+								}
+								if (minutosTotal <= 0){
+									break;
+								}
+							}
+						}
+					}
+					//crear bultos, ya estan creadas las prendas aca, se actualizan en tabla Prendas y Bulto
+					ArrayList<Bulto> bultos = new ArrayList<>();
+					bultos = convertirABulto(i.getPrenda(),cantAProducirDePrenda);
+					for (Bulto b : bultos)
+						b.insertar();
+					i.getPrenda().setStockActual(i.getPrenda().getStockActual() + cantAProducirDePrenda);
+					i.getPrenda().update();
+				}
+			}		
+		});
+		t1.start();
+	}
+	
+	private ArrayList<Bulto> convertirABulto(Prenda prenda, int cant) {
+		ArrayList<Bulto> bultos = new ArrayList<>();
+		while (cant > 0){
+			Bulto bulto = new Bulto();
+			if (cant < 150 && cant >= 0){
+				bulto.setCantidad(cant);
+				bulto.setPrenda(prenda);
+			}
+			else{
+				bulto.setCantidad(150);
+				bulto.setPrenda(prenda);
+			}
+			if (cant < 0){
+				bulto.setCantidad(cant*-1);
+				bulto.setPrenda(prenda);
+			}
+			cant = cant - 150;
+			bultos.add(bulto);
+		}		
+		return bultos;		
+	}
+	
 	public ArrayList<Prenda> getPrendas() {
 		return prendas;
 	}

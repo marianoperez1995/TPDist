@@ -96,6 +96,10 @@ public class LineaProduccion {
 		linea.setTiempoDeUso(this.tiempoDeUso);
 		return linea;
 	}
+
+	public void actualizar() {
+		LineaProduccionDAO.getInstancia().update(this);		
+	}
 	
 	
 }

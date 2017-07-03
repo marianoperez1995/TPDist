@@ -6,8 +6,25 @@ public class Bulto {
 	private int idBulto;
 	private Prenda prenda;
 	private int cantidad;
+	private Ubicacion ubicacion;
 	
 	
+	public int getIdBulto() {
+		return idBulto;
+	}
+
+	public void setIdBulto(int idBulto) {
+		this.idBulto = idBulto;
+	}
+
+	public Ubicacion getUbicacion() {
+		return ubicacion;
+	}
+
+	public void setUbicacion(Ubicacion ubicacion) {
+		this.ubicacion = ubicacion;
+	}
+
 	public void descontarStock(int cantidad) {
 		this.cantidad = this.cantidad - cantidad;
 		if (this.cantidad < 0){//q no sea negativo...
@@ -50,7 +67,13 @@ public class Bulto {
 		bul.setCantidad(this.cantidad);
 		bul.setCodigoBulto(idBulto);
 		bul.setPrenda(prenda.toDTO());
+		bul.setUbicacion(ubicacion.toDTO());
 		return bul;
+	}
+
+	public void insertar() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

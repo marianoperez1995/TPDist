@@ -250,4 +250,8 @@ public class Prenda {
 		return true;
 	}
 
+	public void update() {		
+		PrendaDAO.getInstancia().update(this);		
+	}
+
 }

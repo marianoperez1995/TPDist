@@ -53,6 +53,14 @@ public class LineaProduccionDAO  {
 		sesion.close();		
 		return new LineaProduccion(emp);
 	}
+	
+	public LineaProduccion getAll(int id) {
+		Session sesion = sf.openSession();
+		sesion.beginTransaction();
+		LineaProduccionEntity emp = (LineaProduccionEntity) sesion.get(LineaProduccionEntity.class, id);	
+		sesion.close();		
+		return new LineaProduccion(emp);
+	}
 
 
 	
@@ -64,6 +72,15 @@ public class LineaProduccionDAO  {
 		lp.setTiempoDeUso(linea.getTiempoDeUso());
 		lp.setIdLinea(linea.getIdLineaProduccion());
 		return lp;
+	}
+	public void update(LineaProduccion linea) {
+		LineaProduccionEntity li= toEntity(linea);
+		Session sesion;
+		sesion = sf.openSession();
+		sesion.beginTransaction();
+		sesion.update(li);
+		sesion.getTransaction().commit();
+		sesion.close();		
 	}
 	
 }
