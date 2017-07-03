@@ -88,12 +88,19 @@ public class ClientesPendientesController implements Initializable{
 
     @FXML
     private Label lblIdCliente;
-        
-  
+       
+    
+    JFXTreeTableColumn<ClienteTabla, String> idCliente;
+    JFXTreeTableColumn<ClienteTabla, String> clientName;
+    JFXTreeTableColumn<ClienteTabla, String> cuitColumn;
+    JFXTreeTableColumn<ClienteTabla, String> telefonoColumn;
+    JFXTreeTableColumn<ClienteTabla, String> fechaRegistroColumn;
+    
+    
     @SuppressWarnings("unchecked")
 	@Override
     public void initialize (URL url, ResourceBundle rb){
-    	JFXTreeTableColumn<ClienteTabla, String> idCliente = new JFXTreeTableColumn<>("Nº");
+    	idCliente = new JFXTreeTableColumn<>("Nº");
     	idCliente.setPrefWidth(50);
     	idCliente.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<ClienteTabla,String>, ObservableValue<String>>() {
 			
@@ -103,7 +110,7 @@ public class ClientesPendientesController implements Initializable{
 			}
 		});
     	
-    	JFXTreeTableColumn<ClienteTabla, String> clientName = new JFXTreeTableColumn<>("Cliente");
+    	clientName = new JFXTreeTableColumn<>("Cliente");
     	clientName.setPrefWidth(170);
     	clientName.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<ClienteTabla,String>, ObservableValue<String>>() {
 			
@@ -113,7 +120,7 @@ public class ClientesPendientesController implements Initializable{
 			}
 		});
     	
-    	JFXTreeTableColumn<ClienteTabla, String> cuitColumn = new JFXTreeTableColumn<>("CUIT");
+    	cuitColumn = new JFXTreeTableColumn<>("CUIT");
     	cuitColumn.setPrefWidth(137);
     	cuitColumn.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<ClienteTabla,String>, ObservableValue<String>>() {
 			
@@ -123,7 +130,7 @@ public class ClientesPendientesController implements Initializable{
 			}
 		});
     	
-    	JFXTreeTableColumn<ClienteTabla, String> telefonoColumn = new JFXTreeTableColumn<>("Estado");
+    	telefonoColumn = new JFXTreeTableColumn<>("Estado");
     	telefonoColumn.setPrefWidth(100);
     	telefonoColumn.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<ClienteTabla,String>, ObservableValue<String>>() {
 			
@@ -133,7 +140,7 @@ public class ClientesPendientesController implements Initializable{
 			}
 		});
     	
-    	JFXTreeTableColumn<ClienteTabla, String> fechaRegistroColumn = new JFXTreeTableColumn<>("Fecha de registro");
+    	fechaRegistroColumn = new JFXTreeTableColumn<>("Fecha de registro");
     	fechaRegistroColumn.setPrefWidth(140);
     	fechaRegistroColumn.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<ClienteTabla,String>, ObservableValue<String>>() {
     		
@@ -143,7 +150,7 @@ public class ClientesPendientesController implements Initializable{
 			}
 		});
     	
-    	vistaTabla.setPlaceholder(new Label("No hay clientes pendientes para aceptar"));
+    	vistaTabla.setPlaceholder(new Label("No hay clientes pendientes de aceptación"));
     	
     	idCliente.setResizable(false);
     	clientName.setResizable(false);
@@ -158,7 +165,6 @@ public class ClientesPendientesController implements Initializable{
     	fechaRegistroColumn.impl_setReorderable(false);
     	
     	ObservableList<ClienteTabla> clientes = FXCollections.observableArrayList();
-    	
     	
     	//agregar clientes a la tabla
     	for(ClienteTabla c: buscarClientes()){
@@ -248,8 +254,8 @@ public class ClientesPendientesController implements Initializable{
 	    	           txtLimitePrecio.setText(Float.toString(seleccionado.getCuentaCorriente().getLimite()));
 	    	           txtCondicPago.setText(seleccionado.getCuentaCorriente().getCondiciones());
 	    	           
-	    	       		btnCancelar.setDisable(false);
-	    	       		btnGuardar.setDisable(false);
+	    	       	   btnCancelar.setDisable(false);
+	    	       	   btnGuardar.setDisable(false);
 	    	        }
     	         }
     	     });
@@ -280,6 +286,20 @@ public class ClientesPendientesController implements Initializable{
         
     	btnCancelar.setDisable(true);
     	btnGuardar.setDisable(true);
+    
+    	ObservableList<ClienteTabla> clientes = FXCollections.observableArrayList();
+    	
+    	
+    	//agregar clientes a la tabla
+    	for(ClienteTabla c: buscarClientes()){
+    		clientes.add(c);
+    	}
+    	
+    	final TreeItem<ClienteTabla> root = new RecursiveTreeItem<ClienteTabla>(clientes, RecursiveTreeObject::getChildren);
+    	vistaTabla.getColumns().setAll(idCliente, clientName,cuitColumn,telefonoColumn,fechaRegistroColumn);
+    	vistaTabla.setRoot(root);
+    	vistaTabla.setShowRoot(false);
+    	
     }
     
     @FXML
@@ -306,6 +326,19 @@ public class ClientesPendientesController implements Initializable{
         
     	btnCancelar.setDisable(true);
     	btnGuardar.setDisable(true);
+    	
+    	ObservableList<ClienteTabla> clientes = FXCollections.observableArrayList();
+    	
+    	
+    	//agregar clientes a la tabla
+    	for(ClienteTabla c: buscarClientes()){
+    		clientes.add(c);
+    	}
+    	
+    	final TreeItem<ClienteTabla> root = new RecursiveTreeItem<ClienteTabla>(clientes, RecursiveTreeObject::getChildren);
+    	vistaTabla.getColumns().setAll(idCliente, clientName,cuitColumn,telefonoColumn,fechaRegistroColumn);
+    	vistaTabla.setRoot(root);
+    	vistaTabla.setShowRoot(false);
     }
     
     private ArrayList<ClienteTabla> buscarClientes() {

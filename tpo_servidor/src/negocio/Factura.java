@@ -144,7 +144,7 @@ public class Factura {
 	}
 
 	public void generarPDF(int id) {
-		String arch = "Factura NÂ° " + id + ".pdf";
+		String arch = "Factura N° " + id + ".pdf";
 		Document doc = new Document();
 		try {
 			DateFormat df = new SimpleDateFormat("dd/MM/yyyy hh:mm");
@@ -153,7 +153,7 @@ public class Factura {
 			doc.open();
 			Font titulo = new Font(Font.FontFamily.HELVETICA, 20, Font.BOLD);
 			Font titulo2 = new Font(Font.FontFamily.HELVETICA, 17, Font.BOLD);
-			Paragraph p = new Paragraph("FACTURA NÂ° 0001-0000" + id, titulo);
+			Paragraph p = new Paragraph("FACTURA N° 0001-0000" + id, titulo);
 			p.setAlignment(Element.ALIGN_RIGHT);
 			Image logo = Image.getInstance("src/archivos/afipylogo.png");
 			
@@ -175,7 +175,7 @@ public class Factura {
 			doc.add(new Paragraph("                        "));
 			Paragraph p2 = new Paragraph();
 			doc.add(new Paragraph("Detalle de la compra", titulo2));
-			doc.add(new Paragraph("DescripciÃ³n: Pedido NÂ° " + this.pedido.getIdPedidoCliente()));
+			doc.add(new Paragraph("Descripción: Pedido N° " + this.pedido.getIdPedidoCliente()));
 
 			p2.add("Items del pedido:");
 			p2.setAlignment(Element.ALIGN_LEFT);

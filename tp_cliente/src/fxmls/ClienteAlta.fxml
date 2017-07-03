@@ -26,7 +26,7 @@
                   <Font size="15.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="txtCuit" focusColor="#c06c84" labelFloat="true" promptText="CUIT" unFocusColor="#6c5b7b">
+            <JFXTextField fx:id="txtCuit" focusColor="#c06c84" labelFloat="true" promptText="CUIT (solo números)" unFocusColor="#6c5b7b">
                <VBox.margin>
                   <Insets left="50.0" right="50.0" top="30.0" />
                </VBox.margin>
@@ -34,7 +34,7 @@
                   <Font size="15.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="txtTelefono" focusColor="#c06c84" labelFloat="true" promptText="Telefono" unFocusColor="#6c5b7b">
+            <JFXTextField fx:id="txtTelefono" focusColor="#c06c84" labelFloat="true" promptText="Telefono (solo números)" unFocusColor="#6c5b7b">
                <VBox.margin>
                   <Insets left="50.0" right="50.0" top="30.0" />
                </VBox.margin>
@@ -103,7 +103,7 @@
                   <Insets left="50.0" right="50.0" top="30.0" />
                </VBox.margin>
             </JFXTextField>
-            <JFXTextField fx:id="txtTelefonoEncargado" focusColor="#c06c84" labelFloat="true" promptText="Telefono" unFocusColor="#6c5b7b">
+            <JFXTextField fx:id="txtTelefonoEncargado" focusColor="#c06c84" labelFloat="true" promptText="Telefono (solo números)" unFocusColor="#6c5b7b">
                <font>
                   <Font size="15.0" />
                </font>
@@ -144,7 +144,7 @@
       </Pane>
       <VBox layoutX="915.0" layoutY="184.0" prefHeight="238.0" prefWidth="420.0" style="-fx-border-radius: 10 10 10 10; -fx-background-radius: 10 10 10 10; -fx-background-color: #ffffff;">
          <children>
-            <JFXTextField fx:id="txtLimitePrecio" focusColor="#c06c84" labelFloat="true" promptText="Limite de precio" unFocusColor="#6c5b7b">
+            <JFXTextField fx:id="txtLimitePrecio" focusColor="#c06c84" labelFloat="true" promptText="Limite de precio (solo números)" unFocusColor="#6c5b7b">
                <font>
                   <Font size="15.0" />
                </font>

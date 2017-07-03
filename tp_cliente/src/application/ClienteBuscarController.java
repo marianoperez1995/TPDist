@@ -15,6 +15,7 @@ import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
+import application.ClientesPendientesController.ClienteTabla;
 import businessDelegate.BusinessDelegate;
 import dto.ClienteDTO;
 import dto.CuentaCorrienteDTO;
@@ -111,10 +112,17 @@ public class ClienteBuscarController implements Initializable{
     @FXML
     private FlowPane flowPanel;
     
+    
+    JFXTreeTableColumn<ClienteTabla, String> idCliente;
+    JFXTreeTableColumn<ClienteTabla, String> clientName;
+    JFXTreeTableColumn<ClienteTabla, String> cuitColumn;
+    JFXTreeTableColumn<ClienteTabla, String> telefonoColumn;
+    JFXTreeTableColumn<ClienteTabla, String> fechaRegistroColumn;
+    
     @SuppressWarnings("unchecked")
 	@Override
     public void initialize (URL url, ResourceBundle rb){
-    	JFXTreeTableColumn<ClienteTabla, String> idCliente = new JFXTreeTableColumn<>("Nº");
+    	idCliente = new JFXTreeTableColumn<>("Nº");
     	idCliente.setPrefWidth(50);
     	idCliente.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<ClienteTabla,String>, ObservableValue<String>>() {
 			
@@ -124,7 +132,7 @@ public class ClienteBuscarController implements Initializable{
 			}
 		});
     	
-    	JFXTreeTableColumn<ClienteTabla, String> clientName = new JFXTreeTableColumn<>("Cliente");
+    	clientName = new JFXTreeTableColumn<>("Cliente");
     	clientName.setPrefWidth(170);
     	clientName.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<ClienteTabla,String>, ObservableValue<String>>() {
 			
@@ -134,7 +142,7 @@ public class ClienteBuscarController implements Initializable{
 			}
 		});
     	
-    	JFXTreeTableColumn<ClienteTabla, String> cuitColumn = new JFXTreeTableColumn<>("CUIT");
+    	cuitColumn = new JFXTreeTableColumn<>("CUIT");
     	cuitColumn.setPrefWidth(137);
     	cuitColumn.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<ClienteTabla,String>, ObservableValue<String>>() {
 			
@@ -144,7 +152,7 @@ public class ClienteBuscarController implements Initializable{
 			}
 		});
     	
-    	JFXTreeTableColumn<ClienteTabla, String> telefonoColumn = new JFXTreeTableColumn<>("Estado");
+    	telefonoColumn = new JFXTreeTableColumn<>("Estado");
     	telefonoColumn.setPrefWidth(100);
     	telefonoColumn.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<ClienteTabla,String>, ObservableValue<String>>() {
 			
@@ -154,7 +162,7 @@ public class ClienteBuscarController implements Initializable{
 			}
 		});
     	
-    	JFXTreeTableColumn<ClienteTabla, String> fechaRegistroColumn = new JFXTreeTableColumn<>("Fecha de registro");
+    	fechaRegistroColumn = new JFXTreeTableColumn<>("Fecha de registro");
     	fechaRegistroColumn.setPrefWidth(140);
     	fechaRegistroColumn.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<ClienteTabla,String>, ObservableValue<String>>() {
     		
@@ -376,6 +384,19 @@ public class ClienteBuscarController implements Initializable{
     	btnEliminar.setDisable(false);
     	btnEditar.setDisable(false);
         
+    	
+    	ObservableList<ClienteTabla> clientes = FXCollections.observableArrayList();
+    	
+    	
+    	//agregar clientes a la tabla
+    	for(ClienteTabla c: buscarClientes()){
+    		clientes.add(c);
+    	}
+    	
+    	final TreeItem<ClienteTabla> root = new RecursiveTreeItem<ClienteTabla>(clientes, RecursiveTreeObject::getChildren);
+    	vistaTabla.getColumns().setAll(idCliente, clientName,cuitColumn,telefonoColumn,fechaRegistroColumn);
+    	vistaTabla.setRoot(root);
+    	vistaTabla.setShowRoot(false);
     }
     
     @FXML
@@ -448,6 +469,20 @@ public class ClienteBuscarController implements Initializable{
     	btnGuardar.setDisable(true);
     	btnEliminar.setDisable(true);
     	btnEditar.setDisable(true);
+    	
+    	
+    	ObservableList<ClienteTabla> clientes = FXCollections.observableArrayList();
+    	
+    	
+    	//agregar clientes a la tabla
+    	for(ClienteTabla c: buscarClientes()){
+    		clientes.add(c);
+    	}
+    	
+    	final TreeItem<ClienteTabla> root = new RecursiveTreeItem<ClienteTabla>(clientes, RecursiveTreeObject::getChildren);
+    	vistaTabla.getColumns().setAll(idCliente, clientName,cuitColumn,telefonoColumn,fechaRegistroColumn);
+    	vistaTabla.setRoot(root);
+    	vistaTabla.setShowRoot(false);
     }
     
     private ArrayList<ClienteTabla> buscarClientes() {

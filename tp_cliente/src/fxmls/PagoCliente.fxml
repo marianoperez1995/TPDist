@@ -170,12 +170,12 @@
                   </Label>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
                      <children>
-                        <JFXButton fx:id="btnLimpiar" buttonType="RAISED" onAction="#limpiarCampos" prefHeight="28.0" prefWidth="110.0" style="-fx-background-color: #ff5e5e;" text="Limpiar">
+                        <JFXButton fx:id="btnLimpiar" buttonType="RAISED" disable="true" onAction="#limpiarCampos" prefHeight="28.0" prefWidth="110.0" style="-fx-background-color: #ff5e5e;" text="Limpiar">
                            <HBox.margin>
                               <Insets right="20.0" top="20.0" />
                            </HBox.margin>
                         </JFXButton>
-                        <JFXButton fx:id="btnAgregarPago" buttonType="RAISED" onAction="#agregarPago" prefHeight="28.0" prefWidth="110.0" style="-fx-background-color: #d1ff8c;" text="Agregar pago">
+                        <JFXButton fx:id="btnAgregarPago" buttonType="RAISED" disable="true" onAction="#agregarPago" prefHeight="28.0" prefWidth="110.0" style="-fx-background-color: #d1ff8c;" text="Agregar pago">
                            <HBox.margin>
                               <Insets top="20.0" />
                            </HBox.margin>
@@ -192,7 +192,7 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <JFXTextField fx:id="txtMonto" labelFloat="true" promptText="Monto ($$$)" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                  <JFXTextField fx:id="txtMonto" editable="false" labelFloat="true" promptText="Monto ($$$)" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <GridPane.margin>
                         <Insets left="20.0" right="20.0" />
                      </GridPane.margin>

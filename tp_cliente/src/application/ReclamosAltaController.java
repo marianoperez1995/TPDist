@@ -278,6 +278,7 @@ public class ReclamosAltaController implements Initializable{
         txtTelefono.setText("");
         txtMailEncargado.setText("");
         txtReclamo.setText("");
+        txtReclamo.setEditable(false);
         
         btnLimpiar.setDisable(true);
         btnEnviar.setDisable(true);
@@ -294,7 +295,7 @@ public class ReclamosAltaController implements Initializable{
         txtMailEncargado.setText("");
         txtReclamo.setText("");
         txtReclamo.setEditable(false);
-        
+ 
         btnLimpiar.setDisable(true);
         btnEnviar.setDisable(true);
     }

@@ -16,6 +16,8 @@ import com.jfoenix.controls.JFXTextField;
 import businessDelegate.BusinessDelegate;
 import dto.ClienteDTO;
 import dto.CuentaCorrienteDTO;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -86,6 +88,42 @@ public class ClienteAltaController implements Initializable {
     public void initialize (URL url, ResourceBundle rb){
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
     	lblFechaRegistro.setText("Fecha: " + df.format(Calendar.getInstance().getTime()));
+    	
+    	txtTelefono.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (!newValue.matches("\\d*")) {
+                	txtTelefono.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+        
+    	txtCuit.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (!newValue.matches("\\d*")) {
+                	txtCuit.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+        
+    	txtLimitePrecio.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (!newValue.matches("\\d*")) {
+                	txtLimitePrecio.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+    	
+    	txtTelefonoEncargado.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (!newValue.matches("\\d*")) {
+                	txtTelefonoEncargado.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
     }
     
     @FXML

@@ -81,7 +81,7 @@
                   <Insets left="50.0" right="50.0" top="40.0" />
                </padding>
             </GridPane>
-            <JFXTextArea fx:id="txtReclamo" disable="true" focusColor="#c06c84" labelFloat="true" prefHeight="194.0" prefWidth="595.0" promptText="Reclamo" unFocusColor="#6c5b7b">
+            <JFXTextArea fx:id="txtReclamo" editable="false" focusColor="#c06c84" labelFloat="true" prefHeight="194.0" prefWidth="595.0" promptText="Reclamo" unFocusColor="#6c5b7b">
                <VBox.margin>
                   <Insets left="50.0" right="50.0" top="30.0" />
                </VBox.margin>

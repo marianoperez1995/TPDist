@@ -209,6 +209,15 @@ public class PagosAgregarController implements Initializable{
 			}
 		});
     	
+    	txtMonto.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (!newValue.matches("\\d*")) {
+                	txtMonto.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+    	
     	vistaTabla.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
     	    @Override
     	    public void changed(ObservableValue observableValue, Object oldValue, Object newValue) {
@@ -240,9 +249,11 @@ public class PagosAgregarController implements Initializable{
 	    	           txtLimitePrecio.setText(Float.toString(seleccionado.getCuentaCorriente().getLimite()));
 	    	           txtCondicPago.setText(seleccionado.getCuentaCorriente().getCondiciones());
 	    	           txtBalance.setText(Float.toString(seleccionado.getCuentaCorriente().getBalanceActual()));
+	    	           txtMonto.setText("");
+	    	           txtMonto.setEditable(true);
 	    	           
-	    	       		btnLimpiar.setDisable(false);
-	    	       		btnAgregarPago.setDisable(false);
+	    	       	   btnLimpiar.setDisable(false);
+	    	       	   btnAgregarPago.setDisable(false);
 	    	        }
     	         }
     	     });
@@ -258,6 +269,8 @@ public class PagosAgregarController implements Initializable{
         txtLimitePrecio.setText("");
         txtCondicPago.setText("");
         txtBalance.setText("");
+        txtMonto.setText("");
+        txtMonto.setEditable(false);
         
    		btnLimpiar.setDisable(true);
    		btnAgregarPago.setDisable(true);
@@ -298,6 +311,9 @@ public class PagosAgregarController implements Initializable{
         txtLimitePrecio.setText("");
         txtCondicPago.setText("");
         txtBalance.setText("");
+        txtMonto.setText("");
+        txtMonto.setEditable(false);
+        
    		btnLimpiar.setDisable(true);
    		btnAgregarPago.setDisable(true);
     }
