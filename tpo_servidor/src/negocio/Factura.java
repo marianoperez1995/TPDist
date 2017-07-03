@@ -246,10 +246,6 @@ public class Factura {
 			float totalFinal = total + iva;
 			filaTotal.addCell(String.valueOf(totalFinal));
 			doc.add(filaTotal);
-			Image fin = Image.getInstance("src/archivos/fondo.png");
-			fin.setAlignment(Element.ALIGN_CENTER);
-			fin.scaleToFit(550f, 550f);
-			doc.add(fin);
 			doc.close();
 
 		} catch (FileNotFoundException | DocumentException e) {
