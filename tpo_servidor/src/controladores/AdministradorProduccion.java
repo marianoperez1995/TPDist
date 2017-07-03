@@ -20,6 +20,7 @@ import negocio.Prenda;
 import persistencia.InsumoDAO;
 import persistencia.ItemPrendaAreaDAO;
 import persistencia.ItemPrendaInsumoDAO;
+import persistencia.PedidoClienteDAO;
 
 public class AdministradorProduccion {
 	private ArrayList<Prenda> prendas;
@@ -110,10 +111,11 @@ public class AdministradorProduccion {
 											l.setHoraInicio(Calendar.getInstance().getTime());
 											l.setEstado(true);			
 											l.actualizar();
-											long tiempo = item.getMinutoEnArea() *2500;
+											long tiempo = item.getMinutoEnArea() *1500;
 											System.out.println("espera por "+tiempo +" ms");
 											Thread.sleep(tiempo); //paso el tiempo, produjo la prenda en su cantidad maxima
 											//agregarle *60 para q sean minutos
+											l.setTiempoDeUso(tiempo);
 											l.setEstado(false);		
 											l.actualizar();
 										}
@@ -139,6 +141,7 @@ public class AdministradorProduccion {
 				orden.update();
 				if (orden.termino()){
 					orden.getPedidoCliente().setEstado("Completo");
+					PedidoClienteDAO.getInstancia().update(orden.getPedidoCliente());
 				}
 			}		
 		});
