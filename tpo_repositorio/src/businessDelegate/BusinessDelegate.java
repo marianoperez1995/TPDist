@@ -12,6 +12,7 @@ import dto.ClienteDTO;
 import dto.CuentaCorrienteDTO;
 import dto.EmpleadoDTO;
 import dto.FacturaDTO;
+import dto.InsumoDTO;
 import dto.OrdenProduccionDTO;
 import dto.PagoDTO;
 import dto.PedidoClienteDTO;
@@ -210,6 +211,12 @@ public class BusinessDelegate {
 	}
 	public void altaPrenda(PrendaDTO prenda) throws RemoteException {
 		objetoRemoto.altaPrenda(prenda);
+	}
+	public ArrayList<InsumoDTO> buscarInsumos() throws RemoteException {
+		return objetoRemoto.getInsumos();
+	}
+	public InsumoDTO buscarInsumo(InsumoDTO insumo1) throws RemoteException {
+		return objetoRemoto.getInsumo(insumo1);
 	}
 
 }

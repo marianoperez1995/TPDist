@@ -5,6 +5,7 @@ import java.net.URL;
 import java.rmi.RemoteException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.ResourceBundle;
 
@@ -61,6 +62,15 @@ public class PrendaAltaController implements Initializable {
     private JFXComboBox<Label> comboTalle;
 
     @FXML
+    private JFXComboBox<Label> comboInsumo1;
+    
+    @FXML
+    private JFXComboBox<Label> comboInsumo2;
+    
+    @FXML
+    private JFXComboBox<Label> comboInsumo3;
+    
+    @FXML
     private JFXComboBox<Label> comboEstado;
 
     @FXML
@@ -100,6 +110,55 @@ public class PrendaAltaController implements Initializable {
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
     	lblFechaRegistro.setText("Fecha: " + df.format(Calendar.getInstance().getTime()));
     	
+    	ArrayList<String> listaInsumos = null;
+		try {
+			listaInsumos = buscarInsumos();
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+    	
+    	for(String insumo : listaInsumos){
+        	comboInsumo1.getItems().add(new Label(insumo));
+        	comboInsumo2.getItems().add(new Label(insumo));
+        	comboInsumo3.getItems().add(new Label(insumo));
+    	}
+
+    	comboInsumo1.setConverter(new StringConverter<Label>() {
+            @Override
+            public String toString(Label object) {
+                return object==null? "" : object.getText();
+            }
+
+            @Override
+            public Label fromString(String string) {
+                return new Label(string);
+            }
+        });
+    	
+    	comboInsumo2.setConverter(new StringConverter<Label>() {
+            @Override
+            public String toString(Label object) {
+                return object==null? "" : object.getText();
+            }
+
+            @Override
+            public Label fromString(String string) {
+                return new Label(string);
+            }
+        });
+    	
+    	comboInsumo3.setConverter(new StringConverter<Label>() {
+            @Override
+            public String toString(Label object) {
+                return object==null? "" : object.getText();
+            }
+
+            @Override
+            public Label fromString(String string) {
+                return new Label(string);
+            }
+        });
     	
     	comboTalle.getItems().add(new Label("S"));
     	comboTalle.getItems().add(new Label("M"));
@@ -310,8 +369,14 @@ public class PrendaAltaController implements Initializable {
 	    	prenda.setStockMinimo(Integer.parseInt(txtStockMin.getText()));
 	    	prenda.setStockActual(0);
 	    	
+	    	insumo1.setNombre(comboInsumo1.getValue().getText());
+	    	insumo2.setNombre(comboInsumo2.getValue().getText());
+	    	insumo3.setNombre(comboInsumo3.getValue().getText());
 	    	
 	    	try {
+	    		insumo1 = BusinessDelegate.getInstancia().buscarInsumo(insumo1);
+	    		insumo2 = BusinessDelegate.getInstancia().buscarInsumo(insumo2);
+	    		insumo3 = BusinessDelegate.getInstancia().buscarInsumo(insumo3);
 				BusinessDelegate.getInstancia().altaPrenda(prenda);
 				limpiarCampos();
 				titulo.setText("Exito en la operación");
@@ -327,6 +392,18 @@ public class PrendaAltaController implements Initializable {
 			}
     	}
     	
+    }
+    
+    private ArrayList<String> buscarInsumos() throws RemoteException {
+    	ArrayList<String> resultado = new ArrayList<String>();
+    	
+    	
+    	ArrayList<InsumoDTO> insumos = BusinessDelegate.getInstancia().buscarInsumos();
+    	
+    	for(InsumoDTO ins : insumos){
+    		resultado.add(ins.getNombre());
+    	}
+    	return resultado;
     }
     
     private boolean todoCompletado() {

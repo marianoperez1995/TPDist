@@ -7,6 +7,7 @@ import dto.ClienteDTO;
 import dto.CuentaCorrienteDTO;
 import dto.EmpleadoDTO;
 import dto.FacturaDTO;
+import dto.InsumoDTO;
 import dto.OrdenProduccionDTO;
 import dto.PagoDTO;
 import dto.PedidoClienteDTO;
@@ -85,6 +86,8 @@ public interface InterfazRemota extends Remote {
 	public void altaPedido(PedidoClienteDTO pedido)throws RemoteException;
 	public void fabricarOrden(OrdenProduccionDTO seleccionado) throws RemoteException;
 	public void altaPrenda(PrendaDTO prenda) throws RemoteException;
+	public ArrayList<InsumoDTO> getInsumos() throws RemoteException;
+	public InsumoDTO getInsumo(InsumoDTO insumo1) throws RemoteException;
 
 	//despacho
 	//falta agregar metodos al despacho

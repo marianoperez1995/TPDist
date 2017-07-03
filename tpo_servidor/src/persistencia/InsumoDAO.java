@@ -10,6 +10,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import entities.InsumoEntity;
+import entities.PrendaEntity;
 import hibernate.HibernateUtil;
 import negocio.Insumo;
 import negocio.Prenda;
@@ -58,6 +59,16 @@ public class InsumoDAO  {
 		InsumoEntity emp = (InsumoEntity) sesion.get(InsumoEntity.class, id);	
 		sesion.close();		
 		return new Insumo(emp);
+	}
+	
+	public Insumo getInsumoPorNombre(String nombre) {
+		Session sesion = sf.openSession();
+		sesion.beginTransaction();
+		InsumoEntity p = (InsumoEntity) sesion.createQuery("from InsumoEntity where nombre = ? ")
+				.setParameter(0, nombre)				
+				.uniqueResult();
+		sesion.close();
+		return new Insumo(p);
 	}
 	
 

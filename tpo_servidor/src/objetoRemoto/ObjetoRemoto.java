@@ -15,6 +15,7 @@ import dto.ClienteDTO;
 import dto.CuentaCorrienteDTO;
 import dto.EmpleadoDTO;
 import dto.FacturaDTO;
+import dto.InsumoDTO;
 import dto.OrdenProduccionDTO;
 import dto.PagoDTO;
 import dto.PedidoClienteDTO;
@@ -331,6 +332,16 @@ public class ObjetoRemoto extends UnicastRemoteObject implements InterfazRemota,
 	@Override
 	public void altaPrenda(PrendaDTO prenda) throws RemoteException {
 		AdministradorPrenda.getInstancia().altaPrenda(new Prenda(prenda));
+	}
+
+	@Override
+	public ArrayList<InsumoDTO> getInsumos() throws RemoteException {
+		return AdministradorPrenda.getInstancia().getInsumos();
+	}
+
+	@Override
+	public InsumoDTO getInsumo(InsumoDTO insumo1) throws RemoteException {
+		return AdministradorPrenda.getInstancia().getInsumo(insumo1.getNombre());
 	}
 	
 }

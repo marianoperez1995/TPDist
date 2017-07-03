@@ -2,9 +2,12 @@ package controladores;
 
 import java.util.ArrayList;
 
+import dto.InsumoDTO;
 import dto.PrendaDTO;
 import negocio.Cliente;
+import negocio.Insumo;
 import negocio.Prenda;
+import persistencia.InsumoDAO;
 import persistencia.PrendaDAO;
 
 public class AdministradorPrenda {
@@ -88,6 +91,21 @@ public class AdministradorPrenda {
 	public void altaPrenda(Prenda prenda) {
 		prendas.add(prenda);
 		prenda.insertar();
+	}
+
+	public ArrayList<InsumoDTO> getInsumos() {
+		ArrayList<Insumo> ins = InsumoDAO.getInstancia().getAll();
+		ArrayList<InsumoDTO> resultado = new ArrayList<InsumoDTO>();
+		
+		for(Insumo i: ins){
+			resultado.add(i.toDTO());
+		}
+		
+		return resultado;
+	}
+
+	public InsumoDTO getInsumo(String nombre) {
+		return InsumoDAO.getInstancia().getInsumoPorNombre(nombre).toDTO();
 	}
 
 }
