@@ -15,7 +15,7 @@ public class ItemPedidoCliente {
 		this.prenda = new Prenda(p.getPrenda());
 	
 		this.cantidad = p.getCantidad();
-		this.precio = p.getPrecio()*this.cantidad;
+		this.precio = p.getPrecio();
 	}
 
 	public ItemPedidoCliente(ItemPedidoClienteEntity p) {

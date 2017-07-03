@@ -28,7 +28,7 @@ public class AdministradorPedidos {
 		return instancia;
 	}
 
-	public int nuevoPedido(PedidoClienteDTO pedido) {
+/*	public int nuevoPedido(PedidoClienteDTO pedido) {
 		
 		PedidoCliente pc= new PedidoCliente(pedido);
 		
@@ -46,7 +46,7 @@ public class AdministradorPedidos {
 		return aux.getIdPedidoCliente();
 		}
 		return 0;
-	}
+	}*/
 	
 	
 	public void aprobarPedido(PedidoClienteDTO pedi){
@@ -186,17 +186,19 @@ public class AdministradorPedidos {
 	}
 
 	public void cancelarPedido(PedidoClienteDTO ped) {
-		ped.setEstado("Cliente Cancelado");
+		ped.setEstado("Cancelado");
 		PedidoClienteDAO.getInstancia().update(new PedidoCliente(ped));
 	}
 
 	public void confirmarClientePedido(PedidoClienteDTO ped) {
-		ped.setEstado("Cliente Confirmado");
-		PedidoClienteDAO.getInstancia().update(new PedidoCliente(ped));
+		this.aprobarPedido(ped);
 	}
 
 	public void altaPedido(PedidoClienteDTO pedido) {
-		 PedidoClienteDAO.getInstancia().insert(new PedidoCliente(pedido));
+		pedido.setEstado("Pendiente");
+		PedidoCliente ped= new PedidoCliente(pedido);
+		ped.setPrecioTotal(ped.calcularPrecio());
+		 PedidoClienteDAO.getInstancia().insert(ped);
 		
 	}	
 }
