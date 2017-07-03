@@ -1,5 +1,6 @@
 package negocio;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import dto.OrdenProduccionDTO;
@@ -146,7 +147,14 @@ public  class OrdenProduccion {
 
 
 	public boolean termino() {
+		boolean res=true;
 		ArrayList<OrdenProduccion> ordenes= OrdenProduccionDAO.getInstancia().getOrdenesDePedido(this.getPedidoCliente());
+		for (OrdenProduccion or: ordenes){
+			if (or.getEstado().compareToIgnoreCase("Completa")!=0){
+				res= false;
+			}
+		}
+		return res;
 	}
 	
 }
