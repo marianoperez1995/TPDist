@@ -54,7 +54,8 @@ public class PedidoClienteEntity  implements Serializable {
 	private List<ItemPedidoClienteEntity> itemsPedidoCliente;
 	
 	private float precioTotal;
-
+	private String causa;
+	
 	public int getNumPedidoCliente() {
 		return numPedidoCliente;
 	}
@@ -111,6 +112,14 @@ public class PedidoClienteEntity  implements Serializable {
 		this.itemsPedidoCliente = itemsPedidoCliente;
 	}
 
+	public String getCausa() {
+		return causa;
+	}
+
+	public void setCausa(String causa) {
+		this.causa = causa;
+	}
+
 	public float getPrecioTotal() {
 		return precioTotal;
 	}
@@ -126,5 +135,7 @@ public class PedidoClienteEntity  implements Serializable {
 	public void setFechaEntregaCliente(Date fechaEntregaCliente) {
 		this.fechaEntregaCliente = fechaEntregaCliente;
 	}
+
+
 
 }

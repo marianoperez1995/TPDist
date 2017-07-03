@@ -21,6 +21,7 @@ public class PedidoCliente {
 	private Date fechaEntregaCliente;
 	private ArrayList<ItemPedidoCliente> itemsPedidoCliente;
 	private float precioTotal;
+	private String causa;
 	
 	public PedidoCliente(PedidoClienteDTO pedDTO) {
 		this.idPedidoCliente = pedDTO.getIdPedidoCliente();
@@ -39,7 +40,19 @@ public class PedidoCliente {
 		}
 		this.itemsPedidoCliente=items;
 		this.fechaEntregaCliente=pedDTO.getFechaEntregaCliente();
+		this.causa= pedDTO.getCausa();
 	}
+	
+
+	public String getCausa() {
+		return causa;
+	}
+
+
+	public void setCausa(String causa) {
+		this.causa = causa;
+	}
+
 
 	public PedidoCliente(PedidoClienteEntity pedE) {
 		this.idPedidoCliente = pedE.getNumPedidoCliente();
@@ -53,6 +66,7 @@ public class PedidoCliente {
 		for (ItemPedidoClienteEntity p : pedE.getItemsPedidoCliente()){
 			this.itemsPedidoCliente.add(new ItemPedidoCliente(p));
 		}
+		this.causa=pedE.getCausa();
 		this.fechaEntregaCliente =pedE.getFechaEntregaCliente();
 	}
 	public PedidoCliente() {
@@ -70,6 +84,7 @@ public class PedidoCliente {
 			this.itemsPedidoCliente.add(new ItemPedidoCliente(p));
 		}
 		this.fechaEntregaCliente =pedE.getFechaEntregaCliente();
+		this.causa= pedE.getCausa();
 	}
 
 	public void insertar() {

@@ -61,6 +61,7 @@ public class PedidoClienteDAO {
 		sesion.beginTransaction();
 		PedidoClienteEntity emp = (PedidoClienteEntity) sesion.get(PedidoClienteEntity.class, id);	
 		sesion.close();		
+		System.out.println(emp.getCausa());
 		return new PedidoCliente(emp);
 	}
 	
@@ -106,7 +107,7 @@ public class PedidoClienteDAO {
 		Session sesion;
 		sesion = sf.openSession();
 		sesion.beginTransaction();
-		Query query = sesion.createQuery("update from  PedidoClienteEntity set estado=? where idPedidoCliente=?").setParameter(0, pedido.getEstado()).setParameter(1, pedido.getIdPedidoCliente());
+		Query query = sesion.createQuery("update from  PedidoClienteEntity set estado=?, causa= ? where idPedidoCliente=?").setParameter(0, pedido.getEstado()).setParameter(1, pedido.getCausa()).setParameter(2, pedido.getIdPedidoCliente());
 		query.executeUpdate();
 		sesion.getTransaction().commit();
 		sesion.close();

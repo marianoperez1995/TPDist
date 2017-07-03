@@ -16,6 +16,15 @@ public class PedidoClienteDTO implements Serializable {
 	private Date fechaProbableDespacho;
 	private Date fechaDespacho;
 	private Date fechaEntregaCliente;
+	private String causa;
+	public String getCausa() {
+		return causa;
+	}
+
+	public void setCausa(String causa) {
+		this.causa = causa;
+	}
+
 	public void setFechaEntregaCliente(Date fechaEntregaCliente) {
 		this.fechaEntregaCliente = fechaEntregaCliente;
 	}
@@ -95,9 +104,12 @@ public class PedidoClienteDTO implements Serializable {
 	public String toString() {
 		return "PedidoClienteDTO [idPedidoCliente=" + idPedidoCliente + ", cliente=" + cliente + ", estado=" + estado
 				+ ", fechaGeneracion=" + fechaGeneracion + ", fechaProbableDespacho=" + fechaProbableDespacho
-				+ ", fechaDespacho=" + fechaDespacho + ", fechaEntregaCliente=" + fechaEntregaCliente
-				+ ", itemsPedidoCliente=" + itemsPedidoCliente + ", precioTotal=" + precioTotal + "]";
+				+ ", fechaDespacho=" + fechaDespacho + ", fechaEntregaCliente=" + fechaEntregaCliente + ", causa="
+				+ causa + ", itemsPedidoCliente=" + itemsPedidoCliente + ", precioTotal=" + precioTotal + "]";
 	}
+
+	
+	
 	
 	
 

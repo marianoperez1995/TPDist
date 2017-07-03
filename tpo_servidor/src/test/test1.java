@@ -14,16 +14,9 @@ import persistencia.PedidoClienteDAO;
 public class test1 {
 
 	public static void main(String[] args) {
-		//Test ordenes produccion parcial/completa
-		/*PedidoCliente p = PedidoClienteDAO.getInstancia().getPedidoCliente(1);
-		ArrayList<ItemPedidoCliente> pedidos = ItemPedidoClienteDAO.getInstancia().getItemsPedidoCliente(1);
-		p.setItemsPedidoCliente(pedidos);
-		ArrayList<OrdenProduccion> ordenes = AdministradorProduccion.getInstancia().generarOrdenes(p);
-		for (OrdenProduccion o : ordenes){
-			System.out.println(o.getTipo());
-		}*/
-		ArrayList<ItemPrendaArea> items = new ArrayList<>();
-		items = ItemPrendaAreaDAO.getInstancia().obtenerPorPrenda(1);
+		PedidoCliente ped= PedidoClienteDAO.getInstancia().getPedidoCliente(1);
+		
+		System.out.println(ped.getCausa());
 	}
 
 }
