@@ -42,7 +42,7 @@ public class PedidoClienteDAO {
 	}
 	
 	
-	public PedidoCliente insert(PedidoCliente pedido){
+	public void insert(PedidoCliente pedido){
 		
 		PedidoClienteEntity ped= toEntity(pedido);
 		Session sesion;
@@ -51,7 +51,7 @@ public class PedidoClienteDAO {
 		Integer id=(Integer)sesion.save(ped);
 		sesion.getTransaction().commit();
 		sesion.close();
-		return pedido;
+		
 	}
 
 

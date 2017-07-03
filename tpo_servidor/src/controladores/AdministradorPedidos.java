@@ -196,7 +196,7 @@ public class AdministradorPedidos {
 	}
 
 	public void altaPedido(PedidoClienteDTO pedido) {
-		PedidoClienteDAO.getInstancia().insert(new PedidoCliente(pedido));
+		 PedidoClienteDAO.getInstancia().insert(new PedidoCliente(pedido));
 		
 	}	
 }
