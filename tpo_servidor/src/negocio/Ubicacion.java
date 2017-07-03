@@ -11,7 +11,10 @@ public class Ubicacion {
 		this.estado = ue.getEstado();
 		this.codigo = ue.getCodigo();
 	}
-
+	public Ubicacion(UbicacionDTO ue) {
+		this.estado = ue.getEstado();
+		this.codigo = ue.getCodigo();
+	}
 	public UbicacionDTO toDTO() {
 		UbicacionDTO ubiDTO = new UbicacionDTO();
 		ubiDTO.setCodigo(this.codigo);

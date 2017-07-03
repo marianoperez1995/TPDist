@@ -1,6 +1,7 @@
 package negocio;
 
 import dto.BultoDTO;
+import persistencia.BultoDAO;
 
 public class Bulto {
 	private int idBulto;
@@ -31,6 +32,7 @@ public class Bulto {
 			cantidad = 0;
 			System.out.println("Estas restando mas stock de lo que hay");
 		}
+		update();
 	}
 
 	public boolean sosElBulto(int codigo) {
@@ -72,8 +74,10 @@ public class Bulto {
 	}
 
 	public void insertar() {
-		// TODO Auto-generated method stub
-		
+		BultoDAO.getInstancia().insert(this);
+	}
+	public void update(){
+		BultoDAO.getInstancia().update(this);
 	}
 
 	

@@ -60,4 +60,14 @@ public class BultoDAO {
 		sesion.close();		
 		return bultos;
 	}
+	public void update(Bulto bul) {
+		BultoEntity be= toEntity(bul);
+		Session sesion;
+		sesion = sf.openSession();
+		sesion.beginTransaction();
+		sesion.update(be);
+		sesion.getTransaction().commit();
+		sesion.close();
+		
+	}
 }

@@ -1,18 +1,10 @@
 package persistencia;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-
-import javax.persistence.Query;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import entities.BultoEntity;
 import entities.UbicacionEntity;
 import hibernate.HibernateUtil;
-import negocio.Bulto;
-import negocio.Factura;
 import negocio.Ubicacion;
 
 public class UbicacionDAO {
@@ -43,8 +35,7 @@ public class UbicacionDAO {
 		Session sesion = sf.openSession();
 		sesion.beginTransaction();
 		ue = (UbicacionEntity) sesion.createQuery("from UbicacionEntity where codigo = ?")
-				.setParameter(0, ubicacion);
-		
+				.setParameter(0, ubicacion);		
 		sesion.close();		
 		return new Ubicacion(ue);
 	}
