@@ -7,16 +7,21 @@ import java.util.Date;
 import dto.ClienteDTO;
 import dto.OrdenProduccionDTO;
 import dto.PedidoClienteDTO;
+import negocio.Bulto;
 import negocio.Cliente;
+import negocio.CuentaCorriente;
 import negocio.Factura;
 import negocio.ItemPedidoCliente;
 import negocio.ItemPrendaArea;
 import negocio.OrdenProduccion;
 import negocio.PedidoCliente;
+import negocio.Prenda;
+import persistencia.BultoDAO;
 import persistencia.FacturaDAO;
 import persistencia.ItemPrendaAreaDAO;
 import persistencia.OrdenProduccionDAO;
 import persistencia.PedidoClienteDAO;
+import persistencia.PrendaDAO;
 
 public class AdministradorPedidos {
 	private static ArrayList<PedidoCliente> pedidos;
@@ -150,7 +155,36 @@ public class AdministradorPedidos {
 		PedidoClienteDAO.getInstancia().update(new PedidoCliente(seleccionado));
 		Factura fac= new Factura();
 		Cliente cli= new Cliente(seleccionado.getCliente());
+		CuentaCorriente cr = cli.getCuentaCorriente();
+		cr.setBalanceActual(cr.getBalanceActual()-seleccionado.getPrecioTotal());
+		cr.actualizar();
+		
 		PedidoCliente ped= new PedidoCliente(seleccionado);
+		
+		for(ItemPedidoCliente ip : ped.getItemsPedidoCliente()){
+			ArrayList<Bulto> bultosConPrenda = BultoDAO.getInstancia().getBultos(ip.getPrenda().getIdPrenda());
+			Prenda actual = PrendaDAO.getInstancia().getPrenda(ip.getPrenda().getIdPrenda());
+			Bulto aux;
+			
+			actual.setStockActual(actual.getStockActual()-ip.getCantidad());
+			
+			int c=0;
+			for(int i = ip.getCantidad();i>0;){
+				aux = bultosConPrenda.get(c);
+				if(aux.getCantidad()<i){
+					aux.setCantidad(0);
+					aux.getUbicacion().setEstado("Libre");
+					aux.getUbicacion().update();
+					i= i-aux.getCantidad();
+				}else{
+					aux.setCantidad(aux.getCantidad()-i);
+					i=0;
+				}
+				c++;
+			}
+			
+			
+		}
 		fac.setCliente(cli);
 		fac.setFechaGeneracion(Calendar.getInstance().getTime());
 		float subtotal = ped.getPrecioTotal();
