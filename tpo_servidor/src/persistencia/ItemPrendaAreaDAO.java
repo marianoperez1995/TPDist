@@ -45,10 +45,14 @@ public class ItemPrendaAreaDAO  {
 		sesion.beginTransaction();
 		Query query = (Query) sesion.createQuery("from ItemPrendaAreaEntity where idPrenda = ?")
 				.setParameter(0, idPrenda);
-		ArrayList<ItemPrendaArea> items = new ArrayList<>();
-		items = (ArrayList<ItemPrendaArea>) query.list();
+		ArrayList<ItemPrendaAreaEntity> items = new ArrayList<>();
+		items = (ArrayList<ItemPrendaAreaEntity>) query.list();
 		sesion.close();		
-		return items;
+		ArrayList<ItemPrendaArea> items2 = new ArrayList<>();
+		for (ItemPrendaAreaEntity i : items){
+			items2.add(new ItemPrendaArea (i));
+		}
+		return items2;
 	}
 	
 	public void insert(ItemPrendaArea itemPrendaArea) {
