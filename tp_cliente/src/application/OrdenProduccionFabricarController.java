@@ -76,7 +76,9 @@ public class OrdenProduccionFabricarController implements Initializable{
 
 	JFXTreeTableColumn<OrdenesTabla, String> idPedidoCol;
     JFXTreeTableColumn<OrdenesTabla, String> tipoCol;
+    JFXTreeTableColumn<OrdenesTabla, String> estadoCol;
     JFXTreeTableColumn<OrdenesTabla, String> fechaGeneracionCol;
+
 
 	JFXTreeTableColumn<ItemPedTabla, String> nombreProductoCol;
 	JFXTreeTableColumn<ItemPedTabla, String> talleCol;
@@ -107,6 +109,16 @@ public class OrdenProduccionFabricarController implements Initializable{
 			}
 		});
     	
+    	estadoCol = new JFXTreeTableColumn<>("Estado");
+    	estadoCol.setPrefWidth(280);
+    	estadoCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<OrdenesTabla,String>, ObservableValue<String>>() {
+    		
+			@Override
+			public ObservableValue<String> call(CellDataFeatures<OrdenesTabla, String> param) {
+				return param.getValue().getValue().estado;
+			}
+		});
+    	
     	fechaGeneracionCol = new JFXTreeTableColumn<>("Fecha de orden");
     	fechaGeneracionCol.setPrefWidth(280);
     	fechaGeneracionCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<OrdenesTabla,String>, ObservableValue<String>>() {
@@ -123,7 +135,9 @@ public class OrdenProduccionFabricarController implements Initializable{
     	idPedidoCol.setResizable(false);
     	tipoCol.setResizable(false);
     	fechaGeneracionCol.setResizable(false);
+    	estadoCol.setResizable(false);
     	
+    	estadoCol.impl_setReorderable(false);
     	idPedidoCol.impl_setReorderable(false);
     	tipoCol.impl_setReorderable(false);
     	fechaGeneracionCol.impl_setReorderable(false);
@@ -190,7 +204,7 @@ public class OrdenProduccionFabricarController implements Initializable{
     	
     	//para manipular los datos de la tabla con el JFoenix se usa RecirsiveTreeItem. RecursiveTreeObject::getChildren Callback para obtener cada cliente de la tabla
     	final TreeItem<OrdenesTabla> root = new RecursiveTreeItem<OrdenesTabla>(ordenes, RecursiveTreeObject::getChildren);
-    	vistaTabla.getColumns().setAll(idPedidoCol,tipoCol,fechaGeneracionCol);
+    	vistaTabla.getColumns().setAll(idPedidoCol,tipoCol,estadoCol, fechaGeneracionCol);
     	vistaTabla.setRoot(root);
     	vistaTabla.setShowRoot(false);
     	
@@ -278,6 +292,7 @@ public class OrdenProduccionFabricarController implements Initializable{
 				    vistaTabla2.setRoot(root2);
 				    vistaTabla2.setShowRoot(false);
 				    
+				    if(seleccionado.getEstado().equalsIgnoreCase("Pendiente confirmacion"))
     	       		btnEnviar.setDisable(false);
     	        }
 	         }
@@ -310,7 +325,7 @@ public class OrdenProduccionFabricarController implements Initializable{
             	}
             	
             	final TreeItem<OrdenesTabla> root = new RecursiveTreeItem<OrdenesTabla>(ordenes, RecursiveTreeObject::getChildren);
-            	vistaTabla.getColumns().setAll(idPedidoCol,tipoCol,fechaGeneracionCol);
+            	vistaTabla.getColumns().setAll(idPedidoCol,tipoCol, estadoCol, fechaGeneracionCol);
             	vistaTabla.setRoot(root);
             	vistaTabla.setShowRoot(false);
             	
@@ -351,9 +366,7 @@ public class OrdenProduccionFabricarController implements Initializable{
 
 		try {
 			for(OrdenProduccionDTO p : BusinessDelegate.getInstancia().getOrdenes()){	
-				//if(p.getEstado().equalsIgnoreCase("Completo")){
-					resultado.add(new OrdenesTabla(Integer.toString(p.getIdOrden()), p.getTipo(),df.format(p.getFecha())));
-				//}
+				resultado.add(new OrdenesTabla(Integer.toString(p.getIdOrden()), p.getTipo(), p.getEstado(), df.format(p.getFecha())));
 			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -365,15 +378,25 @@ public class OrdenProduccionFabricarController implements Initializable{
 	class OrdenesTabla extends RecursiveTreeObject<OrdenesTabla>{
     	StringProperty idOrden;
     	StringProperty tipo;
+    	StringProperty estado;
     	StringProperty fechaGeneracion;
     	
-    	public OrdenesTabla(String idPedido, String telefono, String fechaGeneracion){
+    	public OrdenesTabla(String idPedido, String telefono, String estado, String fechaGeneracion){
     		this.idOrden = new SimpleStringProperty(idPedido);
     		this.tipo = new SimpleStringProperty(telefono);
+    		this.estado = new SimpleStringProperty(estado);
     		this.fechaGeneracion = new SimpleStringProperty(fechaGeneracion);
     	}
     	
-    	public StringProperty getIdOrden(){
+    	public StringProperty getEstado() {
+			return estado;
+		}
+
+		public void setEstado(StringProperty estado) {
+			this.estado = estado;
+		}
+
+		public StringProperty getIdOrden(){
     		return idOrden;
     	}
     	
