@@ -83,6 +83,7 @@ public interface InterfazRemota extends Remote {
 	public void confirmarClientePedido(PedidoClienteDTO ped) throws RemoteException;
 	public PrendaDTO buscarPrendaPorNombreYColorYTalle(String color, String prenda, String talle)throws RemoteException;
 	public void altaPedido(PedidoClienteDTO pedido)throws RemoteException;
+	public void fabricarOrden(OrdenProduccionDTO seleccionado) throws RemoteException;
 
 	//despacho
 	//falta agregar metodos al despacho

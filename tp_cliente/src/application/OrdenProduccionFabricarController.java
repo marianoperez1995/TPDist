@@ -15,6 +15,7 @@ import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
+import application.PedidosCompletosController.PedidoTabla;
 import businessDelegate.BusinessDelegate;
 import dto.OrdenProduccionDTO;
 import dto.PedidoClienteDTO;
@@ -73,12 +74,7 @@ public class OrdenProduccionFabricarController implements Initializable{
 	    @FXML
 	    private Label txtRazonSocial;
 
-	    @FXML
-	    void fabricarOrden(ActionEvent event) {
-
-	    }
-    
-    JFXTreeTableColumn<OrdenesTabla, String> idPedidoCol;
+	JFXTreeTableColumn<OrdenesTabla, String> idPedidoCol;
     JFXTreeTableColumn<OrdenesTabla, String> tipoCol;
     JFXTreeTableColumn<OrdenesTabla, String> fechaGeneracionCol;
 
@@ -91,8 +87,8 @@ public class OrdenProduccionFabricarController implements Initializable{
 	@Override
     public void initialize (URL url, ResourceBundle rb){
     	
-    	idPedidoCol = new JFXTreeTableColumn<>("Pedido");
-    	idPedidoCol.setPrefWidth(170);
+    	idPedidoCol = new JFXTreeTableColumn<>("Nº");
+    	idPedidoCol.setPrefWidth(90);
     	idPedidoCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<OrdenesTabla,String>, ObservableValue<String>>() {
 			
 			@Override
@@ -101,8 +97,8 @@ public class OrdenProduccionFabricarController implements Initializable{
 			}
 		});
     	
-    	tipoCol = new JFXTreeTableColumn<>("Estado");
-    	tipoCol.setPrefWidth(135);
+    	tipoCol = new JFXTreeTableColumn<>("Tipo");
+    	tipoCol.setPrefWidth(250);
     	tipoCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<OrdenesTabla,String>, ObservableValue<String>>() {
 			
 			@Override
@@ -111,8 +107,8 @@ public class OrdenProduccionFabricarController implements Initializable{
 			}
 		});
     	
-    	fechaGeneracionCol = new JFXTreeTableColumn<>("Fecha de pedido");
-    	fechaGeneracionCol.setPrefWidth(185);
+    	fechaGeneracionCol = new JFXTreeTableColumn<>("Fecha de orden");
+    	fechaGeneracionCol.setPrefWidth(280);
     	fechaGeneracionCol.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<OrdenesTabla,String>, ObservableValue<String>>() {
     		
 			@Override
@@ -121,8 +117,9 @@ public class OrdenProduccionFabricarController implements Initializable{
 			}
 		});
     	
-    	vistaTabla.setPlaceholder(new Label("No hay pedidos listos para enviar"));
-    	
+    	vistaTabla.setPlaceholder(new Label("No hay ordenes de producción hechas"));
+    	vistaTabla2.setPlaceholder(new Label("Seleccione una orden para ver su detalle"));
+
     	idPedidoCol.setResizable(false);
     	tipoCol.setResizable(false);
     	fechaGeneracionCol.setResizable(false);
@@ -285,6 +282,29 @@ public class OrdenProduccionFabricarController implements Initializable{
     	        }
 	         }
     	     });
+    }
+    
+    @FXML
+    void fabricarOrden(ActionEvent event) {
+    	OrdenProduccionDTO seleccionado = new OrdenProduccionDTO();
+        //Check whether item is selected and set value of selected item to Label
+        if(vistaTabla.getSelectionModel().getSelectedItem() != null) 
+        {
+        	TreeTableViewSelectionModel<OrdenesTabla> selectionModel = vistaTabla.getSelectionModel();
+		    ObservableList selectedCells = selectionModel.getSelectedCells();
+		    TreeTablePosition tablePosition = (TreeTablePosition) selectedCells.get(0);
+		    TreeItem<OrdenesTabla> selectedRow = vistaTabla.getTreeItem(tablePosition.getRow());
+           
+            seleccionado.setCodigo(Integer.parseInt(selectedRow.getValue().getIdOrden().getValue()));
+            
+            try {
+            	seleccionado = BusinessDelegate.getInstancia().buscarOrden(seleccionado);
+            	BusinessDelegate.getInstancia().fabricarOrden(seleccionado);
+            } catch (RemoteException e) {
+            	// TODO Auto-generated catch block
+            	e.printStackTrace();
+            }
+        }
     }
     
     void limpiarC(){

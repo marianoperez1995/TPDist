@@ -204,5 +204,9 @@ public class BusinessDelegate {
 	public void agregarPago(PagoDTO pago)  throws RemoteException  {
 		objetoRemoto.agregarPago(pago);
 	}
+	
+	public void fabricarOrden(OrdenProduccionDTO seleccionado) throws RemoteException {
+		objetoRemoto.fabricarOrden(seleccionado);
+	}
 
 }

@@ -9,6 +9,7 @@ import controladores.AdministradorClientes;
 import controladores.AdministradorFacturacion;
 import controladores.AdministradorPedidos;
 import controladores.AdministradorPrenda;
+import controladores.AdministradorProduccion;
 import controladores.AdministradorSucursales;
 import dto.ClienteDTO;
 import dto.CuentaCorrienteDTO;
@@ -20,6 +21,7 @@ import dto.PedidoClienteDTO;
 import dto.PrendaDTO;
 import dto.ReclamoDTO;
 import interfaces.InterfazRemota;
+import negocio.OrdenProduccion;
 
 public class ObjetoRemoto extends UnicastRemoteObject implements InterfazRemota,Serializable {
 
@@ -318,6 +320,11 @@ public class ObjetoRemoto extends UnicastRemoteObject implements InterfazRemota,
 	public void altaPedido(PedidoClienteDTO pedido) throws RemoteException {
 		 AdministradorPedidos.getInstancia().altaPedido(pedido);
 		
+	}
+
+	@Override
+	public void fabricarOrden(OrdenProduccionDTO seleccionado) throws RemoteException {
+		AdministradorProduccion.getInstancia().fabricar(new OrdenProduccion(seleccionado));
 	}
 	
 }
