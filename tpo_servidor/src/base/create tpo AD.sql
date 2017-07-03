@@ -182,9 +182,9 @@ create table PedidosCliente (
 	idCliente int not null,
 	estado varchar(20) not null, --puede ser pendiente, aceptado, enviado
 	fechaGeneracion DateTime not null,
-	fechaEstimadaDespacho DateTime not null,
-	fechaRealDespacho DateTime not null,
-	fechaEntregaCliente DateTime not null,
+	fechaEstimadaDespacho DateTime null,
+	fechaRealDespacho DateTime  null,
+	fechaEntregaCliente DateTime  null,
 	precioTotal float not null,
 
 
