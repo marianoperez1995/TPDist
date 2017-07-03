@@ -13,16 +13,28 @@ public class HibernateUtil {
 
 			AnnotationConfiguration config = new AnnotationConfiguration();
 
-			
-			//config.addAnnotatedClass(LoteEntity.class);	
-			//config.addAnnotatedClass(ItemPedidoInsumoEntity.class);
-			//config.addAnnotatedClass(ItemPedidoInsumoEntity.class);
-			config.addAnnotatedClass(ItemPrendaInsumoEntity.class);			
-			/*config.addAnnotatedClass(LoteInsumoEntity.class);	
+			config.addAnnotatedClass(LoteInsumoEntity.class);	
 			config.addAnnotatedClass(PedidoInsumoEntity.class);
 			config.addAnnotatedClass(PedidoTransporteEntity.class);	
 			config.addAnnotatedClass(PrendasEliminadasEntity.class);	
-			config.addAnnotatedClass(ItemProveedorInsumoEntity.class);*/
+			config.addAnnotatedClass(ItemProveedorInsumoEntity.class);
+			config.addAnnotatedClass(LoteEntity.class);	
+			config.addAnnotatedClass(ItemPedidoInsumoEntity.class);
+			config.addAnnotatedClass(ItemPedidoInsumoEntity.class);
+			
+			config.addAnnotatedClass(MovimientosEntity.class);
+			config.addAnnotatedClass(TransporteEntity.class);
+		
+			config.addAnnotatedClass(ItemPedidoClienteEntity.class);
+			
+			
+			
+			
+			
+			
+			
+			config.addAnnotatedClass(ItemPrendaInsumoEntity.class);			
+			
 			config.addAnnotatedClass(InsumoEntity.class);
 			config.addAnnotatedClass(UbicacionEntity.class);
 			config.addAnnotatedClass(BultoEntity.class);
@@ -44,10 +56,7 @@ public class HibernateUtil {
 			config.addAnnotatedClass(FacturaEntity.class);
 			config.addAnnotatedClass(PagoEntity.class);
 			
-			/*config.addAnnotatedClass(MovimientosEntity.class);
-			config.addAnnotatedClass(TransporteEntity.class);
-		
-			config.addAnnotatedClass(ItemPedidoClienteEntity.class);*/
+			
 			
 			sessionFactory = config.buildSessionFactory();
 

@@ -256,5 +256,9 @@ public class PedidoCliente {
 		OrdenProduccionDAO.getInstancia().insert(orden);
 	}
 
-	
+	public void descontarStockDePrenda() {
+		for (ItemPedidoCliente item: this.itemsPedidoCliente){
+			item.getPrenda().disminuirStock(item.getCantidad());
+		}
+	}
 }

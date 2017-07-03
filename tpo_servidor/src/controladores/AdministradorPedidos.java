@@ -51,8 +51,11 @@ public class AdministradorPedidos {
 	
 	public void aprobarPedido(PedidoClienteDTO pedi){
 		pedi.setEstado("Espera Confirmacion");
-		PedidoClienteDAO.getInstancia().update(new PedidoCliente(pedi));
+		PedidoCliente ped= new PedidoCliente(pedi);
+		ped.descontarStockDePrenda();
+		PedidoClienteDAO.getInstancia().update(ped);
 	}
+	
 	public PedidoCliente buscarPedidoCliente(int numero) {
 		for (PedidoCliente pc : pedidos){
 			if (pc.getIdPedidoCliente()== numero){

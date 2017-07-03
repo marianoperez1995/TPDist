@@ -8,13 +8,16 @@ import java.util.Map.Entry;
 
 import negocio.AreaProduccion;
 import negocio.Bulto;
+import negocio.Insumo;
 import negocio.ItemPedidoCliente;
 import negocio.ItemPrendaArea;
+import negocio.ItemPrendaInsumo;
 import negocio.LineaProduccion;
 import negocio.Lote;
 import negocio.OrdenProduccion;
 import negocio.PedidoCliente;
 import negocio.Prenda;
+import persistencia.InsumoDAO;
 import persistencia.ItemPrendaAreaDAO;
 
 public class AdministradorProduccion {
@@ -98,14 +101,17 @@ public class AdministradorProduccion {
 							for (LineaProduccion l : area.getLineasProduccion()){
 								minutosTotal = minutosTotal - l.getTiempoDeUso();
 								try {
-									if (!l.isEstado()){//no esta en uso
-										l.setHoraInicio(Calendar.getInstance().getTime());
-										l.setEstado(true);			
-										l.actualizar();
-										Thread.sleep((long) (l.getTiempoDeUso() * 1000 *5)); //paso el tiempo, producio la prenda en su cantidad maxima
-										//agregarle *60 para q sean minutos
-										l.setEstado(false);		
-										l.actualizar();
+									if (!l.isEstado()){//no esta en uso la linea
+										if (esFabricable (i.getPrenda(), i.getCantidad())){ //alcanzan los insumos
+										
+											l.setHoraInicio(Calendar.getInstance().getTime());
+											l.setEstado(true);			
+											l.actualizar();
+											Thread.sleep((long) (l.getTiempoDeUso() * 1000 *5)); //paso el tiempo, produjo la prenda en su cantidad maxima
+											//agregarle *60 para q sean minutos
+											l.setEstado(false);		
+											l.actualizar();
+										}
 									}
 								} catch (InterruptedException e) {
 									e.printStackTrace();
@@ -128,7 +134,19 @@ public class AdministradorProduccion {
 		});
 		t1.start();
 	}
+
+	private boolean esFabricable(Prenda prenda, int cantidad) {
+		ArrayList<ItemPrendaInsumo> insumosNecesarios = prenda.getInsumos();
+		HashMap<Insumo, Float> mapa = new HashMap<>();
+		
+		for (ItemPrendaInsumo i : insumosNecesarios){
+			mapa.put(i.getInsumo(), i.getCantidad());
+		}
+		
+		return InsumoDAO.getInstancia().existenInsumosSuficientes(mapa);
+		
 	
+	}
 	private ArrayList<Bulto> convertirABulto(Prenda prenda, int cant) {
 		ArrayList<Bulto> bultos = new ArrayList<>();
 		while (cant > 0){

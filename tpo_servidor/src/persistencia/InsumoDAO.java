@@ -1,6 +1,9 @@
 package persistencia;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map.Entry;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -9,6 +12,7 @@ import org.hibernate.SessionFactory;
 import entities.InsumoEntity;
 import hibernate.HibernateUtil;
 import negocio.Insumo;
+import negocio.Prenda;
 
 public class InsumoDAO  {
 	
@@ -94,6 +98,17 @@ public class InsumoDAO  {
 		sesion.update(in);
 		sesion.getTransaction().commit();
 		sesion.close();
+	}
+	public boolean existenInsumosSuficientes(HashMap<Insumo, Float> mapa) {
+		boolean resultado = true;
+		for (Entry<Insumo, Float> entry : mapa.entrySet()){
+			Insumo insumoEnBase = getInsumo(entry.getKey().getIdInsumo());
+			if (entry.getValue() > insumoEnBase.getStockActual()){
+				//Generar orden de compra de insumoEnBase.getCantAComprar();
+				resultado = false;
+			}
+		}		
+		return resultado;
 	}
 	
 	
