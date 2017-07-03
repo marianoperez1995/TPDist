@@ -300,7 +300,7 @@ public class AlmacenPrendasController implements Initializable{
 		            	e.printStackTrace();
 		            }
     	     	           
-		            txtIdPrenda.setText(Integer.toString(seleccionado.getIdPrenda()));
+		            txtIdPrenda.setText("ID"+Integer.toString(seleccionado.getIdPrenda()));
 		            txtDescripcion.setText(seleccionado.getDescripcion());
 		            txtColor.setText(seleccionado.getColor());
 		            txtTalle.setText(seleccionado.getTalle());

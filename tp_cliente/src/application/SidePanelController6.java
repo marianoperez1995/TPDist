@@ -65,23 +65,19 @@ public class SidePanelController6 implements Initializable {
             	body = FXMLLoader.load(getClass().getResource("/fxmls/SucursalAlta.fxml"));
             	MainController.bodyPanelP.getChildren().setAll(body);
             break;
-            case "Buscar sucursal":
-            	body = FXMLLoader.load(getClass().getResource("/fxmls/SucursalBuscar.fxml"));
-            	MainController.bodyPanelP.getChildren().setAll(body);
-            break;
             case "Alta de prenda":
             	body = FXMLLoader.load(getClass().getResource("/fxmls/PrendaAlta.fxml"));
             	MainController.bodyPanelP.getChildren().setAll(body);
             break;
-            case "Buscar prenda":
-            	body = FXMLLoader.load(getClass().getResource("/fxmls/PrendaBuscar.fxml"));
+            case "Ver almacen prendas":
+            	body = FXMLLoader.load(getClass().getResource("/fxmls/AlmacenPrendas.fxml"));
             	MainController.bodyPanelP.getChildren().setAll(body);
             break;
             case "Alta de insumo":
             	body = FXMLLoader.load(getClass().getResource("/fxmls/InsumoAlta.fxml"));
             	MainController.bodyPanelP.getChildren().setAll(body);
             break;
-            case "Buscar insumo":
+            case "Ver almacen insumos":
             	body = FXMLLoader.load(getClass().getResource("/fxmls/InsumoBuscar.fxml"));
             	MainController.bodyPanelP.getChildren().setAll(body);
             break;

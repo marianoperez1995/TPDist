@@ -300,10 +300,33 @@ public class OrdenProduccionFabricarController implements Initializable{
             try {
             	seleccionado = BusinessDelegate.getInstancia().buscarOrden(seleccionado);
             	BusinessDelegate.getInstancia().fabricarOrden(seleccionado);
+            	
+            	ObservableList<OrdenesTabla> ordenes = FXCollections.observableArrayList();
+            	ObservableList<ItemPedTabla> itemsOrdenes = FXCollections.observableArrayList();
+            	
+            	//agregar pedidos a la tabla
+            	for(OrdenesTabla p: buscarOrdenes()){
+            		ordenes.add(p);
+            	}
+            	
+            	final TreeItem<OrdenesTabla> root = new RecursiveTreeItem<OrdenesTabla>(ordenes, RecursiveTreeObject::getChildren);
+            	vistaTabla.getColumns().setAll(idPedidoCol,tipoCol,fechaGeneracionCol);
+            	vistaTabla.setRoot(root);
+            	vistaTabla.setShowRoot(false);
+            	
+			    final TreeItem<ItemPedTabla> root2 = new RecursiveTreeItem<ItemPedTabla>(itemsOrdenes, RecursiveTreeObject::getChildren);
+			    vistaTabla2.getColumns().setAll(nombreProductoCol, talleCol,colorCol,cantidadCol);
+			    vistaTabla2.setRoot(root2);
+			    vistaTabla2.setShowRoot(false);
+			    
+			    btnEnviar.setDisable(true);
             } catch (RemoteException e) {
             	// TODO Auto-generated catch block
             	e.printStackTrace();
             }
+            
+            
+            
         }
     }
     
@@ -320,42 +343,6 @@ public class OrdenProduccionFabricarController implements Initializable{
 	    vistaTabla2.setShowRoot(false);
 
    		btnEnviar.setDisable(true);
-    }
-    
-    @FXML
-    void enviarPedido(ActionEvent event) {
-    	PedidoClienteDTO seleccionado = new PedidoClienteDTO();
-        //Check whether item is selected and set value of selected item to Label
-        if(vistaTabla.getSelectionModel().getSelectedItem() != null) 
-        {
-        	TreeTableViewSelectionModel<OrdenesTabla> selectionModel = vistaTabla.getSelectionModel();
-		    ObservableList selectedCells = selectionModel.getSelectedCells();
-		    TreeTablePosition tablePosition = (TreeTablePosition) selectedCells.get(0);
-		    TreeItem<OrdenesTabla> selectedRow = vistaTabla.getTreeItem(tablePosition.getRow());
-           
-            seleccionado.setIdPedidoCliente(Integer.parseInt(selectedRow.getValue().getIdOrden().getValue()));
-            try {
-            	seleccionado = BusinessDelegate.getInstancia().buscarPedido(seleccionado);
-            	BusinessDelegate.getInstancia().enviarPedido(seleccionado);
-            } catch (RemoteException e) {
-            	// TODO Auto-generated catch block
-            	e.printStackTrace();
-            }
-        }
-        
-    	ObservableList<OrdenesTabla> pedidos = FXCollections.observableArrayList();
-    	//agregar pedidos a la tabla
-    	for(OrdenesTabla p: buscarOrdenes()){
-    		pedidos.add(p);
-    	}
-   	
-    	//para manipular los datos de la tabla con el JFoenix se usa RecirsiveTreeItem. RecursiveTreeObject::getChildren Callback para obtener cada cliente de la tabla
-    	final TreeItem<OrdenesTabla> root = new RecursiveTreeItem<OrdenesTabla>(pedidos, RecursiveTreeObject::getChildren);
-    	vistaTabla.getColumns().setAll(idPedidoCol, tipoCol,fechaGeneracionCol);
-    	vistaTabla.setRoot(root);
-    	vistaTabla.setShowRoot(false);
-    	
-    	limpiarC();
     }
     
     private ArrayList<OrdenesTabla> buscarOrdenes() {
