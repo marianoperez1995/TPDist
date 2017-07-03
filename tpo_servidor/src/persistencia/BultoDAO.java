@@ -3,8 +3,7 @@ package persistencia;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import javax.persistence.Query;
-
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 

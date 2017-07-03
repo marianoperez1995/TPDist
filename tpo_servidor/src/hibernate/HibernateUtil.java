@@ -24,7 +24,8 @@ public class HibernateUtil {
 			config.addAnnotatedClass(PrendasEliminadasEntity.class);	
 			config.addAnnotatedClass(ItemProveedorInsumoEntity.class);*/
 			config.addAnnotatedClass(InsumoEntity.class);
-			
+			config.addAnnotatedClass(UbicacionEntity.class);
+			config.addAnnotatedClass(BultoEntity.class);
 			//De aca para abajo andan bien en teoria
 			config.addAnnotatedClass(ClienteEntity.class);
 			config.addAnnotatedClass(SucursalEntity.class);
@@ -42,6 +43,7 @@ public class HibernateUtil {
 			config.addAnnotatedClass(ItemPedidoClienteEntity.class);
 			config.addAnnotatedClass(FacturaEntity.class);
 			config.addAnnotatedClass(PagoEntity.class);
+			
 			/*config.addAnnotatedClass(MovimientosEntity.class);
 			config.addAnnotatedClass(TransporteEntity.class);
 		
