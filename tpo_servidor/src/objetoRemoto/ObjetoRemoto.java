@@ -316,7 +316,7 @@ public class ObjetoRemoto extends UnicastRemoteObject implements InterfazRemota,
 
 	@Override
 	public void altaPedido(PedidoClienteDTO pedido) throws RemoteException {
-		AdministradorPedidos.getInstancia().altaPedido(pedido);
+		 AdministradorPedidos.getInstancia().altaPedido(pedido);
 		
 	}
 	

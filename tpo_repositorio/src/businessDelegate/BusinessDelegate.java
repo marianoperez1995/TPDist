@@ -195,7 +195,7 @@ public class BusinessDelegate {
 		return objetoRemoto.buscarPrendaPorNombreYColorYTalle(color,  prenda, talle);
 	}
 	public void altaPedido(PedidoClienteDTO pedido) throws RemoteException {
-		objetoRemoto.altaPedido(pedido);
+		 objetoRemoto.altaPedido(pedido);
 		
 	}
 	public ArrayList<PagoDTO> buscarPagos(ClienteDTO seleccionado) throws RemoteException  {
