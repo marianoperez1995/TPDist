@@ -146,7 +146,7 @@ public  class OrdenProduccion {
 
 
 	public boolean termino() {
-		return OrdenProduccionDAO.getInstancia().termino();
+		ArrayList<OrdenProduccion> ordenes= OrdenProduccionDAO.getInstancia().getOrdenesDePedido(this.getPedidoCliente());
 	}
 	
 }

@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import entities.OrdenProduccionEntity;
 import hibernate.HibernateUtil;
 import negocio.OrdenProduccion;
+import negocio.PedidoCliente;
 
 public class OrdenProduccionDAO{
 	
@@ -94,6 +95,20 @@ public class OrdenProduccionDAO{
 		sesion.getTransaction().commit();
 		sesion.close();
 		
+	}
+
+	public ArrayList<OrdenProduccion> getOrdenesDePedido(PedidoCliente pedidoCliente) {
+		Session sesion = sf.openSession();
+		sesion.beginTransaction();
+		ArrayList<OrdenProduccionEntity> ordenes = new ArrayList<OrdenProduccionEntity>();
+		Query query = sesion.createQuery("from OrdenProduccionEntity where idPedidoCliente=?").setParameter(0, pedidoCliente.getIdPedidoCliente());
+		ordenes = (ArrayList<OrdenProduccionEntity>) query.list();
+		sesion.close();
+		ArrayList<OrdenProduccion> orde = new ArrayList<OrdenProduccion>();
+		for (OrdenProduccionEntity ee : ordenes) {
+			orde.add(new OrdenProduccion(ee));
+		}
+		return orde;
 	}
 
 }
