@@ -14,6 +14,15 @@ public  class OrdenProduccionDTO implements Serializable {
 	protected int codigo;
 	protected String tipo;
 	protected int cantidad;
+	protected String estado;
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
 
 	public int getCantidad() {
 		return cantidad;
@@ -67,5 +76,7 @@ public  class OrdenProduccionDTO implements Serializable {
 		
 		return (this.tipo.equals("opp"));
 	}
+
+
 
 }

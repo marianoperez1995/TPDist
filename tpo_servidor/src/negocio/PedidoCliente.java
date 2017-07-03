@@ -280,4 +280,7 @@ public class PedidoCliente {
 			item.getPrenda().disminuirStock(item.getCantidad());
 		}
 	}
+
+
+	
 }

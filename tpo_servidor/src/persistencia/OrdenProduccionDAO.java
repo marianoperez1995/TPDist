@@ -43,7 +43,7 @@ public class OrdenProduccionDAO{
 		Session sesion;
 		sesion = sf.openSession();
 		sesion.beginTransaction();
-		sesion.saveOrUpdate(or);
+		sesion.save(or);
 		sesion.getTransaction().commit();
 		sesion.close();
 	}
@@ -65,6 +65,7 @@ public class OrdenProduccionDAO{
 		or.setPedidoCliente(PedidoClienteDAO.getInstancia().toEntity(orden.getPedidoCliente(),ClienteDAO.getInstancia().toEntity(orden.getPedidoCliente().getCliente())));
 		or.setPrenda(PrendaDAO.getInstancia().toEntity(orden.getPrenda()));
 		or.setCantidad(orden.getCantidad());
+		or.setEstado(orden.getEstado());
 		return or;
 		
 	}
@@ -83,6 +84,16 @@ public class OrdenProduccionDAO{
 			orde.add(new OrdenProduccion(ee));
 		}
 		return orde;
+	}
+	public void update(OrdenProduccion ordenProduccion) {
+		OrdenProduccionEntity or= toEntity(ordenProduccion);
+		Session sesion;
+		sesion = sf.openSession();
+		sesion.beginTransaction();
+		sesion.update(or);
+		sesion.getTransaction().commit();
+		sesion.close();
+		
 	}
 
 }

@@ -13,7 +13,7 @@ public  class OrdenProduccion {
 	protected PedidoCliente pedidoCliente;
 	protected int cantidad;
 	protected String tipo; 
-
+	protected String estado;
 	public OrdenProduccion() {
 		
 	}
@@ -36,7 +36,21 @@ public  class OrdenProduccion {
 		this.pedidoCliente = new PedidoCliente(ordenEntity.getPedidoCliente());
 		this.cantidad = ordenEntity.getCantidad();
 		this.tipo = ordenEntity.getTipo();
+		this.estado= ordenEntity.getEstado();
 	}
+	
+
+
+	public String getEstado() {
+		return estado;
+	}
+
+
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
 
 
 	public OrdenProduccion(OrdenProduccionDTO orden) {
@@ -46,6 +60,7 @@ public  class OrdenProduccion {
 		this.pedidoCliente = new PedidoCliente(orden.getPedidoCliente());
 		this.cantidad = orden.getCantidad();
 		this.tipo = orden.getTipo();
+		this.estado= orden.getEstado();
 	}
 
 
@@ -119,6 +134,19 @@ public  class OrdenProduccion {
 		nuevo.setPedidoCliente(this.pedidoCliente.toDTO());
 		nuevo.setTipo(this.tipo);
 		return nuevo;
+	}
+
+
+
+	public void update() {
+		OrdenProduccionDAO.getInstancia().update(this);
+		
+	}
+
+
+
+	public boolean termino() {
+		return OrdenProduccionDAO.getInstancia().termino();
 	}
 	
 }

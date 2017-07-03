@@ -82,6 +82,8 @@ public class AdministradorProduccion {
 	public void fabricar(OrdenProduccion orden) { //SI NO FUNCIONA,hacer      new Thread(() -> fabricar(orden)).start();     cuando se llama al metodo, quitar lo del thread
 		Thread t1 = new Thread(new Runnable() { //Hace todo en un nuevo thread, para que no tilde toda la aplicacion
 			public void run() {
+				orden.setEstado("En fabricacion");
+				orden.update();
 				PedidoCliente p = orden.getPedidoCliente();
 
 				for (ItemPedidoCliente i : p.getItemsPedidoCliente()) {
@@ -108,7 +110,7 @@ public class AdministradorProduccion {
 											l.setHoraInicio(Calendar.getInstance().getTime());
 											l.setEstado(true);			
 											l.actualizar();
-											long tiempo = item.getMinutoEnArea() *10;
+											long tiempo = item.getMinutoEnArea() *2500;
 											System.out.println("espera por "+tiempo +" ms");
 											Thread.sleep(tiempo); //paso el tiempo, produjo la prenda en su cantidad maxima
 											//agregarle *60 para q sean minutos
@@ -132,6 +134,11 @@ public class AdministradorProduccion {
 						b.insertar();
 					i.getPrenda().setStockActual(i.getPrenda().getStockActual() + cantAProducirDePrenda);
 					i.getPrenda().update();
+				}
+				orden.setEstado("Completa");
+				orden.update();
+				if (orden.termino()){
+					orden.getPedidoCliente().setEstado("Completo");
 				}
 			}		
 		});

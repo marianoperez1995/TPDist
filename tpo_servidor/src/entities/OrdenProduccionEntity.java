@@ -46,6 +46,18 @@ public class OrdenProduccionEntity implements Serializable{
 	@JoinColumn(name="idPrenda")
 	protected PrendaEntity prenda;
 	protected int cantidad;
+	protected String estado;
+	
+	public String getEstado() {
+		return estado;
+	}
+
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+
 	public int getCantidad() {
 		return cantidad;
 	}
@@ -101,6 +113,9 @@ public class OrdenProduccionEntity implements Serializable{
 		// TODO Auto-generated method stub
 		return prenda;
 	}
+
+
+
 
 	
 }

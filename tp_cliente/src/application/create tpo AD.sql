@@ -297,6 +297,7 @@ create table OrdenesProduccion (
 	idPedidoCliente int not null,
 	fecha DateTime not null,
 	tipo varchar(20) not null,
+	estado varchar(50) null,
 	constraint pk_OrdenesP primary key (idOrdenProduccion),
 	constraint fk_Prendas foreign key (idPrenda) references Prendas,
 	constraint fk_PedidosCliente foreign key (idPedidoCliente) references PedidosCliente
