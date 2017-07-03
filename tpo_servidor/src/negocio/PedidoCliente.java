@@ -205,6 +205,7 @@ public class PedidoCliente {
 		}
 		p.setItemsPedidoCliente(itemsDTO);
 		p.setPrecioTotal(precioTotal);
+		p.setCausa(this.causa);
 		return p;
 	}
 

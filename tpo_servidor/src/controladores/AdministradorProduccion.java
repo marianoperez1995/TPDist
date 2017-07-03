@@ -86,7 +86,7 @@ public class AdministradorProduccion {
 				orden.setEstado("En fabricacion");
 				orden.update();
 				PedidoCliente p = orden.getPedidoCliente();
-
+				
 				for (ItemPedidoCliente i : p.getItemsPedidoCliente()) {
 					ArrayList<ItemPrendaArea> itemspa = ItemPrendaAreaDAO.getInstancia()
 							.obtenerPorPrenda(i.getPrenda().getIdPrenda());
