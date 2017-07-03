@@ -1,6 +1,7 @@
 package application;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,7 +54,7 @@ public class LoginController {
     SucursalDTO suc;
     
     @FXML
-    void makeLogin(ActionEvent event) throws InterruptedException, IOException {
+    void makeLogin(ActionEvent event) throws IOException{
     	btnLogin.setDisable(true);
     	usuario = txtUser.getText();
     	password = txtPassword.getText();
@@ -66,7 +67,12 @@ public class LoginController {
 	    	env.setUsuario(usuario);
 	    	env.setPass(password);
 
-	    	empleado = BusinessDelegate.getInstancia().buscarLogin(env);
+	    	try {
+				empleado = BusinessDelegate.getInstancia().buscarLogin(env);
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	     	
 	    	if(empleado != null){
 	    		idt = empleado.getIdTrabajador();

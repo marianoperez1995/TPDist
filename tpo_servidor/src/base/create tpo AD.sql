@@ -313,14 +313,32 @@ create table ItemOrdenProduccion (
 	constraint pk_ItemOrdProd primary key (idOrdenProduccion, idPrenda),
 )
 
+create table Ubicaciones (
+ codigo varchar(40),
+ estado varchar(40),
+ 
+ constraint pk_ubic primary key (codigo)
+)
+
+create table Bultos (
+ idBulto int identity (1,1),
+ idPrenda int not null,
+ fechaGeneracion datetime,
+ cantidad int,
+ codigo varchar(40),
+
+ constraint pk_bulto primary key (idBulto),
+ constraint ub_fk_bu foreign key (codigo) references Ubicaciones,
+ constraint pr_fk_bu foreign key (idPrenda) references Prendas
+)
+
+
 alter table Lotes add
 	constraint lotes_prenda foreign key (idPrenda) references Prendas
 
 alter table ItemOrdenProduccion add
 	constraint ItemOrdProd_fk_Ord foreign key (idOrdenProduccion) references OrdenesProduccion,
 	constraint ItemOrdProd_fk_Ord1 foreign key (idPrenda) references Prendas
-
-
 
 alter table Empleados add
 	constraint fk_empleados_suc foreign key (idSucursal) references Sucursales

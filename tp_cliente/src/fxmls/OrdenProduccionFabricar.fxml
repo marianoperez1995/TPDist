@@ -79,7 +79,7 @@
       </FlowPane>
       <Pane layoutX="656.0" layoutY="35.0" prefHeight="249.0" prefWidth="681.0" style="-fx-background-color: #e1e5ed; -fx-background-radius: 0 10 0 0;">
          <children>
-            <GridPane layoutX="341.0" layoutY="72.0" prefHeight="74.0" prefWidth="307.0">
+            <GridPane layoutX="315.0" layoutY="109.0" prefHeight="74.0" prefWidth="307.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="203.0" minWidth="10.0" prefWidth="119.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="174.0" minWidth="10.0" prefWidth="165.0" />
@@ -93,51 +93,46 @@
                <children>
                   <Label prefHeight="21.0" prefWidth="166.0" text="Razon social:">
                      <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label prefHeight="21.0" prefWidth="166.0" text="Razon social:">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
                   <Label fx:id="txtRazonSocial" prefHeight="21.0" prefWidth="166.0" GridPane.columnIndex="1">
                      <font>
-                        <Font name="System Bold" size="15.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
                   <Label prefHeight="21.0" prefWidth="166.0" text="Pedido:" GridPane.rowIndex="1">
                      <font>
-                        <Font name="System Bold" size="15.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
                   <Label prefHeight="21.0" prefWidth="166.0" text="Tipo orden:" GridPane.rowIndex="2">
                      <font>
-                        <Font name="System Bold" size="15.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
                   <Label fx:id="txtIdPedido" prefHeight="21.0" prefWidth="166.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
-                        <Font name="System Bold" size="15.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
                   <Label fx:id="txtTipoOrden" prefHeight="21.0" prefWidth="166.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <font>
-                        <Font name="System Bold" size="15.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
                </children>
             </GridPane>
             <Pane prefHeight="44.0" prefWidth="681.0" style="-fx-background-color: #355c7D; -fx-background-radius: 0 10 0 0;">
                <children>
-                  <Label alignment="CENTER" layoutY="9.0" prefHeight="30.0" prefWidth="681.0" text="PEDIDO" textFill="WHITE">
+                  <Label alignment="CENTER" layoutY="9.0" prefHeight="30.0" prefWidth="681.0" text="INFO SOBRE ORDEN  DE PRODUCCION" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Label fx:id="txtIdCliente" layoutX="37.0" layoutY="62.0" prefHeight="94.0" prefWidth="271.0" text="ID" underline="true">
+            <Label fx:id="txtIdCliente" layoutX="44.0" layoutY="99.0" prefHeight="94.0" prefWidth="271.0" text="ID" underline="true">
                <font>
                   <Font size="65.0" />
                </font>
