@@ -208,5 +208,8 @@ public class BusinessDelegate {
 	public void fabricarOrden(OrdenProduccionDTO seleccionado) throws RemoteException {
 		objetoRemoto.fabricarOrden(seleccionado);
 	}
+	public void altaPrenda(PrendaDTO prenda) throws RemoteException {
+		objetoRemoto.altaPrenda(prenda);
+	}
 
 }

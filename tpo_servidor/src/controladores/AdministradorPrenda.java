@@ -3,6 +3,7 @@ package controladores;
 import java.util.ArrayList;
 
 import dto.PrendaDTO;
+import negocio.Cliente;
 import negocio.Prenda;
 import persistencia.PrendaDAO;
 
@@ -82,6 +83,11 @@ public class AdministradorPrenda {
 	public PrendaDTO getPrendaPorNombreYColorYTalle(String color, String prenda, String talle) {
 		Prenda pre= PrendaDAO.getInstancia().getPrendasPorNombreYColorYTalle(prenda, color, talle);
 		return pre.toDTO();
+	}
+
+	public void altaPrenda(Prenda prenda) {
+		prendas.add(prenda);
+		prenda.insertar();
 	}
 
 }

@@ -22,6 +22,7 @@ import dto.PrendaDTO;
 import dto.ReclamoDTO;
 import interfaces.InterfazRemota;
 import negocio.OrdenProduccion;
+import negocio.Prenda;
 
 public class ObjetoRemoto extends UnicastRemoteObject implements InterfazRemota,Serializable {
 
@@ -325,6 +326,11 @@ public class ObjetoRemoto extends UnicastRemoteObject implements InterfazRemota,
 	@Override
 	public void fabricarOrden(OrdenProduccionDTO seleccionado) throws RemoteException {
 		AdministradorProduccion.getInstancia().fabricar(new OrdenProduccion(seleccionado));
+	}
+
+	@Override
+	public void altaPrenda(PrendaDTO prenda) throws RemoteException {
+		AdministradorPrenda.getInstancia().altaPrenda(new Prenda(prenda));
 	}
 	
 }

@@ -50,10 +50,12 @@ public class PrendaDAO  {
 		sesion.close();
 		sesion = sf.openSession();
 		sesion.beginTransaction();
-		for (int i=0;i<prenda.getInsumos().size();i++){
-			ItemPrendaInsumo item=new ItemPrendaInsumo();
-			item=prenda.getInsumos().get(i);
-			item.insertar();
+		if(prenda.getInsumos() != null){
+			for (int i=0;i<prenda.getInsumos().size();i++){
+				ItemPrendaInsumo item=new ItemPrendaInsumo();
+				item=prenda.getInsumos().get(i);
+				item.insertar();
+			}
 		}
 	}
 
