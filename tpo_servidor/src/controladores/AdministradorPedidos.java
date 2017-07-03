@@ -50,23 +50,8 @@ public class AdministradorPedidos {
 	
 	
 	public void aprobarPedido(PedidoClienteDTO pedi){
-		int ok=0;
-		PedidoCliente ped= new PedidoCliente(pedi);
-		for (ItemPedidoCliente item : ped.getItemsPedidoCliente()){
-			if (!item.getPrenda().verificarCantidad(item.getCantidad())){
-				ok=1;
-				ped.generarOrdenProduccion(item);
-				
-			}
-		}
-		if (ok==1){
-			ped.setEstado("En Fabricacion");
-			
-		}else{
-			ped.setEstado("Completo");
-		}
-		PedidoClienteDAO.getInstancia().update(ped);
-		
+		pedi.setEstado("Espera Confirmacion");
+		PedidoClienteDAO.getInstancia().update(new PedidoCliente(pedi));
 	}
 	public PedidoCliente buscarPedidoCliente(int numero) {
 		for (PedidoCliente pc : pedidos){
@@ -191,7 +176,23 @@ public class AdministradorPedidos {
 	}
 
 	public void confirmarClientePedido(PedidoClienteDTO ped) {
-		this.aprobarPedido(ped);
+		int ok=0;
+		PedidoCliente ped1= new PedidoCliente(ped);
+		for (ItemPedidoCliente item : ped1.getItemsPedidoCliente()){
+			if (!item.getPrenda().verificarCantidad(item.getCantidad())){
+				ok=1;
+				ped1.generarOrdenProduccion(item);
+				
+			}
+		}
+		if (ok==1){
+			ped1.setEstado("En Fabricacion");
+			
+		}else{
+			ped1.setEstado("Completo");
+		}
+		PedidoClienteDAO.getInstancia().update(ped1);
+		
 	}
 
 	public void altaPedido(PedidoClienteDTO pedido) {
