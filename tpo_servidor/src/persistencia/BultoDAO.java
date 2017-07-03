@@ -35,10 +35,8 @@ public class BultoDAO {
 		sesion = sf.openSession();
 		sesion.beginTransaction();
 		UbicacionEntity ue = UbicacionDAO.getInstancia().obtenerPrimeraUbicacionLibre();
+		ue.setEstado("Ocupado");
 		be.setUbicacion(ue);
-		Ubicacion u = UbicacionDAO.getInstancia().get(be.getUbicacion().getCodigo());
-		u.setEstado("Ocupado");
-		u.update();
 		sesion.save(be);
 	
 		sesion.getTransaction().commit();
