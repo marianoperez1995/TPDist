@@ -2,6 +2,8 @@ package application;
 
 import java.net.URL;
 import java.rmi.RemoteException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
@@ -14,6 +16,7 @@ import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
 import businessDelegate.BusinessDelegate;
+import dto.BultoDTO;
 import dto.PrendaDTO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -310,9 +313,10 @@ public class AlmacenPrendasController implements Initializable{
 		            txtEstado.setText(estado);
 		            txtStockMin.setText(Integer.toString(seleccionado.getStockMinimo()));
 		            txtStock.setText(Integer.toString(seleccionado.getStockActual()));
+		            ArrayList<BultoDTO> bultos = new ArrayList<>();
 		            
-				    /*try {
-						ArrayList<BultoDTO> bultos = BusinessDelegate.getInstancia().buscarBultos(seleccionado));
+				    try {
+						bultos = BusinessDelegate.getInstancia().buscarBultoPorId(seleccionado.getIdPrenda());
 					} catch (RemoteException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -320,8 +324,8 @@ public class AlmacenPrendasController implements Initializable{
 				    
 					DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 				    for(BultoDTO b : bultos){
-				    	itemsPedido.add(new BultoTabla(Integer.toString(b.getCodigoBulto()),df.format(b.getFechagen()),Integer.toString(b.getCantidad()),b.getUbicacion()));
-				    }*/
+				    	itemsPedido.add(new BultoTabla(Integer.toString(b.getCodigoBulto()),df.format(b.getFechagen()),Integer.toString(b.getCantidad()),b.getUbicacion().getCodigo()));
+				    }
 				    
 				    final TreeItem<BultoTabla> root2 = new RecursiveTreeItem<BultoTabla>(itemsPedido, RecursiveTreeObject::getChildren);
 			    	vistaTabla2.getColumns().setAll(idBultoCol, fechaBultoCol, cantCol, ubicacionCol);

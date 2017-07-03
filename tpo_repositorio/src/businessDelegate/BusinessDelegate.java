@@ -1,7 +1,5 @@
 package businessDelegate;
 
-import interfaces.InterfazRemota;
-
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
@@ -18,6 +16,7 @@ import dto.PagoDTO;
 import dto.PedidoClienteDTO;
 import dto.PrendaDTO;
 import dto.ReclamoDTO;
+import interfaces.InterfazRemota;
 
 public class BusinessDelegate {
 	private static BusinessDelegate instancia;
@@ -217,6 +216,9 @@ public class BusinessDelegate {
 	}
 	public InsumoDTO buscarInsumo(InsumoDTO insumo1) throws RemoteException {
 		return objetoRemoto.getInsumo(insumo1);
+	}
+	public ArrayList<dto.BultoDTO> buscarBultoPorId(int idPrenda) throws RemoteException {
+		return objetoRemoto.buscarBultoPorId(idPrenda);
 	}
 
 }

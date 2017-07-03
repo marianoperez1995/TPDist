@@ -11,6 +11,7 @@ import controladores.AdministradorPedidos;
 import controladores.AdministradorPrenda;
 import controladores.AdministradorProduccion;
 import controladores.AdministradorSucursales;
+import dto.BultoDTO;
 import dto.ClienteDTO;
 import dto.CuentaCorrienteDTO;
 import dto.EmpleadoDTO;
@@ -342,6 +343,11 @@ public class ObjetoRemoto extends UnicastRemoteObject implements InterfazRemota,
 	@Override
 	public InsumoDTO getInsumo(InsumoDTO insumo1) throws RemoteException {
 		return AdministradorPrenda.getInstancia().getInsumo(insumo1.getNombre());
+	}
+
+	@Override
+	public ArrayList<BultoDTO> buscarBultoPorId(int idPrenda) throws RemoteException {
+		return AdministradorPrenda.getInstancia().buscarBultoPorId(idPrenda);
 	}
 	
 }

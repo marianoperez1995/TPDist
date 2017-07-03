@@ -3,6 +3,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import dto.BultoDTO;
 import dto.ClienteDTO;
 import dto.CuentaCorrienteDTO;
 import dto.EmpleadoDTO;
@@ -88,6 +89,7 @@ public interface InterfazRemota extends Remote {
 	public void altaPrenda(PrendaDTO prenda) throws RemoteException;
 	public ArrayList<InsumoDTO> getInsumos() throws RemoteException;
 	public InsumoDTO getInsumo(InsumoDTO insumo1) throws RemoteException;
+	public ArrayList<BultoDTO> buscarBultoPorId(int idPrenda) throws RemoteException;
 
 	//despacho
 	//falta agregar metodos al despacho

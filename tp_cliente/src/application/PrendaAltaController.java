@@ -23,6 +23,7 @@ import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import application.ClientesPendientesController.ClienteTabla;
 import businessDelegate.BusinessDelegate;
 import dto.InsumoDTO;
+import dto.ItemPrendaInsumoDTO;
 import dto.PrendaDTO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -79,6 +80,15 @@ public class PrendaAltaController implements Initializable {
     @FXML
     private JFXTextField txtPrecio;
 
+    @FXML
+    private JFXTextField txtCant1;
+    
+    @FXML
+    private JFXTextField txtCant2;
+    
+    @FXML
+    private JFXTextField txtCant3;
+    
     @FXML
     private JFXTextField txtNombre;
 
@@ -349,6 +359,9 @@ public class PrendaAltaController implements Initializable {
 	    	InsumoDTO insumo1 = new InsumoDTO();
 	    	InsumoDTO insumo2 = new InsumoDTO();
 	    	InsumoDTO insumo3 = new InsumoDTO();
+	    	int cant1 = Integer.parseInt(txtCant1.getText());
+	    	int cant2 = Integer.parseInt(txtCant2.getText());
+	    	int cant3 = Integer.parseInt(txtCant3.getText());
 	    	
 	    	boolean estado;
 	    	if(comboEstado.getValue().getText().equalsIgnoreCase("Discontinuo")){
@@ -377,6 +390,29 @@ public class PrendaAltaController implements Initializable {
 	    		insumo1 = BusinessDelegate.getInstancia().buscarInsumo(insumo1);
 	    		insumo2 = BusinessDelegate.getInstancia().buscarInsumo(insumo2);
 	    		insumo3 = BusinessDelegate.getInstancia().buscarInsumo(insumo3);
+	    		ItemPrendaInsumoDTO it1 = new ItemPrendaInsumoDTO();
+				ItemPrendaInsumoDTO it2 = new ItemPrendaInsumoDTO();
+				ItemPrendaInsumoDTO it3 = new ItemPrendaInsumoDTO();
+				
+				it1.setInsumo(insumo1);
+				it1.setDesperdicio((float)0.1);
+				it1.setCantidad(cant1);
+				it1.setPrenda(prenda);
+				it2.setInsumo(insumo1);
+				it2.setDesperdicio((float)0.1);
+				it2.setCantidad(cant2);
+				it2.setPrenda(prenda);
+				it3.setInsumo(insumo1);
+				it3.setDesperdicio((float)0.1);
+				it3.setCantidad(cant3);
+				it3.setPrenda(prenda);
+				
+				ArrayList<ItemPrendaInsumoDTO> items = new ArrayList<ItemPrendaInsumoDTO>();
+				items.add(it1);
+				items.add(it2);
+				items.add(it3);
+				prenda.setInsumos(items);
+				
 				BusinessDelegate.getInstancia().altaPrenda(prenda);
 				limpiarCampos();
 				titulo.setText("Exito en la operación");

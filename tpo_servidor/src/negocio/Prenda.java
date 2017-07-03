@@ -47,6 +47,11 @@ public class Prenda {
 		this.talle = preDTO.getTalle();
 		this.stockActual = preDTO.getStockActual();
 		this.stockMinimo = preDTO.getStockMinimo();
+		this.insumos = new ArrayList<>();
+		for(ItemPrendaInsumoDTO i :preDTO.getInsumos()){
+			insumos.add(new ItemPrendaInsumo(i));
+		}
+		 
 	}
 
 	public Prenda(PrendaEntity p) {

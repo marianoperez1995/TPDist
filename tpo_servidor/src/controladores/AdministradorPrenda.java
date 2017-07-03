@@ -2,11 +2,14 @@ package controladores;
 
 import java.util.ArrayList;
 
+import dto.BultoDTO;
 import dto.InsumoDTO;
 import dto.PrendaDTO;
+import negocio.Bulto;
 import negocio.Cliente;
 import negocio.Insumo;
 import negocio.Prenda;
+import persistencia.BultoDAO;
 import persistencia.InsumoDAO;
 import persistencia.PrendaDAO;
 
@@ -106,6 +109,16 @@ public class AdministradorPrenda {
 
 	public InsumoDTO getInsumo(String nombre) {
 		return InsumoDAO.getInstancia().getInsumoPorNombre(nombre).toDTO();
+	}
+
+	public ArrayList<BultoDTO> buscarBultoPorId(int idPrenda) {
+		ArrayList<BultoDTO> resultado = new ArrayList<>();
+		
+		for(Bulto b : BultoDAO.getInstancia().getBultos(idPrenda)){
+			resultado.add(b.toDTO());
+		}
+		
+		return resultado;
 	}
 
 }
