@@ -254,11 +254,15 @@ public class PedidoCliente {
 	}
 
 	public String verificarPedido() {
+		String res="";
 		if (this.getCliente().verificarLimite(this.precioTotal)){
-			return "Aprobado";
+			res ="Aprobado";
 		} else {
-			return "Desaprobado";
+			res= "Desaprobado";
+			this.causa= "El precio sobrepasa su CC";
+			PedidoClienteDAO.getInstancia().update(this);
 		}
+		return res;
 	}
 
 	public void generarOrdenProduccion(ItemPedidoCliente item) {
