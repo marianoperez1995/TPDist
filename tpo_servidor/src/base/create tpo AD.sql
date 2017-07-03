@@ -186,7 +186,7 @@ create table PedidosCliente (
 	fechaRealDespacho DateTime  null,
 	fechaEntregaCliente DateTime  null,
 	precioTotal float not null,
-
+	causa varchar(100) null,
 
 	constraint pk_Pedido primary key (idPedidoCliente),
 	constraint pedido_fk_cliente foreign key (idCliente) references Clientes
